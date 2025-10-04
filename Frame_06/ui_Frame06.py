@@ -4,11 +4,11 @@
 
 
 from pathlib import Path
+from tkinter import Toplevel, Label, Frame  # này mới thêm nè
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\Hoang Anh\Downloads\01_Study\stu_7th_semester_nam3\02_MachineLearning\Tkinter-Designer-master\Frame_06\assets_Frame06")
@@ -16,6 +16,65 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\Hoang Anh\Downloads\01_Study\stu_7th
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+#sửa từ đây nè má
+def show_dropdown():
+    # Nếu dropdown đã mở thì đóng trước
+    for widget in window.winfo_children():
+        if isinstance(widget, Toplevel):
+            widget.destroy()
+
+    # === Tạo popup dropdown ===
+    dropdown = Toplevel(window)
+    dropdown.overrideredirect(True)  # Bỏ viền cửa sổ
+    dropdown.configure(bg="#FFFFFF")
+    dropdown.attributes('-topmost', True)
+    # Lấy vị trí button_2
+    x = button_Profile.winfo_rootx()
+    y = button_Profile.winfo_rooty() + button_Profile.winfo_height()
+
+    dropdown.geometry(f"150x80+{x-100}+{y+5}")  # Điều chỉnh vị trí
+
+    dropdown.update_idletasks()
+    dropdown.lift()
+
+    frame = Frame(dropdown, bg="#FFFFFF", highlightthickness=0)
+    frame.pack(fill="both", expand=True, padx=5, pady=5)
+    # Nút Account Info
+    account_btn = Button(
+        frame,
+        text="Account Info",
+        bg="#FFFFFF",
+        fg="#5A3372",
+        font=("Crimson Pro", 12, "bold"),
+        anchor="w",
+        relief="flat",
+        command=lambda: print("Account Info clicked")
+    )
+    account_btn.pack(fill="x", pady=(5, 0), padx=10)
+
+    # Nút Log out
+    logout_btn = Button(
+        frame,
+        text="Log out",
+        bg="#FFFFFF",
+        fg="#5A3372",
+        font=("Crimson Pro", 12, "bold"),
+        anchor="w",
+        relief="flat",
+        command=lambda: print("Logged out")
+    )
+    logout_btn.pack(fill="x", pady=(5, 5), padx=10)
+
+    # Đóng dropdown khi click ra ngoài
+    window.bind("<Button-1>", lambda e: close_dropdown(e, dropdown))
+
+def close_dropdown(event, popup):
+    # Nếu click không nằm trong popup
+    if popup and not (popup.winfo_x() <= event.x_root <= popup.winfo_x() + popup.winfo_width() and
+                      popup.winfo_y() <= event.y_root <= popup.winfo_y() + popup.winfo_height()):
+        popup.destroy()
+
+
 
 
 window = Tk()
@@ -57,7 +116,7 @@ canvas.create_text(
     anchor="nw",
     text="ChuLiBi",
     fill="#FDE5F4",
-    font=("RubikBurned Regular", 35 * -1)
+    font=("Rubik Burned", 35 * -1)
 )
 
 canvas.create_text(
@@ -621,116 +680,118 @@ image_26 = canvas.create_image(
     image=image_image_26
 )
 
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
-button_1 = Button(
-    image=button_image_1,
+button_Dashboard_image = PhotoImage(
+    file=relative_to_assets("button_Dashboard.png"))
+button_Dashboard = Button(
+    image=button_Dashboard_image,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command=lambda: print("button_Dashboard clicked"),
     relief="flat"
 )
-button_1.place(
+button_Dashboard.place(
     x=20.0,
     y=201.0,
     width=317.0,
     height=87.0
 )
 
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
-button_2 = Button(
-    image=button_image_2,
+button_Profile_image = PhotoImage(
+    file=relative_to_assets("button_Profile.png"))
+button_Profile = Button(
+    image=button_Profile_image,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=lambda: print("button_Profile clicked"),
     relief="flat"
 )
-button_2.place(
+button_Profile.place(
     x=1332.0,
     y=16.0,
     width=57.0,
     height=51.0
 )
 
-button_image_3 = PhotoImage(
-    file=relative_to_assets("button_3.png"))
-button_3 = Button(
-    image=button_image_3,
+button_Customer_analysis_image = PhotoImage(
+    file=relative_to_assets("button_Customer_analysis.png"))
+button_Customer_analysis = Button(
+    image=button_Customer_analysis_image,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
+    command=lambda: print("button_Customer_analysis"),
     relief="flat"
 )
-button_3.place(
+button_Customer_analysis.place(
     x=0.0,
     y=302.0,
     width=337.0,
     height=77.0
 )
 
-button_image_4 = PhotoImage(
-    file=relative_to_assets("button_4.png"))
-button_4 = Button(
-    image=button_image_4,
+button_Recommendation_image = PhotoImage(
+    file=relative_to_assets("button_Recommendation.png"))
+button_Recommendation = Button(
+    image=button_Recommendation_image,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
+    command=lambda: print("button_Recommendation clicked"),
     relief="flat"
 )
-button_4.place(
+button_Recommendation.place(
     x=0.0,
     y=468.0,
     width=336.0,
     height=82.0
 )
 
-button_image_5 = PhotoImage(
-    file=relative_to_assets("button_5.png"))
-button_5 = Button(
-    image=button_image_5,
+button_Churn_image = PhotoImage(
+    file=relative_to_assets("button_Churn.png"))
+button_Churn = Button(
+    image=button_Churn_image,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
+    command=lambda: print("button_Churn clicked"),
     relief="flat"
 )
-button_5.place(
+button_Churn.place(
     x=0.0,
     y=381.0,
     width=336.0,
     height=86.0
 )
 
-button_image_6 = PhotoImage(
-    file=relative_to_assets("button_6.png"))
-button_6 = Button(
-    image=button_image_6,
+button_Delivery_image = PhotoImage(
+    file=relative_to_assets("button_Delivery.png"))
+button_Delivery = Button(
+    image=button_Delivery_image,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=lambda: print("button_Delivery clicked"),
     relief="flat"
 )
-button_6.place(
+button_Delivery.place(
     x=0.0,
     y=552.0,
     width=337.0,
     height=90.0
 )
-
-button_image_7 = PhotoImage(
-    file=relative_to_assets("button_7.png"))
-button_7 = Button(
-    image=button_image_7,
+button_Report_image = PhotoImage(
+    file=relative_to_assets("button_Report.png"))
+button_Report = Button(
+    image=button_Report_image,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_7 clicked"),
+    command=lambda: print("button_Report clicked"),
     relief="flat"
 )
-button_7.place(
+button_Report.place(
     x=0.0,
     y=646.0,
     width=338.0,
     height=88.0
 )
+
+# Gán sự kiện click vào icon người dùng
+button_Profile.configure(command=show_dropdown)
 window.resizable(False, False)
 window.mainloop()
