@@ -1,5 +1,4 @@
-#sửa từ đây nè má: thêm vào hàm này (lưu ý đặt đúng tên button)
-'''def show_dropdown():
+def show_dropdown():
     # Nếu dropdown đã mở thì đóng trước
     for widget in window.winfo_children():
         if isinstance(widget, Toplevel):
@@ -37,7 +36,7 @@
     # Nút Log out
     logout_btn = Button(
         frame,
-        text="Log out",
+        text="Log Out",
         bg="#FFFFFF",
         fg="#5A3372",
         font=("Crimson Pro", 12, "bold"),
@@ -57,4 +56,3 @@ def close_dropdown(event, popup):
         popup.destroy()
 # Gán sự kiện click vào icon người dùng
 button_Profile.configure(command=show_dropdown)
-'''
