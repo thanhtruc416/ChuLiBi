@@ -11,7 +11,7 @@ from tkinter import Toplevel, Label, Frame  # này mới thêm nè
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\Hoang Anh\Downloads\01_Study\stu_7th_semester_nam3\02_MachineLearning\Tkinter-Designer-master\Frame_06\assets_Frame06")
+ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame06")
 
 
 def relative_to_assets(path: str) -> Path:
