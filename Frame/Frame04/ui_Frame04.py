@@ -1,4 +1,4 @@
-# frame04.py
+
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage
 
