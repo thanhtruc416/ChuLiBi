@@ -1,0 +1,34 @@
+digraph ChuLiBi_Workflow {
+	rankdir=TB size="10,8"
+	A [label="Không Login" color=lightblue shape=oval style=filled]
+	B [label="Người mới hay quên mật khẩu?" color=lightyellow shape=diamond style=filled]
+	C [label=Register color=lightgreen shape=box style=filled]
+	D [label="Filling Information" color=lightgreen shape=box style=filled]
+	F [label="Forget Password" color=orange shape=box style=filled]
+	G [label="Reset Password" color=orange shape=box style=filled]
+	E [label=Login color=lightblue shape=oval style=filled]
+	H [label="Check dữ liệu có sẵn?" color=lightyellow shape=diamond style=filled]
+	J [label="Data Management" color=pink shape=box style=filled]
+	I [label=Dashboard color=violet shape=box style=filled]
+	K [label=Segmentation color=lightgray shape=box style=filled]
+	L [label="Churn Analysis" color=lightgray shape=box style=filled]
+	M [label=Recommendation color=lightgray shape=box style=filled]
+	N [label="Predict Delivery" color=lightgray shape=box style=filled]
+	O [label="Hoàn tất" color=lightblue shape=oval style=filled]
+	A -> B
+	B -> C [label="Người mới"]
+	C -> D
+	D -> E
+	B -> F [label="Quên mật khẩu"]
+	F -> G
+	G -> E
+	E -> H
+	H -> I [label="Có dữ liệu"]
+	H -> J [label="Không có dữ liệu"]
+	J -> I
+	I -> K
+	K -> L
+	L -> M
+	M -> N
+	N -> O
+}
