@@ -1,10 +1,18 @@
 # host_test_riu.py
 # Dùng layout/ảnh y như test_riu.py làm nền, rồi chèn frame 'Data List' (gui) + scrollbar bên phải.
 # KHÔNG sửa đường dẫn assets của test_riu: ASSETS_PATH = Path("assets")
-
+import sys
 from pathlib import Path
 from tkinter import Tk, Canvas, Button, PhotoImage, Scrollbar, Frame
-from bbbbb import build_content   # <— file ở trên
+
+CURRENT_DIR = Path(__file__).parent
+if str(CURRENT_DIR) not in sys.path:
+    sys.path.append(str(CURRENT_DIR))
+
+from ui_Frame13_2 import build_content
+ASSETS_PATH = Path("assets")  # y như test_riu.py
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)
 
 ASSETS_PATH = Path("assets")  # y như test_riu.py
 def relative_to_assets(path: str) -> Path:
@@ -200,3 +208,4 @@ window.bind_all("<Shift-MouseWheel>", _on_shift_mousewheel)
 
 window.resizable(False, False)
 window.mainloop()
+
