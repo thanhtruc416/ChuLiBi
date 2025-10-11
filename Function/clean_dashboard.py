@@ -94,11 +94,11 @@ def _plot_bar_occupation_gender(ax, dfp: pd.DataFrame, mode: str = "grouped"):
             ax.bar(x + offsets[i], counts[g].values, width=width, label=g, color=colors.get(g))
 
     ax.set_xticks(x)
-    ax.set_xticklabels(counts.index, rotation=0, ha="center", fontsize=7, color="#7A467A")
-    ax.set_ylabel("Nummber of Customers", fontsize=7, fontfamily="Crimson Pro",color="#7A467A")
-    ax.set_xlabel("Occupation", fontsize=7, fontfamily="Crimson Pro",color="#7A467A")
+    ax.set_xticklabels(counts.index, rotation=0, ha="center", fontsize=9, color="#7A467A")
+    ax.set_ylabel("Number of Customers", fontsize=11, fontfamily="Crimson Pro",color="#7A467A")
+    ax.set_xlabel("Occupation", fontsize=11, fontfamily="Crimson Pro",color="#7A467A")
     ax.tick_params(axis="y", labelcolor="#644E94")
-    legend = ax.legend(title="Gender", fontsize=7, title_fontsize=7)
+    legend = ax.legend(title="Gender", fontsize=11, title_fontsize=11)
     legend.get_title().set_color("#7A467A")
 
 def _make_age_bins(age: pd.Series, bin_width=4, start_at=18):
@@ -130,16 +130,31 @@ def _plot_line_orders_by_age(ax, dfp: pd.DataFrame, bin_width=4, start_at=18):
     ax.clear()
     ax.plot(x, agg.values, marker="o",color="#A08CB1")
     ax.set_xticks(x)
-    ax.set_xticklabels([f"{iv.left}-{iv.right-1}" for iv in agg.index], rotation=20, ha="center", fontsize=8, color="#7A467A")
-    ax.set_xlabel("(age group)", fontsize=7, fontfamily="Crimson Pro",color="#7A467A")
-    ax.set_ylabel("orders", fontsize=7, fontfamily="Crimson Pro",color="#7A467A")
+    ax.set_xticklabels([f"{iv.left}-{iv.right-1}" for iv in agg.index], rotation=20, ha="center", fontsize=9, color="#7A467A")
+    ax.set_xlabel("(age group)", fontsize=11, font="Crimson Pro",color="#7A467A")
+    ax.set_ylabel("orders", fontsize=11, fontfamily="Crimson Pro",color="#7A467A")
     ax.tick_params(axis="y", labelcolor="#644E94")
     peak_idx = int(np.argmax(agg.values)); peak_iv = agg.index[peak_idx]; peak_val = agg.values[peak_idx]
-    ax.annotate(f"Peak: {int(peak_val)} orders ({peak_iv.left}-{peak_iv.right-1})",
-                color="#7A467A",fontsize=8,
-                xy=(peak_idx, peak_val),
-                xytext=(peak_idx, peak_val * 1.05 if peak_val>0 else 1),
-                arrowprops=dict(arrowstyle="->"))
+    ax.annotate(
+        f"Peak: {int(peak_val)} orders ({peak_iv.left}-{peak_iv.right - 1})",
+        xy=(peak_idx, peak_val),  # điểm đỉnh
+        xytext=(12, 0),  # → nhích sang phải 12pt (thử 10–16)
+        textcoords="offset points",
+        ha="left", va="center",  # canh trái, giữa theo chiều dọc
+        fontsize=11, color="#7A467A",
+        arrowprops=dict(arrowstyle="->", lw=0.8, color="#7A467A"),
+        clip_on=False
+    )
+    ax.margins(x=0.06, y=0.12)
+    for side in ("top", "left", "right"):
+        ax.spines[side].set_visible(True)
+        ax.spines[side].set_position(("outward", 1))  # nhích ra ngoài
+        ax.spines[side].set_linewidth(1)
+
+    # cho ticks hướng ra ngoài + thêm khoảng cách nhãn khỏi viền
+    ax.tick_params(axis='both', which='major', length=8, width=1.0, direction='out', pad=4)
+    # (tuỳ chọn) vạch chia phụ
+    ax.tick_params(axis='both', which='minor', length=5, width=1.0, direction='out')
 
 def _plot_pie_meal_share(ax, dfp: pd.DataFrame):
     col = "frequently_ordered_meal_category"
@@ -169,7 +184,7 @@ def _plot_pie_meal_share(ax, dfp: pd.DataFrame):
         autopct="%1.1f%%",
         startangle=90,
         colors=colors,
-        wedgeprops=dict(width=0.6),
+        wedgeprops=dict(width=0.7),
         textprops={"fontsize": 9, "color": "#7A467A", "fontfamily": "Crimson Pro"}
     )
 
@@ -217,10 +232,10 @@ def _plot_stacked_hist_delivery(ax, dfp: pd.DataFrame, bin_width=10):
         ax.bar(x, vals, bottom=bottom, label=s, color=colors[s])
         bottom += vals
     ax.set_xticks(x);
-    ax.set_xticklabels([f"{iv.left}–{iv.right}" for iv in ct.index], rotation=20, ha="center",fontsize=7, color="#7A467A")
-    ax.set_xlabel("(minute)", fontsize=7, fontfamily="Crimson Pro",color="#7A467A")
-    ax.set_ylabel("(orders)",fontsize=7, fontfamily="Crimson Pro",color="#7A467A")
-    ax.tick_params(axis="y", labelcolor="#644E94",labelsize=7)
+    ax.set_xticklabels([f"{iv.left}–{iv.right}" for iv in ct.index], rotation=20, ha="center",fontsize=9, color="#7A467A")
+    ax.set_xlabel("(minute)", fontsize=11, fontfamily="Crimson Pro",color="#7A467A")
+    ax.set_ylabel("(orders)",fontsize=11, fontfamily="Crimson Pro",color="#7A467A")
+    ax.tick_params(axis="y", labelcolor="#644E94",labelsize=9)
     legend=ax.legend(
         title = "Status",
         fontsize=7,
