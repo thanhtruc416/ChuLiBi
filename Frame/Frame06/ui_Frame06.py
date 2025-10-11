@@ -25,13 +25,12 @@ from Function.dropdown_profile import DropdownMenu
 # ---------------- Paths & Font ----------------
 OUTPUT_PATH = Path(__file__).parent                      # .../Frame/Frame06
 ASSETS_PATH = OUTPUT_PATH / "assets_Frame06"
-DATA_DIR = OUTPUT_PATH / "datasets"
-CSV_PATH = DATA_DIR / "df_raw_dashboard.csv"
 
 # Project root: .../ChuLiBi
 ROOT = Path(__file__).resolve().parents[2]
 # Tên/thư mục font theo repo của bạn
 font_path = ROOT / "Font" / "Crimson_Pro" / "static" / "CrimsonPro-Regular.ttf"
+CSV_PATH = ROOT / "Dataset" / "df_raw_dashboard.csv"
 if font_path.exists():
     fm.fontManager.addfont(str(font_path))
 rcParams["font.family"] = "Crimson Pro"
