@@ -1,20 +1,14 @@
-
-def relative_to_assets(path: str) -> Path:
-    return ASSETS_PATH / path
-
-
+# ui_frame01.py
 from pathlib import Path
 import tkinter as tk
-from tkinter import Canvas, Entry, Button, PhotoImage
+from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame01")
 
-
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / path
-
 
 class Frame01(tk.Frame):
     def __init__(self, parent, controller=None):
@@ -186,7 +180,7 @@ class Frame01(tk.Frame):
             borderwidth=0,
             highlightthickness=0,
             relief="flat",
-            command=lambda: self.controller.show_frame("Frame04")
+            command=lambda: self.controller.show_frame("Frame04") if self.controller else None
         )
         self.dn_forget.place(x=1149.0, y=680.0, width=141.0, height=20.0)
 
@@ -214,6 +208,10 @@ class Frame01(tk.Frame):
         )
         self.dn_signin.place(x=1151.0, y=855.0, width=92.0, height=24.0)
 
+        # Bind Enter cho tiện (không ảnh hưởng layout)
+        self.dn_username.bind("<Return>", lambda e: self.login_action())
+        self.dn_password.bind("<Return>", lambda e: self.login_action())
+
     # ----------------------------------------------------------------
     def toggle_password_visibility(self):
         """Chuyển đổi giữa ẩn và hiện mật khẩu"""
@@ -225,13 +223,9 @@ class Frame01(tk.Frame):
             self.password_hidden = True
 
     # ----------------------------------------------------------------
-    def login_action(self):
-        """Xử lý đăng nhập"""
-        username = self.dn_username.get()
-        password = self.dn_password.get()
-        print(f"Login attempt -> Username: {username}, Password: {password}")
-
     # ----------------------------------------------------------------
     def on_show(self):
         """Được gọi mỗi khi Frame01 hiển thị"""
         print("Frame01 hiển thị lại (reload data nếu cần)")
+
+
