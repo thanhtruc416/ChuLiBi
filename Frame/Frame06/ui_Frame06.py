@@ -1,6 +1,7 @@
 from pathlib import Path
 from tkinter import Frame, Canvas, Button, PhotoImage
 from Function.dropdown_profile import DropdownMenu  # import module dropdown đã tạo
+from Function.kpi_functions import get_all_kpis  # import KPI functions
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame06")
@@ -27,6 +28,10 @@ class Frame06(Frame):
             relief="ridge"
         )
         canvas.place(x=0, y=0)
+
+        # --- Load KPIs ---
+        self.kpis = get_all_kpis()
+        print("KPIs loaded:", self.kpis)
 
         # --- Images ---
         self.image_1 = PhotoImage(file=relative_to_assets("image_1.png"))
@@ -116,6 +121,80 @@ class Frame06(Frame):
                            font=("Young Serif", 24 * -1))
         canvas.create_text(542.0, 133.0, anchor="nw", text="Top Metrics", fill="#B992B9",
                            font=("Crimson Pro", 17 * -1))
+
+        # --- KPI Display ---
+        # KPI positions (x, y coordinates for the 8 KPI cards)
+        kpi_positions = [
+            (452, 220),  # KPI 1 - Total Customers
+            (577, 220),  # KPI 2 - Average Age
+            (702, 220),  # KPI 3 - Total Orders
+            (827, 220),  # KPI 4 - High Frequency Rate
+            (952, 220),  # KPI 5 - Average Order Value
+            (1077, 220),  # KPI 6 - Average Delivery Time
+            (1202, 220),  # KPI 7 - Restaurant Rating
+            (1327, 220),  # KPI 8 - Delivery Rating
+        ]
+
+        # KPI labels
+        kpi_labels = [
+            "Total customers",
+            "Average Age",
+            "Total Orders",
+            "High-Frequency\nCustomer Rate",
+            "Average\nOrder Value",
+            "Average\nDelivery Time",
+            "Average\nRestaurant Rating",
+            "Average\nDelivery Rating"
+        ]
+
+        # KPI values
+        kpi_values = [
+            f"{self.kpis.get('total_customers', 'N/A')}\n(people)",
+            f"{self.kpis.get('avg_age', 'N/A')}\n(years old)",
+            f"{self.kpis.get('total_orders', 'N/A')}\n(orders)",
+            f"{self.kpis.get('high_frequency_customer_rate', 'N/A')}\n(%)",
+            f"${self.kpis.get('avg_order_value', 'N/A')}",
+            f"{self.kpis.get('avg_delivery_time', 'N/A')}\n(hours)",
+            f"{self.kpis.get('avg_restaurant_rating', 'N/A')}",
+            f"{self.kpis.get('avg_delivery_rating', 'N/A')}"
+        ]
+
+        # Display KPIs on canvas
+        for i, (x, y) in enumerate(kpi_positions):  # Display all 8 KPIs
+            # Split value into main number and unit
+            value_parts = kpi_values[i].split('\n')
+            main_value = value_parts[0]
+            unit = value_parts[1] if len(value_parts) > 1 else ""
+
+            # KPI Main Value (large number)
+            canvas.create_text(
+                x + 18, y - 20,
+                text=main_value,
+                fill="#706093",
+                font=("Kodchasan Bold", 20),
+                anchor="center"
+            )
+
+            # KPI Unit (smaller text below value)
+            if unit:
+                canvas.create_text(
+                    x + 18, y,
+                    text=unit,
+                    fill="#B992B9",
+                    font=("Kodchasan", 10),
+                    anchor="center"
+                )
+
+            # KPI Label (description text at bottom)
+            canvas.create_text(
+                x, y + 20,
+                text=kpi_labels[i],
+                fill="#644E94",
+                font=("Kodchasan", 11),
+                anchor="center",
+                justify="center"
+            )
+
         canvas.create_text(405.0, 322.0, anchor="nw", text="Bar chart", fill="#706093",
                            font=("Young Serif", 27 * -1))
         canvas.create_text(544.0, 335.0, anchor="nw", text="Customer group with the highest spending",
