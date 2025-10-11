@@ -410,15 +410,9 @@ button_CustomerAnalysis.place(
     x=0.0,
     y=273.0,
     width=336.0,
-    height=102.0
+    height=100.0
 )
 
-image_image_12 = PhotoImage(
-    file=relative_to_assets("image_12.png"))
-image_12 = canvas.create_image(
-    14.0,
-    324.0,
-    image=image_image_12
-)
+
 window.resizable(False, False)
 window.mainloop()
