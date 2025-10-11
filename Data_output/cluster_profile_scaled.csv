@@ -1,0 +1,4 @@
+cluster,Age,Family size,Restaurant Rating,Delivery Rating,No. of orders placed,Delivery Time,Order Value,pca_convenience,pca_service_issue,pca_deal_sensitive,Count
+0,-0.47,-0.121,-0.18,-0.029,0.112,-0.084,-0.316,0.578,0.928,-0.221,196
+1,-0.239,-0.268,0.161,-0.202,-0.143,0.288,-0.088,-1.107,-0.95,0.508,166
+2,0.962,0.498,0.063,0.287,0.013,-0.23,0.558,0.514,-0.178,-0.299,137
