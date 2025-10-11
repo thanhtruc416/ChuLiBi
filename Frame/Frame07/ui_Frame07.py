@@ -307,7 +307,7 @@ button_Recommendation = Button(
     image=button_image_Recommendation,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command=lambda: print("button_Recommendation clicked"),
     relief="flat"
 )
 button_Recommendation.place(
