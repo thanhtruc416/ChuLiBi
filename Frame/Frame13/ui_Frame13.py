@@ -1,6 +1,6 @@
 # host_test_riu.py
 # Dùng layout/ảnh y như test_riu.py làm nền, rồi chèn frame 'Data List' (gui) + scrollbar bên phải.
-# KHÔNG sửa đường dẫn assets của test_riu: ASSETS_PATH = Path("assets")
+# KHÔNG sửa đường dẫn assets_Frame07 của test_riu: ASSETS_PATH = Path("assets_Frame07")
 import sys
 from pathlib import Path
 from tkinter import Tk, Canvas, Button, PhotoImage, Scrollbar, Frame
