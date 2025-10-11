@@ -4,7 +4,7 @@ import pymysql
 
 class Connector:
     def __init__(self, server="localhost", port=3306,
-                 database="chulibi", username="root", password=""):
+                 database="chulibi", username="root", password="@Obama123"):
         self.server = server
         self.port = port
         self.database = database
