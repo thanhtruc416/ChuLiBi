@@ -6,6 +6,8 @@
 from pathlib import Path
 from tkinter import Toplevel, Label, Frame
 import pandas as pd
+import matplotlib.font_manager as fm
+from matplotlib import font_manager, rcParams
 
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
@@ -18,7 +20,18 @@ OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame06")
 
 #đọc DL từ pandas:
-df = pd.read_csv(r"C:\Users\Hoang Anh\Downloads\01_Study\stu_7th_semester_nam3\02_MachineLearning\06_do_an\Frame06\datasets\df_raw_dashboard.csv")
+df = pd.read_csv(r"C:\Users\Hoang Anh\Downloads\01_Study\stu_7th_semester_nam3\02_MachineLearning\Frame\Frame06\datasets\df_raw_dashboard.csv")
+
+for font in fm.findSystemFonts(fontpaths=None, fontext='ttf'):
+    if "CrimsonPro" in font or "Crimson Pro" in font:
+        print(font)
+
+ROOT = Path(__file__).resolve().parent.parent.parent
+font_path = ROOT / "Font" / "Crimson_Pro" / "CrimsonPro-Regular.ttf"
+ # Đường dẫn tới file font
+fm.fontManager.addfont(str(font_path))
+rcParams["font.family"] = "Crimson Pro"
+
 
 df.columns = [c.strip().replace(" ", "_").replace(".", "").replace("/", "_").lower() for c in df.columns]
 dfp=_preprocess(df)
@@ -88,7 +101,7 @@ def close_dropdown(event, popup):
 
 window = Tk()
 #fit với màn hình laptop( nếu ko cần thì xóa 5 dòng tiếp theo)
-window.title("Data Management")
+window.title("Dashboard")
 try:
     window.state("zoomed")          # Windows/macOS: fit full screen
 except Exception:
@@ -813,7 +826,7 @@ frame_pie_chart      = Frame(canvas, bg="#FFFFFF")
 
 canvas.create_window(410, 360, window=frame_bar_chart, anchor="nw", width=480, height=270)
 canvas.create_window(950, 375, window=frame_histogram, anchor="nw", width=420, height=220)
-canvas.create_window(430, 700, window=frame_line_chart, anchor="nw", width=460, height=260)
+canvas.create_window(420, 700, window=frame_line_chart, anchor="nw", width=520, height=260)
 canvas.create_window(980, 700, window=frame_pie_chart, anchor="nw", width=400, height=220)
 
 # Bar chart
@@ -838,7 +851,7 @@ canvas2.get_tk_widget().pack(fill="both", expand=True)
 
 # Line chart
 fig3 = Figure(figsize=(5,3), dpi=100)
-fig3.subplots_adjust(bottom=0.35,top=0.88)
+fig3.subplots_adjust(bottom=0.3,top=0.88)
 ax3 = fig3.add_subplot(111)
 _plot_line_orders_by_age(ax3, dfp, bin_width=4)
 canvas3 = FigureCanvasTkAgg(fig3, master=frame_line_chart)
@@ -846,7 +859,7 @@ canvas3.draw()
 canvas3.get_tk_widget().pack(fill="both", expand=True)
 
 # Pie chart (ổn gòi, đổi font/màu thoi)
-fig4 = Figure(figsize=(5,4), dpi=120)
+fig4 = Figure(figsize=(6,4), dpi=140)
 fig4.subplots_adjust(left=0.2, right=0.80, top=0.95, bottom=0.01)
 fig4.tight_layout()
 
