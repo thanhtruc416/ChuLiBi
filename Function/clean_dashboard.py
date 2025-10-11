@@ -233,8 +233,11 @@ def _plot_stacked_hist_delivery(ax, dfp: pd.DataFrame, bin_width=10):
         bottom += vals
     ax.set_xticks(x);
     ax.set_xticklabels([f"{iv.left}–{iv.right}" for iv in ct.index], rotation=20, ha="center",fontsize=9, color="#7A467A")
-    ax.set_xlabel("(minute)", fontsize=11, fontfamily="Crimson Pro",color="#7A467A")
-    ax.set_ylabel("(orders)",fontsize=11, fontfamily="Crimson Pro",color="#7A467A")
+    ax.set_xlabel("(minutes)", fontsize=8, fontfamily="Crimson Pro", color="#7A467A", labelpad=6)
+    # canh phải & dời toạ độ nhãn trục X (tọa độ theo trục axes)
+    ax.xaxis.get_label().set_horizontalalignment("right")
+    ax.xaxis.set_label_coords(1.13, -0.12)  # 1.0 = mép phải; -0.12 = thấp hơn trục (chỉnh tuỳ ý)
+    ax.set_ylabel("(orders)",fontsize=9, fontfamily="Crimson Pro",color="#7A467A")
     ax.tick_params(axis="y", labelcolor="#644E94",labelsize=9)
     legend=ax.legend(
         title = "Status",

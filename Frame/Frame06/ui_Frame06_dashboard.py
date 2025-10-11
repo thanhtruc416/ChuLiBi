@@ -14,20 +14,20 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg,NavigationToolbar2Tk
 
-from Function.clean_dashboard import _plot_pie_meal_share,_plot_line_orders_by_age,_plot_stacked_hist_delivery,_plot_bar_occupation_gender, _preprocess
+from dashboard.clean_dashboard import _plot_pie_meal_share,_plot_line_orders_by_age,_plot_stacked_hist_delivery,_plot_bar_occupation_gender, _preprocess
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame06")
 
 #đọc DL từ pandas:
-df = pd.read_csv(r"C:\Users\Hoang Anh\Downloads\01_Study\stu_7th_semester_nam3\02_MachineLearning\ChuLiBi\Frame\Frame06\datasets\df_raw_dashboard.csv")
+df = pd.read_csv(r"C:\Users\Hoang Anh\Downloads\01_Study\stu_7th_semester_nam3\02_MachineLearning\Frame\Frame06\datasets\df_raw_dashboard.csv")
 
 for font in fm.findSystemFonts(fontpaths=None, fontext='ttf'):
     if "CrimsonPro" in font or "Crimson Pro" in font:
         print(font)
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-font_path = ROOT / "Font" / "Crimson_Pro" / "static"/ "CrimsonPro-Regular.ttf"
+font_path = ROOT / "Font" / "Crimson_Pro" / "CrimsonPro-Regular.ttf"
  # Đường dẫn tới file font
 fm.fontManager.addfont(str(font_path))
 rcParams["font.family"] = "Crimson Pro"
