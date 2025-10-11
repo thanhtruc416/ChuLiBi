@@ -47,3 +47,4 @@ def get_conn():
 if __name__ == "__main__":
     # chạy: python -m Function.db  (để test)
     print("DB test:", connector.test())
+
