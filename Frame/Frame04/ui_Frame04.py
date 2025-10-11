@@ -1,6 +1,6 @@
-
 from pathlib import Path
-from tkinter import Frame, Canvas, Entry, Button, PhotoImage
+from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox  # <— thêm messagebox
+from Function.ForgetPassword import send_otp_if_email_exists                      # <— thêm import
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame04")
@@ -16,13 +16,8 @@ class Frame04(Frame):
 
         # --- Canvas ---
         canvas = Canvas(
-            self,
-            bg="#FFFFFF",
-            height=1024,
-            width=1440,
-            bd=0,
-            highlightthickness=0,
-            relief="ridge"
+            self, bg="#FFFFFF", height=1024, width=1440, bd=0,
+            highlightthickness=0, relief="ridge"
         )
         canvas.place(x=0, y=0)
 
@@ -70,15 +65,55 @@ class Frame04(Frame):
         # --- Entry ---
         self.entry_image_email = PhotoImage(file=relative_to_assets("entry_email.png"))
         canvas.create_image(1081.5, 492.0, image=self.entry_image_email)
-        self.entry_email = Entry(self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
-                                 font=("Crimson Pro Regular", 26 * -1))
+
+        self.entry_email = Entry(
+            self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
+            font=("Crimson Pro Regular", 26 * -1)
+        )
         self.entry_email.place(x=857.0, y=462.0, width=449.0, height=58.0)
 
         # --- Buttons ---
-        self.button_sendOTP = Button(self, image=self.button_image_sendOTP, borderwidth=0, highlightthickness=0,
-                                     command=lambda: self.controller.show_frame("Frame05"), relief="flat")
+        # ĐỔI command: gọi hàm forgot
+        self.button_sendOTP = Button(
+            self,
+            image=self.button_image_sendOTP,
+            borderwidth=0,
+            highlightthickness=0,
+            command=self.on_click_send_otp,       # <— SỬA Ở ĐÂY
+            relief="flat"
+        )
         self.button_sendOTP.place(x=842.0, y=574.0, width=479.0, height=70.0)
 
-        self.button_login = Button(self, image=self.button_image_login, borderwidth=0, highlightthickness=0,
-                                   command=lambda: self.controller.show_frame("Frame01"), relief="flat")
+        self.button_login = Button(
+            self,
+            image=self.button_image_login,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame01"),
+            relief="flat"
+        )
         self.button_login.place(x=1176.0, y=681.0, width=63.0, height=24.0)
+
+    # ====== HÀM GỌI OTP ======
+    def on_click_send_otp(self):
+        email = self.entry_email.get().strip()
+        if not email:
+            messagebox.showwarning("Cảnh báo", "Vui lòng nhập email")
+            return
+
+        # Chặn double-click trong lúc gửi
+        self.button_sendOTP.config(state="disabled")
+        try:
+            ok, msg = send_otp_if_email_exists(email)
+            if ok:
+                messagebox.showinfo("Thành công", msg)
+                # sang Frame05 và TRUYỀN email để frame sau biết mà verify OTP
+                if self.controller:
+                    # Yêu cầu controller hỗ trợ show_frame(name, **kwargs) và gọi on_show(**kwargs)
+                    self.controller.show_frame("Frame05", email=email)
+            else:
+                messagebox.showwarning("Cảnh báo", msg)
+        except Exception as e:
+            messagebox.showerror("Lỗi", f"Không thể gửi OTP: {e}")
+        finally:
+            self.button_sendOTP.config(state="normal")
