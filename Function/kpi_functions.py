@@ -1,212 +1,217 @@
 """
 KPI Functions for Retail Dashboard
-This module contains 8 functions to retrieve key performance indicators from the database.
+This module contains 8 functions to retrieve key performance indicators from CSV data.
 """
 
-import mysql.connector
-from mysql.connector import Error
 from typing import Optional, Dict, Any
+from pathlib import Path
+import pandas as pd
+
+# Path to CSV file
+ROOT = Path(__file__).resolve().parents[1]  # Go up to ChuLiBi directory
+CSV_PATH = ROOT / "Dataset" / "df_raw_dashboard.csv"
+
+# Global variable to cache the dataframe
+_df_cache = None
 
 
-def get_db_connection():
+def load_data() -> Optional[pd.DataFrame]:
     """
-    Establish a connection to the MySQL database.
-    
+    Load data from CSV file and cache it.
+
     Returns:
-        connection: MySQL database connection object
+        DataFrame or None if error occurs
     """
-    DB_CONFIG = {
-        'host': 'localhost',
-        'port': 3306,
-        'user': '', # Update with your MySQL username
-        'password': '', # Update with your MySQL password
-        'database': '' # Update with your database name
-    }
+    global _df_cache
+
+    if _df_cache is not None:
+        return _df_cache
 
     try:
-        connection = mysql.connector.connect(**DB_CONFIG)
-        if connection.is_connected():
-            return connection
-    except Error as e:
-        print(f"Error connecting to MySQL database: {e}")
+        _df_cache = pd.read_csv(CSV_PATH)
+        print(f"Data loaded successfully from {CSV_PATH}")
+        return _df_cache
+    except Exception as e:
+        print(f"Error loading CSV file: {e}")
         return None
-
-
-def execute_query(query: str) -> Optional[Any]:
-    """
-    Execute a SQL query and return the result.
-    
-    Args:
-        query: SQL query string
-        
-    Returns:
-        Query result or None if error occurs
-    """
-    connection = get_db_connection()
-    if not connection:
-        return None
-    
-    try:
-        cursor = connection.cursor()
-        cursor.execute(query)
-        result = cursor.fetchone()
-        return result[0] if result else None
-    except Error as e:
-        print(f"Error executing query: {e}")
-        return None
-    finally:
-        if connection.is_connected():
-            cursor.close()
-            connection.close()
 
 
 def get_total_customers() -> Optional[int]:
     """
     KPI 1: Get the total number of unique customers.
-    
+
     Returns:
         Total number of customers or None if error occurs
     """
-    query = """
-        SELECT COUNT(DISTINCT CustomerID) 
-        FROM df_raw_dashboard
-    """
-    result = execute_query(query)
-    return result
+    df = load_data()
+    if df is None:
+        return None
+
+    try:
+        return int(df['CustomerID'].nunique())
+    except Exception as e:
+        print(f"Error calculating total customers: {e}")
+        return None
 
 
 def get_avg_age() -> Optional[float]:
     """
     KPI 2: Get the average age of customers.
-    
+
     Returns:
         Average age or None if error occurs
     """
-    query = """
-        SELECT AVG(Age) 
-        FROM df_raw_dashboard
-        WHERE Age IS NOT NULL
-    """
-    result = execute_query(query)
-    return round(result, 2) if result else None
+    df = load_data()
+    if df is None:
+        return None
+
+    try:
+        avg_age = df['Age'].mean()
+        return round(avg_age, 2) if pd.notna(avg_age) else None
+    except Exception as e:
+        print(f"Error calculating average age: {e}")
+        return None
 
 
 def get_total_orders() -> Optional[int]:
     """
     KPI 3: Get the total number of orders placed.
-    
+
     Returns:
         Total number of orders or None if error occurs
     """
-    query = """
-        SELECT SUM(`No. of orders placed`) 
-        FROM df_raw_dashboard
-        WHERE `No. of orders placed` IS NOT NULL
-    """
-    result = execute_query(query)
-    return result
+    df = load_data()
+    if df is None:
+        return None
+
+    try:
+        total_orders = df['No. of orders placed'].sum()
+        return int(total_orders) if pd.notna(total_orders) else None
+    except Exception as e:
+        print(f"Error calculating total orders: {e}")
+        return None
 
 
 def get_high_frequency_customer_rate() -> Optional[float]:
     """
     KPI 4: Get the percentage of high-frequency customers.
     High-frequency customers are defined as those with more than average orders.
-    
+
     Returns:
         Percentage of high-frequency customers or None if error occurs
     """
-    query = """
-        SELECT 
-            (COUNT(CASE WHEN `No. of orders placed` > avg_orders THEN 1 END) * 100.0 / COUNT(*)) AS high_frequency_rate
-        FROM df_raw_dashboard
-        CROSS JOIN (
-            SELECT AVG(`No. of orders placed`) AS avg_orders 
-            FROM df_raw_dashboard 
-            WHERE `No. of orders placed` IS NOT NULL
-        ) AS avg_table
-        WHERE `No. of orders placed` IS NOT NULL
-    """
-    result = execute_query(query)
-    return round(result, 2) if result else None
+    df = load_data()
+    if df is None:
+        return None
+
+    try:
+        # Filter out null values
+        df_filtered = df[df['No. of orders placed'].notna()]
+
+        # Calculate average orders
+        avg_orders = df_filtered['No. of orders placed'].mean()
+
+        # Count high frequency customers (more than average)
+        high_freq_count = (df_filtered['No. of orders placed'] > avg_orders).sum()
+        total_count = len(df_filtered)
+
+        # Calculate percentage
+        high_freq_rate = (high_freq_count * 100.0 / total_count) if total_count > 0 else 0
+        return round(high_freq_rate, 2)
+    except Exception as e:
+        print(f"Error calculating high frequency customer rate: {e}")
+        return None
 
 
 def get_avg_order_value() -> Optional[float]:
     """
     KPI 5: Get the average order value.
-    
+
     Returns:
         Average order value or None if error occurs
     """
-    query = """
-        SELECT AVG(`Order Value`) 
-        FROM df_raw_dashboard
-        WHERE `Order Value` IS NOT NULL
-    """
-    result = execute_query(query)
-    return round(result, 2) if result else None
+    df = load_data()
+    if df is None:
+        return None
+
+    try:
+        avg_value = df['Order Value'].mean()
+        return round(avg_value, 2) if pd.notna(avg_value) else None
+    except Exception as e:
+        print(f"Error calculating average order value: {e}")
+        return None
 
 
 def get_avg_delivery_time() -> Optional[float]:
     """
     KPI 6: Get the average delivery time.
-    
+
     Returns:
         Average delivery time or None if error occurs
     """
-    query = """
-        SELECT AVG(`Delivery Time`) 
-        FROM df_raw_dashboard
-        WHERE `Delivery Time` IS NOT NULL
-    """
-    result = execute_query(query)
-    return round(result, 2) if result else None
+    df = load_data()
+    if df is None:
+        return None
+
+    try:
+        avg_time = df['Delivery Time'].mean()
+        return round(avg_time, 2) if pd.notna(avg_time) else None
+    except Exception as e:
+        print(f"Error calculating average delivery time: {e}")
+        return None
 
 
 def get_avg_restaurant_rating() -> Optional[float]:
     """
     KPI 7: Get the average restaurant rating.
-    
+
     Returns:
         Average restaurant rating or None if error occurs
     """
-    query = """
-        SELECT AVG(`Restaurant Rating`) 
-        FROM df_raw_dashboard
-        WHERE `Restaurant Rating` IS NOT NULL
-    """
-    result = execute_query(query)
-    return round(result, 2) if result else None
+    df = load_data()
+    if df is None:
+        return None
+
+    try:
+        avg_rating = df['Restaurant Rating'].mean()
+        return round(avg_rating, 2) if pd.notna(avg_rating) else None
+    except Exception as e:
+        print(f"Error calculating average restaurant rating: {e}")
+        return None
 
 
 def get_avg_delivery_rating() -> Optional[float]:
     """
     KPI 8: Get the average delivery rating.
-    
+
     Returns:
         Average delivery rating or None if error occurs
     """
-    query = """
-        SELECT AVG(`Delivery Rating`) 
-        FROM df_raw_dashboard
-        WHERE `Delivery Rating` IS NOT NULL
-    """
-    result = execute_query(query)
-    return round(result, 2) if result else None
+    df = load_data()
+    if df is None:
+        return None
+
+    try:
+        avg_rating = df['Delivery Rating'].mean()
+        return round(avg_rating, 2) if pd.notna(avg_rating) else None
+    except Exception as e:
+        print(f"Error calculating average delivery rating: {e}")
+        return None
 
 
 def get_all_kpis() -> Dict[str, Any]:
     """
     Get all KPIs at once and return as a dictionary.
-    
+
     Returns:
         Dictionary containing all KPI values
     """
-    # Try to get real data from database
-    connection = get_db_connection()
-    
-    # If no database connection, return placeholder data
-    if not connection:
-        print("Warning: Database not connected. Using placeholder data.")
+    # Try to load data from CSV
+    df = load_data()
+
+    # If no data, return placeholder data
+    if df is None:
+        print("Warning: CSV data not loaded. Using placeholder data.")
         return {
             'total_customers': 1250,
             'avg_age': 32.5,
@@ -217,8 +222,8 @@ def get_all_kpis() -> Dict[str, Any]:
             'avg_restaurant_rating': 4.2,
             'avg_delivery_rating': 4.5
         }
-    
-    # Get real data
+
+    # Get real data from CSV
     kpis = {
         'total_customers': get_total_customers(),
         'avg_age': get_avg_age(),
