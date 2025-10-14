@@ -1,12 +1,15 @@
 # frame03.py
 from pathlib import Path
-from tkinter import Frame, Canvas, Entry, Button, PhotoImage
+from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox
+import tkinter as tk
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame03")
 
+
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+
 
 class Frame03(Frame):
     def __init__(self, parent, controller):
@@ -110,5 +113,110 @@ class Frame03(Frame):
         # --- Buttons ---
         self.button_image_continue = PhotoImage(file=relative_to_assets("button_continue.png"))
         self.button_continue = Button(self, image=self.button_image_continue, borderwidth=0, highlightthickness=0,
-                                      command=lambda: self.controller.show_frame("Frame01"), relief="flat")
+                                      command=self.save_profile, relief="flat")
         self.button_continue.place(x=843.0, y=822.0, width=482.0, height=69.0)
+
+    def save_profile(self):
+        """Save user profile information"""
+        full_name = self.entry_full_name.get().strip()
+        business_name = self.entry_business_name.get().strip()
+        role = self.entry_your_role.get().strip()
+
+        # Validate inputs
+        if not full_name or not business_name or not role:
+            messagebox.showerror(
+                "Incomplete Profile",
+                "Please fill in all fields to complete your profile"
+            )
+            return
+
+        # Get current user from controller
+        if not self.controller or not hasattr(self.controller, 'current_user'):
+            messagebox.showerror(
+                "Error",
+                "No user session found. Please login again."
+            )
+            if self.controller:
+                self.controller.show_frame("Frame01")
+            return
+
+        user_id = self.controller.current_user.get('id')
+        if not user_id:
+            messagebox.showerror(
+                "Error",
+                "Invalid user session. Please login again."
+            )
+            self.controller.show_frame("Frame01")
+            return
+
+        try:
+            from Function.auth import AuthService
+
+            # Update profile
+            result = AuthService.update_user_profile(user_id, full_name, business_name, role)
+
+            if result["success"]:
+                # Update current user data
+                self.controller.current_user['full_name'] = full_name
+                self.controller.current_user['business_name'] = business_name
+                self.controller.current_user['role'] = role
+
+                messagebox.showinfo(
+                    "Profile Completed",
+                    f"Welcome, {full_name}! Your profile has been completed successfully!"
+                )
+
+                # Navigate to dashboard (Frame06)
+                try:
+                    self.controller.show_frame("Frame06")
+                except KeyError:
+                    print("Dashboard frame (Frame06) not found, staying on profile page")
+            else:
+                messagebox.showerror(
+                    "Update Failed",
+                    result["message"]
+                )
+
+        except ImportError as e:
+            messagebox.showerror(
+                "System Error",
+                f"Authentication module not found: {str(e)}"
+            )
+        except Exception as e:
+            messagebox.showerror(
+                "System Error",
+                f"An unexpected error occurred: {str(e)}"
+            )
+            print(f"Profile save error: {e}")
+
+    def load_user_data(self):
+        """Load existing user data if available"""
+        if self.controller and hasattr(self.controller, 'current_user'):
+            user = self.controller.current_user
+
+            # Pre-fill fields if data exists
+            if user.get('full_name'):
+                self.entry_full_name.delete(0, tk.END)
+                self.entry_full_name.insert(0, user['full_name'])
+
+            if user.get('business_name'):
+                self.entry_business_name.delete(0, tk.END)
+                self.entry_business_name.insert(0, user['business_name'])
+
+            if user.get('role'):
+                self.entry_your_role.delete(0, tk.END)
+                self.entry_your_role.insert(0, user['role'])
+
+    def clear_form(self):
+        """Clear all form fields"""
+        self.entry_full_name.delete(0, tk.END)
+        self.entry_business_name.delete(0, tk.END)
+        self.entry_your_role.delete(0, tk.END)
+
+    def on_show(self):
+        """Called when Frame03 is displayed"""
+        print("Frame03 displayed - Complete Profile")
+        # Load existing data if any
+        self.load_user_data()
+        # Focus on first field
+        self.entry_full_name.focus()

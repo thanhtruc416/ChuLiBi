@@ -2,6 +2,7 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox  # <-- thêm messagebox
 
+
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / path
 
@@ -9,7 +10,6 @@ def relative_to_assets(path: str) -> Path:
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage
-
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame01")
@@ -230,11 +230,97 @@ class Frame01(tk.Frame):
     # ----------------------------------------------------------------
     def login_action(self):
         """Xử lý đăng nhập"""
-        username = self.dn_username.get()
-        password = self.dn_password.get()
-        print(f"Login attempt -> Username: {username}, Password: {password}")
+        username = self.dn_username.get().strip()
+        password = self.dn_password.get().strip()
+
+        # Validate input
+        if not username or not password:
+            messagebox.showerror(
+                "Login Error",
+                "Please enter both username and password"
+            )
+            return
+
+        # Import auth service
+        try:
+            from Function.auth import AuthService
+
+            # Attempt login
+            result = AuthService.verify_login(username, password)
+
+            if result["success"]:
+                # Store user data in controller if available
+                if self.controller:
+                    if not hasattr(self.controller, 'current_user'):
+                        self.controller.current_user = {}
+                    self.controller.current_user = result['user_data']
+
+                # Clear password field for security
+                self.dn_password.delete(0, tk.END)
+
+                # Check if profile is complete (all 3 fields must be filled)
+                user_data = result['user_data']
+                profile_complete = (
+                        user_data.get('full_name') and
+                        user_data.get('business_name') and
+                        user_data.get('role')
+                )
+
+                if not profile_complete:
+                    # Redirect to complete profile
+                    messagebox.showinfo(
+                        "Complete Your Profile",
+                        f"Welcome, {user_data['username']}! Please complete your profile to continue."
+                    )
+                    if self.controller:
+                        try:
+                            self.controller.show_frame("Frame03")
+                        except KeyError:
+                            print("Profile frame not registered yet")
+                else:
+                    # Profile complete - go to dashboard
+                    messagebox.showinfo(
+                        "Login Successful",
+                        f"Welcome back, {user_data.get('full_name', user_data['username'])}!"
+                    )
+                    if self.controller:
+                        # Navigate to dashboard (Frame06)
+                        try:
+                            self.controller.show_frame("Frame06")
+                        except KeyError:
+                            print("Dashboard frame not registered yet - using Frame06")
+
+            else:
+                # Login failed
+                messagebox.showerror(
+                    "Login Failed",
+                    result["message"]
+                )
+                # Clear password field
+                self.dn_password.delete(0, tk.END)
+                self.dn_password.focus()
+
+        except ImportError as e:
+            messagebox.showerror(
+                "System Error",
+                f"Authentication module not found: {str(e)}"
+            )
+        except Exception as e:
+            messagebox.showerror(
+                "System Error",
+                f"An unexpected error occurred: {str(e)}"
+            )
+            print(f"Login error: {e}")
 
     # ----------------------------------------------------------------
     def on_show(self):
         """Được gọi mỗi khi Frame01 hiển thị"""
         print("Frame01 hiển thị lại (reload data nếu cần)")
+        # Clear form fields when returning to login page
+        self.dn_username.delete(0, tk.END)
+        self.dn_password.delete(0, tk.END)
+        # Reset password visibility to hidden
+        self.dn_password.config(show="*")
+        self.password_hidden = True
+        # Focus on username field
+        self.dn_username.focus()

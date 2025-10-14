@@ -1,18 +1,24 @@
 from pathlib import Path
 import tkinter as tk
-from tkinter import Canvas, Entry, Button, PhotoImage
+from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
+import re
 
 # --- Đường dẫn chung ngoài class ---
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_frame02")
 
+
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+
 
 class Frame02(tk.Frame):
     def __init__(self, parent, controller=None):
         super().__init__(parent)
         self.controller = controller
+        self.password_hidden = True
+        self.confirm_password_hidden = True
+        self.terms_accepted = False
 
         # --- Canvas chính ---
         self.canvas = Canvas(
@@ -90,13 +96,15 @@ class Frame02(tk.Frame):
         self.entry_image_password = PhotoImage(file=relative_to_assets("entry_password.png"))
         self.canvas.create_image(1083.5, 609.5, image=self.entry_image_password)
         self.entry_password = Entry(self, bd=0, bg="#FFFFFF", fg="#000716",
-                                    highlightthickness=0, font=("Crimson Pro Regular", 26 * -1))
+                                    highlightthickness=0, font=("Crimson Pro Regular", 26 * -1),
+                                    show="*")
         self.entry_password.place(x=859.0, y=575.0, width=449.0, height=67.0)
 
         self.entry_image_password_confirm = PhotoImage(file=relative_to_assets("entry_password_confirm.png"))
         self.canvas.create_image(1083.5, 748.5, image=self.entry_image_password_confirm)
         self.entry_password_confirm = Entry(self, bd=0, bg="#FFFFFF", fg="#000716",
-                                            highlightthickness=0, font=("Crimson Pro Regular", 26 * -1))
+                                            highlightthickness=0, font=("Crimson Pro Regular", 26 * -1),
+                                            show="*")
         self.entry_password_confirm.place(x=859.0, y=714.0, width=449.0, height=67.0)
 
         self.entry_image_username = PhotoImage(file=relative_to_assets("entry_username.png"))
@@ -114,30 +122,157 @@ class Frame02(tk.Frame):
         self.button_register_img = PhotoImage(file=relative_to_assets("button_register.png"))
         self.button_register = Button(self, image=self.button_register_img,
                                       borderwidth=0, highlightthickness=0,
-                                      command=lambda: self.controller.show_frame("Frame03") , relief="flat")
+                                      command=self.register_action, relief="flat")
         self.button_register.place(x=839.0, y=848.0, width=473.0, height=68.0)
 
         self.button_eyes_1_img = PhotoImage(file=relative_to_assets("button_eyes_1.png"))
         self.button_eyes_1 = Button(self, image=self.button_eyes_1_img,
                                     borderwidth=0, highlightthickness=0,
-                                    command=lambda: print("Eyes1 clicked"), relief="flat")
+                                    command=self.toggle_password_visibility, relief="flat")
         self.button_eyes_1.place(x=1270.0, y=597.0, width=30.0, height=21.0)
 
         self.button_eyes_2_img = PhotoImage(file=relative_to_assets("button_eyes_2.png"))
         self.button_eyes_2 = Button(self, image=self.button_eyes_2_img,
                                     borderwidth=0, highlightthickness=0,
-                                    command=lambda: print("Eyes2 clicked"), relief="flat")
+                                    command=self.toggle_confirm_password_visibility, relief="flat")
         self.button_eyes_2.place(x=1270.0, y=738.0, width=30.0, height=21.0)
 
         self.button_login_img = PhotoImage(file=relative_to_assets("button_login.png"))
         self.button_login = Button(self, image=self.button_login_img,
                                    borderwidth=0, highlightthickness=0,
-                                   command=lambda: self.controller.show_frame("Frame01"), relief="flat")
+                                   command=lambda: self.controller.show_frame("Frame01") if self.controller else None,
+                                   relief="flat")
         self.button_login.place(x=1169.0, y=933.0, width=67.0, height=21.0)
 
-        self.button_2_img = PhotoImage(file=relative_to_assets("button_2.png"))
-        self.button_2 = Button(self, image=self.button_2_img,
+        self.button_3_img = PhotoImage(file=relative_to_assets("button_3.png"))
+        self.button_2 = Button(self, image=self.button_3_img,
                                borderwidth=0, highlightthickness=0,
-                               command=lambda: print("Button2 clicked"), relief="flat")
+                               command=self.toggle_terms, relief="flat")
         self.button_2.place(x=887.0, y=810.0, width=21.5, height=23.0)
+
+    # ----------------------------------------------------------------
+    def toggle_password_visibility(self):
+        """Toggle password visibility"""
+        if self.password_hidden:
+            self.entry_password.config(show="")
+            self.password_hidden = False
+        else:
+            self.entry_password.config(show="*")
+            self.password_hidden = True
+
+    def toggle_confirm_password_visibility(self):
+        """Toggle confirm password visibility"""
+        if self.confirm_password_hidden:
+            self.entry_password_confirm.config(show="")
+            self.confirm_password_hidden = False
+        else:
+            self.entry_password_confirm.config(show="*")
+            self.confirm_password_hidden = True
+
+    def toggle_terms(self):
+        """Toggle terms and conditions acceptance"""
+        self.terms_accepted = not self.terms_accepted
+        # You can add visual feedback here (e.g., change button appearance)
+        self.button_2_img = PhotoImage(file=relative_to_assets("button_2.png"))
+        self.button_2.config(image=self.button_2_img if self.terms_accepted else self.button_3_img)
+        if self.terms_accepted:
+            print("Terms accepted")
+        else:
+            print("Terms not accepted")
+
+    def validate_email(self, email: str) -> bool:
+        """Validate email format"""
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        return re.match(pattern, email) is not None
+
+    def register_action(self):
+        """Handle user registration"""
+        username = self.entry_username.get().strip()
+        email = self.entry_email.get().strip()
+        password = self.entry_password.get().strip()
+        confirm_password = self.entry_password_confirm.get().strip()
+
+        # Check if terms are accepted
+        if not self.terms_accepted:
+            messagebox.showwarning(
+                "Terms & Conditions",
+                "Please accept the Terms & Privacy Policy to continue"
+            )
+            return
+
+        # Validate email format
+        if email and not self.validate_email(email):
+            messagebox.showerror(
+                "Invalid Email",
+                "Please enter a valid email address"
+            )
+            return
+
+        try:
+            from Function.auth import AuthService
+
+            # Attempt registration
+            result = AuthService.register_user(username, email, password, confirm_password)
+
+            if result["success"]:
+                # Registration successful
+                messagebox.showinfo(
+                    "Registration Successful",
+                    "Account created! Please complete your profile."
+                )
+
+                # Store user data in controller for profile completion
+                if self.controller:
+                    if not hasattr(self.controller, 'current_user'):
+                        self.controller.current_user = {}
+                    self.controller.current_user = result['user_data']
+                    self.controller.current_user['profile_completed'] = 0
+
+                # Clear all fields
+                self.clear_form()
+
+                # Navigate to profile completion page
+                if self.controller:
+                    try:
+                        self.controller.show_frame("Frame03")
+                    except KeyError:
+                        # If Frame03 not available, go to login
+                        self.controller.show_frame("Frame01")
+
+            else:
+                # Registration failed
+                messagebox.showerror(
+                    "Registration Failed",
+                    result["message"]
+                )
+
+        except ImportError as e:
+            messagebox.showerror(
+                "System Error",
+                f"Authentication module not found: {str(e)}"
+            )
+        except Exception as e:
+            messagebox.showerror(
+                "System Error",
+                f"An unexpected error occurred: {str(e)}"
+            )
+            print(f"Registration error: {e}")
+
+    def clear_form(self):
+        """Clear all form fields"""
+        self.entry_username.delete(0, tk.END)
+        self.entry_email.delete(0, tk.END)
+        self.entry_password.delete(0, tk.END)
+        self.entry_password_confirm.delete(0, tk.END)
+        self.terms_accepted = False
+        self.password_hidden = True
+        self.confirm_password_hidden = True
+        self.entry_password.config(show="*")
+        self.entry_password_confirm.config(show="*")
+
+    def on_show(self):
+        """Called when Frame02 is displayed"""
+        print("Frame02 displayed")
+        self.clear_form()
+        self.entry_username.focus()
 
