@@ -163,14 +163,16 @@ class Frame03(Frame):
 
                 messagebox.showinfo(
                     "Profile Completed",
-                    f"Welcome, {full_name}! Your profile has been completed successfully!"
+                    f"Welcome, {full_name}! Your profile has been completed successfully! Please login again."
                 )
 
-                # Navigate to dashboard (Frame06)
-                try:
-                    self.controller.show_frame("Frame06")
-                except KeyError:
-                    print("Dashboard frame (Frame06) not found, staying on profile page")
+                # Clear user session and navigate back to login
+                if self.controller:
+                    self.controller.current_user = {}
+                    try:
+                        self.controller.show_frame("Frame01")
+                    except KeyError:
+                        print("Login frame (Frame01) not found")
             else:
                 messagebox.showerror(
                     "Update Failed",
