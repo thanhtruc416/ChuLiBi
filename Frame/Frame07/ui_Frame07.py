@@ -5,6 +5,8 @@
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Button, PhotoImage
+import tkinter.font as tkfont
+import pandas as pd
 
 # dropdown profile (nếu bạn có sẵn)
 try:
@@ -17,7 +19,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from Function.Cluster import (
     load_scaled_dataset, attach_group_pca, select_X,
     kmeans_labels, counts_by_cluster,
-    figure_elbow_silhouette, figure_cluster_distribution, figure_pca_scatter
+    figure_elbow_silhouette, figure_cluster_distribution, figure_pca_scatter,
+    CLUSTER_FEATURES
 )
 
 OUTPUT_PATH = Path(__file__).parent
@@ -69,6 +72,14 @@ class Frame07(tk.Frame):
         self._img("image_1.png")
         self.canvas.create_image(887.0, 31.0, image=self._imgs["image_1.png"])
 
+        # Font cho bullets (KHÔNG NGHIÊNG)
+        self.font_feature = tkfont.Font(
+            family="Crimson Pro",
+            size=-20,            # số âm = px (20px)
+            weight="normal",
+            slant="roman"        # không italic
+        )
+
         self.canvas.create_text(
             337.0, 0.0, anchor="nw",
             text="   Customer Segmentation",
@@ -107,14 +118,25 @@ class Frame07(tk.Frame):
             text="Customer Segmentation", fill="#706093", font=("Young Serif", 24 * -1)
         )
 
-        self.canvas.create_text(609.0, 516.0, anchor="nw",
-            text="Feature 1", fill="#000000", font=("Crimson Pro", 18 * -1)
+        # === placeholder cho 3 ô feature — LƯU ID để cập nhật về sau ===
+        self.feature_text_ids = {}
+        self.feature_text_ids[0] = self.canvas.create_text(
+            609.0, 516.0, anchor="nw",
+            text="• Feature A\n• Feature B\n• Feature C",
+            fill="#000000", font=self.font_feature,
+            width=230, justify="left"
         )
-        self.canvas.create_text(609.0, 689.0, anchor="nw",
-            text="Feature 1", fill="#000000", font=("Crimson Pro", 18 * -1)
+        self.feature_text_ids[1] = self.canvas.create_text(
+            609.0, 689.0, anchor="nw",
+            text="• Feature A\n• Feature B\n• Feature C",
+            fill="#000000", font=self.font_feature,
+            width=230, justify="left"
         )
-        self.canvas.create_text(609.0, 860.0, anchor="nw",
-            text="Feature 1", fill="#000000", font=("Crimson Pro", 18 * -1)
+        self.feature_text_ids[2] = self.canvas.create_text(
+            609.0, 860.0, anchor="nw",
+            text="• Feature A\n• Feature B\n• Feature C",
+            fill="#000000", font=self.font_feature,
+            width=230, justify="left"
         )
 
         self._img("image_7.png")
@@ -186,7 +208,7 @@ class Frame07(tk.Frame):
 
         self._make_button("button_CustomerAnalysis.png",
                           lambda: print("button_CustomerAnalysis clicked"),
-                          x=0.0, y=273.0, w=336.0, h=102.0)
+                          x=0.0, y=275.0, w=336.0, h=100.0)
 
         self._img("button_CustomerAnalysis.png")
         self.canvas.create_image(14.0, 324.0, image=self._imgs["button_CustomerAnalysis.png"])
@@ -210,25 +232,34 @@ class Frame07(tk.Frame):
             return
         if self.dropdown is None:
             self.dropdown = DropdownMenu(self)  # truyền khung làm parent
-        # nếu dropdown hỗ trợ anchor widget:
         try:
             self.dropdown.show(self.button_Profile)
         except TypeError:
-            # fallback: gọi không đối số
             self.dropdown.show()
 
     # ---------------- GLUE (gắn chart + số liệu) ----------------
     def _load_and_mount_charts(self):
-        # Path Dataset/df_scaled_model.csv (2 cấp trên file này)
-        ROOT = Path(__file__).resolve().parents[2]
-        CSV_PATH = ROOT / "Dataset" / "df_scaled_model.csv"
+        DATA_DIR = Path(__file__).resolve().parents[2] / "Dataset" / "Output"
+        CSV_PATH = DATA_DIR / "df_scaled_model.csv"
+
+        if not CSV_PATH.exists():
+            self.canvas.create_text(
+                360, 120, anchor="nw",
+                text=f"[LỖI] Không tìm thấy {CSV_PATH}\nHãy kiểm tra lại cây thư mục.",
+                fill="#b00020", font=("Crimson Pro", 16 * -1)
+            )
+            return
 
         try:
             df_scaled, _ids = load_scaled_dataset(CSV_PATH)
             df_pca = attach_group_pca(df_scaled, random_state=42)
             X = select_X(df_pca)
         except Exception as e:
-            print("[Frame07] Lỗi load dữ liệu:", e)
+            self.canvas.create_text(
+                360, 120, anchor="nw",
+                text=f"[LỖI] Load/chuẩn bị dữ liệu thất bại:\n{e}",
+                fill="#b00020", font=("Crimson Pro", 16 * -1)
+            )
             return
 
         # Elbow
@@ -238,17 +269,139 @@ class Frame07(tk.Frame):
         # kmeans & 2 chart còn lại
         labels = kmeans_labels(X, k=3, random_state=42, n_init=10)
 
+        # PCA scatter
         fig_scatter = figure_pca_scatter(X, labels)
         self._mount(fig_scatter, x=855, y=225, w=520, h=320)
 
+        # Pie chart
         fig_pie = figure_cluster_distribution(labels, scale=1.3)
         self._mount(fig_pie, x=870, y=650, w=520, h=280)
+
+        # ----- Top-3 feature theo từng cụm (hiển thị trong 3 ô text) -----
+        cols_src = CLUSTER_FEATURES
+        use_cols = [c for c in cols_src if c in df_pca.columns]
+
+        Xd = pd.DataFrame(X, columns=use_cols)
+        global_mean = Xd.mean()
+        Xd["cluster"] = labels
+        means_by_cluster = Xd.groupby("cluster")[use_cols].mean()
+
+        top3_per_cluster = {}
+        for c in sorted(means_by_cluster.index):
+            diffs = (means_by_cluster.loc[c] - global_mean).abs().sort_values(ascending=False)
+            top3_per_cluster[c] = list(diffs.index[:3])
+
+        # bullet + xuống dòng, wrap gọn trong card (KHÔNG NGHIÊNG vì dùng self.font_feature)
+        fmt = lambda names: "• " + "\n• ".join(names)
+        self._set_feature_text_at(0, fmt(top3_per_cluster.get(0, ["—", "—", "—"])))  # Cluster 1
+        self._set_feature_text_at(1, fmt(top3_per_cluster.get(1, ["—", "—", "—"])))  # Cluster 2
+        self._set_feature_text_at(2, fmt(top3_per_cluster.get(2, ["—", "—", "—"])))  # Cluster 3
 
         # cập nhật 3 con số card
         c1, c2, c3 = counts_by_cluster(labels, k=3)
         self._set_card_number_at(421.0, 548.0, c1)
         self._set_card_number_at(421.0, 721.0, c2)
         self._set_card_number_at(421.0, 895.0, c3)
+        # === Đọc mô tả đặc trưng cụm (định tính) ===
+        desc_path = Path(__file__).resolve().parents[
+                        2] / "Dataset" / "Output" / "cluster_characteristics_descriptive.csv"
+        if desc_path.exists():
+            desc_df = pd.read_csv(desc_path)
+
+            show_cols = ["Restaurant Rating", "Family size", "Delivery Rating"]
+
+            for i in range(min(3, len(desc_df))):
+                row = desc_df.iloc[i]
+                bullets = []
+
+                # --- các đặc trưng định lượng ---
+                for col in show_cols:
+                    if col not in row:
+                        continue
+                    val = row[col]
+                    if isinstance(val, (int, float)):
+                        if "size" in col.lower():
+                            val = f"{round(val)} người"
+                        else:
+                            val = f"{val:.2f}"
+                    elif pd.isna(val):
+                        val = "-"
+                    bullets.append(f"{col}: {val}")
+
+                # --- gộp 3 đặc trưng định tính ---
+                convenience = str(row.get("Mức độ coi trọng sự tiện lợi", "")).strip().lower()
+                service = str(row.get("Vấn đề dịch vụ", "")).strip().lower()
+                offer = str(row.get("Nhạy cảm ưu đãi/đánh giá", "")).strip().lower()
+
+                desc_parts = []
+                if "cao" in convenience:
+                    desc_parts.append("coi trọng tiện lợi")
+                elif "thấp" in convenience:
+                    desc_parts.append("ít quan tâm tiện lợi")
+
+                if "cao" in service:
+                    desc_parts.append("đánh giá cao dịch vụ")
+                elif "thấp" in service:
+                    desc_parts.append("không chú trọng dịch vụ")
+
+                if "cao" in offer:
+                    desc_parts.append("rất nhạy cảm với ưu đãi/đánh giá")
+                elif "thấp" in offer:
+                    desc_parts.append("ít bị ảnh hưởng bởi ưu đãi")
+
+                # --- auto rút gọn ---
+                if len(desc_parts) > 2:
+                    keep = [p for p in desc_parts if "tiện" in p or "ưu đãi" in p]
+                    if len(keep) < 2:
+                        keep = desc_parts[:2]
+                    desc_parts = keep
+
+                desc_text = "• " + ", ".join(desc_parts).capitalize() + "."
+
+                # --- render ---
+                txt_id = self.feature_text_ids.get(i)
+                if txt_id:
+                    # Font thống nhất
+                    common_font = tkfont.Font(family="Crimson Pro", size=-20, slant="italic")
+
+                    # --- BULLET LIST ---
+                    max_len = max(len(line) for line in bullets)
+                    est_width = min(max(260, max_len * 10), 330)
+
+                    self.canvas.itemconfigure(
+                        txt_id,
+                        text="• " + "\n• ".join(bullets),
+                        font=common_font,
+                        anchor="nw",
+                        justify="left",
+                        width=est_width,
+                        fill="#000000"
+                    )
+
+                    # canh vị trí bullet
+                    x0, y0 = self.canvas.coords(txt_id)
+                    self.canvas.coords(txt_id, x0 - 60, y0 - 29)
+
+                    # --- MÔ TẢ ---
+                    desc_font = tkfont.Font(family="Crimson Pro", size=-20, slant="italic")
+
+                    line_spacing = 22  # giãn cách đều hơn
+                    y_desc = y0 - 15 + (len(bullets) * line_spacing) + 2
+
+                    desc_width = est_width - 20
+
+                    self.canvas.create_text(
+                        x0 - 60, y_desc,
+                        anchor="nw",
+                        text="• " + desc_text.replace("• ", ""),
+                        font=desc_font,
+                        fill="#000000",  # cùng màu chữ
+                        width=desc_width,
+                        justify="left"
+                    )
+
+        else:
+            print("[Frame07] Không tìm thấy file mô tả đặc trưng cụm.")
 
     def _mount(self, fig, x, y, w, h):
         frm = tk.Frame(self, bg="#D9D9D9", highlightthickness=0, bd=0)
@@ -258,20 +411,30 @@ class Frame07(tk.Frame):
         cv.get_tk_widget().pack(fill="both", expand=True)
 
     def _set_card_number_at(self, x, y, value):
-        # tìm item text gần toạ độ cũ để sửa, tránh vẽ chồng
         item_id = self.canvas.find_closest(x + 5, y + 5)
         try:
             self.canvas.itemconfigure(item_id, text=str(value), fill="#2E126A")
         except Exception:
-            # fallback: phủ nền nhạt rồi vẽ lại
             self.canvas.create_rectangle(x - 6, y - 2, x + 120, y + 42,
                                          fill="#ECE4EE", outline="", stipple="")
             self.canvas.create_text(x, y, anchor="nw", text=str(value),
                                     fill="#2E126A", font=("Kodchasan Regular", 40 * -1))
 
-    # Nếu dùng AppController, có thể được gọi khi frame hiển thị lại
+    def _set_feature_text_at(self, idx: int, text: str):
+        """Cập nhật text theo index cụm (0/1/2) đã lưu sẵn ID."""
+        item_id = self.feature_text_ids.get(idx)
+        if not item_id:
+            return
+        self.canvas.itemconfigure(
+            item_id,
+            text=str(text),
+            fill="#000000",
+            font=self.font_feature,  # dùng font KHÔNG NGHIÊNG
+            width=230,
+            justify="left"
+        )
+
     def on_show(self, **kwargs):
-        # chỗ này bạn có thể reload dữ liệu/refresh chart nếu cần
         pass
 
 

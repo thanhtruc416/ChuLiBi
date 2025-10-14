@@ -1,0 +1,500 @@
+Age,Gender,Marital Status,Occupation,Educational Qualifications,Family size,Frequently used Medium,Frequently ordered Meal category ,Perference,Restaurnat Rating,Delivery Rating,No. of orders placed,Delivery Time,Order Value,Ease and convenient,Self Cooking,Health Concern,Late Delivery,Poor Hygiene,Bad past experience,More Offers and Discount,Maximum wait time,Influence of rating
+20,Female,Single,Student,Post Graduate,4,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,1,150,45,1,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,30 minutes,Yes
+24,Female,Single,Student,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,1,32,61,3,Strongly agree,Strongly agree,Strongly agree,Agree,Strongly agree,Strongly agree,Strongly agree,30 minutes,Yes
+22,Male,Single,Student,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,5,193,19,1,Strongly agree,Disagree,Neutral,Neutral,Agree,Agree,Neutral,45 minutes,Yes
+22,Female,Single,Student,Graduate,6,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),2,4,60,44,1,Agree,Agree,Strongly agree,Neutral,Agree,Disagree,Strongly agree,30 minutes,Yes
+22,Male,Single,Student,Post Graduate,4,Walk-in,Lunch,Non Veg foods (Lunch / Dinner),3,1,234,24,3,Agree,Agree,Strongly agree,Strongly agree,Agree,Strongly agree,Agree,30 minutes,Yes
+27,Female,Married,Employee,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,55,39,3,Agree,Disagree,Neutral,Agree,Agree,Agree,Agree,45 minutes,Yes
+22,Male,Single,Student,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,2,77,18,1,Strongly agree,Disagree,Agree,Disagree,Agree,Disagree,Agree,45 minutes,Yes
+24,Female,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,1,172,56,1,Strongly agree,Agree,Agree,Agree,Neutral,Neutral,Agree,45 minutes,Maybe
+23,Female,Single,Student,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,3,224,20,1,Agree,Agree,Agree,Neutral,Agree,Neutral,Agree,30 minutes,Maybe
+23,Female,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,5,165,17,1,Neutral,Agree,Agree,Neutral,Neutral,Neutral,Neutral,45 minutes,Yes
+22,Female,Single,Student,Post Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,4,225,52,3,Agree,Agree,Strongly agree,Agree,Strongly agree,Agree,Agree,45 minutes,Yes
+23,Male,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,2,27,42,3,Strongly agree,Agree,Strongly agree,Disagree,Agree,Strongly agree,Agree,45 minutes,Yes
+23,Male,Single,Student,Post Graduate,5,Walk-in,Snacks,Non Veg foods (Lunch / Dinner),3,2,103,46,1,Agree,Neutral,Agree,Neutral,Agree,Disagree,Agree,30 minutes,Maybe
+21,Male,Single,Student,Graduate,4,Walk-in,Dinner,Non Veg foods (Lunch / Dinner),3,2,233,44,1,Agree,Disagree,Strongly agree,Neutral,Neutral,Neutral,Strongly agree,30 minutes,Yes
+23,Female,Single,Self Employeed,Post Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,4,54,27,3,Agree,Agree,Strongly agree,Disagree,Strongly agree,Strongly agree,Neutral,45 minutes,Yes
+24,Female,Single,Student,Post Graduate,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,3,210,51,3,Strongly agree,Strongly agree,Strongly agree,Disagree,Disagree,Disagree,Neutral,30 minutes,Yes
+28,Female,Single,Employee,Post Graduate,2,Walk-in,Dinner,Veg foods (Breakfast / Lunch / Dinner),3,1,30,40,3,Neutral,Disagree,Neutral,Disagree,Neutral,Neutral,Neutral,60 minutes,No
+23,Female,Single,Student,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,5,163,17,3,Agree,Neutral,Neutral,Neutral,Strongly agree,Neutral,Disagree,45 minutes,Yes
+25,Male,Single,Student,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,4,167,24,1,Strongly agree,Neutral,Agree,Strongly disagree,Strongly agree,Neutral,Strongly agree,45 minutes,Yes
+21,Female,Single,Student,Post Graduate,1,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),5,5,75,43,2,Agree,Neutral,Strongly disagree,Neutral,Strongly disagree,Strongly disagree,Strongly disagree,45 minutes,Yes
+24,Male,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,5,49,72,2,Agree,Disagree,Disagree,Neutral,Neutral,Disagree,Agree,More than 60 minutes,Yes
+22,Male,Single,Student,Post Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,1,81,30,1,Strongly agree,Agree,Neutral,Disagree,Agree,Strongly agree,Agree,45 minutes,Yes
+22,Female,Single,Student,Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,4,26,20,1,Agree,Disagree,Strongly agree,Strongly disagree,Agree,Strongly agree,Agree,45 minutes,Yes
+23,Male,Single,Student,Graduate,4,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),4,3,71,13,1,Agree,Neutral,Agree,Agree,Agree,Agree,Disagree,30 minutes,Yes
+21,Male,Single,Student,Post Graduate,3,Walk-in,Breakfast,Non Veg foods (Lunch / Dinner),1,3,115,40,1,Strongly agree,Strongly agree,Strongly agree,Agree,Strongly agree,Disagree,Strongly agree,45 minutes,Maybe
+25,Male,Single,Student,Post Graduate,3,Walk-in,Dinner,Veg foods (Breakfast / Lunch / Dinner),4,3,68,32,2,Agree,Neutral,Agree,Agree,Neutral,Neutral,Disagree,30 minutes,Yes
+22,Female,Single,Student,Post Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,4,143,20,3,Agree,Disagree,Agree,Disagree,Agree,Neutral,Agree,45 minutes,Yes
+22,Male,Single,Student,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,2,151,45,2,Agree,Disagree,Strongly agree,Neutral,Agree,Neutral,Disagree,45 minutes,Yes
+23,Female,Single,Employee,Graduate,3,Walk-in,Snacks,Bakery items (snacks),3,2,135,63,3,Neutral,Neutral,Neutral,Disagree,Disagree,Disagree,Neutral,30 minutes,Maybe
+22,Male,Single,Student,Post Graduate,4,Walk-in,Snacks,Veg foods (Breakfast / Lunch / Dinner),3,1,43,22,3,Strongly disagree,Neutral,Neutral,Neutral,Agree,Neutral,Disagree,15 minutes,No
+22,Female,Single,Employee,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,190,31,1,Agree,Agree,Neutral,Disagree,Agree,Neutral,Agree,45 minutes,Yes
+22,Male,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,3,146,29,2,Agree,Neutral,Agree,Agree,Neutral,Neutral,Agree,30 minutes,Yes
+25,Male,Married,Employee,Ph.D,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,2,252,31,1,Agree,Agree,Agree,Agree,Disagree,Neutral,Agree,30 minutes,Yes
+22,Female,Single,Student,Post Graduate,5,Walk-in,Dinner,Veg foods (Breakfast / Lunch / Dinner),2,2,137,24,1,Agree,Agree,Strongly agree,Agree,Agree,Neutral,Strongly agree,15 minutes,Yes
+22,Female,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),1,1,201,19,1,Strongly agree,Disagree,Agree,Strongly agree,Disagree,Strongly agree,Disagree,15 minutes,Yes
+25,Male,Single,Student,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,5,42,52,2,Agree,Strongly disagree,Disagree,Strongly disagree,Strongly disagree,Strongly disagree,Neutral,45 minutes,Yes
+25,Male,Single,Student,Post Graduate,5,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),5,1,221,23,1,Strongly agree,Agree,Strongly agree,Strongly agree,Disagree,Neutral,Strongly agree,45 minutes,Maybe
+32,Female,Prefer not to say,House wife,Graduate,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,1,149,55,1,Agree,Agree,Disagree,Agree,Neutral,Agree,Disagree,60 minutes,Yes
+23,Female,Single,Student,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,3,94,18,3,Agree,Agree,Strongly agree,Agree,Neutral,Agree,Agree,45 minutes,Yes
+23,Female,Single,Student,Post Graduate,4,Walk-in,Breakfast,Non Veg foods (Lunch / Dinner),5,2,89,22,3,Agree,Agree,Neutral,Neutral,Neutral,Neutral,Agree,45 minutes,Yes
+30,Male,Married,Self Employeed,Uneducated,4,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),4,4,114,48,3,Agree,Agree,Strongly agree,Agree,Strongly agree,Strongly agree,Neutral,More than 60 minutes,Yes
+23,Male,Single,Student,Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,5,158,60,1,Agree,Agree,Agree,Agree,Neutral,Neutral,Agree,30 minutes,Yes
+23,Male,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),1,4,102,27,3,Agree,Strongly agree,Strongly agree,Disagree,Agree,Disagree,Agree,30 minutes,Yes
+22,Female,Single,Student,Post Graduate,5,Walk-in,Snacks,Non Veg foods (Lunch / Dinner),4,4,195,35,1,Agree,Strongly agree,Strongly agree,Neutral,Agree,Neutral,Disagree,30 minutes,Yes
+22,Male,Single,Student,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,1,49,62,1,Agree,Disagree,Disagree,Agree,Agree,Agree,Agree,30 minutes,Yes
+27,Female,Married,Self Employeed,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,4,184,53,3,Strongly agree,Strongly agree,Strongly agree,Strongly agree,Strongly agree,Agree,Agree,30 minutes,No
+24,Female,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,3,147,13,2,Strongly agree,Neutral,Strongly agree,Neutral,Strongly agree,Agree,Agree,45 minutes,Yes
+23,Male,Single,Student,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,4,233,14,2,Neutral,Neutral,Disagree,Disagree,Agree,Neutral,Neutral,30 minutes,Yes
+23,Female,Single,Student,Graduate,5,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),3,5,43,22,2,Strongly agree,Agree,Neutral,Agree,Agree,Neutral,Agree,45 minutes,Yes
+23,Female,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,5,255,16,2,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,45 minutes,Maybe
+24,Male,Single,Student,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,2,77,30,2,Agree,Disagree,Agree,Agree,Strongly agree,Agree,Agree,30 minutes,Yes
+25,Male,Single,Student,Post Graduate,2,Walk-in,Lunch,Non Veg foods (Lunch / Dinner),5,3,30,35,3,Agree,Strongly disagree,Strongly disagree,Strongly disagree,Strongly disagree,Strongly disagree,Agree,30 minutes,Yes
+22,Male,Single,Student,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,2,182,38,1,Agree,Neutral,Neutral,Disagree,Neutral,Disagree,Agree,45 minutes,Yes
+28,Female,Married,Student,Graduate,2,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),1,2,118,26,2,Strongly agree,Strongly agree,Neutral,Disagree,Strongly agree,Agree,Strongly agree,30 minutes,Yes
+22,Female,Single,Student,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,3,79,73,3,Agree,Strongly agree,Agree,Neutral,Agree,Neutral,Agree,60 minutes,Yes
+24,Female,Single,Student,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,1,173,47,1,Strongly agree,Agree,Agree,Strongly agree,Agree,Strongly agree,Agree,60 minutes,Yes
+31,Male,Married,Employee,Ph.D,5,Walk-in,Dinner,Non Veg foods (Lunch / Dinner),5,1,82,20,2,Strongly agree,Strongly agree,Agree,Neutral,Neutral,Disagree,Disagree,45 minutes,Maybe
+25,Male,Single,Student,Post Graduate,4,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),2,3,76,35,1,Strongly agree,Disagree,Neutral,Strongly agree,Neutral,Disagree,Strongly agree,30 minutes,Yes
+23,Male,Single,Student,Post Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,4,107,41,1,Strongly agree,Neutral,Neutral,Neutral,Strongly agree,Strongly agree,Strongly agree,60 minutes,Maybe
+22,Male,Single,Student,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,5,207,55,3,Agree,Agree,Neutral,Agree,Agree,Neutral,Agree,30 minutes,No
+23,Male,Single,Student,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,2,213,39,3,Neutral,Strongly disagree,Strongly disagree,Neutral,Neutral,Neutral,Strongly disagree,60 minutes,Yes
+23,Male,Single,Student,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,4,164,17,2,Strongly agree,Strongly agree,Strongly agree,Strongly agree,Strongly agree,Strongly agree,Strongly disagree,30 minutes,Yes
+23,Female,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,1,247,21,3,Strongly agree,Strongly agree,Strongly agree,Agree,Strongly agree,Neutral,Strongly agree,45 minutes,Yes
+25,Male,Single,Student,Post Graduate,6,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,1,187,63,2,Agree,Agree,Agree,Strongly agree,Agree,Neutral,Neutral,60 minutes,Yes
+24,Male,Single,Employee,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,1,198,22,1,Neutral,Disagree,Neutral,Disagree,Disagree,Strongly disagree,Disagree,30 minutes,Yes
+23,Female,Single,Student,Post Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,4,112,42,3,Strongly agree,Neutral,Disagree,Neutral,Strongly agree,Agree,Neutral,45 minutes,Yes
+24,Female,Married,Employee,Ph.D,4,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),3,4,236,47,2,Strongly agree,Agree,Strongly agree,Agree,Strongly agree,Agree,Strongly agree,30 minutes,Yes
+22,Male,Single,Student,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,4,114,45,2,Disagree,Disagree,Neutral,Agree,Neutral,Agree,Disagree,30 minutes,Yes
+24,Female,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,3,158,35,3,Agree,Strongly agree,Agree,Neutral,Neutral,Disagree,Strongly agree,45 minutes,Yes
+25,Female,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,5,143,36,2,Agree,Agree,Agree,Neutral,Neutral,Disagree,Neutral,45 minutes,No
+23,Male,Single,Student,Post Graduate,2,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),4,3,256,50,1,Agree,Disagree,Neutral,Agree,Strongly agree,Agree,Strongly agree,30 minutes,No
+26,Male,Single,Student,Post Graduate,4,Walk-in,Dinner,Veg foods (Breakfast / Lunch / Dinner),5,1,199,16,3,Strongly agree,Strongly disagree,Neutral,Agree,Neutral,Strongly disagree,Strongly agree,30 minutes,No
+24,Female,Single,Student,Post Graduate,3,Walk-in,Dinner,Non Veg foods (Lunch / Dinner),1,4,219,45,2,Agree,Agree,Strongly agree,Neutral,Agree,Disagree,Neutral,45 minutes,Yes
+26,Male,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,3,43,29,3,Agree,Agree,Strongly agree,Agree,Agree,Agree,Agree,45 minutes,Yes
+22,Female,Single,Student,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,52,57,2,Strongly agree,Neutral,Neutral,Strongly disagree,Neutral,Neutral,Strongly agree,30 minutes,Yes
+24,Male,Single,Student,Post Graduate,5,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),3,3,226,68,2,Agree,Neutral,Neutral,Neutral,Agree,Agree,Agree,More than 60 minutes,Maybe
+24,Male,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,3,168,24,3,Strongly agree,Agree,Agree,Neutral,Agree,Agree,Agree,45 minutes,Yes
+23,Female,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,3,244,42,3,Neutral,Disagree,Agree,Neutral,Neutral,Disagree,Disagree,45 minutes,Yes
+23,Male,Single,Student,Post Graduate,3,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),5,1,208,27,3,Neutral,Strongly disagree,Strongly disagree,Disagree,Strongly disagree,Disagree,Neutral,45 minutes,Maybe
+22,Male,Single,Student,Post Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,2,200,42,1,Strongly agree,Neutral,Neutral,Neutral,Neutral,Agree,Strongly agree,60 minutes,Yes
+23,Male,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),5,5,172,26,1,Strongly agree,Neutral,Disagree,Agree,Agree,Agree,Strongly agree,30 minutes,Yes
+24,Female,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,2,90,40,2,Strongly agree,Neutral,Disagree,Neutral,Disagree,Neutral,Agree,45 minutes,Maybe
+25,Male,Single,Student,Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,2,231,19,3,Agree,Strongly agree,Strongly agree,Strongly disagree,Strongly disagree,Disagree,Strongly agree,45 minutes,Yes
+28,Male,Married,Self Employeed,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,4,224,50,1,Disagree,Strongly disagree,Disagree,Neutral,Strongly disagree,Disagree,Disagree,60 minutes,No
+27,Female,Prefer not to say,Employee,Post Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,1,103,30,1,Agree,Agree,Agree,Agree,Strongly agree,Disagree,Strongly disagree,45 minutes,No
+26,Male,Single,Self Employeed,Ph.D,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,2,137,62,2,Agree,Agree,Neutral,Agree,Agree,Agree,Neutral,More than 60 minutes,Yes
+22,Male,Single,Student,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,4,86,24,1,Agree,Strongly agree,Strongly agree,Strongly agree,Agree,Neutral,Neutral,15 minutes,Yes
+24,Female,Single,Student,Post Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,5,221,22,3,Strongly agree,Strongly agree,Strongly agree,Agree,Neutral,Strongly agree,Strongly agree,30 minutes,Yes
+23,Male,Single,Student,Post Graduate,1,Walk-in,Lunch,Non Veg foods (Lunch / Dinner),3,2,142,62,3,Neutral,Neutral,Strongly agree,Strongly agree,Agree,Strongly agree,Disagree,30 minutes,Yes
+26,Male,Married,Employee,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,4,149,61,2,Agree,Agree,Neutral,Neutral,Neutral,Disagree,Neutral,60 minutes,No
+32,Female,Married,House wife,Uneducated,3,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),4,4,129,13,1,Strongly disagree,Strongly agree,Strongly agree,Strongly agree,Strongly disagree,Strongly agree,Disagree,30 minutes,Yes
+23,Male,Single,Student,Post Graduate,2,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),2,2,80,49,3,Strongly agree,Neutral,Agree,Agree,Agree,Neutral,Agree,45 minutes,Yes
+22,Female,Single,Employee,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,109,15,1,Strongly agree,Neutral,Strongly agree,Agree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+24,Female,Single,Student,Ph.D,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,1,64,55,2,Agree,Strongly disagree,Agree,Strongly agree,Agree,Agree,Neutral,30 minutes,Yes
+26,Male,Single,Employee,Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,2,133,12,3,Agree,Strongly disagree,Neutral,Agree,Neutral,Disagree,Agree,15 minutes,No
+28,Male,Married,Employee,Graduate,3,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),3,4,151,23,1,Neutral,Disagree,Agree,Agree,Neutral,Agree,Neutral,45 minutes,Yes
+26,Male,Single,Employee,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,4,224,49,2,Agree,Disagree,Strongly agree,Agree,Agree,Agree,Disagree,45 minutes,Yes
+25,Male,Single,Student,Post Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,4,228,54,3,Strongly agree,Neutral,Strongly agree,Agree,Strongly agree,Strongly agree,Strongly agree,30 minutes,Yes
+25,Male,Single,Employee,Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,1,86,43,2,Agree,Agree,Neutral,Agree,Agree,Neutral,Agree,30 minutes,No
+18,Male,Single,Student,Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,4,33,19,1,Agree,Agree,Neutral,Agree,Disagree,Disagree,Agree,45 minutes,Yes
+21,Male,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,1,101,59,1,Strongly disagree,Neutral,Agree,Neutral,Neutral,Neutral,Disagree,30 minutes,Yes
+25,Male,Single,Student,Post Graduate,2,Walk-in,Dinner,Non Veg foods (Lunch / Dinner),2,2,48,13,1,Strongly agree,Neutral,Agree,Agree,Disagree,Neutral,Neutral,45 minutes,Yes
+23,Male,Single,Employee,Post Graduate,2,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),3,3,210,59,1,Agree,Agree,Neutral,Disagree,Neutral,Disagree,Agree,30 minutes,Yes
+25,Female,Married,Employee,Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,2,188,29,1,Disagree,Agree,Agree,Strongly agree,Strongly agree,Neutral,Disagree,15 minutes,Yes
+31,Female,Married,House wife,School,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,3,24,33,1,Agree,Agree,Agree,Disagree,Disagree,Disagree,Agree,45 minutes,Yes
+24,Male,Prefer not to say,Self Employeed,Ph.D,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,1,127,24,1,Disagree,Agree,Agree,Strongly agree,Strongly agree,Strongly agree,Disagree,15 minutes,Yes
+32,Female,Married,Employee,Graduate,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,2,216,66,2,Strongly agree,Agree,Disagree,Neutral,Neutral,Disagree,Agree,60 minutes,Yes
+25,Male,Single,Employee,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,1,210,32,2,Agree,Disagree,Disagree,Agree,Disagree,Neutral,Neutral,45 minutes,Yes
+27,Female,Married,Self Employeed,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,5,109,31,3,Disagree,Agree,Strongly agree,Agree,Strongly agree,Neutral,Disagree,30 minutes,Yes
+26,Male,Single,Self Employeed,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,2,247,49,2,Agree,Disagree,Disagree,Agree,Strongly disagree,Strongly disagree,Strongly agree,More than 60 minutes,No
+26,Female,Single,Self Employeed,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,3,138,53,3,Agree,Disagree,Disagree,Disagree,Disagree,Disagree,Agree,30 minutes,Yes
+32,Male,Married,Employee,Ph.D,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,5,219,29,3,Agree,Agree,Strongly agree,Agree,Strongly agree,Disagree,Strongly agree,45 minutes,Yes
+24,Male,Married,Self Employeed,Ph.D,6,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),2,5,60,45,2,Disagree,Agree,Strongly agree,Strongly agree,Strongly agree,Agree,Strongly disagree,30 minutes,Yes
+27,Female,Married,Self Employeed,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,2,116,22,2,Agree,Disagree,Disagree,Agree,Disagree,Disagree,Agree,30 minutes,Yes
+23,Male,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,3,203,52,3,Agree,Agree,Agree,Agree,Neutral,Neutral,Neutral,30 minutes,No
+25,Male,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,2,165,46,1,Strongly agree,Disagree,Disagree,Agree,Disagree,Disagree,Strongly agree,30 minutes,Yes
+28,Male,Married,Employee,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,2,212,59,1,Agree,Strongly disagree,Disagree,Agree,Disagree,Strongly disagree,Strongly agree,60 minutes,No
+32,Female,Married,Employee,Graduate,1,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,1,125,34,2,Agree,Disagree,Disagree,Agree,Agree,Strongly agree,Strongly agree,30 minutes,Yes
+23,Male,Single,Student,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,2,101,53,1,Agree,Agree,Strongly agree,Agree,Agree,Disagree,Strongly agree,30 minutes,Yes
+19,Male,Single,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,4,202,23,2,Agree,Disagree,Strongly disagree,Agree,Disagree,Agree,Disagree,15 minutes,No
+19,Female,Single,Student,Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,4,166,28,2,Strongly agree,Neutral,Agree,Agree,Neutral,Agree,Strongly agree,45 minutes,Yes
+27,Female,Married,Employee,Post Graduate,2,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),5,3,212,58,1,Agree,Neutral,Strongly agree,Agree,Neutral,Agree,Neutral,30 minutes,Yes
+25,Male,Single,Self Employeed,Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,3,235,46,3,Agree,Disagree,Strongly disagree,Disagree,Strongly disagree,Disagree,Agree,30 minutes,Yes
+33,Male,Married,Employee,Ph.D,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,2,126,47,3,Agree,Agree,Strongly agree,Strongly agree,Strongly agree,Strongly agree,Disagree,30 minutes,Yes
+26,Female,Single,Employee,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,2,28,18,3,Agree,Disagree,Disagree,Agree,Disagree,Neutral,Strongly agree,45 minutes,No
+22,Female,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,2,58,40,2,Strongly agree,Agree,Neutral,Agree,Agree,Agree,Agree,45 minutes,Yes
+23,Male,Single,Student,Post Graduate,3,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),3,4,159,32,3,Agree,Agree,Strongly agree,Agree,Agree,Agree,Agree,30 minutes,Yes
+22,Female,Single,Student,Graduate,3,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),5,5,216,39,1,Strongly agree,Strongly agree,Agree,Disagree,Neutral,Disagree,Strongly agree,45 minutes,Yes
+25,Male,Married,Employee,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,1,184,51,2,Disagree,Agree,Strongly agree,Agree,Strongly agree,Agree,Neutral,45 minutes,Maybe
+30,Female,Married,House wife,School,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,1,151,55,2,Agree,Agree,Disagree,Disagree,Disagree,Disagree,Strongly agree,30 minutes,No
+24,Male,Single,Student,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,1,194,11,3,Disagree,Agree,Strongly agree,Strongly agree,Strongly agree,Strongly agree,Disagree,15 minutes,Yes
+25,Male,Single,Employee,Post Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,3,150,52,3,Agree,Disagree,Disagree,Agree,Disagree,Disagree,Strongly agree,45 minutes,No
+23,Male,Single,Student,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,4,122,31,3,Strongly agree,Agree,Neutral,Disagree,Neutral,Neutral,Strongly agree,45 minutes,Yes
+24,Female,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),2,4,110,58,1,Agree,Neutral,Strongly agree,Neutral,Strongly agree,Agree,Neutral,30 minutes,No
+32,Male,Married,Employee,Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,4,175,39,3,Agree,Agree,Agree,Agree,Neutral,Neutral,Agree,30 minutes,Yes
+22,Male,Single,Student,Post Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,2,242,54,3,Neutral,Disagree,Neutral,Agree,Disagree,Neutral,Agree,30 minutes,Yes
+20,Male,Single,Student,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,4,48,30,3,Agree,Neutral,Disagree,Agree,Disagree,Disagree,Strongly agree,30 minutes,Yes
+21,Male,Single,Student,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,1,128,42,3,Agree,Disagree,Strongly disagree,Disagree,Strongly disagree,Disagree,Strongly agree,30 minutes,Yes
+24,Female,Married,Self Employeed,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,1,172,18,1,Agree,Agree,Agree,Strongly agree,Agree,Strongly agree,Disagree,45 minutes,Yes
+25,Male,Single,Employee,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,5,235,22,2,Agree,Disagree,Disagree,Agree,Disagree,Disagree,Strongly agree,30 minutes,Yes
+32,Female,Married,House wife,Graduate,3,Direct call,Snacks,Non Veg foods (Lunch / Dinner),4,4,237,64,2,Agree,Agree,Agree,Disagree,Agree,Disagree,Agree,60 minutes,Yes
+27,Male,Married,Employee,Ph.D,5,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,4,169,12,3,Agree,Agree,Agree,Strongly agree,Strongly agree,Agree,Neutral,15 minutes,Yes
+20,Female,Single,Student,Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,1,48,40,2,Strongly agree,Disagree,Agree,Disagree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+21,Male,Single,Student,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,1,98,26,2,Agree,Disagree,Strongly disagree,Neutral,Strongly disagree,Strongly disagree,Strongly agree,45 minutes,Yes
+26,Male,Single,Employee,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,3,201,25,3,Disagree,Agree,Strongly agree,Strongly agree,Strongly agree,Strongly agree,Disagree,15 minutes,Yes
+25,Male,Single,Employee,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,4,56,53,2,Strongly agree,Agree,Neutral,Strongly agree,Disagree,Neutral,Strongly agree,45 minutes,Yes
+26,Male,Single,Employee,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,1,250,50,3,Agree,Disagree,Strongly disagree,Neutral,Disagree,Strongly disagree,Strongly agree,More than 60 minutes,No
+26,Female,Married,Employee,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,5,61,15,1,Agree,Agree,Agree,Disagree,Disagree,Disagree,Agree,30 minutes,Yes
+27,Male,Single,Employee,Ph.D,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,4,140,17,3,Agree,Neutral,Agree,Disagree,Agree,Neutral,Agree,15 minutes,Maybe
+27,Female,Single,Student,Ph.D,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,5,78,23,1,Disagree,Agree,Neutral,Agree,Agree,Agree,Strongly disagree,15 minutes,Yes
+24,Female,Single,Student,Post Graduate,5,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),2,2,248,26,1,Agree,Agree,Agree,Disagree,Strongly agree,Strongly agree,Disagree,45 minutes,Yes
+25,Male,Married,Self Employeed,School,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,5,197,36,1,Agree,Disagree,Disagree,Neutral,Disagree,Disagree,Strongly agree,45 minutes,Yes
+20,Male,Single,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,2,33,10,1,Disagree,Agree,Agree,Agree,Neutral,Agree,Disagree,15 minutes,Yes
+22,Male,Single,Student,Post Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,4,104,72,1,Agree,Disagree,Disagree,Strongly disagree,Disagree,Disagree,Agree,More than 60 minutes,Maybe
+26,Female,Married,Student,Ph.D,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,2,137,63,1,Agree,Disagree,Disagree,Neutral,Disagree,Disagree,Neutral,30 minutes,Yes
+27,Male,Prefer not to say,Employee,Post Graduate,1,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,2,134,21,1,Agree,Disagree,Disagree,Disagree,Disagree,Disagree,Agree,45 minutes,Yes
+25,Female,Single,Student,Post Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,4,201,15,3,Agree,Disagree,Strongly disagree,Disagree,Disagree,Disagree,Strongly agree,30 minutes,Maybe
+24,Male,Single,Employee,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,1,62,12,2,Agree,Disagree,Disagree,Disagree,Disagree,Strongly disagree,Strongly agree,30 minutes,Yes
+23,Female,Single,Employee,Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,2,78,47,2,Agree,Disagree,Disagree,Strongly disagree,Disagree,Disagree,Agree,45 minutes,Yes
+22,Male,Single,Student,Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,5,126,42,1,Disagree,Agree,Agree,Strongly agree,Agree,Agree,Disagree,45 minutes,Yes
+26,Male,Married,Self Employeed,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,1,85,51,1,Strongly disagree,Agree,Strongly agree,Agree,Agree,Disagree,Disagree,60 minutes,No
+26,Male,Single,Employee,Post Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,3,179,50,3,Agree,Disagree,Disagree,Disagree,Strongly disagree,Neutral,Agree,30 minutes,Yes
+25,Female,Married,Self Employeed,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,2,26,12,2,Disagree,Disagree,Disagree,Neutral,Agree,Agree,Disagree,30 minutes,Yes
+29,Female,Married,Employee,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,4,55,37,1,Neutral,Agree,Agree,Agree,Neutral,Agree,Disagree,45 minutes,Yes
+23,Male,Single,Student,Graduate,3,Direct call,Dinner,Veg foods (Breakfast / Lunch / Dinner),1,1,105,28,1,Agree,Agree,Agree,Agree,Agree,Agree,Agree,45 minutes,Maybe
+22,Female,Single,Employee,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,5,198,22,2,Agree,Agree,Strongly agree,Neutral,Agree,Neutral,Agree,45 minutes,Yes
+22,Male,Single,Student,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,2,122,14,2,Disagree,Agree,Agree,Strongly agree,Agree,Agree,Neutral,15 minutes,Yes
+32,Female,Married,House wife,School,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,5,72,63,2,Agree,Agree,Agree,Disagree,Disagree,Disagree,Strongly agree,60 minutes,Yes
+28,Male,Married,Employee,Post Graduate,1,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,2,214,41,1,Agree,Disagree,Disagree,Disagree,Neutral,Disagree,Agree,45 minutes,Yes
+22,Male,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,5,254,31,2,Agree,Neutral,Agree,Agree,Strongly agree,Agree,Agree,30 minutes,Yes
+25,Male,Single,Employee,Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,2,88,74,3,Agree,Agree,Agree,Agree,Strongly agree,Agree,Neutral,60 minutes,Yes
+26,Female,Married,Employee,Post Graduate,2,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),5,2,34,21,1,Disagree,Agree,Agree,Agree,Strongly agree,Agree,Neutral,30 minutes,No
+31,Male,Married,Self Employeed,School,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,4,218,48,1,Disagree,Agree,Agree,Agree,Agree,Agree,Agree,45 minutes,Yes
+24,Male,Single,Student,Post Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,3,66,17,1,Agree,Disagree,Disagree,Disagree,Disagree,Strongly disagree,Agree,45 minutes,No
+24,Male,Single,Employee,Post Graduate,2,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),4,1,93,60,3,Agree,Disagree,Neutral,Disagree,Neutral,Disagree,Agree,30 minutes,Yes
+31,Female,Married,Employee,Ph.D,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,5,94,59,2,Agree,Disagree,Neutral,Disagree,Neutral,Neutral,Strongly agree,60 minutes,No
+26,Male,Single,Employee,Graduate,2,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),3,4,29,23,1,Disagree,Agree,Agree,Strongly agree,Agree,Agree,Strongly disagree,45 minutes,Maybe
+24,Female,Married,Self Employeed,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,2,51,65,1,Agree,Disagree,Disagree,Disagree,Strongly disagree,Strongly disagree,Agree,More than 60 minutes,Yes
+22,Female,Single,Student,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,2,67,13,3,Agree,Strongly disagree,Strongly disagree,Strongly disagree,Strongly disagree,Strongly disagree,Agree,30 minutes,Yes
+19,Male,Single,Student,Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,3,82,30,1,Agree,Agree,Disagree,Disagree,Neutral,Disagree,Strongly agree,15 minutes,Yes
+25,Male,Married,Employee,Post Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,1,111,19,2,Agree,Disagree,Agree,Agree,Disagree,Disagree,Neutral,45 minutes,Yes
+23,Female,Married,House wife,School,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,5,252,64,3,Agree,Agree,Agree,Agree,Disagree,Disagree,Agree,More than 60 minutes,No
+23,Female,Single,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,4,36,44,1,Disagree,Agree,Agree,Strongly agree,Agree,Strongly agree,Disagree,30 minutes,Yes
+23,Male,Single,Student,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,4,28,26,1,Agree,Disagree,Disagree,Agree,Disagree,Neutral,Agree,45 minutes,Yes
+24,Male,Single,Student,Post Graduate,5,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),4,3,23,61,3,Strongly agree,Disagree,Agree,Disagree,Disagree,Disagree,Neutral,30 minutes,Yes
+22,Female,Single,Employee,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,98,52,3,Strongly agree,Agree,Strongly agree,Neutral,Strongly agree,Agree,Agree,45 minutes,Yes
+26,Male,Married,Employee,Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,1,57,15,1,Agree,Disagree,Disagree,Strongly disagree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+25,Female,Single,Student,Ph.D,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,2,63,16,3,Agree,Disagree,Disagree,Strongly disagree,Disagree,Strongly disagree,Strongly agree,45 minutes,No
+20,Male,Single,Student,Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,2,89,38,2,Agree,Disagree,Disagree,Agree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+29,Male,Married,Employee,Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,1,151,10,2,Disagree,Agree,Strongly agree,Disagree,Neutral,Agree,Strongly disagree,15 minutes,Maybe
+23,Female,Single,Student,Graduate,1,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,3,243,17,1,Strongly disagree,Disagree,Disagree,Strongly disagree,Strongly disagree,Strongly disagree,Strongly disagree,15 minutes,No
+25,Male,Single,Self Employeed,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,3,87,26,1,Agree,Agree,Agree,Neutral,Disagree,Disagree,Agree,30 minutes,Yes
+29,Female,Married,Employee,Graduate,4,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),5,5,205,23,1,Disagree,Agree,Agree,Agree,Agree,Disagree,Strongly disagree,15 minutes,Yes
+27,Male,Married,Self Employeed,Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,3,190,63,2,Agree,Agree,Agree,Agree,Strongly agree,Agree,Agree,60 minutes,Yes
+25,Male,Single,Self Employeed,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,4,34,58,3,Agree,Disagree,Disagree,Strongly disagree,Disagree,Disagree,Agree,60 minutes,No
+21,Male,Single,Student,Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,1,91,59,2,Disagree,Agree,Agree,Agree,Agree,Agree,Neutral,30 minutes,Yes
+23,Male,Single,Student,Graduate,3,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),3,2,85,57,2,Agree,Disagree,Disagree,Disagree,Neutral,Agree,Strongly agree,30 minutes,Yes
+24,Female,Single,Employee,Post Graduate,4,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),4,2,202,48,3,Agree,Agree,Agree,Neutral,Neutral,Neutral,Disagree,45 minutes,Yes
+32,Male,Married,Self Employeed,School,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,3,182,55,2,Agree,Disagree,Neutral,Neutral,Neutral,Neutral,Neutral,45 minutes,No
+28,Male,Married,Employee,Post Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,2,124,17,2,Agree,Disagree,Disagree,Agree,Disagree,Agree,Agree,45 minutes,No
+26,Male,Single,Employee,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,1,159,50,2,Agree,Disagree,Disagree,Neutral,Neutral,Disagree,Neutral,30 minutes,Yes
+31,Female,Married,House wife,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,3,220,64,1,Agree,Agree,Agree,Disagree,Neutral,Disagree,Neutral,60 minutes,Yes
+27,Female,Married,Self Employeed,Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,3,49,50,3,Agree,Disagree,Disagree,Neutral,Disagree,Neutral,Agree,45 minutes,No
+21,Female,Single,Student,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,5,112,58,1,Agree,Strongly disagree,Disagree,Neutral,Neutral,Agree,Neutral,30 minutes,Maybe
+23,Female,Single,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,4,239,14,1,Agree,Disagree,Neutral,Agree,Agree,Neutral,Disagree,45 minutes,Yes
+26,Male,Married,Employee,Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,5,65,56,1,Agree,Disagree,Disagree,Agree,Neutral,Disagree,Neutral,45 minutes,Yes
+32,Male,Married,Employee,Graduate,5,Web browser,Snacks,Non Veg foods (Lunch / Dinner),2,4,132,21,2,Agree,Disagree,Disagree,Agree,Neutral,Neutral,Agree,30 minutes,No
+25,Female,Married,Student,Post Graduate,2,Food delivery apps,Snacks,Sweets,5,3,72,31,2,Agree,Disagree,Neutral,Agree,Disagree,Disagree,Neutral,45 minutes,Yes
+28,Male,Single,Self Employeed,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,4,61,28,3,Agree,Agree,Disagree,Agree,Disagree,Disagree,Strongly agree,45 minutes,Maybe
+21,Female,Single,Student,Post Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,4,228,39,3,Agree,Agree,Agree,Disagree,Disagree,Disagree,Agree,30 minutes,Yes
+24,Male,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,5,189,28,2,Agree,Disagree,Disagree,Agree,Disagree,Disagree,Neutral,30 minutes,Yes
+26,Female,Married,Self Employeed,Graduate,5,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),4,4,145,25,1,Disagree,Agree,Agree,Agree,Neutral,Neutral,Disagree,45 minutes,Maybe
+32,Male,Married,Employee,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,4,243,16,3,Agree,Disagree,Disagree,Neutral,Agree,Agree,Agree,30 minutes,Yes
+29,Male,Single,Self Employeed,Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,1,46,56,3,Agree,Disagree,Disagree,Disagree,Neutral,Disagree,Agree,More than 60 minutes,No
+21,Male,Single,Student,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,3,96,23,3,Agree,Agree,Neutral,Agree,Agree,Disagree,Strongly agree,45 minutes,Yes
+24,Female,Single,Self Employeed,Post Graduate,3,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),1,4,137,45,3,Disagree,Agree,Disagree,Disagree,Disagree,Disagree,Agree,30 minutes,Maybe
+26,Male,Prefer not to say,Self Employeed,Post Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,4,104,29,1,Agree,Disagree,Disagree,Disagree,Disagree,Disagree,Strongly agree,30 minutes,No
+25,Male,Married,Employee,Ph.D,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,3,61,56,1,Agree,Neutral,Disagree,Disagree,Disagree,Neutral,Neutral,30 minutes,Yes
+29,Male,Single,Employee,Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,1,203,52,3,Disagree,Agree,Neutral,Agree,Neutral,Agree,Disagree,45 minutes,Yes
+22,Male,Single,Student,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,2,141,48,2,Agree,Agree,Strongly agree,Agree,Agree,Strongly agree,Neutral,30 minutes,Yes
+24,Male,Single,Student,Graduate,2,Direct call,Snacks,Non Veg foods (Lunch / Dinner),4,1,228,41,2,Strongly agree,Strongly disagree,Disagree,Neutral,Disagree,Disagree,Neutral,30 minutes,Yes
+27,Male,Married,Employee,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,3,226,46,2,Agree,Disagree,Disagree,Agree,Disagree,Disagree,Strongly agree,30 minutes,Yes
+23,Female,Single,Student,Post Graduate,3,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),5,2,244,18,2,Disagree,Agree,Agree,Agree,Agree,Neutral,Disagree,15 minutes,Maybe
+32,Male,Married,Employee,Post Graduate,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,5,76,17,2,Agree,Agree,Agree,Disagree,Neutral,Disagree,Neutral,45 minutes,Yes
+22,Female,Single,Student,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,3,93,59,3,Agree,Disagree,Disagree,Strongly disagree,Strongly disagree,Strongly disagree,Strongly agree,More than 60 minutes,Maybe
+28,Male,Married,Employee,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,4,53,71,1,Agree,Disagree,Disagree,Strongly disagree,Disagree,Disagree,Agree,60 minutes,Yes
+23,Female,Single,Student,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,5,144,30,2,Agree,Neutral,Neutral,Neutral,Disagree,Disagree,Agree,30 minutes,Yes
+30,Male,Married,Self Employeed,Graduate,1,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,3,116,18,1,Neutral,Disagree,Agree,Agree,Disagree,Agree,Disagree,15 minutes,Yes
+21,Male,Single,Student,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,3,163,53,2,Agree,Disagree,Disagree,Disagree,Strongly disagree,Strongly disagree,Neutral,30 minutes,Yes
+26,Female,Married,Employee,Graduate,6,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),5,1,244,26,2,Disagree,Agree,Agree,Agree,Strongly agree,Agree,Strongly disagree,30 minutes,Yes
+25,Male,Single,Self Employeed,School,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,2,168,67,2,Agree,Agree,Disagree,Strongly disagree,Agree,Disagree,Strongly agree,60 minutes,No
+31,Male,Prefer not to say,Employee,Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,250,26,2,Neutral,Agree,Agree,Agree,Neutral,Disagree,Disagree,15 minutes,Yes
+23,Female,Single,Employee,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,5,74,46,1,Agree,Disagree,Disagree,Strongly disagree,Disagree,Strongly disagree,Strongly agree,30 minutes,Yes
+29,Female,Married,Employee,Ph.D,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,5,205,29,1,Agree,Disagree,Disagree,Disagree,Strongly disagree,Agree,Strongly agree,45 minutes,Yes
+21,Male,Single,Student,Graduate,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,2,154,19,1,Agree,Disagree,Disagree,Strongly agree,Agree,Agree,Agree,30 minutes,Yes
+20,Male,Single,Student,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,4,103,31,3,Agree,Disagree,Disagree,Agree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+22,Male,Single,Employee,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,2,189,70,2,Agree,Disagree,Disagree,Strongly disagree,Disagree,Strongly disagree,Strongly agree,More than 60 minutes,No
+30,Female,Married,House wife,School,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,4,188,16,3,Disagree,Agree,Agree,Strongly agree,Agree,Agree,Disagree,30 minutes,Yes
+27,Male,Married,Self Employeed,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,4,153,50,3,Agree,Disagree,Neutral,Agree,Strongly agree,Disagree,Strongly agree,More than 60 minutes,Yes
+23,Male,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,138,16,1,Agree,Disagree,Disagree,Agree,Disagree,Strongly disagree,Agree,45 minutes,Yes
+30,Male,Married,Self Employeed,School,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,5,112,47,1,Disagree,Agree,Agree,Agree,Agree,Disagree,Disagree,45 minutes,Yes
+23,Male,Single,Student,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,1,85,37,2,Agree,Disagree,Disagree,Agree,Agree,Disagree,Strongly agree,30 minutes,Maybe
+28,Female,Married,Employee,Post Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,5,160,17,3,Disagree,Agree,Agree,Agree,Agree,Agree,Strongly disagree,15 minutes,Yes
+30,Male,Married,Self Employeed,Graduate,6,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),1,1,224,50,3,Agree,Disagree,Disagree,Neutral,Disagree,Neutral,Neutral,60 minutes,Yes
+24,Female,Married,Employee,Post Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,5,145,74,1,Agree,Disagree,Disagree,Strongly disagree,Disagree,Disagree,Disagree,More than 60 minutes,Yes
+21,Male,Single,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,1,257,33,2,Disagree,Disagree,Strongly disagree,Agree,Disagree,Disagree,Disagree,30 minutes,Yes
+23,Female,Prefer not to say,Employee,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,1,206,49,1,Agree,Agree,Agree,Neutral,Disagree,Disagree,Strongly agree,45 minutes,Maybe
+25,Male,Married,Self Employeed,Post Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,2,177,38,3,Agree,Disagree,Disagree,Agree,Disagree,Agree,Strongly agree,30 minutes,Yes
+24,Female,Single,Employee,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,4,207,35,2,Agree,Disagree,Neutral,Agree,Neutral,Neutral,Strongly agree,45 minutes,Yes
+26,Male,Married,Employee,Graduate,3,Food delivery apps,Lunch,Sweets,5,5,94,11,2,Disagree,Agree,Agree,Agree,Agree,Agree,Disagree,15 minutes,Yes
+25,Female,Single,Employee,Post Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,3,71,56,2,Agree,Disagree,Neutral,Agree,Disagree,Strongly disagree,Agree,30 minutes,Maybe
+22,Male,Single,Student,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,1,76,65,1,Disagree,Disagree,Neutral,Neutral,Agree,Neutral,Neutral,60 minutes,Yes
+26,Female,Single,Employee,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,2,132,74,1,Agree,Disagree,Disagree,Neutral,Agree,Disagree,Strongly agree,More than 60 minutes,Yes
+23,Male,Single,Employee,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,3,222,21,2,Disagree,Agree,Agree,Agree,Agree,Neutral,Disagree,15 minutes,Yes
+21,Female,Single,Employee,Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,2,177,40,1,Disagree,Disagree,Disagree,Neutral,Agree,Agree,Strongly disagree,30 minutes,Yes
+25,Male,Married,Self Employeed,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,3,148,56,1,Agree,Neutral,Disagree,Disagree,Neutral,Agree,Agree,45 minutes,Yes
+24,Female,Married,Employee,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,4,217,39,2,Agree,Agree,Neutral,Neutral,Disagree,Disagree,Neutral,60 minutes,Yes
+22,Male,Married,Student,Graduate,2,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),4,1,105,15,1,Agree,Agree,Strongly agree,Agree,Agree,Disagree,Agree,30 minutes,Yes
+24,Male,Married,Employee,Post Graduate,3,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),4,5,189,34,3,Agree,Agree,Neutral,Neutral,Neutral,Disagree,Agree,45 minutes,Yes
+22,Female,Single,Student,Graduate,2,Web browser,Snacks,Non Veg foods (Lunch / Dinner),2,1,202,48,3,Agree,Agree,Disagree,Agree,Disagree,Agree,Agree,45 minutes,Yes
+30,Male,Married,Employee,Graduate,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,5,251,33,3,Disagree,Agree,Agree,Agree,Disagree,Disagree,Disagree,45 minutes,Yes
+23,Female,Prefer not to say,Employee,Graduate,4,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),3,1,250,19,1,Agree,Disagree,Neutral,Neutral,Agree,Agree,Agree,30 minutes,Yes
+19,Male,Single,Student,Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,3,111,22,1,Agree,Disagree,Agree,Agree,Disagree,Disagree,Agree,45 minutes,Yes
+21,Female,Single,Student,Graduate,2,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),5,5,94,52,3,Agree,Disagree,Agree,Agree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+23,Male,Single,Student,Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,3,186,62,1,Agree,Agree,Agree,Agree,Agree,Disagree,Disagree,60 minutes,Maybe
+24,Female,Single,Employee,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,1,228,53,3,Agree,Disagree,Disagree,Agree,Disagree,Agree,Agree,60 minutes,Yes
+26,Female,Married,Employee,Post Graduate,2,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),4,5,193,11,3,Disagree,Agree,Agree,Strongly agree,Disagree,Disagree,Strongly disagree,15 minutes,Yes
+26,Female,Single,Student,Ph.D,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,2,253,69,2,Agree,Disagree,Agree,Agree,Disagree,Disagree,Agree,60 minutes,Yes
+25,Female,Single,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,1,55,56,1,Agree,Disagree,Disagree,Neutral,Disagree,Disagree,Agree,30 minutes,Yes
+28,Female,Married,Employee,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,229,20,3,Disagree,Agree,Agree,Agree,Agree,Disagree,Strongly disagree,15 minutes,Yes
+25,Female,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,4,49,60,1,Agree,Agree,Agree,Disagree,Disagree,Disagree,Agree,More than 60 minutes,Maybe
+20,Female,Single,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,3,154,48,3,Agree,Agree,Agree,Agree,Agree,Disagree,Disagree,45 minutes,Maybe
+27,Female,Married,Self Employeed,Graduate,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,2,143,21,2,Disagree,Agree,Agree,Agree,Disagree,Agree,Disagree,15 minutes,Yes
+25,Female,Married,Employee,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,2,47,25,1,Disagree,Disagree,Neutral,Agree,Neutral,Agree,Disagree,45 minutes,Yes
+24,Female,Single,Student,Post Graduate,5,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),1,1,49,42,2,Disagree,Agree,Agree,Agree,Agree,Agree,Disagree,30 minutes,Yes
+25,Female,Married,Employee,Graduate,1,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),1,1,26,26,3,Disagree,Agree,Agree,Agree,Strongly disagree,Disagree,Neutral,45 minutes,Yes
+25,Female,Prefer not to say,Employee,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,1,220,39,2,Disagree,Strongly disagree,Agree,Agree,Neutral,Disagree,Disagree,45 minutes,Yes
+24,Female,Married,Student,Ph.D,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,1,201,43,2,Agree,Disagree,Disagree,Agree,Disagree,Strongly disagree,Agree,45 minutes,Yes
+24,Male,Single,Student,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,3,202,37,2,Agree,Disagree,Strongly disagree,Disagree,Strongly disagree,Disagree,Agree,45 minutes,Yes
+22,Male,Single,Employee,Graduate,1,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),4,1,244,52,1,Agree,Disagree,Neutral,Agree,Neutral,Disagree,Agree,45 minutes,No
+28,Male,Single,Employee,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,1,98,47,1,Disagree,Agree,Agree,Agree,Agree,Agree,Disagree,30 minutes,Yes
+25,Female,Single,Employee,Post Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,3,45,9,2,Strongly disagree,Agree,Agree,Agree,Neutral,Agree,Strongly disagree,15 minutes,Yes
+21,Male,Married,Employee,Ph.D,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,1,152,59,2,Agree,Neutral,Disagree,Disagree,Disagree,Neutral,Neutral,30 minutes,Yes
+22,Male,Married,Self Employeed,School,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,5,209,28,2,Agree,Disagree,Neutral,Neutral,Neutral,Neutral,Neutral,45 minutes,No
+31,Male,Married,Employee,Ph.D,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,1,29,47,2,Agree,Neutral,Disagree,Disagree,Disagree,Neutral,Neutral,30 minutes,Yes
+30,Male,Married,Employee,Post Graduate,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,1,127,31,3,Agree,Agree,Agree,Disagree,Neutral,Disagree,Neutral,45 minutes,Yes
+23,Female,Single,Student,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,3,102,17,2,Agree,Agree,Neutral,Agree,Neutral,Strongly agree,Neutral,45 minutes,Yes
+25,Female,Single,Self Employeed,Graduate,2,Food delivery apps,Lunch,Sweets,1,2,99,61,1,Agree,Disagree,Neutral,Agree,Agree,Agree,Strongly agree,30 minutes,Yes
+34,Male,Single,Employee,Post Graduate,1,Walk-in,Lunch,Non Veg foods (Lunch / Dinner),4,4,142,50,2,Neutral,Disagree,Agree,Neutral,Neutral,Strongly agree,Disagree,45 minutes,Yes
+26,Male,Single,Employee,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,2,34,17,2,Agree,Strongly disagree,Disagree,Agree,Disagree,Strongly disagree,Neutral,45 minutes,Yes
+29,Male,Married,Student,Graduate,3,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),3,1,164,22,1,Strongly agree,Disagree,Neutral,Agree,Neutral,Agree,Agree,30 minutes,No
+35,Male,Single,Student,Graduate,3,Walk-in,Dinner,Non Veg foods (Lunch / Dinner),1,5,209,56,3,Agree,Disagree,Agree,Agree,Strongly agree,Strongly disagree,Strongly agree,30 minutes,Yes
+33,Female,Single,Employee,Post Graduate,1,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,1,114,40,2,Strongly agree,Disagree,Neutral,Disagree,Neutral,Neutral,Agree,More than 60 minutes,Yes
+26,Male,Single,Employee,School,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,5,49,42,3,Agree,Disagree,Disagree,Disagree,Neutral,Disagree,Disagree,60 minutes,Yes
+24,Male,Married,Employee,Post Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,4,129,48,3,Agree,Strongly disagree,Agree,Strongly disagree,Agree,Agree,Disagree,30 minutes,Yes
+18,Male,Single,Employee,Post Graduate,1,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),1,5,235,20,1,Disagree,Disagree,Disagree,Agree,Neutral,Disagree,Disagree,,Yes
+25,Male,Single,Self Employeed,Post Graduate,1,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),2,5,76,53,3,Agree,Agree,Neutral,Strongly agree,Neutral,Agree,Neutral,30 minutes,Yes
+34,Male,Single,Self Employeed,Post Graduate,1,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,4,41,18,2,Strongly agree,Agree,Neutral,Neutral,Agree,Disagree,Neutral,15 minutes,Yes
+31,Male,Married,Student,Ph.D,6,Walk-in,Snacks,Non Veg foods (Lunch / Dinner),1,2,94,40,1,Strongly agree,Agree,Disagree,Strongly disagree,Agree,Disagree,Strongly disagree,30 minutes,No
+19,Male,Married,Employee,Graduate,1,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,4,128,42,1,Agree,Disagree,Disagree,Agree,Neutral,Strongly disagree,Strongly agree,45 minutes,Yes
+23,Female,Single,Employee,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,2,160,50,2,Agree,Agree,Agree,Strongly agree,Agree,Disagree,Neutral,More than 60 minutes,Yes
+32,Female,Single,Student,Post Graduate,5,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),1,2,158,37,3,Agree,Neutral,Agree,Agree,Disagree,Disagree,Agree,45 minutes,No
+18,Male,Single,Student,Ph.D,4,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,4,160,26,2,Agree,Agree,Strongly agree,Agree,Agree,Neutral,Neutral,30 minutes,Yes
+27,Female,Single,,Post Graduate,5,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,5,250,46,1,Disagree,Disagree,Strongly disagree,Agree,Agree,Agree,Agree,45 minutes,Maybe
+34,Male,Single,Student,Graduate,6,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),1,4,235,61,3,Disagree,Strongly agree,Agree,Disagree,Strongly disagree,Agree,Disagree,15 minutes,Yes
+34,Male,Single,Self Employeed,Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,3,34,65,2,Agree,Disagree,Neutral,Agree,Agree,Agree,Agree,45 minutes,Yes
+30,Female,Single,Student,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,3,147,55,1,Agree,Neutral,Strongly agree,Disagree,Agree,Strongly agree,Disagree,45 minutes,Yes
+33,Female,Single,Employee,Post Graduate,6,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),3,3,126,26,2,Agree,Neutral,Neutral,Neutral,Neutral,Disagree,Neutral,15 minutes,Yes
+33,Female,Single,Self Employeed,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,1,203,17,3,Strongly agree,Strongly disagree,Strongly agree,Agree,Strongly disagree,Disagree,Disagree,30 minutes,No
+18,Male,Single,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,3,81,19,2,Strongly agree,Strongly agree,Agree,Strongly agree,Disagree,Disagree,Strongly agree,30 minutes,No
+24,Male,Single,Student,Graduate,2,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),1,3,240,55,1,Agree,Agree,Disagree,Strongly agree,Disagree,Agree,Neutral,45 minutes,Yes
+28,Female,Single,Student,Graduate,1,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),2,1,57,28,1,Disagree,Strongly agree,Agree,Agree,Agree,Disagree,Agree,60 minutes,No
+23,Male,Single,Student,Post Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,2,246,31,1,Agree,Disagree,Disagree,Strongly disagree,Agree,Agree,Agree,45 minutes,Yes
+20,Female,Married,Employee,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,4,34,19,1,Disagree,Disagree,Disagree,Agree,Disagree,Disagree,Disagree,30 minutes,No
+23,Male,Single,Student,Graduate,6,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),1,2,173,63,3,Agree,Agree,Disagree,Agree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+19,Female,Married,Student,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,1,140,29,3,Agree,Disagree,Agree,Agree,Agree,Disagree,Strongly agree,45 minutes,Yes
+32,Female,Prefer not to say,House wife,School,6,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,3,54,74,2,Agree,Disagree,Neutral,Disagree,Strongly agree,Strongly disagree,Disagree,30 minutes,Yes
+32,Male,Single,Student,Ph.D,6,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),2,1,71,23,3,Strongly agree,Strongly agree,Disagree,Agree,Strongly agree,Agree,Disagree,More than 60 minutes,Yes
+29,Female,Married,Student,Ph.D,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,1,23,42,1,Agree,Strongly agree,Disagree,Disagree,Disagree,Disagree,Strongly agree,45 minutes,Maybe
+22,Female,Single,Student,Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,4,124,45,2,Neutral,Agree,Neutral,Agree,Strongly agree,Neutral,Agree,30 minutes,No
+30,Female,Single,Employee,Post Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,1,62,21,2,Agree,Agree,Agree,Neutral,Disagree,Agree,Agree,45 minutes,Yes
+19,Female,Single,Employee,Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,1,175,46,1,Agree,Disagree,Agree,Agree,Strongly agree,,Neutral,30 minutes,Maybe
+24,Female,Single,Employee,Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,4,67,60,2,Agree,Neutral,,Agree,Disagree,Disagree,Agree,45 minutes,Maybe
+32,Female,Prefer not to say,Employee,Graduate,5,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),4,2,137,40,2,Agree,Neutral,Agree,Agree,Disagree,Agree,Disagree,30 minutes,Yes
+31,Male,Single,Student,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,2,166,41,2,Agree,Disagree,Agree,Neutral,Agree,Agree,,30 minutes,Yes
+28,Female,Single,House wife,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,3,234,64,1,Agree,Disagree,Neutral,Strongly disagree,Agree,Disagree,Agree,30 minutes,No
+34,Male,Married,Employee,Post Graduate,1,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,5,139,49,3,Disagree,Agree,Disagree,Agree,Disagree,Agree,Disagree,60 minutes,Yes
+28,Male,Married,Employee,Graduate,3,Walk-in,Breakfast,Non Veg foods (Lunch / Dinner),3,4,100,15,3,Agree,Disagree,Agree,Strongly disagree,Agree,Disagree,Disagree,30 minutes,Yes
+29,Female,Married,Student,Graduate,1,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,2,157,26,1,Agree,Agree,Neutral,Disagree,Agree,Disagree,Strongly agree,45 minutes,Yes
+28,Male,Married,Student,Ph.D,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,2,35,66,2,,Disagree,Neutral,Agree,Agree,Agree,Agree,30 minutes,Yes
+35,,Married,Student,Graduate,1,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),1,2,194,54,2,Strongly disagree,Disagree,Strongly agree,Neutral,Neutral,Strongly agree,Agree,45 minutes,Maybe
+26,Male,Prefer not to say,Student,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,2,207,17,1,Agree,Agree,Neutral,Agree,Strongly disagree,Neutral,Strongly agree,60 minutes,Yes
+23,Female,Married,Self Employeed,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,4,32,36,2,Agree,Disagree,Disagree,Agree,Strongly agree,Disagree,Neutral,60 minutes,Yes
+19,Female,Single,Employee,Post Graduate,2,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),1,4,120,24,2,Strongly disagree,Neutral,Neutral,Disagree,Disagree,Agree,Disagree,45 minutes,Yes
+35,Male,Single,Employee,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,4,225,62,3,Agree,Strongly agree,Disagree,Disagree,Agree,Agree,Strongly agree,30 minutes,Yes
+18,Female,Married,Self Employeed,Post Graduate,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,5,221,17,1,Disagree,Agree,Disagree,Disagree,Neutral,Neutral,Neutral,45 minutes,Yes
+33,Female,Single,Student,Graduate,2,Walk-in,Lunch,Veg foods (Breakfast / Lunch / Dinner),3,3,151,19,2,Agree,Agree,Agree,Disagree,Agree,Agree,Strongly agree,30 minutes,Yes
+24,Female,Married,Employee,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,2,197,17,1,Agree,Agree,Agree,Neutral,Agree,Strongly agree,Agree,15 minutes,Yes
+30,Female,Single,Self Employeed,Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,3,254,17,2,Agree,Strongly agree,Neutral,Agree,Agree,Agree,Agree,30 minutes,Yes
+22,Female,Married,Employee,Graduate,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,1,104,35,2,Strongly agree,Disagree,Agree,Disagree,Disagree,Agree,Agree,30 minutes,Maybe
+18,Female,Single,Employee,Ph.D,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,5,111,72,2,Agree,Disagree,Neutral,Agree,Neutral,Neutral,Strongly agree,45 minutes,Yes
+32,Male,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,3,111,39,2,Agree,Disagree,Agree,Neutral,Neutral,Neutral,Disagree,15 minutes,Yes
+27,Female,Married,Employee,Post Graduate,4,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),3,3,172,59,2,Agree,Neutral,Agree,Neutral,Agree,Agree,Agree,30 minutes,No
+26,Female,Married,Student,Post Graduate,3,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),4,3,67,26,3,Strongly agree,Strongly disagree,Disagree,Disagree,Strongly agree,Disagree,Agree,60 minutes,Maybe
+23,Female,Married,Student,Post Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,4,162,59,3,Agree,Agree,Neutral,Strongly agree,Neutral,Disagree,Agree,More than 60 minutes,Yes
+30,Female,Married,Student,Graduate,4,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,1,80,55,2,Strongly agree,Agree,Disagree,Neutral,Strongly agree,Strongly agree,Agree,45 minutes,Yes
+18,Male,Married,Student,Post Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,2,222,26,2,Strongly agree,Strongly disagree,Disagree,Disagree,Agree,Disagree,Strongly disagree,30 minutes,Yes
+18,Male,Single,Student,Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,2,232,26,1,Strongly agree,Disagree,Neutral,Agree,Disagree,Strongly agree,Agree,45 minutes,Yes
+33,Female,Single,Student,Post Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,4,214,35,3,Agree,Agree,Strongly disagree,Neutral,Agree,Agree,Strongly agree,45 minutes,Yes
+22,Female,Single,Student,Ph.D,2,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),4,5,228,63,2,Disagree,Disagree,Agree,Agree,Disagree,Agree,Disagree,30 minutes,Yes
+29,Male,Married,Student,Graduate,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,5,167,29,2,Agree,Neutral,Disagree,Neutral,Disagree,Neutral,Neutral,30 minutes,Yes
+28,Female,Single,Self Employeed,Post Graduate,4,Walk-in,Lunch,Non Veg foods (Lunch / Dinner),5,2,130,47,2,Strongly agree,Agree,Strongly agree,Disagree,Strongly agree,Disagree,Agree,30 minutes,Yes
+31,Female,Single,Student,School,2,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),5,5,35,44,3,Agree,Disagree,Strongly disagree,Strongly agree,Agree,Agree,Disagree,30 minutes,Yes
+26,Male,Single,Self Employeed,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,3,46,72,1,Agree,Strongly agree,Strongly agree,Disagree,Agree,Strongly agree,Strongly agree,More than 60 minutes,Yes
+27,Male,Prefer not to say,Employee,School,1,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,1,38,32,3,Agree,Neutral,Neutral,Agree,Neutral,Neutral,Agree,30 minutes,Yes
+26,Female,Single,Employee,Post Graduate,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,2,51,50,3,Agree,Neutral,Strongly agree,Agree,Disagree,Strongly agree,Agree,30 minutes,Yes
+32,Male,Married,Student,Post Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,3,219,55,1,Strongly agree,Neutral,Agree,Strongly agree,Neutral,Disagree,Neutral,30 minutes,Yes
+32,Female,Married,Employee,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,2,28,,2,Agree,Strongly disagree,Agree,Agree,Strongly agree,Disagree,Agree,30 minutes,Maybe
+28,Male,Single,Employee,Graduate,2,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,2,87,68,1,Agree,Agree,Strongly disagree,Neutral,Neutral,Neutral,Agree,60 minutes,Maybe
+26,Female,Single,Student,Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,4,169,56,1,Disagree,Agree,Disagree,Neutral,Agree,Agree,Strongly disagree,60 minutes,Yes
+33,Female,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,5,166,56,1,Disagree,Agree,Disagree,Neutral,Neutral,Agree,Agree,45 minutes,Yes
+30,Male,Single,Student,Post Graduate,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,5,77,57,2,Agree,Neutral,Disagree,Agree,Agree,Agree,Strongly agree,60 minutes,Yes
+18,Female,Single,Employee,Post Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,2,156,55,3,Neutral,Agree,Strongly disagree,Neutral,Disagree,Disagree,Neutral,60 minutes,Yes
+21,Female,Married,Employee,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,1,247,54,2,Strongly agree,Agree,Strongly agree,Agree,Disagree,Strongly agree,Agree,30 minutes,Yes
+20,Male,Single,Student,Graduate,5,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,1,165,29,3,Strongly disagree,Disagree,Disagree,Disagree,Strongly agree,Strongly disagree,Strongly agree,More than 60 minutes,No
+31,Female,Single,Student,Post Graduate,2,Food delivery apps,,Non Veg foods (Lunch / Dinner),5,3,255,48,1,Agree,Disagree,Neutral,Agree,Neutral,Neutral,Neutral,45 minutes,Yes
+18,Male,Single,Student,Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,2,44,39,2,Agree,Disagree,Neutral,Neutral,Disagree,Agree,Strongly agree,60 minutes,No
+29,Male,Single,Employee,Uneducated,3,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),5,4,159,40,3,Agree,Agree,Agree,Agree,Strongly agree,Disagree,Neutral,30 minutes,Yes
+21,Female,Married,Self Employeed,Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,1,127,60,1,Agree,Neutral,Disagree,Neutral,Disagree,Disagree,Agree,30 minutes,Yes
+35,Male,Married,Employee,Graduate,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,5,68,18,1,Disagree,Agree,Disagree,Disagree,Disagree,Neutral,Disagree,45 minutes,Yes
+29,Female,Single,Employee,Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,4,194,35,1,Agree,Agree,Neutral,Neutral,Strongly agree,Disagree,Neutral,30 minutes,Yes
+19,Male,Single,Student,Graduate,6,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,3,42,40,1,Disagree,Disagree,Strongly agree,Agree,Neutral,Agree,Agree,30 minutes,Yes
+25,Male,Prefer not to say,Student,Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,1,75,45,1,Agree,Disagree,Agree,Neutral,Neutral,Strongly agree,Strongly agree,30 minutes,Yes
+19,Male,Single,Student,Post Graduate,1,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,5,179,52,2,Agree,Agree,Strongly agree,Disagree,Strongly agree,Disagree,Agree,45 minutes,Yes
+35,Male,Single,Self Employeed,Post Graduate,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,4,168,31,2,Agree,Disagree,Agree,Neutral,Neutral,Disagree,Agree,45 minutes,Yes
+31,Male,Married,Student,Graduate,3,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),5,1,52,48,2,Agree,Strongly disagree,Neutral,Agree,Agree,Disagree,Disagree,45 minutes,Yes
+33,Male,Single,Employee,Ph.D,4,Walk-in,Dinner,Non Veg foods (Lunch / Dinner),5,2,91,40,2,Agree,Agree,Agree,Agree,Strongly agree,Disagree,Strongly agree,60 minutes,Yes
+19,Female,Single,Student,Graduate,4,Direct call,Breakfast,Non Veg foods (Lunch / Dinner),2,3,34,72,3,Agree,Disagree,Agree,Disagree,Strongly agree,Disagree,Agree,45 minutes,Yes
+27,Male,Married,Student,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,2,43,63,3,Agree,Disagree,Disagree,Agree,Agree,Disagree,Strongly agree,45 minutes,Yes
+20,Male,Married,Employee,Post Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,4,122,50,1,Agree,Agree,Strongly agree,Agree,Agree,Agree,Strongly agree,30 minutes,Yes
+27,Male,Married,Self Employeed,Graduate,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,4,181,38,2,Agree,Neutral,Strongly agree,Agree,Disagree,Disagree,Neutral,45 minutes,Yes
+33,Female,Single,Student,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,3,83,11,3,Agree,Agree,Disagree,Agree,Agree,Disagree,Strongly agree,30 minutes,Maybe
+25,Female,Married,Student,Post Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,5,144,60,3,Agree,Agree,Strongly disagree,Strongly disagree,Disagree,Neutral,Disagree,30 minutes,Yes
+33,Female,Single,Student,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,2,38,59,3,Agree,Agree,Agree,Strongly agree,Neutral,Disagree,Agree,30 minutes,Yes
+26,Male,Married,Student,Ph.D,3,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,3,218,23,3,Agree,Agree,Disagree,Agree,Strongly agree,Agree,Agree,30 minutes,Yes
+26,Male,Single,Employee,Post Graduate,1,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),5,5,231,21,1,Disagree,Agree,Disagree,Agree,Disagree,Agree,Agree,,Yes
+33,Male,Prefer not to say,Employee,Graduate,2,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),5,3,85,50,2,Neutral,Agree,Agree,Agree,Strongly agree,Disagree,Strongly agree,60 minutes,Yes
+28,Male,Single,Student,School,4,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),2,1,84,29,3,Disagree,Agree,Agree,Neutral,Neutral,Neutral,Agree,15 minutes,Yes
+23,Male,Single,Self Employeed,Graduate,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,5,165,40,2,Agree,Disagree,Strongly agree,Neutral,Agree,Neutral,Disagree,45 minutes,Yes
+18,Male,Married,Student,School,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,5,143,17,1,Agree,Agree,Disagree,Disagree,Neutral,Disagree,Agree,More than 60 minutes,No
+29,Male,Single,Employee,Graduate,5,Food delivery apps,Snacks,Bakery items (snacks),5,3,238,50,3,Agree,Strongly agree,Strongly agree,Strongly disagree,Agree,Agree,Agree,30 minutes,Yes
+34,Female,Single,Employee,Graduate,5,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),2,2,237,40,1,Agree,Strongly agree,Strongly agree,Disagree,Neutral,Agree,Strongly agree,45 minutes,Yes
+28,Male,Single,Student,Post Graduate,5,Direct call,Snacks,Non Veg foods (Lunch / Dinner),4,5,60,14,3,Strongly agree,Agree,Neutral,Agree,Neutral,Disagree,Strongly agree,30 minutes,No
+32,Male,Single,Employee,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,1,60,19,3,Agree,Agree,Strongly agree,Agree,Agree,Disagree,Agree,30 minutes,Yes
+27,Female,Single,Employee,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,2,58,23,3,Disagree,Agree,Agree,Agree,Neutral,Neutral,Strongly agree,45 minutes,Yes
+35,Female,Single,Student,Post Graduate,4,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),1,5,53,19,3,Agree,Agree,Agree,Disagree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+28,Male,Single,Student,Graduate,1,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),3,1,75,52,3,Agree,Agree,Neutral,Neutral,Disagree,Neutral,Neutral,45 minutes,Maybe
+28,Male,Single,Employee,Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,5,102,28,3,Strongly agree,Agree,Neutral,Disagree,Disagree,Disagree,Neutral,45 minutes,Maybe
+19,Male,Single,Self Employeed,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,1,192,57,2,Disagree,Agree,Agree,Neutral,Strongly agree,Disagree,Agree,45 minutes,Yes
+32,Male,Single,Self Employeed,Ph.D,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,5,203,21,3,Strongly agree,Disagree,Agree,Neutral,Disagree,Disagree,Disagree,45 minutes,Yes
+20,Male,Single,Student,Graduate,1,Walk-in,Dinner,Non Veg foods (Lunch / Dinner),5,5,82,54,2,Agree,Strongly agree,Agree,Strongly agree,Strongly agree,Disagree,Neutral,45 minutes,Maybe
+31,Female,Married,Employee,Ph.D,3,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),3,3,122,41,1,Agree,Strongly agree,Disagree,Agree,Strongly disagree,Disagree,Strongly agree,45 minutes,Maybe
+18,Female,Single,Student,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,4,162,48,1,Disagree,Disagree,Neutral,Strongly disagree,Agree,Agree,Agree,45 minutes,Yes
+25,Male,Married,Self Employeed,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,4,190,43,3,Agree,Neutral,Agree,Agree,Disagree,Agree,Neutral,30 minutes,Yes
+18,Male,Single,Employee,Ph.D,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,5,229,29,1,Agree,Strongly disagree,Agree,Neutral,Agree,Neutral,Neutral,60 minutes,Yes
+22,Male,Married,Employee,Post Graduate,5,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,1,27,18,3,Agree,Agree,Strongly agree,Agree,Neutral,Agree,Agree,60 minutes,Yes
+31,Male,Married,Employee,Ph.D,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,3,206,16,1,Agree,Disagree,Neutral,Strongly disagree,Strongly disagree,Strongly disagree,Strongly agree,30 minutes,No
+33,Female,Single,Self Employeed,Post Graduate,5,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,5,113,36,3,Agree,Neutral,Disagree,Strongly disagree,Disagree,Neutral,Neutral,45 minutes,Yes
+18,Female,Single,Student,Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,5,177,41,3,Strongly agree,Disagree,Agree,Strongly agree,Agree,Disagree,Strongly agree,30 minutes,Yes
+18,Male,Single,Employee,Ph.D,4,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),2,2,42,56,1,Strongly agree,Disagree,Disagree,Agree,Agree,Disagree,Agree,30 minutes,Yes
+23,Male,Married,Employee,Post Graduate,4,Walk-in,Dinner,Non Veg foods (Lunch / Dinner),4,3,45,40,1,Agree,Agree,Agree,Neutral,Strongly disagree,Disagree,Agree,45 minutes,No
+25,Male,Single,Student,Post Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,1,104,47,1,Agree,Strongly agree,Neutral,Disagree,Disagree,Disagree,Agree,More than 60 minutes,No
+28,Male,Married,Student,Post Graduate,5,Food delivery apps,Lunch,Sweets,2,3,75,30,1,Agree,Agree,Disagree,Neutral,Strongly disagree,Strongly disagree,Disagree,More than 60 minutes,Yes
+25,Male,Married,Student,Post Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,4,98,36,3,Agree,Agree,Disagree,Strongly disagree,Strongly disagree,Agree,Agree,45 minutes,Maybe
+26,Male,Single,Student,Graduate,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,5,45,26,2,Disagree,Disagree,Neutral,Agree,Neutral,Agree,Disagree,More than 60 minutes,Yes
+35,Female,Single,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,3,155,52,3,Disagree,Agree,Agree,Strongly disagree,Neutral,Disagree,Agree,45 minutes,Maybe
+31,Male,Single,Employee,Post Graduate,6,Walk-in,Snacks,Veg foods (Breakfast / Lunch / Dinner),1,5,225,56,3,Agree,Neutral,Strongly agree,Strongly disagree,Agree,Disagree,Agree,30 minutes,Yes
+27,Female,Single,Student,Post Graduate,6,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),2,2,89,15,3,Disagree,Neutral,Disagree,Strongly disagree,Agree,Disagree,Strongly agree,45 minutes,Yes
+29,Female,Single,Employee,Post Graduate,4,,Snacks,Veg foods (Breakfast / Lunch / Dinner),4,2,101,19,2,Strongly disagree,Disagree,Neutral,Agree,Strongly agree,Disagree,Strongly agree,45 minutes,Yes
+32,Female,Single,Student,Graduate,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,3,239,55,3,Agree,Disagree,Strongly disagree,Strongly agree,Disagree,Neutral,Agree,30 minutes,Yes
+35,Female,Single,Student,Post Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,4,251,17,2,Agree,Disagree,Disagree,Agree,Disagree,Agree,Neutral,30 minutes,Yes
+35,Male,Married,Student,Uneducated,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,5,62,21,1,Agree,Agree,Agree,Neutral,Neutral,Neutral,Strongly agree,45 minutes,Yes
+35,Female,Single,Student,Graduate,6,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,5,117,39,1,Strongly agree,Neutral,Strongly disagree,Neutral,Neutral,Agree,Strongly agree,30 minutes,Yes
+19,Female,Single,Student,Post Graduate,3,Web browser,Lunch,Non Veg foods (Lunch / Dinner),4,3,93,44,1,Agree,Disagree,Disagree,Agree,Strongly agree,Agree,Agree,15 minutes,Yes
+28,Female,Married,Student,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,3,32,63,1,Agree,Strongly disagree,Disagree,Neutral,Disagree,Neutral,Strongly agree,45 minutes,Yes
+32,Male,Single,Student,Post Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,38,22,2,Agree,Agree,Disagree,Agree,Disagree,Strongly disagree,Neutral,45 minutes,Yes
+31,Female,Married,Student,Post Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,4,139,26,2,Agree,Disagree,Agree,Neutral,Agree,Neutral,Agree,30 minutes,Yes
+33,Female,Married,Employee,Post Graduate,2,Walk-in,Dinner,Veg foods (Breakfast / Lunch / Dinner),4,3,67,50,3,Disagree,Neutral,Neutral,Neutral,Disagree,Neutral,Strongly agree,30 minutes,Yes
+30,Male,Single,Student,Post Graduate,1,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,2,168,39,1,Agree,Agree,Neutral,Agree,Agree,Neutral,Neutral,60 minutes,Yes
+35,Male,Single,Student,Graduate,3,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),2,1,185,30,3,Agree,Agree,Neutral,Neutral,Strongly agree,Strongly disagree,Strongly agree,30 minutes,Yes
+21,Male,Single,Student,Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,3,211,62,1,Agree,Disagree,Disagree,Strongly disagree,Agree,Neutral,Agree,15 minutes,No
+25,Male,Married,Employee,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,3,110,70,1,Disagree,Agree,Strongly agree,Disagree,Agree,Agree,Disagree,More than 60 minutes,No
+27,Male,Single,Employee,Post Graduate,2,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),2,4,57,42,3,Disagree,Agree,Strongly agree,Disagree,Disagree,Neutral,Neutral,30 minutes,Yes
+24,Female,Married,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,3,102,43,2,Neutral,Agree,Disagree,Neutral,Agree,Disagree,Disagree,45 minutes,Yes
+26,Male,Married,Employee,Graduate,6,Food delivery apps,Dinner,Veg foods (Breakfast / Lunch / Dinner),3,5,182,26,3,Agree,Strongly disagree,Strongly agree,Neutral,Agree,Neutral,Strongly agree,60 minutes,Yes
+27,Male,Single,Employee,Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,5,221,12,3,Agree,Strongly agree,Agree,Agree,Strongly agree,Strongly agree,Strongly agree,45 minutes,Maybe
+27,Male,Married,Student,Ph.D,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,2,191,20,3,Agree,Agree,Disagree,Disagree,Neutral,Agree,Strongly agree,30 minutes,Yes
+32,Female,Single,Student,Post Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,4,207,32,1,Agree,Disagree,Neutral,Agree,Strongly agree,Neutral,Neutral,45 minutes,Maybe
+27,Male,Married,Student,Graduate,3,Food delivery apps,Snacks,,1,4,105,62,2,Disagree,Neutral,Agree,Neutral,Neutral,Neutral,Neutral,45 minutes,Yes
+32,Male,Single,Student,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,3,86,33,2,Strongly agree,Agree,Strongly disagree,Strongly agree,Agree,Disagree,Agree,30 minutes,No
+31,Female,Single,Employee,Post Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,1,153,27,2,Agree,Agree,Agree,Neutral,Agree,Neutral,Agree,30 minutes,No
+27,Female,Prefer not to say,Employee,School,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,1,112,62,1,Agree,Agree,Agree,Neutral,Neutral,Neutral,Agree,45 minutes,Yes
+22,Male,Single,Student,Post Graduate,4,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,2,243,57,2,Agree,Disagree,Disagree,Agree,Agree,Strongly agree,Strongly agree,30 minutes,No
+35,Male,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,4,232,25,3,Strongly disagree,Disagree,Agree,Agree,Agree,Strongly agree,Disagree,45 minutes,Yes
+26,Female,Single,Self Employeed,Post Graduate,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,5,136,35,1,Strongly agree,Agree,Strongly agree,Agree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+27,Male,Single,Employee,Post Graduate,3,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),1,5,150,Delivery Time,3,Agree,Agree,Agree,Neutral,Neutral,Strongly agree,Strongly agree,30 minutes,Yes
+33,Male,Single,Self Employeed,Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,4,189,17,1,Agree,Neutral,Agree,Agree,Disagree,Strongly agree,Agree,15 minutes,Yes
+20,Male,Married,Employee,Ph.D,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,1,186,49,1,Agree,Agree,Disagree,Strongly disagree,Neutral,Agree,Agree,45 minutes,Yes
+22,Male,Married,Student,Graduate,5,Walk-in,Snacks,Non Veg foods (Lunch / Dinner),2,5,185,19,1,Disagree,Strongly disagree,Disagree,Strongly agree,Strongly disagree,Agree,Strongly agree,60 minutes,Yes
+35,Male,Single,Self Employeed,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,1,227,17,1,Strongly agree,Strongly disagree,Disagree,Agree,Neutral,Strongly agree,Agree,60 minutes,No
+29,Male,Single,Employee,School,6,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,2,181,42,1,Agree,Agree,Agree,Agree,Disagree,Neutral,Neutral,45 minutes,Maybe
+30,Female,Single,Student,Graduate,4,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),5,5,42,45,3,Agree,Disagree,Disagree,Disagree,Disagree,Disagree,Disagree,45 minutes,Yes
+22,Male,Prefer not to say,Employee,Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),4,5,233,69,1,Disagree,Disagree,Disagree,Agree,Neutral,Agree,Strongly disagree,45 minutes,Yes
+25,Male,Single,Employee,Graduate,5,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,4,72,22,1,Disagree,Agree,Disagree,Agree,Strongly agree,Agree,Disagree,30 minutes,No
+23,Female,Single,Employee,Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,4,91,19,2,Agree,Agree,Disagree,Disagree,Agree,Disagree,Strongly agree,45 minutes,Yes
+28,Male,Single,Employee,Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,1,253,42,2,Agree,Agree,Disagree,Neutral,Disagree,Agree,Agree,60 minutes,Yes
+21,Male,Single,Employee,Post Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,3,117,59,3,Agree,Agree,Agree,Agree,Strongly agree,Agree,Disagree,15 minutes,Yes
+29,Female,Married,Student,Graduate,3,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),3,3,181,39,2,Agree,Strongly agree,Disagree,Disagree,Neutral,Disagree,Agree,45 minutes,Yes
+23,Male,Single,Student,Ph.D,5,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),4,4,121,28,1,Strongly agree,Neutral,Disagree,Agree,Neutral,Agree,Disagree,15 minutes,Yes
+23,Female,Single,Employee,Post Graduate,6,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),2,4,148,15,3,Agree,Strongly agree,Strongly agree,Neutral,Disagree,Disagree,Strongly disagree,45 minutes,Yes
+26,Female,Single,Student,Post Graduate,1,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),4,5,156,31,2,Neutral,Disagree,Agree,Agree,Neutral,Neutral,Agree,45 minutes,Maybe
+23,Female,Single,Employee,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,5,126,21,3,Agree,Disagree,Neutral,Agree,Disagree,Disagree,Agree,30 minutes,Yes
+27,Female,Single,House wife,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,2,152,45,3,Strongly agree,Agree,Disagree,Disagree,Agree,Disagree,Disagree,30 minutes,Yes
+35,Female,Married,Student,Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,5,65,19,3,Disagree,Disagree,Agree,Agree,Disagree,Disagree,Strongly agree,45 minutes,Yes
+28,Female,Married,Self Employeed,Graduate,2,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),5,1,253,17,3,Agree,Strongly disagree,Agree,Strongly disagree,Strongly agree,Disagree,Strongly agree,More than 60 minutes,Yes
+29,Male,Married,Student,Graduate,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,1,232,33,3,Agree,Strongly agree,Strongly agree,Strongly disagree,Strongly agree,Agree,Strongly agree,45 minutes,Yes
+28,Male,Single,Student,Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,5,99,42,2,Agree,Agree,Agree,Neutral,Neutral,Disagree,Neutral,15 minutes,Yes
+30,Male,Married,Student,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,5,197,21,1,Neutral,Agree,Agree,Strongly agree,Neutral,Disagree,Strongly agree,45 minutes,No
+18,Male,Single,Employee,Post Graduate,6,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),1,2,248,35,2,Disagree,Disagree,Strongly agree,Neutral,Disagree,Agree,Strongly agree,45 minutes,Yes
+23,Male,Married,Student,Post Graduate,5,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),2,4,32,64,3,Agree,Agree,Disagree,Agree,Neutral,Disagree,Agree,45 minutes,No
+28,Female,Married,Employee,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,2,78,66,1,Agree,Strongly disagree,Agree,Agree,Disagree,Disagree,Disagree,45 minutes,No
+26,Male,Single,Student,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,4,189,47,1,Agree,Disagree,Neutral,Disagree,Disagree,Strongly agree,Strongly agree,30 minutes,Yes
+32,Female,Married,Student,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,1,33,47,1,Neutral,Disagree,Disagree,Neutral,Disagree,Disagree,Agree,30 minutes,Yes
+18,Female,Married,Employee,School,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,3,231,17,1,Strongly agree,Agree,Agree,Strongly agree,Disagree,Agree,Disagree,60 minutes,Yes
+22,Female,Single,Student,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,4,211,59,3,Agree,Disagree,Disagree,Neutral,Agree,Disagree,Strongly agree,30 minutes,No
+30,Female,Single,Employee,Post Graduate,3,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),1,1,170,22,1,Strongly agree,Disagree,Disagree,Agree,Strongly agree,Agree,Strongly agree,30 minutes,Yes
+23,Male,Single,Employee,Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),1,1,217,31,2,Agree,Disagree,Strongly agree,Neutral,Agree,Neutral,Agree,More than 60 minutes,Yes
+26,Male,Single,Student,Post Graduate,2,Direct call,Lunch,Non Veg foods (Lunch / Dinner),1,1,149,39,2,Agree,Disagree,Disagree,Agree,Agree,Neutral,Disagree,15 minutes,Maybe
+20,Female,Single,Self Employeed,Ph.D,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,1,226,59,1,Strongly agree,Neutral,Disagree,Agree,Disagree,Strongly disagree,Strongly agree,60 minutes,Yes
+21,Male,Single,Student,Graduate,5,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),4,1,189,21,2,Strongly agree,Agree,Strongly agree,Agree,Neutral,Agree,Neutral,30 minutes,Yes
+35,Male,Single,Student,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),5,2,210,41,3,Agree,Agree,Disagree,Agree,Neutral,Disagree,Strongly agree,45 minutes,Yes
+27,Male,Single,Self Employeed,Post Graduate,4,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,5,95,45,1,Neutral,Agree,Neutral,Strongly agree,Neutral,Disagree,Agree,30 minutes,No
+34,Male,Married,Self Employeed,Post Graduate,6,Food delivery apps,Snacks,Veg foods (Breakfast / Lunch / Dinner),3,4,49,55,1,Agree,Disagree,Disagree,Strongly agree,Disagree,Neutral,Strongly agree,30 minutes,Yes
+32,Male,Single,Employee,Graduate,6,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,5,111,34,1,Agree,Disagree,Agree,Disagree,Strongly disagree,Disagree,Strongly agree,30 minutes,No
+22,Female,Married,Employee,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,3,240,42,2,Agree,Disagree,Agree,Strongly agree,Agree,Agree,Agree,30 minutes,Yes
+31,Male,Married,Employee,Graduate,3,Food delivery apps,Breakfast,Veg foods (Breakfast / Lunch / Dinner),3,2,72,20,3,Disagree,Agree,Neutral,Disagree,Disagree,Disagree,Neutral,60 minutes,Yes
+34,Male,Married,Student,Post Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,5,196,32,2,Strongly agree,Strongly disagree,Disagree,Agree,Strongly agree,Disagree,Strongly agree,15 minutes,Yes
+29,Female,Single,Self Employeed,Post Graduate,2,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),5,1,164,43,3,Agree,Agree,Agree,Strongly disagree,Disagree,Strongly disagree,Neutral,30 minutes,Yes
+22,Female,Single,Student,Graduate,3,Food delivery apps,Snacks,Non Veg foods (Lunch / Dinner),2,2,87,38,1,Agree,Strongly agree,Disagree,Neutral,Disagree,Neutral,Agree,45 minutes,Yes
+35,Female,Single,Employee,Graduate,4,Food delivery apps,Lunch,Veg foods (Breakfast / Lunch / Dinner),3,4,93,40,2,Agree,Neutral,Agree,Agree,Neutral,Agree,Disagree,45 minutes,Yes
+32,Male,Single,Self Employeed,School,1,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),1,4,249,63,3,Strongly agree,Agree,Agree,Neutral,Neutral,Disagree,Disagree,45 minutes,Yes
+35,Female,Single,Student,Post Graduate,6,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),2,1,45,28,1,Strongly agree,Strongly agree,Neutral,Agree,Neutral,Agree,Strongly agree,30 minutes,Yes
+34,Male,Married,Employee,Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,3,100,23,3,Strongly agree,Agree,Agree,Agree,Disagree,Strongly agree,Neutral,30 minutes,Maybe
+31,Female,Single,Student,Post Graduate,5,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,1,111,17,2,Agree,Agree,Neutral,Neutral,Disagree,Strongly agree,Agree,15 minutes,Yes
+35,Male,Single,Student,Graduate,4,Food delivery apps,Dinner,Non Veg foods (Lunch / Dinner),3,4,54,27,3,Neutral,Agree,Agree,Agree,Neutral,Agree,Agree,45 minutes,Yes
+35,Female,Single,Student,Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),2,2,135,21,3,Neutral,Agree,Agree,Neutral,Neutral,Agree,Disagree,15 minutes,No
+35,Male,Single,House wife,Graduate,1,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),5,3,170,26,3,Agree,Agree,Strongly agree,Neutral,Neutral,Disagree,Agree,30 minutes,Yes
+28,Female,Married,Student,Ph.D,3,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),4,2,126,35,3,Agree,Strongly disagree,Disagree,Agree,Disagree,Neutral,Disagree,45 minutes,Yes
+35,Female,Single,Student,Post Graduate,2,Food delivery apps,Lunch,Non Veg foods (Lunch / Dinner),3,5,97,30,1,Agree,Disagree,Disagree,Disagree,Agree,Agree,Strongly agree,45 minutes,Yes
