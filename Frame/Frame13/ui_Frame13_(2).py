@@ -1,6 +1,6 @@
 # gui_content_embed.py
 # Chuyển gui.py thành module build_content(parent, width, height)
-# Giữ nguyên assets/relative_to_assets như file gốc gui.py
+# Giữ nguyên assets_Frame07/relative_to_assets như file gốc gui.py
 
 from pathlib import Path
 import tkinter as tk

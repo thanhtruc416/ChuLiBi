@@ -1,6 +1,9 @@
 # frame05.py
 from pathlib import Path
-from tkinter import Frame, Canvas, Entry, Button, PhotoImage
+from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox, StringVar, NORMAL, DISABLED
+
+# ===== functions: lấy username theo email + verify OTP & reset mật khẩu =====
+from Function.ResetPassword import get_username_by_email, reset_password_with_otp
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame05")
@@ -13,6 +16,15 @@ class Frame05(Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg="#FFFFFF")
+
+        # sẽ nhận từ frame trước qua on_show(email=...)
+        self.email = None
+
+        # ---- bind biến để đọc/ghi dễ hơn ----
+        self.username_var = StringVar()
+        self.newpw_var = StringVar()
+        self.confirmpw_var = StringVar()
+        self.otp_var = StringVar()
 
         # --- Canvas ---
         canvas = Canvas(
@@ -102,39 +114,112 @@ class Frame05(Frame):
         # --- Entry ---
         self.entry_image_username = PhotoImage(file=relative_to_assets("entry_username.png"))
         canvas.create_image(1083.5, 341.0, image=self.entry_image_username)
-        self.entry_username = Entry(self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
-                                    font=("Crimson Pro Regular", 26 * -1))
+        self.entry_username = Entry(
+            self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
+            font=("Crimson Pro Regular", 26 * -1), textvariable=self.username_var, state="readonly"
+        )
         self.entry_username.place(x=859.0, y=306.5, width=449.0, height=67.0)
 
         self.entry_image_newpassword = PhotoImage(file=relative_to_assets("entry_newpassword.png"))
         canvas.create_image(1083.5, 488.5, image=self.entry_image_newpassword)
-        self.entry_newpassword = Entry(self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
-                                       font=("Crimson Pro Regular", 26 * -1))
+        self.entry_newpassword = Entry(
+            self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
+            font=("Crimson Pro Regular", 26 * -1), textvariable=self.newpw_var, show="*"
+        )
         self.entry_newpassword.place(x=859.0, y=454.0, width=449.0, height=67.0)
 
         self.entry_image_confirm_password = PhotoImage(file=relative_to_assets("entry_confirm_password.png"))
         canvas.create_image(1083.5, 627.5, image=self.entry_image_confirm_password)
-        self.entry_confirm_newpassword = Entry(self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
-                                               font=("Crimson Pro Regular", 26 * -1))
+        self.entry_confirm_newpassword = Entry(
+            self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
+            font=("Crimson Pro Regular", 26 * -1), textvariable=self.confirmpw_var, show="*"
+        )
         self.entry_confirm_newpassword.place(x=859.0, y=593.0, width=449.0, height=67.0)
 
         self.entry_image_OTP = PhotoImage(file=relative_to_assets("entry_OTP.png"))
         canvas.create_image(1083.5, 750.5, image=self.entry_image_OTP)
-        self.entry_OTP = Entry(self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
-                               font=("Crimson Pro Regular", 26 * -1))
+        self.entry_OTP = Entry(
+            self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
+            font=("Crimson Pro Regular", 26 * -1), textvariable=self.otp_var
+        )
         self.entry_OTP.place(x=859.0, y=716.0, width=449.0, height=67.0)
 
         # --- Buttons ---
-        self.button_eyes_password = Button(self, image=self.button_image_eyes_password, borderwidth=0,
-                                           highlightthickness=0, command=lambda: print("button_eyes _password clicked"),
-                                           relief="flat")
+        self.button_eyes_password = Button(
+            self, image=self.button_image_eyes_password, borderwidth=0,
+            highlightthickness=0, command=self.toggle_pw1, relief="flat"
+        )
         self.button_eyes_password.place(x=1270.0, y=476.0, width=30.0, height=21.0)
 
-        self.button_eyes = Button(self, image=self.button_image_eyes, borderwidth=0, highlightthickness=0,
-                                  command=lambda: print("button_eyes 2 clicked"), relief="flat")
+        self.button_eyes = Button(
+            self, image=self.button_image_eyes, borderwidth=0, highlightthickness=0,
+            command=self.toggle_pw2, relief="flat"
+        )
         self.button_eyes.place(x=1270.0, y=617.0, width=30.0, height=21.0)
 
-        self.button_resetpassword = Button(self, image=self.button_image_resetpassword, borderwidth=0,
-                                           highlightthickness=0, command=lambda: self.controller.show_frame("Frame01"),
-                                           relief="flat")
+        self.button_resetpassword = Button(
+            self, image=self.button_image_resetpassword, borderwidth=0,
+            highlightthickness=0, command=self.on_reset_password, relief="flat"
+        )
         self.button_resetpassword.place(x=844.0, y=817.0, width=484.0, height=67.0)
+
+    # ========= lifecycle: nhận email từ frame trước & fill username =========
+    def on_show(self, email=None):
+        self.email = (email or "").strip().lower()
+        self.newpw_var.set(""); self.confirmpw_var.set(""); self.otp_var.set("")
+        self.username_var.set("")
+
+        if not self.email:
+            messagebox.showwarning("Cảnh báo", "Thiếu email để đặt lại mật khẩu")
+            return
+
+        ok, res = get_username_by_email(self.email)
+        if ok:
+            self.username_var.set(res)
+        else:
+            messagebox.showerror("Lỗi", res)
+
+    # ========= actions =========
+    def on_reset_password(self):
+        new_pw = self.newpw_var.get()
+        confirm_pw = self.confirmpw_var.get()
+        otp = self.otp_var.get().strip()
+
+        if not self.email:
+            messagebox.showwarning("Cảnh báo", "Thiếu email để đặt lại mật khẩu")
+            return
+        if not otp:
+            messagebox.showwarning("Cảnh báo", "Vui lòng nhập OTP")
+            return
+        if not new_pw or not confirm_pw:
+            messagebox.showwarning("Cảnh báo", "Vui lòng nhập mật khẩu mới")
+            return
+        if new_pw != confirm_pw:
+            messagebox.showwarning("Cảnh báo", "Mật khẩu nhập lại không khớp")
+            return
+        if len(new_pw) < 8:
+            messagebox.showwarning("Cảnh báo", "Mật khẩu tối thiểu 8 ký tự")
+            return
+
+        self.button_resetpassword.config(state=DISABLED)
+        try:
+            ok, msg = reset_password_with_otp(self.email, otp, new_pw)
+            if ok:
+                messagebox.showinfo("Thành công", msg)
+                if self.controller:
+                    self.controller.show_frame("Frame01")  # quay về màn đăng nhập
+            else:
+                messagebox.showwarning("Không thể đặt lại", msg)
+        except Exception as e:
+            messagebox.showerror("Lỗi", f"Không thể đặt lại mật khẩu: {e}")
+        finally:
+            self.button_resetpassword.config(state=NORMAL)
+
+    # ========= helpers: show/hide password =========
+    def toggle_pw1(self):
+        cur = self.entry_newpassword.cget("show")
+        self.entry_newpassword.config(show="" if cur == "*" else "*")
+
+    def toggle_pw2(self):
+        cur = self.entry_confirm_newpassword.cget("show")
+        self.entry_confirm_newpassword.config(show="" if cur == "*" else "*")

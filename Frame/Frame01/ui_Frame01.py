@@ -1,3 +1,6 @@
+from pathlib import Path
+import tkinter as tk
+from tkinter import Canvas, Entry, Button, PhotoImage, messagebox  # <-- thêm messagebox
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / path

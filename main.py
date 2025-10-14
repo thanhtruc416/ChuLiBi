@@ -1,7 +1,7 @@
 import tkinter as tk
 from Function.app_controller import AppController
-
-# Import Frame01 (class bạn vừa tạo)
+from dotenv import load_dotenv
+load_dotenv()
 from Frame.Frame01.ui_Frame01 import Frame01
 from Frame.Frame02.ui_Frame02 import Frame02
 from Frame.Frame03.ui_Frame03 import Frame03
