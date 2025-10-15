@@ -9,7 +9,7 @@ import pandas as pd
 
 # Path to CSV file
 ROOT = Path(__file__).resolve().parents[1]  # Go up to ChuLiBi directory
-CSV_PATH = ROOT / "Dataset" / "df_raw_dashboard.csv"
+CSV_PATH = ROOT / "Dataset"/"Output" / "df_raw_dashboard.csv"
 
 # Global variable to cache the dataframe
 _df_cache = None

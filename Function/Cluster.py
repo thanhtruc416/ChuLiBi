@@ -161,7 +161,7 @@ def figure_cluster_distribution(labels: Iterable[int], scale: float = 1.2) -> Fi
     ax.axis("equal")
 
     ax.legend(
-        [f"Cluster {i}" for i in s.index],
+        [f"Cluster {i+1}" for i in s.index],
         loc="upper center", bbox_to_anchor=(0.5, -0.05),
         ncol=len(s), fontsize=legend_fs, frameon=False
     )
