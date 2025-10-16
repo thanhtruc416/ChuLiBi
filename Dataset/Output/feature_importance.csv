@@ -1,9 +1,9 @@
 Feature,Importance
-pca_convenience,1.6127979
-pca_deal_sensitive,1.2092817
-Delivery Time,0.6957717
-Order Value,0.6418178
-No. of orders placed,0.5622655
-cluster,0.5561303
-Age,0.45432287
-Family size,0.37083498
+pca_convenience,1.6222913
+pca_deal_sensitive,1.2112553
+Delivery Time,0.7005654
+Order Value,0.63945925
+cluster,0.56741226
+No. of orders placed,0.5592419
+Age,0.44842947
+Family size,0.37637138

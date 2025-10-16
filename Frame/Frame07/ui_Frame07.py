@@ -17,7 +17,7 @@ except Exception:
 
 # ==== Chart helpers (y như bạn đang dùng) ====
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from Function.Cluster import (
+from Function.Frame07_Cluster import (
     load_scaled_dataset, attach_group_pca, select_X,
     kmeans_labels, counts_by_cluster,
     figure_elbow_silhouette, figure_cluster_distribution, figure_pca_scatter,
@@ -184,16 +184,16 @@ class Frame07(tk.Frame):
                           lambda: print("button_Recommendation clicked"),
                           x=0.0, y=468.0, w=336.0, h=82.0)
         self._make_button("button_Churn.png",
-                          lambda: print("button_Churn clicked"),
+                          lambda: self.controller.show_frame("Frame07"),
                           x=0.0, y=381.0, w=336.0, h=86.0)
         self._make_button("button_Delivery.png",
-                          lambda: print("button_Delivery clicked"),
+                          lambda: self.controller.show_frame("Frame08"),
                           x=0.0, y=552.0, w=337.0, h=90.0)
         self._make_button("button_Report.png",
                           lambda: print("button_Report clicked"),
                           x=0.0, y=646.0, w=338.0, h=88.0)
         self._make_button("button_Dashboard.png",
-                          lambda: print("button_Dashboard clicked"),
+                          lambda: self.controller.show_frame("Frame06"),
                           x=0.0, y=193.0, w=336.0, h=88.0)
 
         # Profile (dropdown)

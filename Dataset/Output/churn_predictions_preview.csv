@@ -1,500 +1,500 @@
 Customer_ID,cluster,proba_churn,pred_churn,cluster_label,proba_churn_pct,pred_churn_label
-CUS001,0,0.8217449,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,82.2%,Có nguy cơ
-CUS002,0,0.99773186,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.8%,Có nguy cơ
-CUS003,0,0.004272831,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.4%,Không rời bỏ
-CUS004,0,0.99747604,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.7%,Có nguy cơ
-CUS005,0,0.91419613,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.4%,Có nguy cơ
-CUS006,0,0.8243612,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,82.4%,Có nguy cơ
-CUS007,1,0.13509806,0,Khách hàng nhạy ưu đãi / ổn định,13.5%,Không rời bỏ
-CUS008,0,0.9874877,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.7%,Có nguy cơ
-CUS009,0,0.92541057,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.5%,Có nguy cơ
-CUS010,0,0.9536423,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.4%,Có nguy cơ
-CUS011,0,0.9575522,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.8%,Có nguy cơ
-CUS012,0,0.9935213,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.4%,Có nguy cơ
-CUS013,0,0.93808424,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.8%,Có nguy cơ
-CUS014,0,0.99830997,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.8%,Có nguy cơ
-CUS015,0,0.94335926,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.3%,Có nguy cơ
-CUS016,2,0.2478507,0,Khách hàng giá trị cao / trung thành vừa,24.8%,Không rời bỏ
-CUS017,1,0.13972105,0,Khách hàng nhạy ưu đãi / ổn định,14.0%,Không rời bỏ
-CUS018,0,0.027586263,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,2.8%,Không rời bỏ
-CUS019,0,0.99402964,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.4%,Có nguy cơ
-CUS020,1,0.002175225,0,Khách hàng nhạy ưu đãi / ổn định,0.2%,Không rời bỏ
-CUS021,1,0.66153157,1,Khách hàng nhạy ưu đãi / ổn định,66.2%,Có nguy cơ
-CUS022,0,0.9221209,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.2%,Có nguy cơ
-CUS023,0,0.9507723,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.1%,Có nguy cơ
-CUS024,0,0.22779682,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,22.8%,Không rời bỏ
-CUS025,0,0.9943071,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.4%,Có nguy cơ
-CUS026,0,0.08104844,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,8.1%,Không rời bỏ
-CUS027,2,0.09188112,0,Khách hàng giá trị cao / trung thành vừa,9.2%,Không rời bỏ
-CUS028,0,0.099069394,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,9.9%,Không rời bỏ
-CUS029,1,0.31576335,1,Khách hàng nhạy ưu đãi / ổn định,31.6%,Có nguy cơ
-CUS030,0,0.40290338,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,40.3%,Có nguy cơ
-CUS031,0,0.8960398,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,89.6%,Có nguy cơ
-CUS032,0,0.4489226,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,44.9%,Có nguy cơ
-CUS033,0,0.9374685,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.7%,Có nguy cơ
-CUS034,0,0.9952206,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.5%,Có nguy cơ
-CUS035,0,0.0029897657,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.3%,Không rời bỏ
-CUS036,1,0.049019136,0,Khách hàng nhạy ưu đãi / ổn định,4.9%,Không rời bỏ
-CUS037,0,0.98587126,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.6%,Có nguy cơ
-CUS038,0,0.8177516,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,81.8%,Có nguy cơ
-CUS039,0,0.92588764,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.6%,Có nguy cơ
-CUS040,2,0.7857437,1,Khách hàng giá trị cao / trung thành vừa,78.6%,Có nguy cơ
-CUS041,2,0.9467425,1,Khách hàng giá trị cao / trung thành vừa,94.7%,Có nguy cơ
-CUS042,0,0.994158,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.4%,Có nguy cơ
-CUS043,2,0.94993705,1,Khách hàng giá trị cao / trung thành vừa,95.0%,Có nguy cơ
-CUS044,0,0.2289247,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,22.9%,Không rời bỏ
-CUS045,1,0.90191233,1,Khách hàng nhạy ưu đãi / ổn định,90.2%,Có nguy cơ
-CUS046,0,0.9564385,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.6%,Có nguy cơ
-CUS047,0,0.9343901,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.4%,Có nguy cơ
-CUS048,0,0.008432695,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.8%,Không rời bỏ
-CUS049,0,0.9478161,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.8%,Có nguy cơ
-CUS050,0,0.16272162,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,16.3%,Không rời bỏ
-CUS051,0,0.865242,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,86.5%,Có nguy cơ
-CUS052,1,0.06757847,0,Khách hàng nhạy ưu đãi / ổn định,6.8%,Không rời bỏ
-CUS053,1,0.7686019,1,Khách hàng nhạy ưu đãi / ổn định,76.9%,Có nguy cơ
-CUS054,0,0.9663984,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.6%,Có nguy cơ
-CUS055,0,0.981198,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.1%,Có nguy cơ
-CUS056,0,0.99229467,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.2%,Có nguy cơ
-CUS057,2,0.4405116,1,Khách hàng giá trị cao / trung thành vừa,44.1%,Có nguy cơ
-CUS058,1,0.8774656,1,Khách hàng nhạy ưu đãi / ổn định,87.7%,Có nguy cơ
-CUS059,0,0.88610584,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,88.6%,Có nguy cơ
-CUS060,0,0.5860809,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,58.6%,Có nguy cơ
-CUS061,1,0.00019508303,0,Khách hàng nhạy ưu đãi / ổn định,0.0%,Không rời bỏ
-CUS062,0,0.7779035,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,77.8%,Có nguy cơ
-CUS063,0,0.96873546,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.9%,Có nguy cơ
-CUS064,0,0.9076967,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,90.8%,Có nguy cơ
-CUS065,1,0.0064320965,0,Khách hàng nhạy ưu đãi / ổn định,0.6%,Không rời bỏ
-CUS066,0,0.011576631,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,1.2%,Không rời bỏ
-CUS067,0,0.99889165,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.9%,Có nguy cơ
-CUS068,0,0.041726876,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,4.2%,Không rời bỏ
-CUS069,2,0.97744715,1,Khách hàng giá trị cao / trung thành vừa,97.7%,Có nguy cơ
-CUS070,2,0.23757705,0,Khách hàng giá trị cao / trung thành vừa,23.8%,Không rời bỏ
-CUS071,0,0.9808647,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.1%,Có nguy cơ
-CUS072,1,0.0090595735,0,Khách hàng nhạy ưu đãi / ổn định,0.9%,Không rời bỏ
-CUS073,0,0.93688023,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.7%,Có nguy cơ
-CUS074,0,0.9947935,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.5%,Có nguy cơ
-CUS075,1,0.4439674,1,Khách hàng nhạy ưu đãi / ổn định,44.4%,Có nguy cơ
-CUS076,0,0.9891479,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.9%,Có nguy cơ
-CUS077,0,0.9122723,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.2%,Có nguy cơ
-CUS078,2,0.033917166,0,Khách hàng giá trị cao / trung thành vừa,3.4%,Không rời bỏ
-CUS079,1,0.0013720786,0,Khách hàng nhạy ưu đãi / ổn định,0.1%,Không rời bỏ
-CUS080,0,0.8979838,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,89.8%,Có nguy cơ
-CUS081,0,0.43847233,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,43.8%,Có nguy cơ
-CUS082,1,0.22755308,0,Khách hàng nhạy ưu đãi / ổn định,22.8%,Không rời bỏ
-CUS083,2,0.9630141,1,Khách hàng giá trị cao / trung thành vừa,96.3%,Có nguy cơ
-CUS084,1,0.098169886,0,Khách hàng nhạy ưu đãi / ổn định,9.8%,Không rời bỏ
-CUS085,0,0.9410807,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.1%,Có nguy cơ
-CUS086,0,0.9157564,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.6%,Có nguy cơ
-CUS087,0,0.9030023,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,90.3%,Có nguy cơ
-CUS088,0,0.9818621,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.2%,Có nguy cơ
-CUS089,0,0.75966513,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,76.0%,Có nguy cơ
-CUS090,1,0.27213314,0,Khách hàng nhạy ưu đãi / ổn định,27.2%,Không rời bỏ
-CUS091,2,0.91946393,1,Khách hàng giá trị cao / trung thành vừa,91.9%,Có nguy cơ
-CUS092,0,0.89106786,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,89.1%,Có nguy cơ
-CUS093,0,0.98231333,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.2%,Có nguy cơ
-CUS094,0,0.23387167,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,23.4%,Không rời bỏ
-CUS095,1,0.008943871,0,Khách hàng nhạy ưu đãi / ổn định,0.9%,Không rời bỏ
-CUS096,0,0.7152921,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,71.5%,Có nguy cơ
-CUS097,0,0.7150014,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,71.5%,Có nguy cơ
-CUS098,0,0.97912,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.9%,Có nguy cơ
-CUS099,0,0.9569225,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.7%,Có nguy cơ
-CUS100,0,0.9929997,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.3%,Có nguy cơ
-CUS101,0,0.9102532,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.0%,Có nguy cơ
-CUS102,0,0.80040026,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,80.0%,Có nguy cơ
-CUS103,1,0.3696886,1,Khách hàng nhạy ưu đãi / ổn định,37.0%,Có nguy cơ
-CUS104,0,0.21606058,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,21.6%,Không rời bỏ
-CUS105,2,0.9720334,1,Khách hàng giá trị cao / trung thành vừa,97.2%,Có nguy cơ
-CUS106,0,0.6760384,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,67.6%,Có nguy cơ
-CUS107,2,0.8688873,1,Khách hàng giá trị cao / trung thành vừa,86.9%,Có nguy cơ
-CUS108,1,0.00029287094,0,Khách hàng nhạy ưu đãi / ổn định,0.0%,Không rời bỏ
-CUS109,2,0.75472033,1,Khách hàng giá trị cao / trung thành vừa,75.5%,Có nguy cơ
-CUS110,1,0.17207651,0,Khách hàng nhạy ưu đãi / ổn định,17.2%,Không rời bỏ
-CUS111,1,0.017308163,0,Khách hàng nhạy ưu đãi / ổn định,1.7%,Không rời bỏ
-CUS112,2,0.9795624,1,Khách hàng giá trị cao / trung thành vừa,98.0%,Có nguy cơ
-CUS113,0,0.9452858,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.5%,Có nguy cơ
-CUS114,1,0.022765955,0,Khách hàng nhạy ưu đãi / ổn định,2.3%,Không rời bỏ
-CUS115,0,0.3400349,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,34.0%,Có nguy cơ
-CUS116,1,0.30259714,1,Khách hàng nhạy ưu đãi / ổn định,30.3%,Có nguy cơ
-CUS117,1,0.23522629,0,Khách hàng nhạy ưu đãi / ổn định,23.5%,Không rời bỏ
-CUS118,0,0.91341114,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.3%,Có nguy cơ
-CUS119,0,0.9984205,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.8%,Có nguy cơ
-CUS120,1,0.0048178714,0,Khách hàng nhạy ưu đãi / ổn định,0.5%,Không rời bỏ
-CUS121,0,0.9581315,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.8%,Có nguy cơ
-CUS122,0,0.95137733,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.1%,Có nguy cơ
-CUS123,1,0.0036672594,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
-CUS124,2,0.9384838,1,Khách hàng giá trị cao / trung thành vừa,93.8%,Có nguy cơ
-CUS125,1,0.032308772,0,Khách hàng nhạy ưu đãi / ổn định,3.2%,Không rời bỏ
-CUS126,0,0.95038956,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.0%,Có nguy cơ
-CUS127,0,0.929793,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.0%,Có nguy cơ
-CUS128,0,0.99727577,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.7%,Có nguy cơ
-CUS129,0,0.9755324,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.6%,Có nguy cơ
-CUS130,1,0.35993928,1,Khách hàng nhạy ưu đãi / ổn định,36.0%,Có nguy cơ
-CUS131,0,0.16645838,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,16.6%,Không rời bỏ
-CUS132,1,0.011571656,0,Khách hàng nhạy ưu đãi / ổn định,1.2%,Không rời bỏ
-CUS133,2,0.8703907,1,Khách hàng giá trị cao / trung thành vừa,87.0%,Có nguy cơ
-CUS134,0,0.9813068,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.1%,Có nguy cơ
-CUS135,2,0.80617386,1,Khách hàng giá trị cao / trung thành vừa,80.6%,Có nguy cơ
-CUS136,1,0.22860457,0,Khách hàng nhạy ưu đãi / ổn định,22.9%,Không rời bỏ
-CUS137,1,0.5160109,1,Khách hàng nhạy ưu đãi / ổn định,51.6%,Có nguy cơ
-CUS138,1,0.0078449,0,Khách hàng nhạy ưu đãi / ổn định,0.8%,Không rời bỏ
-CUS139,0,0.5584526,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,55.8%,Có nguy cơ
-CUS140,1,0.08214203,0,Khách hàng nhạy ưu đãi / ổn định,8.2%,Không rời bỏ
-CUS141,2,0.9819889,1,Khách hàng giá trị cao / trung thành vừa,98.2%,Có nguy cơ
-CUS142,0,0.25023136,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,25.0%,Không rời bỏ
-CUS143,1,0.8523723,1,Khách hàng nhạy ưu đãi / ổn định,85.2%,Có nguy cơ
-CUS144,1,0.031413853,0,Khách hàng nhạy ưu đãi / ổn định,3.1%,Không rời bỏ
-CUS145,0,0.13938048,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,13.9%,Không rời bỏ
-CUS146,0,0.994423,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.4%,Có nguy cơ
-CUS147,1,0.045573633,0,Khách hàng nhạy ưu đãi / ổn định,4.6%,Không rời bỏ
-CUS148,2,0.9508316,1,Khách hàng giá trị cao / trung thành vừa,95.1%,Có nguy cơ
-CUS149,2,0.76666963,1,Khách hàng giá trị cao / trung thành vừa,76.7%,Có nguy cơ
-CUS150,0,0.40444022,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,40.4%,Có nguy cơ
-CUS151,0,0.6385814,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,63.9%,Có nguy cơ
-CUS152,1,0.021511147,0,Khách hàng nhạy ưu đãi / ổn định,2.2%,Không rời bỏ
-CUS153,0,0.9520176,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.2%,Có nguy cơ
-CUS154,1,0.07412546,0,Khách hàng nhạy ưu đãi / ổn định,7.4%,Không rời bỏ
-CUS155,1,0.25491676,0,Khách hàng nhạy ưu đãi / ổn định,25.5%,Không rời bỏ
-CUS156,1,0.013852433,0,Khách hàng nhạy ưu đãi / ổn định,1.4%,Không rời bỏ
-CUS157,1,0.003657585,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
-CUS158,1,0.019172192,0,Khách hàng nhạy ưu đãi / ổn định,1.9%,Không rời bỏ
-CUS159,1,0.07045497,0,Khách hàng nhạy ưu đãi / ổn định,7.0%,Không rời bỏ
-CUS160,0,0.8595676,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,86.0%,Có nguy cơ
-CUS161,0,0.9963521,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.6%,Có nguy cơ
-CUS162,1,0.0028679601,0,Khách hàng nhạy ưu đãi / ổn định,0.3%,Không rời bỏ
-CUS163,0,0.016647428,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,1.7%,Không rời bỏ
-CUS164,0,0.95979935,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.0%,Có nguy cơ
-CUS165,0,0.8777892,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,87.8%,Có nguy cơ
-CUS166,0,0.408238,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,40.8%,Có nguy cơ
-CUS167,0,0.39191404,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,39.2%,Có nguy cơ
-CUS168,2,0.9960659,1,Khách hàng giá trị cao / trung thành vừa,99.6%,Có nguy cơ
-CUS169,1,0.007994481,0,Khách hàng nhạy ưu đãi / ổn định,0.8%,Không rời bỏ
-CUS170,0,0.68456984,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,68.5%,Có nguy cơ
-CUS171,0,0.860527,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,86.1%,Có nguy cơ
-CUS172,0,0.9337092,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.4%,Có nguy cơ
-CUS173,0,0.9850131,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.5%,Có nguy cơ
-CUS174,1,0.051396795,0,Khách hàng nhạy ưu đãi / ổn định,5.1%,Không rời bỏ
-CUS175,1,0.058682166,0,Khách hàng nhạy ưu đãi / ổn định,5.9%,Không rời bỏ
-CUS176,1,0.6264697,1,Khách hàng nhạy ưu đãi / ổn định,62.6%,Có nguy cơ
-CUS177,0,0.97451574,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.5%,Có nguy cơ
-CUS178,1,0.1417126,0,Khách hàng nhạy ưu đãi / ổn định,14.2%,Không rời bỏ
-CUS179,1,0.0032354048,0,Khách hàng nhạy ưu đãi / ổn định,0.3%,Không rời bỏ
-CUS180,1,0.8986139,1,Khách hàng nhạy ưu đãi / ổn định,89.9%,Có nguy cơ
-CUS181,2,0.011456051,0,Khách hàng giá trị cao / trung thành vừa,1.1%,Không rời bỏ
-CUS182,2,0.9210725,1,Khách hàng giá trị cao / trung thành vừa,92.1%,Có nguy cơ
-CUS183,0,0.9877841,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.8%,Có nguy cơ
-CUS184,1,0.08503113,0,Khách hàng nhạy ưu đãi / ổn định,8.5%,Không rời bỏ
-CUS185,1,0.19215398,0,Khách hàng nhạy ưu đãi / ổn định,19.2%,Không rời bỏ
-CUS186,0,0.9787763,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.9%,Có nguy cơ
-CUS187,1,0.15232739,0,Khách hàng nhạy ưu đãi / ổn định,15.2%,Không rời bỏ
-CUS188,1,0.006830822,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
-CUS189,1,0.1907469,0,Khách hàng nhạy ưu đãi / ổn định,19.1%,Không rời bỏ
-CUS190,2,0.9336742,1,Khách hàng giá trị cao / trung thành vừa,93.4%,Có nguy cơ
-CUS191,1,0.009432649,0,Khách hàng nhạy ưu đãi / ổn định,0.9%,Không rời bỏ
-CUS192,0,0.7308437,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,73.1%,Có nguy cơ
-CUS193,2,0.27734345,0,Khách hàng giá trị cao / trung thành vừa,27.7%,Không rời bỏ
-CUS194,0,0.9877571,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.8%,Có nguy cơ
-CUS195,1,0.053561717,0,Khách hàng nhạy ưu đãi / ổn định,5.4%,Không rời bỏ
-CUS196,0,0.93072444,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.1%,Có nguy cơ
-CUS197,1,0.2245982,0,Khách hàng nhạy ưu đãi / ổn định,22.5%,Không rời bỏ
-CUS198,2,0.06141105,0,Khách hàng giá trị cao / trung thành vừa,6.1%,Không rời bỏ
-CUS199,1,0.6491315,1,Khách hàng nhạy ưu đãi / ổn định,64.9%,Có nguy cơ
-CUS200,1,0.027317036,0,Khách hàng nhạy ưu đãi / ổn định,2.7%,Không rời bỏ
-CUS201,1,0.004547825,0,Khách hàng nhạy ưu đãi / ổn định,0.5%,Không rời bỏ
-CUS202,2,0.9342022,1,Khách hàng giá trị cao / trung thành vừa,93.4%,Có nguy cơ
-CUS203,1,0.08057238,0,Khách hàng nhạy ưu đãi / ổn định,8.1%,Không rời bỏ
-CUS204,1,0.016963366,0,Khách hàng nhạy ưu đãi / ổn định,1.7%,Không rời bỏ
-CUS205,0,0.0089373,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.9%,Không rời bỏ
-CUS206,1,0.07224608,0,Khách hàng nhạy ưu đãi / ổn định,7.2%,Không rời bỏ
-CUS207,2,0.15873568,0,Khách hàng giá trị cao / trung thành vừa,15.9%,Không rời bỏ
-CUS208,1,0.012732864,0,Khách hàng nhạy ưu đãi / ổn định,1.3%,Không rời bỏ
-CUS209,1,0.079448454,0,Khách hàng nhạy ưu đãi / ổn định,7.9%,Không rời bỏ
-CUS210,2,0.29797968,1,Khách hàng giá trị cao / trung thành vừa,29.8%,Có nguy cơ
-CUS211,1,0.0005847014,0,Khách hàng nhạy ưu đãi / ổn định,0.1%,Không rời bỏ
-CUS212,0,0.9296931,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.0%,Có nguy cơ
-CUS213,2,0.027475309,0,Khách hàng giá trị cao / trung thành vừa,2.7%,Không rời bỏ
-CUS214,1,0.15413271,0,Khách hàng nhạy ưu đãi / ổn định,15.4%,Không rời bỏ
-CUS215,0,0.93291503,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.3%,Có nguy cơ
-CUS216,1,0.02535898,0,Khách hàng nhạy ưu đãi / ổn định,2.5%,Không rời bỏ
-CUS217,1,0.101971105,0,Khách hàng nhạy ưu đãi / ổn định,10.2%,Không rời bỏ
-CUS218,1,0.20572758,0,Khách hàng nhạy ưu đãi / ổn định,20.6%,Không rời bỏ
-CUS219,2,0.41536325,1,Khách hàng giá trị cao / trung thành vừa,41.5%,Có nguy cơ
-CUS220,0,0.939088,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.9%,Có nguy cơ
-CUS221,1,0.0015237776,0,Khách hàng nhạy ưu đãi / ổn định,0.2%,Không rời bỏ
-CUS222,1,0.09580024,0,Khách hàng nhạy ưu đãi / ổn định,9.6%,Không rời bỏ
-CUS223,0,0.5744956,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,57.4%,Có nguy cơ
-CUS224,2,0.2870445,1,Khách hàng giá trị cao / trung thành vừa,28.7%,Có nguy cơ
-CUS225,1,0.008735907,0,Khách hàng nhạy ưu đãi / ổn định,0.9%,Không rời bỏ
-CUS226,1,0.3879128,1,Khách hàng nhạy ưu đãi / ổn định,38.8%,Có nguy cơ
-CUS227,1,0.045233298,0,Khách hàng nhạy ưu đãi / ổn định,4.5%,Không rời bỏ
-CUS228,0,0.08559432,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,8.6%,Không rời bỏ
-CUS229,1,0.007555528,0,Khách hàng nhạy ưu đãi / ổn định,0.8%,Không rời bỏ
-CUS230,0,0.2101162,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,21.0%,Không rời bỏ
-CUS231,1,0.7618876,1,Khách hàng nhạy ưu đãi / ổn định,76.2%,Có nguy cơ
-CUS232,2,0.060911678,0,Khách hàng giá trị cao / trung thành vừa,6.1%,Không rời bỏ
-CUS233,1,0.06046606,0,Khách hàng nhạy ưu đãi / ổn định,6.0%,Không rời bỏ
-CUS234,1,0.23190206,0,Khách hàng nhạy ưu đãi / ổn định,23.2%,Không rời bỏ
-CUS235,0,0.50954795,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,51.0%,Có nguy cơ
-CUS236,1,0.052338813,0,Khách hàng nhạy ưu đãi / ổn định,5.2%,Không rời bỏ
-CUS237,1,0.15117146,0,Khách hàng nhạy ưu đãi / ổn định,15.1%,Không rời bỏ
-CUS238,2,0.41949996,1,Khách hàng giá trị cao / trung thành vừa,41.9%,Có nguy cơ
-CUS239,2,0.8357779,1,Khách hàng giá trị cao / trung thành vừa,83.6%,Có nguy cơ
-CUS240,1,0.0047884453,0,Khách hàng nhạy ưu đãi / ổn định,0.5%,Không rời bỏ
-CUS241,2,0.9136066,1,Khách hàng giá trị cao / trung thành vừa,91.4%,Có nguy cơ
-CUS242,1,0.42433882,1,Khách hàng nhạy ưu đãi / ổn định,42.4%,Có nguy cơ
-CUS243,2,0.50491023,1,Khách hàng giá trị cao / trung thành vừa,50.5%,Có nguy cơ
-CUS244,2,0.006664605,0,Khách hàng giá trị cao / trung thành vừa,0.7%,Không rời bỏ
-CUS245,1,0.057395376,0,Khách hàng nhạy ưu đãi / ổn định,5.7%,Không rời bỏ
-CUS246,1,0.0014758102,0,Khách hàng nhạy ưu đãi / ổn định,0.1%,Không rời bỏ
-CUS247,1,0.8922371,1,Khách hàng nhạy ưu đãi / ổn định,89.2%,Có nguy cơ
-CUS248,1,0.03646666,0,Khách hàng nhạy ưu đãi / ổn định,3.6%,Không rời bỏ
-CUS249,1,0.41706696,1,Khách hàng nhạy ưu đãi / ổn định,41.7%,Có nguy cơ
-CUS250,0,0.22406705,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,22.4%,Không rời bỏ
-CUS251,1,0.124824114,0,Khách hàng nhạy ưu đãi / ổn định,12.5%,Không rời bỏ
-CUS252,1,0.7343665,1,Khách hàng nhạy ưu đãi / ổn định,73.4%,Có nguy cơ
-CUS253,1,0.5976993,1,Khách hàng nhạy ưu đãi / ổn định,59.8%,Có nguy cơ
-CUS254,0,0.12368963,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,12.4%,Không rời bỏ
-CUS255,0,0.009110718,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.9%,Không rời bỏ
-CUS256,1,0.73609847,1,Khách hàng nhạy ưu đãi / ổn định,73.6%,Có nguy cơ
-CUS257,1,0.18113619,0,Khách hàng nhạy ưu đãi / ổn định,18.1%,Không rời bỏ
-CUS258,0,0.9312883,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.1%,Có nguy cơ
-CUS259,2,0.5892147,1,Khách hàng giá trị cao / trung thành vừa,58.9%,Có nguy cơ
-CUS260,0,0.12430897,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,12.4%,Không rời bỏ
-CUS261,2,0.11516087,0,Khách hàng giá trị cao / trung thành vừa,11.5%,Không rời bỏ
-CUS262,0,0.28462097,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,28.5%,Không rời bỏ
-CUS263,0,0.31222248,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,31.2%,Có nguy cơ
-CUS264,1,0.17625976,0,Khách hàng nhạy ưu đãi / ổn định,17.6%,Không rời bỏ
-CUS265,0,0.9879931,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.8%,Có nguy cơ
-CUS266,1,0.0074766167,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
-CUS267,2,0.04460674,0,Khách hàng giá trị cao / trung thành vừa,4.5%,Không rời bỏ
-CUS268,1,0.71700805,1,Khách hàng nhạy ưu đãi / ổn định,71.7%,Có nguy cơ
-CUS269,1,0.026750699,0,Khách hàng nhạy ưu đãi / ổn định,2.7%,Không rời bỏ
-CUS270,2,0.107923456,0,Khách hàng giá trị cao / trung thành vừa,10.8%,Không rời bỏ
-CUS271,1,0.9555612,1,Khách hàng nhạy ưu đãi / ổn định,95.6%,Có nguy cơ
-CUS272,0,0.27582544,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,27.6%,Không rời bỏ
-CUS273,2,0.6642712,1,Khách hàng giá trị cao / trung thành vừa,66.4%,Có nguy cơ
-CUS274,0,0.76104975,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,76.1%,Có nguy cơ
-CUS275,0,0.9764248,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.6%,Có nguy cơ
-CUS276,2,0.817282,1,Khách hàng giá trị cao / trung thành vừa,81.7%,Có nguy cơ
-CUS277,0,0.0840298,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,8.4%,Không rời bỏ
-CUS278,1,0.010462513,0,Khách hàng nhạy ưu đãi / ổn định,1.0%,Không rời bỏ
-CUS279,1,0.009454291,0,Khách hàng nhạy ưu đãi / ổn định,0.9%,Không rời bỏ
-CUS280,1,0.8439695,1,Khách hàng nhạy ưu đãi / ổn định,84.4%,Có nguy cơ
-CUS281,0,0.9665945,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.7%,Có nguy cơ
-CUS282,2,0.9618879,1,Khách hàng giá trị cao / trung thành vừa,96.2%,Có nguy cơ
-CUS283,1,0.04747762,0,Khách hàng nhạy ưu đãi / ổn định,4.7%,Không rời bỏ
-CUS284,1,0.036294017,0,Khách hàng nhạy ưu đãi / ổn định,3.6%,Không rời bỏ
-CUS285,1,0.21409756,0,Khách hàng nhạy ưu đãi / ổn định,21.4%,Không rời bỏ
-CUS286,2,0.101691976,0,Khách hàng giá trị cao / trung thành vừa,10.2%,Không rời bỏ
-CUS287,0,0.18626994,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,18.6%,Không rời bỏ
-CUS288,0,0.96428055,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.4%,Có nguy cơ
-CUS289,2,0.7180996,1,Khách hàng giá trị cao / trung thành vừa,71.8%,Có nguy cơ
-CUS290,1,0.0073465984,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
-CUS291,1,0.82926774,1,Khách hàng nhạy ưu đãi / ổn định,82.9%,Có nguy cơ
-CUS292,2,0.9285066,1,Khách hàng giá trị cao / trung thành vừa,92.9%,Có nguy cơ
-CUS293,1,0.6805225,1,Khách hàng nhạy ưu đãi / ổn định,68.1%,Có nguy cơ
-CUS294,1,0.01197779,0,Khách hàng nhạy ưu đãi / ổn định,1.2%,Không rời bỏ
-CUS295,2,0.010532907,0,Khách hàng giá trị cao / trung thành vừa,1.1%,Không rời bỏ
-CUS296,0,0.004611903,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.5%,Không rời bỏ
-CUS297,0,0.68187845,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,68.2%,Có nguy cơ
-CUS298,2,0.71047485,1,Khách hàng giá trị cao / trung thành vừa,71.0%,Có nguy cơ
-CUS299,2,0.25148475,0,Khách hàng giá trị cao / trung thành vừa,25.1%,Không rời bỏ
-CUS300,1,0.102719486,0,Khách hàng nhạy ưu đãi / ổn định,10.3%,Không rời bỏ
-CUS301,0,0.8235868,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,82.4%,Có nguy cơ
-CUS302,2,0.73666036,1,Khách hàng giá trị cao / trung thành vừa,73.7%,Có nguy cơ
-CUS303,0,0.82552135,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,82.6%,Có nguy cơ
-CUS304,0,0.8270778,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,82.7%,Có nguy cơ
-CUS305,2,0.7516911,1,Khách hàng giá trị cao / trung thành vừa,75.2%,Có nguy cơ
-CUS306,2,0.9903233,1,Khách hàng giá trị cao / trung thành vừa,99.0%,Có nguy cơ
-CUS307,0,0.9843285,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.4%,Có nguy cơ
-CUS308,2,0.042199437,0,Khách hàng giá trị cao / trung thành vừa,4.2%,Không rời bỏ
-CUS309,2,0.11541905,0,Khách hàng giá trị cao / trung thành vừa,11.5%,Không rời bỏ
-CUS310,0,0.97094846,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.1%,Có nguy cơ
-CUS311,0,0.8483664,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,84.8%,Có nguy cơ
-CUS312,0,0.9441222,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.4%,Có nguy cơ
-CUS313,1,0.04278691,0,Khách hàng nhạy ưu đãi / ổn định,4.3%,Không rời bỏ
-CUS314,1,0.3735369,1,Khách hàng nhạy ưu đãi / ổn định,37.4%,Có nguy cơ
-CUS315,1,0.7981551,1,Khách hàng nhạy ưu đãi / ổn định,79.8%,Có nguy cơ
-CUS316,0,0.64972866,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,65.0%,Có nguy cơ
-CUS317,2,0.22404039,0,Khách hàng giá trị cao / trung thành vừa,22.4%,Không rời bỏ
-CUS318,2,0.436521,1,Khách hàng giá trị cao / trung thành vừa,43.7%,Có nguy cơ
-CUS319,1,0.9367665,1,Khách hàng nhạy ưu đãi / ổn định,93.7%,Có nguy cơ
-CUS320,0,0.83844155,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,83.8%,Có nguy cơ
-CUS321,2,0.8367598,1,Khách hàng giá trị cao / trung thành vừa,83.7%,Có nguy cơ
-CUS322,0,0.91477275,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.5%,Có nguy cơ
-CUS323,1,0.3716869,1,Khách hàng nhạy ưu đãi / ổn định,37.2%,Có nguy cơ
-CUS324,2,0.1694112,0,Khách hàng giá trị cao / trung thành vừa,16.9%,Không rời bỏ
-CUS325,0,0.8886159,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,88.9%,Có nguy cơ
-CUS326,1,0.9748708,1,Khách hàng nhạy ưu đãi / ổn định,97.5%,Có nguy cơ
-CUS327,2,0.5448159,1,Khách hàng giá trị cao / trung thành vừa,54.5%,Có nguy cơ
-CUS328,2,0.011776594,0,Khách hàng giá trị cao / trung thành vừa,1.2%,Không rời bỏ
-CUS329,1,0.9718238,1,Khách hàng nhạy ưu đãi / ổn định,97.2%,Có nguy cơ
-CUS330,0,0.99262166,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.3%,Có nguy cơ
-CUS331,0,0.97334814,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.3%,Có nguy cơ
-CUS332,1,0.87296486,1,Khách hàng nhạy ưu đãi / ổn định,87.3%,Có nguy cơ
-CUS333,1,0.019769518,0,Khách hàng nhạy ưu đãi / ổn định,2.0%,Không rời bỏ
-CUS334,0,0.05205688,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,5.2%,Không rời bỏ
-CUS335,2,0.9975095,1,Khách hàng giá trị cao / trung thành vừa,99.8%,Có nguy cơ
-CUS336,0,0.20391631,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,20.4%,Không rời bỏ
-CUS337,2,0.9957282,1,Khách hàng giá trị cao / trung thành vừa,99.6%,Có nguy cơ
-CUS338,0,0.8644424,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,86.4%,Có nguy cơ
-CUS339,0,0.92728484,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.7%,Có nguy cơ
-CUS340,1,0.037806347,0,Khách hàng nhạy ưu đãi / ổn định,3.8%,Không rời bỏ
-CUS341,1,0.9471554,1,Khách hàng nhạy ưu đãi / ổn định,94.7%,Có nguy cơ
-CUS342,2,0.096568756,0,Khách hàng giá trị cao / trung thành vừa,9.7%,Không rời bỏ
-CUS343,0,0.9604451,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.0%,Có nguy cơ
-CUS344,1,0.019687068,0,Khách hàng nhạy ưu đãi / ổn định,2.0%,Không rời bỏ
-CUS345,2,0.80161905,1,Khách hàng giá trị cao / trung thành vừa,80.2%,Có nguy cơ
-CUS346,0,0.9797165,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.0%,Có nguy cơ
-CUS347,1,0.009275074,0,Khách hàng nhạy ưu đãi / ổn định,0.9%,Không rời bỏ
-CUS348,0,0.17199637,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,17.2%,Không rời bỏ
-CUS349,2,0.93965673,1,Khách hàng giá trị cao / trung thành vừa,94.0%,Có nguy cơ
-CUS350,0,0.23511775,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,23.5%,Không rời bỏ
-CUS351,2,0.013665052,0,Khách hàng giá trị cao / trung thành vừa,1.4%,Không rời bỏ
-CUS352,2,0.98299533,1,Khách hàng giá trị cao / trung thành vừa,98.3%,Có nguy cơ
-CUS353,2,0.018802147,0,Khách hàng giá trị cao / trung thành vừa,1.9%,Không rời bỏ
-CUS354,0,0.9999063,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,100.0%,Có nguy cơ
-CUS355,1,0.7429328,1,Khách hàng nhạy ưu đãi / ổn định,74.3%,Có nguy cơ
-CUS356,2,0.95506567,1,Khách hàng giá trị cao / trung thành vừa,95.5%,Có nguy cơ
-CUS357,2,0.95605606,1,Khách hàng giá trị cao / trung thành vừa,95.6%,Có nguy cơ
-CUS358,1,0.83662415,1,Khách hàng nhạy ưu đãi / ổn định,83.7%,Có nguy cơ
-CUS359,1,0.7711109,1,Khách hàng nhạy ưu đãi / ổn định,77.1%,Có nguy cơ
-CUS360,0,0.2334793,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,23.3%,Không rời bỏ
-CUS361,2,0.9869594,1,Khách hàng giá trị cao / trung thành vừa,98.7%,Có nguy cơ
-CUS362,0,0.99150205,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.2%,Có nguy cơ
-CUS363,1,0.04654642,0,Khách hàng nhạy ưu đãi / ổn định,4.7%,Không rời bỏ
-CUS364,0,0.989432,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.9%,Có nguy cơ
-CUS365,1,0.62373406,1,Khách hàng nhạy ưu đãi / ổn định,62.4%,Có nguy cơ
-CUS366,1,0.079455756,0,Khách hàng nhạy ưu đãi / ổn định,7.9%,Không rời bỏ
-CUS367,1,0.89171904,1,Khách hàng nhạy ưu đãi / ổn định,89.2%,Có nguy cơ
-CUS368,2,0.21718957,0,Khách hàng giá trị cao / trung thành vừa,21.7%,Không rời bỏ
-CUS369,1,0.15302162,0,Khách hàng nhạy ưu đãi / ổn định,15.3%,Không rời bỏ
-CUS370,2,0.10861815,0,Khách hàng giá trị cao / trung thành vừa,10.9%,Không rời bỏ
-CUS371,0,0.5039737,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,50.4%,Có nguy cơ
-CUS372,0,0.9974049,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.7%,Có nguy cơ
-CUS373,0,0.9924334,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.2%,Có nguy cơ
-CUS374,0,0.960693,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.1%,Có nguy cơ
-CUS375,2,0.22672541,0,Khách hàng giá trị cao / trung thành vừa,22.7%,Không rời bỏ
-CUS376,1,0.01201546,0,Khách hàng nhạy ưu đãi / ổn định,1.2%,Không rời bỏ
-CUS377,2,0.99737227,1,Khách hàng giá trị cao / trung thành vừa,99.7%,Có nguy cơ
-CUS378,1,0.94798595,1,Khách hàng nhạy ưu đãi / ổn định,94.8%,Có nguy cơ
-CUS379,1,0.6554846,1,Khách hàng nhạy ưu đãi / ổn định,65.5%,Có nguy cơ
-CUS380,0,0.99940276,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.9%,Có nguy cơ
-CUS381,2,0.23149568,0,Khách hàng giá trị cao / trung thành vừa,23.1%,Không rời bỏ
-CUS382,2,0.3297624,1,Khách hàng giá trị cao / trung thành vừa,33.0%,Có nguy cơ
-CUS383,1,0.019824661,0,Khách hàng nhạy ưu đãi / ổn định,2.0%,Không rời bỏ
-CUS384,2,0.9932787,1,Khách hàng giá trị cao / trung thành vừa,99.3%,Có nguy cơ
-CUS385,0,0.6998907,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,70.0%,Có nguy cơ
-CUS386,0,0.22610676,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,22.6%,Không rời bỏ
-CUS387,2,0.9990972,1,Khách hàng giá trị cao / trung thành vừa,99.9%,Có nguy cơ
-CUS388,2,0.93584335,1,Khách hàng giá trị cao / trung thành vừa,93.6%,Có nguy cơ
-CUS389,2,0.08731284,0,Khách hàng giá trị cao / trung thành vừa,8.7%,Không rời bỏ
-CUS390,1,0.29094487,1,Khách hàng nhạy ưu đãi / ổn định,29.1%,Có nguy cơ
-CUS391,2,0.95554876,1,Khách hàng giá trị cao / trung thành vừa,95.6%,Có nguy cơ
-CUS392,2,0.99667114,1,Khách hàng giá trị cao / trung thành vừa,99.7%,Có nguy cơ
-CUS393,2,0.28483272,0,Khách hàng giá trị cao / trung thành vừa,28.5%,Không rời bỏ
-CUS394,2,0.9823647,1,Khách hàng giá trị cao / trung thành vừa,98.2%,Có nguy cơ
-CUS395,2,0.9911101,1,Khách hàng giá trị cao / trung thành vừa,99.1%,Có nguy cơ
-CUS396,2,0.9920141,1,Khách hàng giá trị cao / trung thành vừa,99.2%,Có nguy cơ
-CUS397,1,0.6098006,1,Khách hàng nhạy ưu đãi / ổn định,61.0%,Có nguy cơ
-CUS398,2,0.8325322,1,Khách hàng giá trị cao / trung thành vừa,83.3%,Có nguy cơ
-CUS399,0,0.9199611,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.0%,Có nguy cơ
-CUS400,2,0.0022892884,0,Khách hàng giá trị cao / trung thành vừa,0.2%,Không rời bỏ
-CUS401,0,0.99234855,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.2%,Có nguy cơ
-CUS402,1,0.96525097,1,Khách hàng nhạy ưu đãi / ổn định,96.5%,Có nguy cơ
-CUS403,0,0.97906643,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.9%,Có nguy cơ
-CUS404,0,0.08101472,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,8.1%,Không rời bỏ
-CUS405,0,0.122112796,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,12.2%,Không rời bỏ
-CUS406,0,0.98681366,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.7%,Có nguy cơ
-CUS407,1,0.08069853,0,Khách hàng nhạy ưu đãi / ổn định,8.1%,Không rời bỏ
-CUS408,2,0.048338976,0,Khách hàng giá trị cao / trung thành vừa,4.8%,Không rời bỏ
-CUS409,0,0.40470755,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,40.5%,Có nguy cơ
-CUS410,1,0.7674974,1,Khách hàng nhạy ưu đãi / ổn định,76.7%,Có nguy cơ
-CUS411,1,0.9871149,1,Khách hàng nhạy ưu đãi / ổn định,98.7%,Có nguy cơ
-CUS412,1,0.9430639,1,Khách hàng nhạy ưu đãi / ổn định,94.3%,Có nguy cơ
-CUS413,2,0.11888854,0,Khách hàng giá trị cao / trung thành vừa,11.9%,Không rời bỏ
-CUS414,1,0.036916256,0,Khách hàng nhạy ưu đãi / ổn định,3.7%,Không rời bỏ
-CUS415,2,0.6791569,1,Khách hàng giá trị cao / trung thành vừa,67.9%,Có nguy cơ
-CUS416,2,0.9616151,1,Khách hàng giá trị cao / trung thành vừa,96.2%,Có nguy cơ
-CUS417,2,0.7682655,1,Khách hàng giá trị cao / trung thành vừa,76.8%,Có nguy cơ
-CUS418,2,0.79677445,1,Khách hàng giá trị cao / trung thành vừa,79.7%,Có nguy cơ
-CUS419,2,0.86314285,1,Khách hàng giá trị cao / trung thành vừa,86.3%,Có nguy cơ
-CUS420,2,0.09459489,0,Khách hàng giá trị cao / trung thành vừa,9.5%,Không rời bỏ
-CUS421,2,0.012526469,0,Khách hàng giá trị cao / trung thành vừa,1.3%,Không rời bỏ
-CUS422,2,0.99268895,1,Khách hàng giá trị cao / trung thành vừa,99.3%,Có nguy cơ
-CUS423,2,0.9016751,1,Khách hàng giá trị cao / trung thành vừa,90.2%,Có nguy cơ
-CUS424,0,0.23886119,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,23.9%,Không rời bỏ
-CUS425,1,0.7025091,1,Khách hàng nhạy ưu đãi / ổn định,70.3%,Có nguy cơ
-CUS426,2,0.21930456,0,Khách hàng giá trị cao / trung thành vừa,21.9%,Không rời bỏ
-CUS427,2,0.25684658,0,Khách hàng giá trị cao / trung thành vừa,25.7%,Không rời bỏ
-CUS428,2,0.97649777,1,Khách hàng giá trị cao / trung thành vừa,97.6%,Có nguy cơ
-CUS429,0,0.91730684,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.7%,Có nguy cơ
-CUS430,2,0.9879583,1,Khách hàng giá trị cao / trung thành vừa,98.8%,Có nguy cơ
-CUS431,1,0.900766,1,Khách hàng nhạy ưu đãi / ổn định,90.1%,Có nguy cơ
-CUS432,0,0.99735826,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.7%,Có nguy cơ
-CUS433,2,0.9072349,1,Khách hàng giá trị cao / trung thành vừa,90.7%,Có nguy cơ
-CUS434,0,0.06053628,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,6.1%,Không rời bỏ
-CUS435,2,0.7756775,1,Khách hàng giá trị cao / trung thành vừa,77.6%,Có nguy cơ
-CUS436,0,0.9032574,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,90.3%,Có nguy cơ
-CUS437,2,0.3250242,1,Khách hàng giá trị cao / trung thành vừa,32.5%,Có nguy cơ
-CUS438,0,0.18955787,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,19.0%,Không rời bỏ
-CUS439,2,0.88681066,1,Khách hàng giá trị cao / trung thành vừa,88.7%,Có nguy cơ
-CUS440,1,0.762477,1,Khách hàng nhạy ưu đãi / ổn định,76.2%,Có nguy cơ
-CUS441,2,0.8692661,1,Khách hàng giá trị cao / trung thành vừa,86.9%,Có nguy cơ
-CUS442,0,0.99619734,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.6%,Có nguy cơ
-CUS443,1,0.56606895,1,Khách hàng nhạy ưu đãi / ổn định,56.6%,Có nguy cơ
-CUS444,2,0.66463846,1,Khách hàng giá trị cao / trung thành vừa,66.5%,Có nguy cơ
-CUS445,0,0.99627125,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.6%,Có nguy cơ
-CUS446,2,0.9384234,1,Khách hàng giá trị cao / trung thành vừa,93.8%,Có nguy cơ
-CUS447,2,0.94683844,1,Khách hàng giá trị cao / trung thành vừa,94.7%,Có nguy cơ
-CUS448,1,0.9108222,1,Khách hàng nhạy ưu đãi / ổn định,91.1%,Có nguy cơ
-CUS449,1,0.1562359,0,Khách hàng nhạy ưu đãi / ổn định,15.6%,Không rời bỏ
-CUS450,1,0.6389262,1,Khách hàng nhạy ưu đãi / ổn định,63.9%,Có nguy cơ
-CUS451,2,0.9341583,1,Khách hàng giá trị cao / trung thành vừa,93.4%,Có nguy cơ
-CUS452,2,0.06672638,0,Khách hàng giá trị cao / trung thành vừa,6.7%,Không rời bỏ
-CUS453,0,0.081700824,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,8.2%,Không rời bỏ
-CUS454,0,0.55547696,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,55.5%,Có nguy cơ
-CUS455,2,0.7422433,1,Khách hàng giá trị cao / trung thành vừa,74.2%,Có nguy cơ
-CUS456,0,0.92791903,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.8%,Có nguy cơ
-CUS457,0,0.17201167,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,17.2%,Không rời bỏ
-CUS458,2,0.9470301,1,Khách hàng giá trị cao / trung thành vừa,94.7%,Có nguy cơ
-CUS459,0,0.033008087,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,3.3%,Không rời bỏ
-CUS460,2,0.89652896,1,Khách hàng giá trị cao / trung thành vừa,89.7%,Có nguy cơ
-CUS461,0,0.21709077,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,21.7%,Không rời bỏ
-CUS462,1,0.021245567,0,Khách hàng nhạy ưu đãi / ổn định,2.1%,Không rời bỏ
-CUS463,2,0.06342842,0,Khách hàng giá trị cao / trung thành vừa,6.3%,Không rời bỏ
-CUS464,2,0.88135153,1,Khách hàng giá trị cao / trung thành vừa,88.1%,Có nguy cơ
-CUS465,1,0.113467984,0,Khách hàng nhạy ưu đãi / ổn định,11.3%,Không rời bỏ
-CUS466,2,0.98586917,1,Khách hàng giá trị cao / trung thành vừa,98.6%,Có nguy cơ
-CUS467,2,0.41892925,1,Khách hàng giá trị cao / trung thành vừa,41.9%,Có nguy cơ
-CUS468,2,0.9123047,1,Khách hàng giá trị cao / trung thành vừa,91.2%,Có nguy cơ
-CUS469,0,0.9890261,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.9%,Có nguy cơ
-CUS470,1,0.8551361,1,Khách hàng nhạy ưu đãi / ổn định,85.5%,Có nguy cơ
-CUS471,1,0.32079443,1,Khách hàng nhạy ưu đãi / ổn định,32.1%,Có nguy cơ
-CUS472,1,0.8651567,1,Khách hàng nhạy ưu đãi / ổn định,86.5%,Có nguy cơ
-CUS473,1,0.9089374,1,Khách hàng nhạy ưu đãi / ổn định,90.9%,Có nguy cơ
-CUS474,0,0.67717826,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,67.7%,Có nguy cơ
-CUS475,1,0.086045,0,Khách hàng nhạy ưu đãi / ổn định,8.6%,Không rời bỏ
-CUS476,0,0.76526916,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,76.5%,Có nguy cơ
-CUS477,0,0.8555789,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,85.6%,Có nguy cơ
-CUS478,1,0.0040651616,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
-CUS479,1,0.8352685,1,Khách hàng nhạy ưu đãi / ổn định,83.5%,Có nguy cơ
-CUS480,0,0.6938587,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,69.4%,Có nguy cơ
-CUS481,2,0.9218596,1,Khách hàng giá trị cao / trung thành vừa,92.2%,Có nguy cơ
-CUS482,0,0.9837624,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.4%,Có nguy cơ
-CUS483,2,0.95018667,1,Khách hàng giá trị cao / trung thành vừa,95.0%,Có nguy cơ
-CUS484,1,0.18301328,0,Khách hàng nhạy ưu đãi / ổn định,18.3%,Không rời bỏ
-CUS485,0,0.8289131,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,82.9%,Có nguy cơ
-CUS486,2,0.17057946,0,Khách hàng giá trị cao / trung thành vừa,17.1%,Không rời bỏ
-CUS487,1,0.13843647,0,Khách hàng nhạy ưu đãi / ổn định,13.8%,Không rời bỏ
-CUS488,2,0.24204847,0,Khách hàng giá trị cao / trung thành vừa,24.2%,Không rời bỏ
-CUS489,0,0.9851762,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.5%,Có nguy cơ
-CUS490,2,0.4626049,1,Khách hàng giá trị cao / trung thành vừa,46.3%,Có nguy cơ
-CUS491,2,0.5057344,1,Khách hàng giá trị cao / trung thành vừa,50.6%,Có nguy cơ
-CUS492,2,0.9971777,1,Khách hàng giá trị cao / trung thành vừa,99.7%,Có nguy cơ
-CUS493,2,0.94546,1,Khách hàng giá trị cao / trung thành vừa,94.5%,Có nguy cơ
-CUS494,2,0.7654611,1,Khách hàng giá trị cao / trung thành vừa,76.5%,Có nguy cơ
-CUS495,2,0.9785114,1,Khách hàng giá trị cao / trung thành vừa,97.9%,Có nguy cơ
-CUS496,2,0.887976,1,Khách hàng giá trị cao / trung thành vừa,88.8%,Có nguy cơ
-CUS497,2,0.61310035,1,Khách hàng giá trị cao / trung thành vừa,61.3%,Có nguy cơ
-CUS498,1,0.0035596513,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
-CUS499,1,0.8069795,1,Khách hàng nhạy ưu đãi / ổn định,80.7%,Có nguy cơ
+CUS001,0,0.80195844,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,80.2%,Có nguy cơ
+CUS002,0,0.9980562,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.8%,Có nguy cơ
+CUS003,0,0.005920283,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.6%,Không rời bỏ
+CUS004,0,0.997538,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.8%,Có nguy cơ
+CUS005,0,0.909198,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,90.9%,Có nguy cơ
+CUS006,0,0.8502777,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,85.0%,Có nguy cơ
+CUS007,1,0.112928264,0,Khách hàng nhạy ưu đãi / ổn định,11.3%,Không rời bỏ
+CUS008,0,0.98120797,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.1%,Có nguy cơ
+CUS009,0,0.8919604,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,89.2%,Có nguy cơ
+CUS010,0,0.95164436,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.2%,Có nguy cơ
+CUS011,0,0.94913274,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.9%,Có nguy cơ
+CUS012,0,0.9958982,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.6%,Có nguy cơ
+CUS013,0,0.9440812,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.4%,Có nguy cơ
+CUS014,0,0.99823904,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.8%,Có nguy cơ
+CUS015,0,0.9379393,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.8%,Có nguy cơ
+CUS016,2,0.2661334,0,Khách hàng giá trị cao / trung thành vừa,26.6%,Không rời bỏ
+CUS017,1,0.11257485,0,Khách hàng nhạy ưu đãi / ổn định,11.3%,Không rời bỏ
+CUS018,0,0.030117737,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,3.0%,Không rời bỏ
+CUS019,0,0.9928813,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.3%,Có nguy cơ
+CUS020,1,0.0019334485,0,Khách hàng nhạy ưu đãi / ổn định,0.2%,Không rời bỏ
+CUS021,1,0.6700534,1,Khách hàng nhạy ưu đãi / ổn định,67.0%,Có nguy cơ
+CUS022,0,0.9403502,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.0%,Có nguy cơ
+CUS023,0,0.9520984,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.2%,Có nguy cơ
+CUS024,0,0.26421073,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,26.4%,Không rời bỏ
+CUS025,0,0.994628,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.5%,Có nguy cơ
+CUS026,0,0.09453473,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,9.5%,Không rời bỏ
+CUS027,2,0.10712844,0,Khách hàng giá trị cao / trung thành vừa,10.7%,Không rời bỏ
+CUS028,0,0.116163,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,11.6%,Không rời bỏ
+CUS029,1,0.28596303,0,Khách hàng nhạy ưu đãi / ổn định,28.6%,Không rời bỏ
+CUS030,0,0.39273408,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,39.3%,Có nguy cơ
+CUS031,0,0.8903725,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,89.0%,Có nguy cơ
+CUS032,0,0.48338506,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,48.3%,Có nguy cơ
+CUS033,0,0.9302674,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.0%,Có nguy cơ
+CUS034,0,0.9942016,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.4%,Có nguy cơ
+CUS035,0,0.003854133,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.4%,Không rời bỏ
+CUS036,1,0.051959045,0,Khách hàng nhạy ưu đãi / ổn định,5.2%,Không rời bỏ
+CUS037,0,0.9806441,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.1%,Có nguy cơ
+CUS038,0,0.8271048,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,82.7%,Có nguy cơ
+CUS039,0,0.9330713,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.3%,Có nguy cơ
+CUS040,2,0.7768221,1,Khách hàng giá trị cao / trung thành vừa,77.7%,Có nguy cơ
+CUS041,2,0.9538825,1,Khách hàng giá trị cao / trung thành vừa,95.4%,Có nguy cơ
+CUS042,0,0.99234456,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.2%,Có nguy cơ
+CUS043,2,0.9580353,1,Khách hàng giá trị cao / trung thành vừa,95.8%,Có nguy cơ
+CUS044,0,0.23168063,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,23.2%,Không rời bỏ
+CUS045,1,0.90230054,1,Khách hàng nhạy ưu đãi / ổn định,90.2%,Có nguy cơ
+CUS046,0,0.96160054,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.2%,Có nguy cơ
+CUS047,0,0.9429476,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.3%,Có nguy cơ
+CUS048,0,0.008210447,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.8%,Không rời bỏ
+CUS049,0,0.95665616,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.7%,Có nguy cơ
+CUS050,0,0.16055796,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,16.1%,Không rời bỏ
+CUS051,0,0.86240256,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,86.2%,Có nguy cơ
+CUS052,1,0.08346815,0,Khách hàng nhạy ưu đãi / ổn định,8.3%,Không rời bỏ
+CUS053,1,0.759875,1,Khách hàng nhạy ưu đãi / ổn định,76.0%,Có nguy cơ
+CUS054,0,0.9690869,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.9%,Có nguy cơ
+CUS055,0,0.9856941,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.6%,Có nguy cơ
+CUS056,0,0.99117506,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.1%,Có nguy cơ
+CUS057,2,0.48561877,1,Khách hàng giá trị cao / trung thành vừa,48.6%,Có nguy cơ
+CUS058,1,0.87977535,1,Khách hàng nhạy ưu đãi / ổn định,88.0%,Có nguy cơ
+CUS059,0,0.88177216,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,88.2%,Có nguy cơ
+CUS060,0,0.66120726,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,66.1%,Có nguy cơ
+CUS061,1,0.00022079596,0,Khách hàng nhạy ưu đãi / ổn định,0.0%,Không rời bỏ
+CUS062,0,0.79522514,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,79.5%,Có nguy cơ
+CUS063,0,0.9627119,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.3%,Có nguy cơ
+CUS064,0,0.8889379,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,88.9%,Có nguy cơ
+CUS065,1,0.007227558,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
+CUS066,0,0.013121413,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,1.3%,Không rời bỏ
+CUS067,0,0.998494,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.8%,Có nguy cơ
+CUS068,0,0.060534026,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,6.1%,Không rời bỏ
+CUS069,2,0.9813033,1,Khách hàng giá trị cao / trung thành vừa,98.1%,Có nguy cơ
+CUS070,2,0.23577096,0,Khách hàng giá trị cao / trung thành vừa,23.6%,Không rời bỏ
+CUS071,0,0.9760828,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.6%,Có nguy cơ
+CUS072,1,0.007875108,0,Khách hàng nhạy ưu đãi / ổn định,0.8%,Không rời bỏ
+CUS073,0,0.9261908,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.6%,Có nguy cơ
+CUS074,0,0.99555486,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.6%,Có nguy cơ
+CUS075,1,0.42801833,1,Khách hàng nhạy ưu đãi / ổn định,42.8%,Có nguy cơ
+CUS076,0,0.98335946,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.3%,Có nguy cơ
+CUS077,0,0.9111076,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.1%,Có nguy cơ
+CUS078,2,0.03469778,0,Khách hàng giá trị cao / trung thành vừa,3.5%,Không rời bỏ
+CUS079,1,0.001717271,0,Khách hàng nhạy ưu đãi / ổn định,0.2%,Không rời bỏ
+CUS080,0,0.8920372,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,89.2%,Có nguy cơ
+CUS081,0,0.44537255,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,44.5%,Có nguy cơ
+CUS082,1,0.23379725,0,Khách hàng nhạy ưu đãi / ổn định,23.4%,Không rời bỏ
+CUS083,2,0.958943,1,Khách hàng giá trị cao / trung thành vừa,95.9%,Có nguy cơ
+CUS084,1,0.088795364,0,Khách hàng nhạy ưu đãi / ổn định,8.9%,Không rời bỏ
+CUS085,0,0.9490754,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.9%,Có nguy cơ
+CUS086,0,0.92511296,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.5%,Có nguy cơ
+CUS087,0,0.8838204,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,88.4%,Có nguy cơ
+CUS088,0,0.9777809,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.8%,Có nguy cơ
+CUS089,0,0.76602024,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,76.6%,Có nguy cơ
+CUS090,1,0.2743751,0,Khách hàng nhạy ưu đãi / ổn định,27.4%,Không rời bỏ
+CUS091,2,0.92438257,1,Khách hàng giá trị cao / trung thành vừa,92.4%,Có nguy cơ
+CUS092,0,0.9052573,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,90.5%,Có nguy cơ
+CUS093,0,0.98305833,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.3%,Có nguy cơ
+CUS094,0,0.28734472,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,28.7%,Không rời bỏ
+CUS095,1,0.007826645,0,Khách hàng nhạy ưu đãi / ổn định,0.8%,Không rời bỏ
+CUS096,0,0.7317913,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,73.2%,Có nguy cơ
+CUS097,0,0.70307684,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,70.3%,Có nguy cơ
+CUS098,0,0.9759403,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.6%,Có nguy cơ
+CUS099,0,0.95644575,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.6%,Có nguy cơ
+CUS100,0,0.99320894,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.3%,Có nguy cơ
+CUS101,0,0.92063826,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.1%,Có nguy cơ
+CUS102,0,0.8405843,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,84.1%,Có nguy cơ
+CUS103,1,0.38918135,1,Khách hàng nhạy ưu đãi / ổn định,38.9%,Có nguy cơ
+CUS104,0,0.18520962,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,18.5%,Không rời bỏ
+CUS105,2,0.98322034,1,Khách hàng giá trị cao / trung thành vừa,98.3%,Có nguy cơ
+CUS106,0,0.6461883,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,64.6%,Có nguy cơ
+CUS107,2,0.82942134,1,Khách hàng giá trị cao / trung thành vừa,82.9%,Có nguy cơ
+CUS108,1,0.00034006036,0,Khách hàng nhạy ưu đãi / ổn định,0.0%,Không rời bỏ
+CUS109,2,0.7341239,1,Khách hàng giá trị cao / trung thành vừa,73.4%,Có nguy cơ
+CUS110,1,0.19177403,0,Khách hàng nhạy ưu đãi / ổn định,19.2%,Không rời bỏ
+CUS111,1,0.017457463,0,Khách hàng nhạy ưu đãi / ổn định,1.7%,Không rời bỏ
+CUS112,2,0.98211944,1,Khách hàng giá trị cao / trung thành vừa,98.2%,Có nguy cơ
+CUS113,0,0.95723903,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.7%,Có nguy cơ
+CUS114,1,0.02052935,0,Khách hàng nhạy ưu đãi / ổn định,2.1%,Không rời bỏ
+CUS115,0,0.32994732,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,33.0%,Không rời bỏ
+CUS116,1,0.3144199,0,Khách hàng nhạy ưu đãi / ổn định,31.4%,Không rời bỏ
+CUS117,1,0.26181945,0,Khách hàng nhạy ưu đãi / ổn định,26.2%,Không rời bỏ
+CUS118,0,0.9152412,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.5%,Có nguy cơ
+CUS119,0,0.99865425,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.9%,Có nguy cơ
+CUS120,1,0.004477918,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
+CUS121,0,0.96297467,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.3%,Có nguy cơ
+CUS122,0,0.9605746,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.1%,Có nguy cơ
+CUS123,1,0.00408825,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
+CUS124,2,0.9377848,1,Khách hàng giá trị cao / trung thành vừa,93.8%,Có nguy cơ
+CUS125,1,0.030589975,0,Khách hàng nhạy ưu đãi / ổn định,3.1%,Không rời bỏ
+CUS126,0,0.96448463,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.4%,Có nguy cơ
+CUS127,0,0.9262747,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.6%,Có nguy cơ
+CUS128,0,0.9959032,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.6%,Có nguy cơ
+CUS129,0,0.96836925,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.8%,Có nguy cơ
+CUS130,1,0.39538094,1,Khách hàng nhạy ưu đãi / ổn định,39.5%,Có nguy cơ
+CUS131,0,0.15360981,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,15.4%,Không rời bỏ
+CUS132,1,0.018044585,0,Khách hàng nhạy ưu đãi / ổn định,1.8%,Không rời bỏ
+CUS133,2,0.8880574,1,Khách hàng giá trị cao / trung thành vừa,88.8%,Có nguy cơ
+CUS134,0,0.9789128,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.9%,Có nguy cơ
+CUS135,2,0.79512495,1,Khách hàng giá trị cao / trung thành vừa,79.5%,Có nguy cơ
+CUS136,1,0.19778055,0,Khách hàng nhạy ưu đãi / ổn định,19.8%,Không rời bỏ
+CUS137,1,0.5388522,1,Khách hàng nhạy ưu đãi / ổn định,53.9%,Có nguy cơ
+CUS138,1,0.010221865,0,Khách hàng nhạy ưu đãi / ổn định,1.0%,Không rời bỏ
+CUS139,0,0.5829816,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,58.3%,Có nguy cơ
+CUS140,1,0.06680519,0,Khách hàng nhạy ưu đãi / ổn định,6.7%,Không rời bỏ
+CUS141,2,0.97711676,1,Khách hàng giá trị cao / trung thành vừa,97.7%,Có nguy cơ
+CUS142,0,0.23921145,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,23.9%,Không rời bỏ
+CUS143,1,0.84069604,1,Khách hàng nhạy ưu đãi / ổn định,84.1%,Có nguy cơ
+CUS144,1,0.023058822,0,Khách hàng nhạy ưu đãi / ổn định,2.3%,Không rời bỏ
+CUS145,0,0.12104815,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,12.1%,Không rời bỏ
+CUS146,0,0.9955995,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.6%,Có nguy cơ
+CUS147,1,0.052466035,0,Khách hàng nhạy ưu đãi / ổn định,5.2%,Không rời bỏ
+CUS148,2,0.9503449,1,Khách hàng giá trị cao / trung thành vừa,95.0%,Có nguy cơ
+CUS149,2,0.76999235,1,Khách hàng giá trị cao / trung thành vừa,77.0%,Có nguy cơ
+CUS150,0,0.40316442,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,40.3%,Có nguy cơ
+CUS151,0,0.6471387,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,64.7%,Có nguy cơ
+CUS152,1,0.02402739,0,Khách hàng nhạy ưu đãi / ổn định,2.4%,Không rời bỏ
+CUS153,0,0.9529648,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.3%,Có nguy cơ
+CUS154,1,0.071750544,0,Khách hàng nhạy ưu đãi / ổn định,7.2%,Không rời bỏ
+CUS155,1,0.22249715,0,Khách hàng nhạy ưu đãi / ổn định,22.2%,Không rời bỏ
+CUS156,1,0.009793851,0,Khách hàng nhạy ưu đãi / ổn định,1.0%,Không rời bỏ
+CUS157,1,0.0042776256,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
+CUS158,1,0.019774435,0,Khách hàng nhạy ưu đãi / ổn định,2.0%,Không rời bỏ
+CUS159,1,0.06918957,0,Khách hàng nhạy ưu đãi / ổn định,6.9%,Không rời bỏ
+CUS160,0,0.84429806,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,84.4%,Có nguy cơ
+CUS161,0,0.9963348,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.6%,Có nguy cơ
+CUS162,1,0.0023874876,0,Khách hàng nhạy ưu đãi / ổn định,0.2%,Không rời bỏ
+CUS163,0,0.022468235,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,2.2%,Không rời bỏ
+CUS164,0,0.9528017,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.3%,Có nguy cơ
+CUS165,0,0.86268336,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,86.3%,Có nguy cơ
+CUS166,0,0.39609727,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,39.6%,Có nguy cơ
+CUS167,0,0.42837173,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,42.8%,Có nguy cơ
+CUS168,2,0.9957534,1,Khách hàng giá trị cao / trung thành vừa,99.6%,Có nguy cơ
+CUS169,1,0.008187775,0,Khách hàng nhạy ưu đãi / ổn định,0.8%,Không rời bỏ
+CUS170,0,0.697895,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,69.8%,Có nguy cơ
+CUS171,0,0.88604647,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,88.6%,Có nguy cơ
+CUS172,0,0.9332423,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.3%,Có nguy cơ
+CUS173,0,0.9862125,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.6%,Có nguy cơ
+CUS174,1,0.048328362,0,Khách hàng nhạy ưu đãi / ổn định,4.8%,Không rời bỏ
+CUS175,1,0.0544619,0,Khách hàng nhạy ưu đãi / ổn định,5.4%,Không rời bỏ
+CUS176,1,0.66204184,1,Khách hàng nhạy ưu đãi / ổn định,66.2%,Có nguy cơ
+CUS177,0,0.976233,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.6%,Có nguy cơ
+CUS178,1,0.14123696,0,Khách hàng nhạy ưu đãi / ổn định,14.1%,Không rời bỏ
+CUS179,1,0.0032298353,0,Khách hàng nhạy ưu đãi / ổn định,0.3%,Không rời bỏ
+CUS180,1,0.8878564,1,Khách hàng nhạy ưu đãi / ổn định,88.8%,Có nguy cơ
+CUS181,2,0.012520955,0,Khách hàng giá trị cao / trung thành vừa,1.3%,Không rời bỏ
+CUS182,2,0.9018528,1,Khách hàng giá trị cao / trung thành vừa,90.2%,Có nguy cơ
+CUS183,0,0.9872825,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.7%,Có nguy cơ
+CUS184,1,0.07872944,0,Khách hàng nhạy ưu đãi / ổn định,7.9%,Không rời bỏ
+CUS185,1,0.19379158,0,Khách hàng nhạy ưu đãi / ổn định,19.4%,Không rời bỏ
+CUS186,0,0.97559047,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.6%,Có nguy cơ
+CUS187,1,0.13941066,0,Khách hàng nhạy ưu đãi / ổn định,13.9%,Không rời bỏ
+CUS188,1,0.0075970422,0,Khách hàng nhạy ưu đãi / ổn định,0.8%,Không rời bỏ
+CUS189,1,0.18280518,0,Khách hàng nhạy ưu đãi / ổn định,18.3%,Không rời bỏ
+CUS190,2,0.9318913,1,Khách hàng giá trị cao / trung thành vừa,93.2%,Có nguy cơ
+CUS191,1,0.007491029,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
+CUS192,0,0.6944376,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,69.4%,Có nguy cơ
+CUS193,2,0.2724911,0,Khách hàng giá trị cao / trung thành vừa,27.2%,Không rời bỏ
+CUS194,0,0.9845467,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.5%,Có nguy cơ
+CUS195,1,0.06470273,0,Khách hàng nhạy ưu đãi / ổn định,6.5%,Không rời bỏ
+CUS196,0,0.919441,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.9%,Có nguy cơ
+CUS197,1,0.24895819,0,Khách hàng nhạy ưu đãi / ổn định,24.9%,Không rời bỏ
+CUS198,2,0.0724584,0,Khách hàng giá trị cao / trung thành vừa,7.2%,Không rời bỏ
+CUS199,1,0.64997584,1,Khách hàng nhạy ưu đãi / ổn định,65.0%,Có nguy cơ
+CUS200,1,0.024498034,0,Khách hàng nhạy ưu đãi / ổn định,2.4%,Không rời bỏ
+CUS201,1,0.004010617,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
+CUS202,2,0.9402319,1,Khách hàng giá trị cao / trung thành vừa,94.0%,Có nguy cơ
+CUS203,1,0.08945484,0,Khách hàng nhạy ưu đãi / ổn định,8.9%,Không rời bỏ
+CUS204,1,0.016113084,0,Khách hàng nhạy ưu đãi / ổn định,1.6%,Không rời bỏ
+CUS205,0,0.008558694,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.9%,Không rời bỏ
+CUS206,1,0.07208762,0,Khách hàng nhạy ưu đãi / ổn định,7.2%,Không rời bỏ
+CUS207,2,0.15908228,0,Khách hàng giá trị cao / trung thành vừa,15.9%,Không rời bỏ
+CUS208,1,0.010577767,0,Khách hàng nhạy ưu đãi / ổn định,1.1%,Không rời bỏ
+CUS209,1,0.07926686,0,Khách hàng nhạy ưu đãi / ổn định,7.9%,Không rời bỏ
+CUS210,2,0.32679978,0,Khách hàng giá trị cao / trung thành vừa,32.7%,Không rời bỏ
+CUS211,1,0.0005508242,0,Khách hàng nhạy ưu đãi / ổn định,0.1%,Không rời bỏ
+CUS212,0,0.92997533,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,93.0%,Có nguy cơ
+CUS213,2,0.030378932,0,Khách hàng giá trị cao / trung thành vừa,3.0%,Không rời bỏ
+CUS214,1,0.1523207,0,Khách hàng nhạy ưu đãi / ổn định,15.2%,Không rời bỏ
+CUS215,0,0.92556465,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.6%,Có nguy cơ
+CUS216,1,0.026351266,0,Khách hàng nhạy ưu đãi / ổn định,2.6%,Không rời bỏ
+CUS217,1,0.100083284,0,Khách hàng nhạy ưu đãi / ổn định,10.0%,Không rời bỏ
+CUS218,1,0.2610468,0,Khách hàng nhạy ưu đãi / ổn định,26.1%,Không rời bỏ
+CUS219,2,0.4028422,1,Khách hàng giá trị cao / trung thành vừa,40.3%,Có nguy cơ
+CUS220,0,0.94290656,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.3%,Có nguy cơ
+CUS221,1,0.0013663267,0,Khách hàng nhạy ưu đãi / ổn định,0.1%,Không rời bỏ
+CUS222,1,0.084258445,0,Khách hàng nhạy ưu đãi / ổn định,8.4%,Không rời bỏ
+CUS223,0,0.55616516,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,55.6%,Có nguy cơ
+CUS224,2,0.33391047,1,Khách hàng giá trị cao / trung thành vừa,33.4%,Có nguy cơ
+CUS225,1,0.0076172156,0,Khách hàng nhạy ưu đãi / ổn định,0.8%,Không rời bỏ
+CUS226,1,0.33178997,0,Khách hàng nhạy ưu đãi / ổn định,33.2%,Không rời bỏ
+CUS227,1,0.04857046,0,Khách hàng nhạy ưu đãi / ổn định,4.9%,Không rời bỏ
+CUS228,0,0.07724557,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,7.7%,Không rời bỏ
+CUS229,1,0.0074085486,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
+CUS230,0,0.1928529,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,19.3%,Không rời bỏ
+CUS231,1,0.76038605,1,Khách hàng nhạy ưu đãi / ổn định,76.0%,Có nguy cơ
+CUS232,2,0.05581445,0,Khách hàng giá trị cao / trung thành vừa,5.6%,Không rời bỏ
+CUS233,1,0.082948595,0,Khách hàng nhạy ưu đãi / ổn định,8.3%,Không rời bỏ
+CUS234,1,0.21960843,0,Khách hàng nhạy ưu đãi / ổn định,22.0%,Không rời bỏ
+CUS235,0,0.46935865,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,46.9%,Có nguy cơ
+CUS236,1,0.05590887,0,Khách hàng nhạy ưu đãi / ổn định,5.6%,Không rời bỏ
+CUS237,1,0.16632994,0,Khách hàng nhạy ưu đãi / ổn định,16.6%,Không rời bỏ
+CUS238,2,0.45275956,1,Khách hàng giá trị cao / trung thành vừa,45.3%,Có nguy cơ
+CUS239,2,0.84830326,1,Khách hàng giá trị cao / trung thành vừa,84.8%,Có nguy cơ
+CUS240,1,0.003747179,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
+CUS241,2,0.92375886,1,Khách hàng giá trị cao / trung thành vừa,92.4%,Có nguy cơ
+CUS242,1,0.40965253,1,Khách hàng nhạy ưu đãi / ổn định,41.0%,Có nguy cơ
+CUS243,2,0.51640266,1,Khách hàng giá trị cao / trung thành vừa,51.6%,Có nguy cơ
+CUS244,2,0.0062607797,0,Khách hàng giá trị cao / trung thành vừa,0.6%,Không rời bỏ
+CUS245,1,0.05183466,0,Khách hàng nhạy ưu đãi / ổn định,5.2%,Không rời bỏ
+CUS246,1,0.0015251342,0,Khách hàng nhạy ưu đãi / ổn định,0.2%,Không rời bỏ
+CUS247,1,0.88275546,1,Khách hàng nhạy ưu đãi / ổn định,88.3%,Có nguy cơ
+CUS248,1,0.045447476,0,Khách hàng nhạy ưu đãi / ổn định,4.5%,Không rời bỏ
+CUS249,1,0.45462236,1,Khách hàng nhạy ưu đãi / ổn định,45.5%,Có nguy cơ
+CUS250,0,0.24465354,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,24.5%,Không rời bỏ
+CUS251,1,0.17231889,0,Khách hàng nhạy ưu đãi / ổn định,17.2%,Không rời bỏ
+CUS252,1,0.7314956,1,Khách hàng nhạy ưu đãi / ổn định,73.1%,Có nguy cơ
+CUS253,1,0.64088327,1,Khách hàng nhạy ưu đãi / ổn định,64.1%,Có nguy cơ
+CUS254,0,0.12066242,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,12.1%,Không rời bỏ
+CUS255,0,0.008660661,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.9%,Không rời bỏ
+CUS256,1,0.7269404,1,Khách hàng nhạy ưu đãi / ổn định,72.7%,Có nguy cơ
+CUS257,1,0.18739115,0,Khách hàng nhạy ưu đãi / ổn định,18.7%,Không rời bỏ
+CUS258,0,0.94084984,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.1%,Có nguy cơ
+CUS259,2,0.6125573,1,Khách hàng giá trị cao / trung thành vừa,61.3%,Có nguy cơ
+CUS260,0,0.12161926,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,12.2%,Không rời bỏ
+CUS261,2,0.11752915,0,Khách hàng giá trị cao / trung thành vừa,11.8%,Không rời bỏ
+CUS262,0,0.29693985,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,29.7%,Không rời bỏ
+CUS263,0,0.33346617,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,33.3%,Không rời bỏ
+CUS264,1,0.15157405,0,Khách hàng nhạy ưu đãi / ổn định,15.2%,Không rời bỏ
+CUS265,0,0.98624194,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.6%,Có nguy cơ
+CUS266,1,0.0066780224,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
+CUS267,2,0.038833063,0,Khách hàng giá trị cao / trung thành vừa,3.9%,Không rời bỏ
+CUS268,1,0.6623679,1,Khách hàng nhạy ưu đãi / ổn định,66.2%,Có nguy cơ
+CUS269,1,0.028716711,0,Khách hàng nhạy ưu đãi / ổn định,2.9%,Không rời bỏ
+CUS270,2,0.10500257,0,Khách hàng giá trị cao / trung thành vừa,10.5%,Không rời bỏ
+CUS271,1,0.9527134,1,Khách hàng nhạy ưu đãi / ổn định,95.3%,Có nguy cơ
+CUS272,0,0.2821805,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,28.2%,Không rời bỏ
+CUS273,2,0.6291719,1,Khách hàng giá trị cao / trung thành vừa,62.9%,Có nguy cơ
+CUS274,0,0.75939065,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,75.9%,Có nguy cơ
+CUS275,0,0.9800831,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.0%,Có nguy cơ
+CUS276,2,0.83907956,1,Khách hàng giá trị cao / trung thành vừa,83.9%,Có nguy cơ
+CUS277,0,0.068888485,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,6.9%,Không rời bỏ
+CUS278,1,0.011649386,0,Khách hàng nhạy ưu đãi / ổn định,1.2%,Không rời bỏ
+CUS279,1,0.012059209,0,Khách hàng nhạy ưu đãi / ổn định,1.2%,Không rời bỏ
+CUS280,1,0.8260845,1,Khách hàng nhạy ưu đãi / ổn định,82.6%,Có nguy cơ
+CUS281,0,0.9703627,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.0%,Có nguy cơ
+CUS282,2,0.9699868,1,Khách hàng giá trị cao / trung thành vừa,97.0%,Có nguy cơ
+CUS283,1,0.053596813,0,Khách hàng nhạy ưu đãi / ổn định,5.4%,Không rời bỏ
+CUS284,1,0.049616493,0,Khách hàng nhạy ưu đãi / ổn định,5.0%,Không rời bỏ
+CUS285,1,0.19240548,0,Khách hàng nhạy ưu đãi / ổn định,19.2%,Không rời bỏ
+CUS286,2,0.11740074,0,Khách hàng giá trị cao / trung thành vừa,11.7%,Không rời bỏ
+CUS287,0,0.2267322,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,22.7%,Không rời bỏ
+CUS288,0,0.9731759,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.3%,Có nguy cơ
+CUS289,2,0.6860675,1,Khách hàng giá trị cao / trung thành vừa,68.6%,Có nguy cơ
+CUS290,1,0.0073213954,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
+CUS291,1,0.82909656,1,Khách hàng nhạy ưu đãi / ổn định,82.9%,Có nguy cơ
+CUS292,2,0.9328605,1,Khách hàng giá trị cao / trung thành vừa,93.3%,Có nguy cơ
+CUS293,1,0.62842333,1,Khách hàng nhạy ưu đãi / ổn định,62.8%,Có nguy cơ
+CUS294,1,0.01711709,0,Khách hàng nhạy ưu đãi / ổn định,1.7%,Không rời bỏ
+CUS295,2,0.010020824,0,Khách hàng giá trị cao / trung thành vừa,1.0%,Không rời bỏ
+CUS296,0,0.004251691,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,0.4%,Không rời bỏ
+CUS297,0,0.7529943,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,75.3%,Có nguy cơ
+CUS298,2,0.77238774,1,Khách hàng giá trị cao / trung thành vừa,77.2%,Có nguy cơ
+CUS299,2,0.24577343,0,Khách hàng giá trị cao / trung thành vừa,24.6%,Không rời bỏ
+CUS300,1,0.116339445,0,Khách hàng nhạy ưu đãi / ổn định,11.6%,Không rời bỏ
+CUS301,0,0.76290536,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,76.3%,Có nguy cơ
+CUS302,2,0.78260577,1,Khách hàng giá trị cao / trung thành vừa,78.3%,Có nguy cơ
+CUS303,0,0.8080656,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,80.8%,Có nguy cơ
+CUS304,0,0.82976264,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,83.0%,Có nguy cơ
+CUS305,2,0.7465697,1,Khách hàng giá trị cao / trung thành vừa,74.7%,Có nguy cơ
+CUS306,2,0.984032,1,Khách hàng giá trị cao / trung thành vừa,98.4%,Có nguy cơ
+CUS307,0,0.9827535,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.3%,Có nguy cơ
+CUS308,2,0.04300062,0,Khách hàng giá trị cao / trung thành vừa,4.3%,Không rời bỏ
+CUS309,2,0.09007185,0,Khách hàng giá trị cao / trung thành vừa,9.0%,Không rời bỏ
+CUS310,0,0.96808875,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.8%,Có nguy cơ
+CUS311,0,0.8288258,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,82.9%,Có nguy cơ
+CUS312,0,0.94763464,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,94.8%,Có nguy cơ
+CUS313,1,0.04184716,0,Khách hàng nhạy ưu đãi / ổn định,4.2%,Không rời bỏ
+CUS314,1,0.32824185,0,Khách hàng nhạy ưu đãi / ổn định,32.8%,Không rời bỏ
+CUS315,1,0.78964216,1,Khách hàng nhạy ưu đãi / ổn định,79.0%,Có nguy cơ
+CUS316,0,0.6869752,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,68.7%,Có nguy cơ
+CUS317,2,0.20745178,0,Khách hàng giá trị cao / trung thành vừa,20.7%,Không rời bỏ
+CUS318,2,0.460416,1,Khách hàng giá trị cao / trung thành vừa,46.0%,Có nguy cơ
+CUS319,1,0.9526673,1,Khách hàng nhạy ưu đãi / ổn định,95.3%,Có nguy cơ
+CUS320,0,0.81708044,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,81.7%,Có nguy cơ
+CUS321,2,0.8649102,1,Khách hàng giá trị cao / trung thành vừa,86.5%,Có nguy cơ
+CUS322,0,0.9157391,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.6%,Có nguy cơ
+CUS323,1,0.37014547,1,Khách hàng nhạy ưu đãi / ổn định,37.0%,Có nguy cơ
+CUS324,2,0.17648058,0,Khách hàng giá trị cao / trung thành vừa,17.6%,Không rời bỏ
+CUS325,0,0.8760153,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,87.6%,Có nguy cơ
+CUS326,1,0.97300345,1,Khách hàng nhạy ưu đãi / ổn định,97.3%,Có nguy cơ
+CUS327,2,0.46861103,1,Khách hàng giá trị cao / trung thành vừa,46.9%,Có nguy cơ
+CUS328,2,0.011776367,0,Khách hàng giá trị cao / trung thành vừa,1.2%,Không rời bỏ
+CUS329,1,0.95495987,1,Khách hàng nhạy ưu đãi / ổn định,95.5%,Có nguy cơ
+CUS330,0,0.9902829,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.0%,Có nguy cơ
+CUS331,0,0.97177684,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.2%,Có nguy cơ
+CUS332,1,0.871624,1,Khách hàng nhạy ưu đãi / ổn định,87.2%,Có nguy cơ
+CUS333,1,0.025750896,0,Khách hàng nhạy ưu đãi / ổn định,2.6%,Không rời bỏ
+CUS334,0,0.057952233,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,5.8%,Không rời bỏ
+CUS335,2,0.9967265,1,Khách hàng giá trị cao / trung thành vừa,99.7%,Có nguy cơ
+CUS336,0,0.20590487,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,20.6%,Không rời bỏ
+CUS337,2,0.9958711,1,Khách hàng giá trị cao / trung thành vừa,99.6%,Có nguy cơ
+CUS338,0,0.85195935,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,85.2%,Có nguy cơ
+CUS339,0,0.920219,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.0%,Có nguy cơ
+CUS340,1,0.033812445,0,Khách hàng nhạy ưu đãi / ổn định,3.4%,Không rời bỏ
+CUS341,1,0.94999963,1,Khách hàng nhạy ưu đãi / ổn định,95.0%,Có nguy cơ
+CUS342,2,0.10011864,0,Khách hàng giá trị cao / trung thành vừa,10.0%,Không rời bỏ
+CUS343,0,0.9640314,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,96.4%,Có nguy cơ
+CUS344,1,0.015424363,0,Khách hàng nhạy ưu đãi / ổn định,1.5%,Không rời bỏ
+CUS345,2,0.8068627,1,Khách hàng giá trị cao / trung thành vừa,80.7%,Có nguy cơ
+CUS346,0,0.9752111,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.5%,Có nguy cơ
+CUS347,1,0.0071586864,0,Khách hàng nhạy ưu đãi / ổn định,0.7%,Không rời bỏ
+CUS348,0,0.15984386,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,16.0%,Không rời bỏ
+CUS349,2,0.933238,1,Khách hàng giá trị cao / trung thành vừa,93.3%,Có nguy cơ
+CUS350,0,0.2590104,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,25.9%,Không rời bỏ
+CUS351,2,0.013621963,0,Khách hàng giá trị cao / trung thành vừa,1.4%,Không rời bỏ
+CUS352,2,0.98509663,1,Khách hàng giá trị cao / trung thành vừa,98.5%,Có nguy cơ
+CUS353,2,0.01840849,0,Khách hàng giá trị cao / trung thành vừa,1.8%,Không rời bỏ
+CUS354,0,0.99991083,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,100.0%,Có nguy cơ
+CUS355,1,0.7456994,1,Khách hàng nhạy ưu đãi / ổn định,74.6%,Có nguy cơ
+CUS356,2,0.96821296,1,Khách hàng giá trị cao / trung thành vừa,96.8%,Có nguy cơ
+CUS357,2,0.9534079,1,Khách hàng giá trị cao / trung thành vừa,95.3%,Có nguy cơ
+CUS358,1,0.8304307,1,Khách hàng nhạy ưu đãi / ổn định,83.0%,Có nguy cơ
+CUS359,1,0.72272134,1,Khách hàng nhạy ưu đãi / ổn định,72.3%,Có nguy cơ
+CUS360,0,0.22295095,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,22.3%,Không rời bỏ
+CUS361,2,0.98130095,1,Khách hàng giá trị cao / trung thành vừa,98.1%,Có nguy cơ
+CUS362,0,0.9915332,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.2%,Có nguy cơ
+CUS363,1,0.03707982,0,Khách hàng nhạy ưu đãi / ổn định,3.7%,Không rời bỏ
+CUS364,0,0.98846984,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.8%,Có nguy cơ
+CUS365,1,0.6084266,1,Khách hàng nhạy ưu đãi / ổn định,60.8%,Có nguy cơ
+CUS366,1,0.059501015,0,Khách hàng nhạy ưu đãi / ổn định,6.0%,Không rời bỏ
+CUS367,1,0.8899881,1,Khách hàng nhạy ưu đãi / ổn định,89.0%,Có nguy cơ
+CUS368,2,0.1920244,0,Khách hàng giá trị cao / trung thành vừa,19.2%,Không rời bỏ
+CUS369,1,0.1575977,0,Khách hàng nhạy ưu đãi / ổn định,15.8%,Không rời bỏ
+CUS370,2,0.11167347,0,Khách hàng giá trị cao / trung thành vừa,11.2%,Không rời bỏ
+CUS371,0,0.5414263,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,54.1%,Có nguy cơ
+CUS372,0,0.99731356,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.7%,Có nguy cơ
+CUS373,0,0.994086,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.4%,Có nguy cơ
+CUS374,0,0.9568004,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,95.7%,Có nguy cơ
+CUS375,2,0.2432389,0,Khách hàng giá trị cao / trung thành vừa,24.3%,Không rời bỏ
+CUS376,1,0.010963145,0,Khách hàng nhạy ưu đãi / ổn định,1.1%,Không rời bỏ
+CUS377,2,0.99787617,1,Khách hàng giá trị cao / trung thành vừa,99.8%,Có nguy cơ
+CUS378,1,0.9456767,1,Khách hàng nhạy ưu đãi / ổn định,94.6%,Có nguy cơ
+CUS379,1,0.618455,1,Khách hàng nhạy ưu đãi / ổn định,61.8%,Có nguy cơ
+CUS380,0,0.9993436,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.9%,Có nguy cơ
+CUS381,2,0.28698483,0,Khách hàng giá trị cao / trung thành vừa,28.7%,Không rời bỏ
+CUS382,2,0.36260366,1,Khách hàng giá trị cao / trung thành vừa,36.3%,Có nguy cơ
+CUS383,1,0.019663766,0,Khách hàng nhạy ưu đãi / ổn định,2.0%,Không rời bỏ
+CUS384,2,0.99410665,1,Khách hàng giá trị cao / trung thành vừa,99.4%,Có nguy cơ
+CUS385,0,0.7351864,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,73.5%,Có nguy cơ
+CUS386,0,0.20027167,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,20.0%,Không rời bỏ
+CUS387,2,0.9990049,1,Khách hàng giá trị cao / trung thành vừa,99.9%,Có nguy cơ
+CUS388,2,0.9312412,1,Khách hàng giá trị cao / trung thành vừa,93.1%,Có nguy cơ
+CUS389,2,0.080071725,0,Khách hàng giá trị cao / trung thành vừa,8.0%,Không rời bỏ
+CUS390,1,0.26458097,0,Khách hàng nhạy ưu đãi / ổn định,26.5%,Không rời bỏ
+CUS391,2,0.9634727,1,Khách hàng giá trị cao / trung thành vừa,96.3%,Có nguy cơ
+CUS392,2,0.997361,1,Khách hàng giá trị cao / trung thành vừa,99.7%,Có nguy cơ
+CUS393,2,0.2798061,0,Khách hàng giá trị cao / trung thành vừa,28.0%,Không rời bỏ
+CUS394,2,0.9855296,1,Khách hàng giá trị cao / trung thành vừa,98.6%,Có nguy cơ
+CUS395,2,0.9911527,1,Khách hàng giá trị cao / trung thành vừa,99.1%,Có nguy cơ
+CUS396,2,0.9928231,1,Khách hàng giá trị cao / trung thành vừa,99.3%,Có nguy cơ
+CUS397,1,0.64392024,1,Khách hàng nhạy ưu đãi / ổn định,64.4%,Có nguy cơ
+CUS398,2,0.8082454,1,Khách hàng giá trị cao / trung thành vừa,80.8%,Có nguy cơ
+CUS399,0,0.92283046,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.3%,Có nguy cơ
+CUS400,2,0.0028573559,0,Khách hàng giá trị cao / trung thành vừa,0.3%,Không rời bỏ
+CUS401,0,0.9927065,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.3%,Có nguy cơ
+CUS402,1,0.9667381,1,Khách hàng nhạy ưu đãi / ổn định,96.7%,Có nguy cơ
+CUS403,0,0.9778236,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,97.8%,Có nguy cơ
+CUS404,0,0.08992644,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,9.0%,Không rời bỏ
+CUS405,0,0.108749345,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,10.9%,Không rời bỏ
+CUS406,0,0.98939604,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.9%,Có nguy cơ
+CUS407,1,0.09884507,0,Khách hàng nhạy ưu đãi / ổn định,9.9%,Không rời bỏ
+CUS408,2,0.054126315,0,Khách hàng giá trị cao / trung thành vừa,5.4%,Không rời bỏ
+CUS409,0,0.3757867,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,37.6%,Có nguy cơ
+CUS410,1,0.7814602,1,Khách hàng nhạy ưu đãi / ổn định,78.1%,Có nguy cơ
+CUS411,1,0.9868134,1,Khách hàng nhạy ưu đãi / ổn định,98.7%,Có nguy cơ
+CUS412,1,0.95652944,1,Khách hàng nhạy ưu đãi / ổn định,95.7%,Có nguy cơ
+CUS413,2,0.12662736,0,Khách hàng giá trị cao / trung thành vừa,12.7%,Không rời bỏ
+CUS414,1,0.031751636,0,Khách hàng nhạy ưu đãi / ổn định,3.2%,Không rời bỏ
+CUS415,2,0.66542953,1,Khách hàng giá trị cao / trung thành vừa,66.5%,Có nguy cơ
+CUS416,2,0.96140164,1,Khách hàng giá trị cao / trung thành vừa,96.1%,Có nguy cơ
+CUS417,2,0.80285716,1,Khách hàng giá trị cao / trung thành vừa,80.3%,Có nguy cơ
+CUS418,2,0.78175545,1,Khách hàng giá trị cao / trung thành vừa,78.2%,Có nguy cơ
+CUS419,2,0.82449853,1,Khách hàng giá trị cao / trung thành vừa,82.4%,Có nguy cơ
+CUS420,2,0.08726966,0,Khách hàng giá trị cao / trung thành vừa,8.7%,Không rời bỏ
+CUS421,2,0.009991627,0,Khách hàng giá trị cao / trung thành vừa,1.0%,Không rời bỏ
+CUS422,2,0.99324244,1,Khách hàng giá trị cao / trung thành vừa,99.3%,Có nguy cơ
+CUS423,2,0.9258823,1,Khách hàng giá trị cao / trung thành vừa,92.6%,Có nguy cơ
+CUS424,0,0.24332584,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,24.3%,Không rời bỏ
+CUS425,1,0.7145322,1,Khách hàng nhạy ưu đãi / ổn định,71.5%,Có nguy cơ
+CUS426,2,0.24564616,0,Khách hàng giá trị cao / trung thành vừa,24.6%,Không rời bỏ
+CUS427,2,0.21255516,0,Khách hàng giá trị cao / trung thành vừa,21.3%,Không rời bỏ
+CUS428,2,0.97436744,1,Khách hàng giá trị cao / trung thành vừa,97.4%,Có nguy cơ
+CUS429,0,0.9153011,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.5%,Có nguy cơ
+CUS430,2,0.9856112,1,Khách hàng giá trị cao / trung thành vừa,98.6%,Có nguy cơ
+CUS431,1,0.87782305,1,Khách hàng nhạy ưu đãi / ổn định,87.8%,Có nguy cơ
+CUS432,0,0.99768317,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.8%,Có nguy cơ
+CUS433,2,0.9315516,1,Khách hàng giá trị cao / trung thành vừa,93.2%,Có nguy cơ
+CUS434,0,0.066880666,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,6.7%,Không rời bỏ
+CUS435,2,0.7863906,1,Khách hàng giá trị cao / trung thành vừa,78.6%,Có nguy cơ
+CUS436,0,0.91710436,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,91.7%,Có nguy cơ
+CUS437,2,0.35413855,1,Khách hàng giá trị cao / trung thành vừa,35.4%,Có nguy cơ
+CUS438,0,0.19488622,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,19.5%,Không rời bỏ
+CUS439,2,0.8693199,1,Khách hàng giá trị cao / trung thành vừa,86.9%,Có nguy cơ
+CUS440,1,0.70550036,1,Khách hàng nhạy ưu đãi / ổn định,70.6%,Có nguy cơ
+CUS441,2,0.8401444,1,Khách hàng giá trị cao / trung thành vừa,84.0%,Có nguy cơ
+CUS442,0,0.996627,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.7%,Có nguy cơ
+CUS443,1,0.553288,1,Khách hàng nhạy ưu đãi / ổn định,55.3%,Có nguy cơ
+CUS444,2,0.6274872,1,Khách hàng giá trị cao / trung thành vừa,62.7%,Có nguy cơ
+CUS445,0,0.9969656,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,99.7%,Có nguy cơ
+CUS446,2,0.9501222,1,Khách hàng giá trị cao / trung thành vừa,95.0%,Có nguy cơ
+CUS447,2,0.947518,1,Khách hàng giá trị cao / trung thành vừa,94.8%,Có nguy cơ
+CUS448,1,0.9115283,1,Khách hàng nhạy ưu đãi / ổn định,91.2%,Có nguy cơ
+CUS449,1,0.16474864,0,Khách hàng nhạy ưu đãi / ổn định,16.5%,Không rời bỏ
+CUS450,1,0.64102757,1,Khách hàng nhạy ưu đãi / ổn định,64.1%,Có nguy cơ
+CUS451,2,0.9344166,1,Khách hàng giá trị cao / trung thành vừa,93.4%,Có nguy cơ
+CUS452,2,0.059485525,0,Khách hàng giá trị cao / trung thành vừa,5.9%,Không rời bỏ
+CUS453,0,0.06831449,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,6.8%,Không rời bỏ
+CUS454,0,0.5666652,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,56.7%,Có nguy cơ
+CUS455,2,0.72279006,1,Khách hàng giá trị cao / trung thành vừa,72.3%,Có nguy cơ
+CUS456,0,0.92116565,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,92.1%,Có nguy cơ
+CUS457,0,0.19519214,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,19.5%,Không rời bỏ
+CUS458,2,0.93001056,1,Khách hàng giá trị cao / trung thành vừa,93.0%,Có nguy cơ
+CUS459,0,0.04149329,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,4.1%,Không rời bỏ
+CUS460,2,0.87688524,1,Khách hàng giá trị cao / trung thành vừa,87.7%,Có nguy cơ
+CUS461,0,0.20098536,0,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,20.1%,Không rời bỏ
+CUS462,1,0.023939362,0,Khách hàng nhạy ưu đãi / ổn định,2.4%,Không rời bỏ
+CUS463,2,0.046570368,0,Khách hàng giá trị cao / trung thành vừa,4.7%,Không rời bỏ
+CUS464,2,0.887948,1,Khách hàng giá trị cao / trung thành vừa,88.8%,Có nguy cơ
+CUS465,1,0.10106211,0,Khách hàng nhạy ưu đãi / ổn định,10.1%,Không rời bỏ
+CUS466,2,0.98321354,1,Khách hàng giá trị cao / trung thành vừa,98.3%,Có nguy cơ
+CUS467,2,0.45646417,1,Khách hàng giá trị cao / trung thành vừa,45.6%,Có nguy cơ
+CUS468,2,0.90661913,1,Khách hàng giá trị cao / trung thành vừa,90.7%,Có nguy cơ
+CUS469,0,0.98848754,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.8%,Có nguy cơ
+CUS470,1,0.81481075,1,Khách hàng nhạy ưu đãi / ổn định,81.5%,Có nguy cơ
+CUS471,1,0.35635912,1,Khách hàng nhạy ưu đãi / ổn định,35.6%,Có nguy cơ
+CUS472,1,0.8691579,1,Khách hàng nhạy ưu đãi / ổn định,86.9%,Có nguy cơ
+CUS473,1,0.8919873,1,Khách hàng nhạy ưu đãi / ổn định,89.2%,Có nguy cơ
+CUS474,0,0.7176532,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,71.8%,Có nguy cơ
+CUS475,1,0.06420993,0,Khách hàng nhạy ưu đãi / ổn định,6.4%,Không rời bỏ
+CUS476,0,0.78565276,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,78.6%,Có nguy cơ
+CUS477,0,0.8722273,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,87.2%,Có nguy cơ
+CUS478,1,0.0036746995,0,Khách hàng nhạy ưu đãi / ổn định,0.4%,Không rời bỏ
+CUS479,1,0.79441947,1,Khách hàng nhạy ưu đãi / ổn định,79.4%,Có nguy cơ
+CUS480,0,0.6594177,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,65.9%,Có nguy cơ
+CUS481,2,0.9352803,1,Khách hàng giá trị cao / trung thành vừa,93.5%,Có nguy cơ
+CUS482,0,0.9887749,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.9%,Có nguy cơ
+CUS483,2,0.9586418,1,Khách hàng giá trị cao / trung thành vừa,95.9%,Có nguy cơ
+CUS484,1,0.22819617,0,Khách hàng nhạy ưu đãi / ổn định,22.8%,Không rời bỏ
+CUS485,0,0.8134786,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,81.3%,Có nguy cơ
+CUS486,2,0.15541478,0,Khách hàng giá trị cao / trung thành vừa,15.5%,Không rời bỏ
+CUS487,1,0.13591276,0,Khách hàng nhạy ưu đãi / ổn định,13.6%,Không rời bỏ
+CUS488,2,0.20771797,0,Khách hàng giá trị cao / trung thành vừa,20.8%,Không rời bỏ
+CUS489,0,0.9826513,1,Khách hàng dịch vụ cao / nhạy cảm trải nghiệm,98.3%,Có nguy cơ
+CUS490,2,0.47744292,1,Khách hàng giá trị cao / trung thành vừa,47.7%,Có nguy cơ
+CUS491,2,0.51254386,1,Khách hàng giá trị cao / trung thành vừa,51.3%,Có nguy cơ
+CUS492,2,0.9983246,1,Khách hàng giá trị cao / trung thành vừa,99.8%,Có nguy cơ
+CUS493,2,0.9436035,1,Khách hàng giá trị cao / trung thành vừa,94.4%,Có nguy cơ
+CUS494,2,0.77826107,1,Khách hàng giá trị cao / trung thành vừa,77.8%,Có nguy cơ
+CUS495,2,0.9789523,1,Khách hàng giá trị cao / trung thành vừa,97.9%,Có nguy cơ
+CUS496,2,0.8652328,1,Khách hàng giá trị cao / trung thành vừa,86.5%,Có nguy cơ
+CUS497,2,0.56652975,1,Khách hàng giá trị cao / trung thành vừa,56.7%,Có nguy cơ
+CUS498,1,0.0045286897,0,Khách hàng nhạy ưu đãi / ổn định,0.5%,Không rời bỏ
+CUS499,1,0.78816557,1,Khách hàng nhạy ưu đãi / ổn định,78.8%,Có nguy cơ

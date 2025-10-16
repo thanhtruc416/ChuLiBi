@@ -3,7 +3,7 @@ from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox, StringVar, NORMAL, DISABLED
 
 # ===== functions: lấy username theo email + verify OTP & reset mật khẩu =====
-from Function.ResetPassword import get_username_by_email, reset_password_with_otp
+from Function.Frame05_ResetPassword import get_username_by_email, reset_password_with_otp
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame05")
@@ -25,6 +25,10 @@ class Frame05(Frame):
         self.newpw_var = StringVar()
         self.confirmpw_var = StringVar()
         self.otp_var = StringVar()
+
+        # ---- trạng thái hiển thị password (để đồng bộ icon) ----
+        self.pw1_visible = False
+        self.pw2_visible = False
 
         # --- Canvas ---
         canvas = Canvas(
@@ -87,9 +91,12 @@ class Frame05(Frame):
         self.image_16 = PhotoImage(file=relative_to_assets("image_16.png"))
         canvas.create_image(357.0, 350.0, image=self.image_16)
 
+        # Ảnh cho các nút
         self.button_image_resetpassword = PhotoImage(file=relative_to_assets("button_resetpassword.png"))
-        self.button_image_eyes_password = PhotoImage(file=relative_to_assets("button_eyes.png"))
-        self.button_image_eyes = PhotoImage(file=relative_to_assets("button_eyes.png"))
+
+        # 2 ảnh mắt: hide/show (đặt thuộc tính self để tránh GC)
+        self.eye_hide_img = PhotoImage(file=relative_to_assets("eye_hide.png"))
+        self.eye_show_img = PhotoImage(file=relative_to_assets("eye_show.png"))
 
         # --- Text ---
         canvas.create_text(839.0, 115.0, anchor="nw", text="Reset Password", fill="#000000",
@@ -115,7 +122,7 @@ class Frame05(Frame):
         self.entry_image_username = PhotoImage(file=relative_to_assets("entry_username.png"))
         canvas.create_image(1083.5, 341.0, image=self.entry_image_username)
         self.entry_username = Entry(
-            self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
+            self, bd=0, bg="#E8E8E8", fg="#000716", highlightthickness=0,
             font=("Crimson Pro Regular", 26 * -1), textvariable=self.username_var, state="readonly"
         )
         self.entry_username.place(x=859.0, y=306.5, width=449.0, height=67.0)
@@ -145,29 +152,46 @@ class Frame05(Frame):
         self.entry_OTP.place(x=859.0, y=716.0, width=449.0, height=67.0)
 
         # --- Buttons ---
+        # Nút mắt cho "New Password"
         self.button_eyes_password = Button(
-            self, image=self.button_image_eyes_password, borderwidth=0,
-            highlightthickness=0, command=self.toggle_pw1, relief="flat"
+            self, image=self.eye_hide_img, borderwidth=0,
+            highlightthickness=0, command=self.toggle_pw1, relief="flat", cursor="hand2"
         )
         self.button_eyes_password.place(x=1270.0, y=476.0, width=30.0, height=21.0)
 
+        # Nút mắt cho "Confirm password"
         self.button_eyes = Button(
-            self, image=self.button_image_eyes, borderwidth=0, highlightthickness=0,
-            command=self.toggle_pw2, relief="flat"
+            self, image=self.eye_hide_img, borderwidth=0, highlightthickness=0,
+            command=self.toggle_pw2, relief="flat", cursor="hand2"
         )
         self.button_eyes.place(x=1270.0, y=617.0, width=30.0, height=21.0)
 
+        # Hover bindings (chỉ đổi ảnh khi rê chuột; rời chuột thì trả về theo trạng thái)
+        self.button_eyes_password.bind("<Enter>", lambda e: self.button_eyes_password.config(image=self.eye_show_img))
+        self.button_eyes_password.bind("<Leave>", lambda e: self._sync_eye_icons())
+
+        self.button_eyes.bind("<Enter>", lambda e: self.button_eyes.config(image=self.eye_show_img))
+        self.button_eyes.bind("<Leave>", lambda e: self._sync_eye_icons())
+
         self.button_resetpassword = Button(
             self, image=self.button_image_resetpassword, borderwidth=0,
-            highlightthickness=0, command=self.on_reset_password, relief="flat"
+            highlightthickness=0, command=self.on_reset_password, relief="flat", cursor="hand2"
         )
         self.button_resetpassword.place(x=844.0, y=817.0, width=484.0, height=67.0)
+
+        # Đồng bộ icon lần đầu
+        self._sync_eye_icons()
 
     # ========= lifecycle: nhận email từ frame trước & fill username =========
     def on_show(self, email=None):
         self.email = (email or "").strip().lower()
         self.newpw_var.set(""); self.confirmpw_var.set(""); self.otp_var.set("")
         self.username_var.set("")
+        self.pw1_visible = False
+        self.pw2_visible = False
+        self.entry_newpassword.config(show="*")
+        self.entry_confirm_newpassword.config(show="*")
+        self._sync_eye_icons()
 
         if not self.email:
             messagebox.showwarning("Cảnh báo", "Thiếu email để đặt lại mật khẩu")
@@ -215,11 +239,25 @@ class Frame05(Frame):
         finally:
             self.button_resetpassword.config(state=NORMAL)
 
-    # ========= helpers: show/hide password =========
+    # ========= helpers: show/hide password + đồng bộ icon =========
     def toggle_pw1(self):
-        cur = self.entry_newpassword.cget("show")
-        self.entry_newpassword.config(show="" if cur == "*" else "*")
+        # Đảo trạng thái
+        self.pw1_visible = not self.pw1_visible
+        self.entry_newpassword.config(show="" if self.pw1_visible else "*")
+        self._sync_eye_icons()
 
     def toggle_pw2(self):
-        cur = self.entry_confirm_newpassword.cget("show")
-        self.entry_confirm_newpassword.config(show="" if cur == "*" else "*")
+        # Đảo trạng thái
+        self.pw2_visible = not self.pw2_visible
+        self.entry_confirm_newpassword.config(show="" if self.pw2_visible else "*")
+        self._sync_eye_icons()
+
+    def _sync_eye_icons(self):
+        """
+        Đồng bộ icon theo trạng thái hiển thị của 2 ô password:
+        - Visible -> eye_show
+        - Hidden  -> eye_hide
+        (Hàm này cũng được gọi khi <Leave> để trả icon về đúng trạng thái)
+        """
+        self.button_eyes_password.config(image=self.eye_show_img if self.pw1_visible else self.eye_hide_img)
+        self.button_eyes.config(image=self.eye_show_img if self.pw2_visible else self.eye_hide_img)

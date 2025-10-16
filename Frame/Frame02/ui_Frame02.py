@@ -16,6 +16,8 @@ class Frame02(tk.Frame):
     def __init__(self, parent, controller=None):
         super().__init__(parent)
         self.controller = controller
+
+        # trạng thái hiển thị mật khẩu
         self.password_hidden = True
         self.confirm_password_hidden = True
         self.terms_accepted = False
@@ -32,7 +34,7 @@ class Frame02(tk.Frame):
         )
         self.canvas.place(x=0, y=0)
 
-        # --- Images ---
+        # --- Images nền ---
         self.image_1_img = PhotoImage(file=relative_to_assets("image_1.png"))
         self.image_1 = self.canvas.create_image(360.0, 512.0, image=self.image_1_img)
 
@@ -119,60 +121,74 @@ class Frame02(tk.Frame):
                                  highlightthickness=0, font=("Crimson Pro Regular", 26 * -1))
         self.entry_email.place(x=859.0, y=438.0, width=449.0, height=67.0)
 
+        # --- Buttons: Register / Login ---
         self.button_register_img = PhotoImage(file=relative_to_assets("button_register.png"))
         self.button_register = Button(self, image=self.button_register_img,
                                       borderwidth=0, highlightthickness=0,
-                                      command=self.register_action, relief="flat")
+                                      command=self.register_action, relief="flat", cursor="hand2")
         self.button_register.place(x=839.0, y=848.0, width=473.0, height=68.0)
-
-        self.button_eyes_1_img = PhotoImage(file=relative_to_assets("button_eyes_1.png"))
-        self.button_eyes_1 = Button(self, image=self.button_eyes_1_img,
-                                    borderwidth=0, highlightthickness=0,
-                                    command=self.toggle_password_visibility, relief="flat")
-        self.button_eyes_1.place(x=1270.0, y=597.0, width=30.0, height=21.0)
-
-        self.button_eyes_2_img = PhotoImage(file=relative_to_assets("button_eyes_2.png"))
-        self.button_eyes_2 = Button(self, image=self.button_eyes_2_img,
-                                    borderwidth=0, highlightthickness=0,
-                                    command=self.toggle_confirm_password_visibility, relief="flat")
-        self.button_eyes_2.place(x=1270.0, y=738.0, width=30.0, height=21.0)
 
         self.button_login_img = PhotoImage(file=relative_to_assets("button_login.png"))
         self.button_login = Button(self, image=self.button_login_img,
                                    borderwidth=0, highlightthickness=0,
                                    command=lambda: self.controller.show_frame("Frame01") if self.controller else None,
-                                   relief="flat")
+                                   relief="flat", cursor="hand2")
         self.button_login.place(x=1169.0, y=933.0, width=67.0, height=21.0)
 
+        # --- Checkbox Terms ---
         self.button_3_img = PhotoImage(file=relative_to_assets("button_3.png"))
         self.button_2 = Button(self, image=self.button_3_img,
                                borderwidth=0, highlightthickness=0,
-                               command=self.toggle_terms, relief="flat")
+                               command=self.toggle_terms, relief="flat", cursor="hand2")
         self.button_2.place(x=887.0, y=810.0, width=21.5, height=23.0)
 
+        # --- Eye Icons (mới): dùng eye_hide / eye_show + hover ---
+        self.eye_hide_img = PhotoImage(file=relative_to_assets("eye_hide.png"))
+        self.eye_show_img = PhotoImage(file=relative_to_assets("eye_show.png"))
+
+        # Eye cho Password
+        self.button_eye_pw = Button(self, image=self.eye_hide_img,
+                                    borderwidth=0, highlightthickness=0,
+                                    command=self.toggle_password_visibility,
+                                    relief="flat", cursor="hand2")
+        self.button_eye_pw.place(x=1270.0, y=597.0, width=30.0, height=21.0)
+        self.button_eye_pw.bind("<Enter>", lambda e: self.button_eye_pw.config(image=self.eye_show_img))
+        self.button_eye_pw.bind("<Leave>", lambda e: self._sync_eye_icons())
+
+        # Eye cho Confirm Password
+        self.button_eye_cpw = Button(self, image=self.eye_hide_img,
+                                     borderwidth=0, highlightthickness=0,
+                                     command=self.toggle_confirm_password_visibility,
+                                     relief="flat", cursor="hand2")
+        self.button_eye_cpw.place(x=1270.0, y=738.0, width=30.0, height=21.0)
+        self.button_eye_cpw.bind("<Enter>", lambda e: self.button_eye_cpw.config(image=self.eye_show_img))
+        self.button_eye_cpw.bind("<Leave>", lambda e: self._sync_eye_icons())
+
+        # Đồng bộ icon ban đầu
+        self._sync_eye_icons()
+
     # ----------------------------------------------------------------
+    def _sync_eye_icons(self):
+        """Đồng bộ icon theo trạng thái show/hide của 2 ô mật khẩu."""
+        self.button_eye_pw.config(image=self.eye_hide_img if self.password_hidden else self.eye_show_img)
+        self.button_eye_cpw.config(image=self.eye_hide_img if self.confirm_password_hidden else self.eye_show_img)
+
     def toggle_password_visibility(self):
-        """Toggle password visibility"""
-        if self.password_hidden:
-            self.entry_password.config(show="")
-            self.password_hidden = False
-        else:
-            self.entry_password.config(show="*")
-            self.password_hidden = True
+        """Toggle password visibility + sync icon"""
+        self.password_hidden = not self.password_hidden
+        self.entry_password.config(show="*" if self.password_hidden else "")
+        self._sync_eye_icons()
 
     def toggle_confirm_password_visibility(self):
-        """Toggle confirm password visibility"""
-        if self.confirm_password_hidden:
-            self.entry_password_confirm.config(show="")
-            self.confirm_password_hidden = False
-        else:
-            self.entry_password_confirm.config(show="*")
-            self.confirm_password_hidden = True
+        """Toggle confirm password visibility + sync icon"""
+        self.confirm_password_hidden = not self.confirm_password_hidden
+        self.entry_password_confirm.config(show="*" if self.confirm_password_hidden else "")
+        self._sync_eye_icons()
 
     def toggle_terms(self):
         """Toggle terms and conditions acceptance"""
         self.terms_accepted = not self.terms_accepted
-        # You can add visual feedback here (e.g., change button appearance)
+        # đổi icon checkbox
         self.button_2_img = PhotoImage(file=relative_to_assets("button_2.png"))
         self.button_2.config(image=self.button_2_img if self.terms_accepted else self.button_3_img)
         if self.terms_accepted:
@@ -215,32 +231,26 @@ class Frame02(tk.Frame):
             result = AuthService.register_user(username, email, password, confirm_password)
 
             if result["success"]:
-                # Registration successful
                 messagebox.showinfo(
                     "Registration Successful",
                     "Account created! Please complete your profile."
                 )
 
-                # Store user data in controller for profile completion
                 if self.controller:
                     if not hasattr(self.controller, 'current_user'):
                         self.controller.current_user = {}
                     self.controller.current_user = result['user_data']
                     self.controller.current_user['profile_completed'] = 0
 
-                # Clear all fields
                 self.clear_form()
 
-                # Navigate to profile completion page
                 if self.controller:
                     try:
                         self.controller.show_frame("Frame03")
                     except KeyError:
-                        # If Frame03 not available, go to login
                         self.controller.show_frame("Frame01")
 
             else:
-                # Registration failed
                 messagebox.showerror(
                     "Registration Failed",
                     result["message"]
@@ -269,10 +279,10 @@ class Frame02(tk.Frame):
         self.confirm_password_hidden = True
         self.entry_password.config(show="*")
         self.entry_password_confirm.config(show="*")
+        self._sync_eye_icons()
 
     def on_show(self):
         """Called when Frame02 is displayed"""
         print("Frame02 displayed")
         self.clear_form()
         self.entry_username.focus()
-

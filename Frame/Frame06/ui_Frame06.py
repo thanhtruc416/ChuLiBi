@@ -15,7 +15,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 # --- chart functions & preprocessing ---
-from Function.clean_dashboard import (
+from Function.Frame06_chart_dashboard import (
     _plot_pie_meal_share,
     _plot_line_orders_by_age,
     _plot_stacked_hist_delivery,
@@ -25,7 +25,7 @@ from Function.clean_dashboard import (
 
 # --- dropdown & KPI functions ---
 from Function.dropdown_profile import DropdownMenu
-from Function.kpi_functions import get_all_kpis
+from Function.Frame06_kpi_dashboard import get_all_kpis
 
 # ---------------- Paths & Fonts ----------------
 OUTPUT_PATH = Path(__file__).parent                      # e.g., .../Frame/Frame06
@@ -246,13 +246,13 @@ class Frame06(Frame):
         self.button_Recommendation = Button(self, image=self.button_Recommendation_image, borderwidth=0,
                                             highlightthickness=0, command=lambda: self.controller.show_frame("Frame010"),
                                             relief="flat")
-        self.button_Recommendation.place(x=0.0, y=468.0, width=336.0, height=82.0)
+        self.button_Recommendation.place(x=0.0, y=500.0, width=337.0, height=200.0)
 
         self.button_Delivery_image = _btn_img("button_Delivery.png")
         self.button_Delivery = Button(self, image=self.button_Delivery_image, borderwidth=0,
                                       highlightthickness=0, command=lambda: self.controller.show_frame("Frame09"),
                                       relief="flat")
-        self.button_Delivery.place(x=0.0, y=552.0, width=337.0, height=90.0)
+        self.button_Delivery.place(x=0.0, y=468.0, width=336.0, height=82.0)
 
         self.button_Report_image = _btn_img("button_Report.png")
         self.button_Report = Button(self, image=self.button_Report_image, borderwidth=0,

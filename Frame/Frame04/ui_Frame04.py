@@ -1,6 +1,6 @@
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox  # <— thêm messagebox
-from Function.ForgetPassword import send_otp_if_email_exists                      # <— thêm import
+from Function.Frame04_ForgetPassword import send_otp_if_email_exists                      # <— thêm import
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame04")

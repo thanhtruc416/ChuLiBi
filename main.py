@@ -9,6 +9,7 @@ from Frame.Frame04.ui_Frame04 import Frame04
 from Frame.Frame05.ui_Frame05 import Frame05
 from Frame.Frame06.ui_Frame06 import Frame06
 from Frame.Frame07.ui_Frame07 import Frame07
+#from Frame.Frame08.ui_Frame08 import Frame08
 # Import các frame khác nếu bạn có, ví dụ:
 # from Frame.Frame02.ui_Frame02 import Frame02
 # from Frame.Frame03.ui_Frame03 import Frame03
@@ -49,7 +50,7 @@ class Main(tk.Tk):
             Frame04,
             Frame05,
             Frame06,
-            Frame07
+            Frame07,
             # Thêm các frame khác ở đây: Frame02, Frame03, ...
         ]
 
