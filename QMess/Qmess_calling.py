@@ -1,204 +1,246 @@
-# popup_manager.py
+# Qmess_calling.py
+"""
+Unified popup caller for Tkinter app.
+
+- Provides Qmess.show(<CODE>) and helper methods (e.g., Qmess.login_invalid())
+- Auto-loads PNG assets (icon, gradient button) from several possible layouts.
+- Falls back to text-only layout if assets are missing.
+
+Directory strategies (checked in order) for each popup N (1..15):
+  1) ./ui_popup_XX/assets/
+  2) ./assets/ui_popup_XX/
+  3) ./assets/popup_XX/
+  4) ./assets/            # one shared folder for all popups
+
+If using a shared folder (4), prefer files named image_N*.png / button_N*.png.
+Otherwise any image_*.png / button_*.png will be used.
+"""
+
 from __future__ import annotations
+from dataclasses import dataclass
+from typing import Callable, Optional, Dict, Iterable, Tuple
 from pathlib import Path
 import tkinter as tk
-from tkinter import Toplevel, Canvas, PhotoImage, Button
+from tkinter import Toplevel, Canvas, Button, PhotoImage
 
-# ---- Core builder (giống mẫu tr_Qmess_thongtin: tạo Toplevel, canh giữa, vẽ Canvas) ----
-def _build_popup(parent: tk.Misc | None,
-                 assets_dir: Path,
-                 title: str,
-                 subtitle: str = "",
-                 image_filename: str = "image_success.png",
-                 ok_text: str | None = None,
-                 on_ok=None) -> Toplevel:
-    win = Toplevel(parent)
-    win.configure(bg="#FFFFFF")
-    win.resizable(False, False)
-    # Kích thước mặc định của các ui_popup_* (480x329)
-    W, H = 480, 329
-    win.update_idletasks()
-    sw = win.winfo_screenwidth()
-    sh = win.winfo_screenheight()
-    x = (sw // 2) - (W // 2)
-    y = (sh // 2) - (H // 2)
-    win.geometry(f"{W}x{H}+{x}+{y}")
+ROOT_DIR = Path(__file__).resolve().parent  # where this file lives
 
-    canvas = Canvas(win, bg="#FFFFFF", width=W, height=H, bd=0,
-                    highlightthickness=0, relief="ridge")
-    canvas.place(x=0, y=0)
 
-    # Giữ reference ảnh trên window để tránh GC
-    img = PhotoImage(file=assets_dir / image_filename)
-    btn_img = PhotoImage(file=assets_dir / "button_okay.png")
-    setattr(win, "_pm_image", img)
-    setattr(win, "_pm_btn", btn_img)
+# ------------------------ Asset discovery ------------------------
+def _find_assets_for(n: int) -> Tuple[Optional[Path], int]:
+    """
+    Return (assets_dir, index) for popup n.
 
-    # Ảnh minh hoạ
-    canvas.create_image(W // 2, 92, image=img)
+    assets_dir may be None (text-only). `index` is forwarded so loaders can try
+    image_{index}.png / button_{index}.png when using a shared assets folder.
+    """
+    candidates = [
+        ROOT_DIR / f"ui_popup_{n:02d}" / "assets",
+        ROOT_DIR / "assets" / f"ui_popup_{n:02d}",
+        ROOT_DIR / "assets" / f"popup_{n:02d}",
+        ROOT_DIR / "assets",  # shared
+    ]
 
-    # Title & subtitle (tọa độ bám theo các ui_popup_*)
-    canvas.create_text(40, 159, anchor="nw", text=title,
-                       fill="#706093", font=("Young Serif", 24))
-    if subtitle:
-        canvas.create_text(80 if len(subtitle) < 32 else 95, 204 if "username" in subtitle else 206,
-                           anchor="nw", text=subtitle, fill="#B992B9",
-                           font=("Crimson Pro Regular", 17))
+    for p in candidates:
+        if p.exists():
+            # If there is at least icon or button, accept
+            if any(p.glob("image_*.png")) or any(p.glob("button_*.png")):
+                return p, n
+    return None, n
 
-    # Nút OK
-    def _ok():
+
+def _first_match(folder: Path, patterns: Iterable[str]) -> Optional[Path]:
+    for pat in patterns:
+        files = sorted(folder.glob(pat))
+        if files:
+            return files[0]
+    return None
+
+
+# ------------------------ Core window ------------------------
+@dataclass
+class PopupSpec:
+    title: str
+    subtitle: str
+    width: int = 480
+    height: int = 329
+    ok_text: str = "Okay"
+    assets_dir: Optional[Path] = None
+    asset_index: int = 0  # popup number for naming in shared assets
+
+
+class PopupWindow:
+    def __init__(self, parent: Optional[tk.Misc], spec: PopupSpec,
+                 on_ok: Optional[Callable[[], None]] = None):
+        self.parent = parent
+        self.spec = spec
+        self.on_ok = on_ok
+
+        self.top = Toplevel(parent)
+        self.top.withdraw()
+        self.top.configure(bg="#FFFFFF")
+        self.top.resizable(False, False)
+
+        # Keep references to images
+        self._img_icon: Optional[PhotoImage] = None
+        self._img_btn: Optional[PhotoImage] = None
+
+        self._build_ui()
+
+    # -------------- geometry helpers --------------
+    def _center(self):
+        self.top.update_idletasks()
+        sw, sh = self.top.winfo_screenwidth(), self.top.winfo_screenheight()
+        x = (sw - self.spec.width) // 2
+        y = (sh - self.spec.height) // 2
+        self.top.geometry(f"{self.spec.width}x{self.spec.height}+{x}+{y}")
+
+    # -------------- asset loading --------------
+    def _load_icon(self) -> Optional[PhotoImage]:
+        d = self.spec.assets_dir
+        if not d:
+            return None
+        n = self.spec.asset_index
+        # Prefer exact-numbered names when shared folder is used
+        preferred = [f"image_{n}.png", f"image_{n}_*.png"]
+        generic = ["image_1.png", "image_*.png", "icon_*.png", "icon.png"]
+        path = _first_match(d, preferred + generic)
+        if path:
+            try:
+                return PhotoImage(file=str(path))
+            except Exception:
+                return None
+        return None
+
+    def _load_button_bg(self) -> Optional[PhotoImage]:
+        d = self.spec.assets_dir
+        if not d:
+            return None
+        n = self.spec.asset_index
+        preferred = [f"button_{n}.png", f"button_{n}_*.png"]
+        generic = ["button_1.png", "button_*.png"]
+        path = _first_match(d, preferred + generic)
+        if path:
+            try:
+                return PhotoImage(file=str(path))
+            except Exception:
+                return None
+        return None
+
+    # -------------- UI --------------
+    def _build_ui(self):
+        w, h = self.spec.width, self.spec.height
+        c = Canvas(self.top, bg="#FFFFFF", height=h, width=w,
+                   bd=0, highlightthickness=0, relief="ridge")
+        c.place(x=0, y=0)
+
+        # Try assets
+        self._img_icon = self._load_icon()
+        if self._img_icon:
+            # center icon horizontally near top
+            c.create_image(w / 2, 90, image=self._img_icon)
+
+        # Title + Subtitle (colors per design)
+        # Use pixel-like sizes close to Tkinter Designer look
+        c.create_text(40, 150, anchor="nw",
+                      text=self.spec.title, fill="#706093",
+                      font=("Young Serif", 24))
+        c.create_text(40, 190, anchor="nw",
+                      text=self.spec.subtitle, fill="#B992B9",
+                      font=("Crimson Pro", 14))
+
+        # Button
+        self._img_btn = self._load_button_bg()
+        if self._img_btn:
+            btn = Button(self.top, image=self._img_btn, text=self.spec.ok_text,
+                         compound="center", fg="#FFFFFF",
+                         font=("Crimson Pro", 14, "bold"), borderwidth=0,
+                         highlightthickness=0, relief="flat",
+                         command=self._ok_and_close)
+            # try to mimic exported sizes (around 289x61)
+            bw, bh = 289, 61
+            x = (w - bw) // 2
+            y = h - 91
+            btn.place(x=x, y=y, width=bw, height=bh)
+        else:
+            btn = Button(self.top, text=self.spec.ok_text,
+                         bg="#FFFFFF", fg="#5A3372",
+                         font=("Crimson Pro", 12, "bold"),
+                         relief="flat", command=self._ok_and_close)
+            btn.place(x=w // 2 - 70, y=h - 85, width=140, height=44)
+
+        self._center()
+        self.top.deiconify()
+        self.top.transient(self.parent)
+        self.top.grab_set()
+
+    def _ok_and_close(self):
         try:
-            if callable(on_ok):
-                on_ok()
+            if callable(self.on_ok):
+                self.on_ok()
         finally:
-            win.destroy()
-
-    Button(win, image=btn_img, borderwidth=0, highlightthickness=0,
-           command=_ok, relief="flat").place(x=95, y=244, width=289, height=61)
-
-    # Đóng khi mất focus (giống dropdown) – tuỳ chọn
-    win.bind("<FocusOut>", lambda e: win.destroy())
-    win.after(10, win.deiconify)
-    return win
+            self.top.destroy()
 
 
-# ---- Bảng mapping: mã_popup -> (thư mục ui_popup_XX, title, subtitle, ảnh) ----
-# Gắn đúng tên thư mục ui_popup_* của bạn nếu khác.
-POPUPS: dict[str, dict] = {
-    # ĐƯỜNG DẪN: Path(__file__).parent / "ui_popup_XX" / "assets"
-    # 01
-    "import_success": {
-        "assets": "ui_popup_01",  # "Data imported successfully" (image_success)
-        "title": "Data imported successfully",
-        "subtitle": "Start your journey now!",
-        "image": "image_success.png",
-    },
-    # 02
-    "changes_saved": {
-        "assets": "ui_popup_02",
-        "title": "Done",
-        "subtitle": "All changes have been saved!",
-        "image": "image_success.png",
-    },
-    # 03
-    "invalid_file": {
-        "assets": "ui_popup_03",
-        "title": "Invalid file format",
-        "subtitle": "Please import again!",
-        "image": "image_cancel.png",
-    },
-    # 04
-    "invalid_credentials": {
-        "assets": "ui_popup_04",
-        "title": "Invalid username or password",
-        "subtitle": "Please enter correct username or password!",
-        "image": "image_cancel.png",
-    },
-    # 05
-    "missing_login_fields": {
-        "assets": "ui_popup_05",
-        "title": "Missing data",
-        "subtitle": "Please enter both username and password!",
-        "image": "image_alert.png",
-    },
-    # 06
-    "otp_sent": {
-        "assets": "ui_popup_06",
-        "title": "Sent!",
-        "subtitle": "OTP has been sent successfully",
-        "image": "image_success.png",
-    },
-    # 07
-    "login_success": {
-        "assets": "ui_popup_07",
-        "title": "Signed in successfully!",
-        "subtitle": "Welcome!",
-        "image": "image_success.png",
-    },
-    # 08
-    "import_missing_required": {
-        "assets": "ui_popup_08",
-        "title": "Imported data is missing required",
-        "subtitle": "Please import again!",
-        "image": "image_alert.png",
-    },
-    # 09
-    "reset_ok": {
-        "assets": "ui_popup_09",
-        "title": "Password reset successfully",
-        "subtitle": "You can login again now!",
-        "image": "image_success.png",
-    },
-    # 10
-    "missing_generic": {
-        "assets": "ui_popup_10",
-        "title": "Missing data",
-        "subtitle": "Please fill in all required field!",
-        "image": "image_alert.png",
-    },
-    # 11
-    "server_unreachable": {
-        "assets": "ui_popup_11",
-        "title": "Cannot connect to the server",
-        "subtitle": "Please try again later!",
-        "image": "image_alert.png",
-    },
-    # 12
-    "email_not_found": {
-        "assets": "ui_popup_12",
-        "title": "Email not found or incorrect",
-        "subtitle": "Please fill correct email!",
-        "image": "image_profile.png",
-    },
-    # 13
-    "password_mismatch": {
-        "assets": "ui_popup_13",
-        "title": "New password and confirmation do not match!",
-        "subtitle": "",
-        "image": "image_alert.png",
-    },
-    # 14
-    "registration_ok": {
-        "assets": "ui_popup_14",
-        "title": "Registration successfully!",
-        "subtitle": "Your profile has been completed",
-        "image": "image_success.png",
-    },
-    # 15
-    "wrong_otp": {
-        "assets": "ui_popup_15",
-        "title": "Wrong OTP!",
-        "subtitle": "Please fill again",
-        "image": "image_cancel.png",
-    },
-}
-
-
-def show_popup(kind: str,
-               parent: tk.Misc | None = None,
-               on_ok=None) -> Toplevel:
+# ------------------------ Public API ------------------------
+class Qmess:
     """
-    Mở pop-up theo mã 'kind'.
-    - parent: Window/Frame cha (khuyên truyền vào để pop-up nổi trên app)
-    - on_ok: callback sau khi bấm OK (tùy chọn)
-    Trả về: Toplevel của pop-up.
+    Usage:
+        from Qmess_calling import Qmess
+        Qmess.show("LOGIN_INVALID", parent=self)
+        # or helpers:
+        Qmess.login_invalid(self)
     """
-    cfg = POPUPS.get(kind)
-    if not cfg:
-        # fallback: hiển thị generic success nếu mã không tồn tại
-        assets_dir = Path(__file__).parent / "ui_popup_01" / "assets"
-        return _build_popup(parent, assets_dir,
-                            title="Done",
-                            subtitle="Operation completed",
-                            image_filename="image_success.png",
-                            on_ok=on_ok)
 
-    assets_dir = Path(__file__).parent / cfg["assets"] / "assets"
-    return _build_popup(
-        parent=parent,
-        assets_dir=assets_dir,
-        title=cfg["title"],
-        subtitle=cfg.get("subtitle", ""),
-        image_filename=cfg.get("image", "image_success.png"),
-        on_ok=on_ok,
-    )
+    # Registry filled below
+    _REGISTRY: Dict[str, PopupSpec] = {}
+
+    @staticmethod
+    def _make(title: str, subtitle: str, n: int) -> PopupSpec:
+        d, idx = _find_assets_for(n)
+        return PopupSpec(title=title, subtitle=subtitle,
+                         assets_dir=d, asset_index=idx)
+
+    # Build registry
+    _REGISTRY = {
+        "IMPORT_SUCCESS":          _make.__func__("Data imported successfully", "Start your journey now!", 1),
+        "SAVE_DONE":               _make.__func__("Done", "All changes have been saved!", 2),
+        "IMPORT_BAD_FORMAT":       _make.__func__("Invalid file format", "Please import again!", 3),
+        "LOGIN_INVALID":           _make.__func__("Invalid username or password", "Please enter correct username or password!", 4),
+        "LOGIN_MISSING":           _make.__func__("Missing data", "Please enter both username and password!", 5),
+        "OTP_SENT":                _make.__func__("Sent!", "OTP has been sent successfully", 6),
+        "LOGIN_SUCCESS":           _make.__func__("Signed in successfully!", "Welcome!", 7),
+        "IMPORT_MISSING_REQUIRED": _make.__func__("Imported data is missing required", "Please import again!", 8),
+        "RESET_PASSWORD_SUCCESS":  _make.__func__("Password reset successfully", "You can login again now!", 9),
+        "PROFILE_MISSING_REQUIRED":_make.__func__("Missing data", "Please fill in all required field!", 10),
+        "CANNOT_CONNECT_SERVER":   _make.__func__("Cannot connect to the server", "Please try again later!", 11),
+        "EMAIL_NOT_FOUND":         _make.__func__("Email not found or incorrect", "Please fill correct email!", 12),
+        "PASSWORD_MISMATCH":       _make.__func__("New password and confirmation do not match!", "", 13),
+        "REGISTER_SUCCESS":        _make.__func__("Registration successfully!", "Your profile has been completed", 14),
+        "WRONG_OTP":               _make.__func__("Wrong OTP!", "Please fill again", 15),
+    }
+
+    @staticmethod
+    def show(code: str, parent: Optional[tk.Misc] = None,
+             on_ok: Optional[Callable[[], None]] = None) -> Toplevel:
+        spec = Qmess._REGISTRY.get((code or "").upper())
+        if not spec:
+            spec = PopupSpec(title=code or "Message", subtitle="")
+        return PopupWindow(parent, spec, on_ok=on_ok).top
+
+    # Convenience helpers
+    import_success              = staticmethod(lambda parent=None, on_ok=None: Qmess.show("IMPORT_SUCCESS", parent, on_ok))
+    save_done                   = staticmethod(lambda parent=None, on_ok=None: Qmess.show("SAVE_DONE", parent, on_ok))
+    import_bad_format           = staticmethod(lambda parent=None, on_ok=None: Qmess.show("IMPORT_BAD_FORMAT", parent, on_ok))
+    login_invalid               = staticmethod(lambda parent=None, on_ok=None: Qmess.show("LOGIN_INVALID", parent, on_ok))
+    login_missing               = staticmethod(lambda parent=None, on_ok=None: Qmess.show("LOGIN_MISSING", parent, on_ok))
+    otp_sent                    = staticmethod(lambda parent=None, on_ok=None: Qmess.show("OTP_SENT", parent, on_ok))
+    login_success               = staticmethod(lambda parent=None, on_ok=None: Qmess.show("LOGIN_SUCCESS", parent, on_ok))
+    import_missing_required     = staticmethod(lambda parent=None, on_ok=None: Qmess.show("IMPORT_MISSING_REQUIRED", parent, on_ok))
+    reset_password_success      = staticmethod(lambda parent=None, on_ok=None: Qmess.show("RESET_PASSWORD_SUCCESS", parent, on_ok))
+    profile_missing_required    = staticmethod(lambda parent=None, on_ok=None: Qmess.show("PROFILE_MISSING_REQUIRED", parent, on_ok))
+    cannot_connect_server       = staticmethod(lambda parent=None, on_ok=None: Qmess.show("CANNOT_CONNECT_SERVER", parent, on_ok))
+    email_not_found             = staticmethod(lambda parent=None, on_ok=None: Qmess.show("EMAIL_NOT_FOUND", parent, on_ok))
+    password_mismatch           = staticmethod(lambda parent=None, on_ok=None: Qmess.show("PASSWORD_MISMATCH", parent, on_ok))
+    register_success            = staticmethod(lambda parent=None, on_ok=None: Qmess.show("REGISTER_SUCCESS", parent, on_ok))
+    wrong_otp                   = staticmethod(lambda parent=None, on_ok=None: Qmess.show("WRONG_OTP", parent, on_ok))
