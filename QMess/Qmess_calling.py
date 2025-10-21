@@ -142,17 +142,32 @@ class PopupWindow:
 
         # Title + Subtitle (colors per design)
         # Use pixel-like sizes close to Tkinter Designer look
-        c.create_text(40, 150, anchor="nw",
-                      text=self.spec.title, fill="#706093",
-                      font=("Young Serif", 24))
-        c.create_text(40, 190, anchor="nw",
-                      text=self.spec.subtitle, fill="#B992B9",
-                      font=("Crimson Pro", 14))
+        w, h = self.spec.width, self.spec.height
+        # Title
+        c.create_text(
+            w / 2, 150,  # đặt X ở giữa
+            anchor="n",  # neo theo đỉnh -> canh giữa ngang
+            text=self.spec.title,
+            fill="#706093",
+            font=("Young Serif", 18),
+            width=w - 40, #tuyf chọn hàng để xuống dòng
+            justify="center"  # (tuỳ chọn) căn giữa khi xuống dòng
+        )
+        # Subtitle
+        c.create_text(
+            w / 2, 195,
+            anchor="n",
+            text=self.spec.subtitle,
+            fill="#B992B9",
+            font=("Crimson Pro", 14),
+            width=w - 80,
+            justify="center"
+        )
 
         # Button
         self._img_btn = self._load_button_bg()
         if self._img_btn:
-            btn = Button(self.top, image=self._img_btn, text=self.spec.ok_text,
+            btn = Button(self.top, image=self._img_btn,
                          compound="center", fg="#FFFFFF",
                          font=("Crimson Pro", 14, "bold"), borderwidth=0,
                          highlightthickness=0, relief="flat",
