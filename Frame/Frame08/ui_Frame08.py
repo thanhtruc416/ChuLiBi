@@ -1,158 +1,254 @@
 # ui_Frame08.py — FULL sidebar buttons + content scroll bên phải
 
+import os
+
+# Suppress multiprocessing warnings
+os.environ['PYTHONWARNINGS'] = 'ignore::UserWarning'
+os.environ['LOKY_MAX_CPU_COUNT'] = '2'  # Limit parallel workers
+
 from pathlib import Path
-from tkinter import Tk, Canvas, Button, PhotoImage, Scrollbar, Frame
-from ui_content_Frame08 import build_content
+from tkinter import Frame, Canvas, Button, PhotoImage, Scrollbar
+import tkinter as tk
+import sys
+
+# Import build_content from the same directory
+try:
+    from .ui_content_Frame08 import build_content
+except ImportError:
+    from ui_content_Frame08 import build_content
+
+# Import dropdown if needed (similar to Frame06)
+try:
+    from Function.dropdown_profile import DropdownMenu
+except ImportError:
+    DropdownMenu = None
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame08")
 
+
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-# ================== APP ==================
-window = Tk()
-window.geometry("1440x1024")
-window.configure(bg="#FFFFFF")
 
-# NỀN/ASSETS TỪ TKINTER DESIGNER (sidebar, topbar…)
-canvas = Canvas(window, bg="#FFFFFF", height=1088, width=1440,
-                bd=0, highlightthickness=0, relief="ridge")
-canvas.place(x=0, y=0)
+class Frame08(Frame):
+    def __init__(self, parent, controller):
+        super().__init__(parent)
+        self.controller = controller
+        self._imgs = {}
+        self.configure(bg="#FFFFFF")
 
-# --- nền trái/phải (giữ như file gốc) ---
-image_image_1 = PhotoImage(file=relative_to_assets("image_1.png"))
-canvas.create_image(723.0, 544.0, image=image_image_1)
+        # Constants
+        APP_W, APP_H = 1440, 1024
+        RIGHT_X = 340
+        RIGHT_Y = 65
+        BAR_W = 20
 
-image_image_2 = PhotoImage(file=relative_to_assets("image_2.png"))
-canvas.create_image(173.0, 544.0, image=image_image_2)
+        # Main Canvas
+        canvas = Canvas(
+            self,
+            bg="#FFFFFF",
+            height=1088,
+            width=1440,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge"
+        )
+        canvas.place(x=0, y=0)
 
-# logo chữ dưới cùng
-canvas.create_text(92.0, 942.0, anchor="nw",
-                   text="ChuLiBi", fill="#FDE5F4",
-                   font=("Rubik Burned Regular", 35 * -1))
+        # Helper function to load and cache images
+        def _safe_img(name):
+            try:
+                if name not in self._imgs:
+                    self._imgs[name] = PhotoImage(file=relative_to_assets(name))
+                return self._imgs[name]
+            except Exception as e:
+                print(f"[Frame08] Could not load image {name}: {e}")
+                return None
 
-# logo ong
-image_image_3 = PhotoImage(file=relative_to_assets("image_3.png"))
-canvas.create_image(169.0, 103.0, image=image_image_3)
+        def _add_img(img, x, y):
+            if img is not None:
+                canvas.create_image(x, y, image=img)
 
-# ---- BUTTONS TRÊN SIDEBAR (đầy đủ) ----
-btn_customer_img = PhotoImage(file=relative_to_assets("button_Customer_analysis.png"))
-Button(image=btn_customer_img, bd=0, highlightthickness=0,
-       command=lambda: print("Customer analysis"), relief="flat"
-).place(x=6.0, y=304.0, width=339.0, height=78.0)
+        # --- Background images ---
+        image_image_1 = _safe_img("image_1.png")
+        _add_img(image_image_1, 723.0, 544.0)
 
-btn_reco_img = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
-Button(image=btn_reco_img, bd=0, highlightthickness=0,
-       command=lambda: print("Recommendation"), relief="flat"
-).place(x=6.0, y=470.0, width=338.0, height=83.0)
+        image_image_2 = _safe_img("image_sidebar_bg.png")
+        _add_img(image_image_2, 168.0, 512.0)
 
-btn_delivery_img = PhotoImage(file=relative_to_assets("button_Delivery.png"))
-Button(image=btn_delivery_img, bd=0, highlightthickness=0,
-       command=lambda: print("Delivery"), relief="flat"
-).place(x=6.0, y=554.0, width=338.0, height=91.0)
+        # Logo text
+        canvas.create_text(
+            92.0, 942.0, anchor="nw",
+            text="ChuLiBi", fill="#FDE5F4",
+            font=("Rubik Burned Regular", 35 * -1)
+        )
 
-btn_report_img = PhotoImage(file=relative_to_assets("button_Report.png"))
-Button(image=btn_report_img, bd=0, highlightthickness=0,
-       command=lambda: print("Report"), relief="flat"
-).place(x=7.0, y=648.0, width=337.0, height=88.0)
+        # Logo icon
+        image_image_3 = _safe_img("image_3.png")
+        _add_img(image_image_3, 169.0, 103.0)
 
-btn_dashboard_img = PhotoImage(file=relative_to_assets("button_Dashboard.png"))
-Button(image=btn_dashboard_img, bd=0, highlightthickness=0,
-       command=lambda: print("Dashboard"), relief="flat"
-).place(x=2.0, y=194.0, width=341.0, height=89.0)
+        # --- Sidebar buttons ---
+        self._make_button("button_dashboard.png", cmd=lambda: self.controller.show_frame("Frame06"), x=0.0, y=198.0,
+                          w=335.0, h=97.0)
+        self._make_button("button_customer.png", cmd=lambda: self.controller.show_frame("Frame07"), x=0.0, y=289.0,
+                          w=335.0, h=90.0)
+        self._make_button("button_churn_1.png", cmd=lambda: print("Churn"), x=0.0, y=378.0, w=335.0, h=92.0)
+        self._make_button("button_delivery.png", cmd=lambda: self.controller.show_frame("Frame09"), x=0.0, y=464.0,
+                          w=335.0, h=89.0)
+        self._make_button("button_recommend.png", cmd=lambda: self.controller.show_frame("Frame10"), x=0.0, y=544.0,
+                          w=335.0, h=98.0)
+        self._make_button("button_report.png", cmd=lambda: print("Report"), x=0.0, y=634.0, w=335.0, h=96.0)
 
-btn_churn_img = PhotoImage(file=relative_to_assets("button_Churn.png"))
-Button(image=btn_churn_img, bd=0, highlightthickness=0,
-       command=lambda: print("Churn"), relief="flat"
-).place(x=8.0, y=385.5, width=336.0, height=80.0)
+        # Decorative icon
+        image_image_5 = _safe_img("image_5.png")
+        _add_img(image_image_5, 14.0, 426.0)
 
-# icon trang trí nhỏ (nếu cần)
-image_image_5 = PhotoImage(file=relative_to_assets("image_5.png"))
-canvas.create_image(14.0, 426.0, image=image_image_5)
+        # --- Top bar ---
+        image_image_4 = _safe_img("image_4.png")
+        _add_img(image_image_4, 885.0, 31.0)
 
-# ---- TOP BAR ----
-image_image_4 = PhotoImage(file=relative_to_assets("image_4.png"))
-canvas.create_image(892.0, 31.0, image=image_image_4)
+        canvas.create_text(
+            348.0, 2.0, anchor="nw",
+            text="   Churn", fill="#000000",
+            font=("Young Serif", 40 * -1)
+        )
 
-canvas.create_text(348.0, 2.0, anchor="nw",
-                   text="   Churn", fill="#000000",
-                   font=("Young Serif", 40 * -1))
+        # Profile button with dropdown
+        if DropdownMenu:
+            self.button_Profile_image = _safe_img("button_Profile.png")
+            self.dropdown = DropdownMenu(self)
+            self.button_Profile = Button(
+                self,
+                image=self.button_Profile_image,
+                borderwidth=0,
+                highlightthickness=0,
+                command=self.dropdown.show,
+                relief="flat"
+            )
+            self.button_Profile.place(x=1371.0, y=10.0, width=46.0, height=40.0)
+        else:
+            self._make_button(
+                "button_Profile.png",
+                cmd=lambda: print("Profile"),
+                x=1371.0, y=10.0, w=46.0, h=40.0
+            )
 
-btn_profile_img = PhotoImage(file=relative_to_assets("button_Profile.png"))
-Button(image=btn_profile_img, bd=0, highlightthickness=0,
-       command=lambda: print("Profile"), relief="flat"
-).place(x=1371.0, y=10.0, width=46.0, height=40.0)
+        self._make_button(
+            "button_Notification.png",
+            cmd=lambda: print("Notification"),
+            x=1306.0, y=10.0, w=46.0, h=43.0
+        )
 
-btn_noti_img = PhotoImage(file=relative_to_assets("button_Notification.png"))
-Button(image=btn_noti_img, bd=0, highlightthickness=0,
-       command=lambda: print("Notification"), relief="flat"
-).place(x=1306.0, y=10.0, width=46.0, height=43.0)
+        # ================== Content + Scrollbar ==================
+        # Right content frame
+        right_content = Frame(self, bg="#FFFFFF")
+        right_content.place(x=RIGHT_X, y=RIGHT_Y)
 
-# ================== NỘI DUNG + SCROLLBAR SÁT PHẢI ==================
-APP_W, APP_H = 1440, 1024
+        # Build content canvas
+        RIGHT_W = APP_W - RIGHT_X - BAR_W
+        RIGHT_H = APP_H - RIGHT_Y
+        canvas_content = build_content(right_content, RIGHT_W, RIGHT_H)
 
-# Lề trái vùng nội dung (đứng sau sidebar). TĂNG số này nếu còn lấn.
-RIGHT_X = 340     # <— chỉnh 290~310 tùy file nền/ảnh sidebar của bạn
-RIGHT_Y = 65
-BAR_W   = 20      # độ rộng thanh cuộn ngoài cùng bên phải
+        # Scrollbar gutter
+        right_gutter = Frame(self, bg="#FFFFFF")
+        right_gutter.place(x=APP_W - BAR_W, y=RIGHT_Y, width=BAR_W, height=RIGHT_H)
 
-# Khung chứa nội dung
-right_content = Frame(window, bg="#FFFFFF")
-right_content.place(x=RIGHT_X, y=RIGHT_Y)
+        # Vertical scrollbar
+        vbar = Scrollbar(
+            right_gutter,
+            orient="vertical",
+            command=canvas_content.yview,
+            width=BAR_W,
+            bd=0,
+            highlightthickness=0
+        )
+        vbar.pack(fill="y", side="left")
+        canvas_content.configure(yscrollcommand=vbar.set)
 
-# Vẽ content vào khung (Canvas trả về để gắn scrollbar)
-RIGHT_W = APP_W - RIGHT_X - BAR_W
-RIGHT_H = APP_H - RIGHT_Y
-canvas_content = build_content(right_content, RIGHT_W, RIGHT_H)
+        # Sync sizes function
+        def _sync_sizes(_=None):
+            app_w = self.winfo_width() or APP_W
+            app_h = self.winfo_height() or APP_H
 
-# Gutter (rãnh) sát mép phải cửa sổ cho scrollbar
-right_gutter = Frame(window, bg="#FFFFFF")
-right_gutter.place(x=APP_W - BAR_W, y=RIGHT_Y, width=BAR_W, height=RIGHT_H)
+            w = max(100, app_w - RIGHT_X - BAR_W)
+            h = max(100, app_h - RIGHT_Y)
 
-# Scrollbar dọc
-vbar = Scrollbar(right_gutter, orient="vertical",
-                 command=canvas_content.yview,
-                 width=BAR_W, bd=0, highlightthickness=0)
-vbar.pack(fill="y", side="left")
-canvas_content.configure(yscrollcommand=vbar.set)
+            right_content.configure(width=w, height=h)
+            canvas_content.configure(width=w, height=h)
 
-def _sync_sizes(_=None):
-    app_w = window.winfo_width() or APP_W
-    app_h = window.winfo_height() or APP_H
+            # Position scrollbar at the right edge
+            right_gutter.place_configure(x=app_w - BAR_W, y=RIGHT_Y, width=BAR_W, height=h)
 
-    w = max(100, app_w - RIGHT_X - BAR_W)
-    h = max(100, app_h - RIGHT_Y)
+            # Update scroll region
+            bbox = canvas_content.bbox("all")
+            if not bbox:
+                bbox = (0, 0, w, h)
+            x0, y0, x1, y1 = bbox
+            canvas_content.configure(scrollregion=(0, 0, max(w, x1 - x0), max(h, y1 - y0)))
 
-    right_content.configure(width=w, height=h)
-    canvas_content.configure(width=w, height=h)
+        self.after(60, _sync_sizes)
+        self.bind("<Configure>", _sync_sizes)
 
-    # đặt scrollbar SÁT mép phải cửa sổ
-    right_gutter.place_configure(x=app_w - BAR_W, y=RIGHT_Y, width=BAR_W, height=h)
+        # Mouse wheel scrolling
+        def _on_mousewheel(event):
+            delta = event.delta
+            if delta == 0:
+                return
+            step = -1 if delta > 0 else 1
+            canvas_content.yview_scroll(step, "units")
 
-    # scrollregion theo nội dung thực tế
-    bbox = canvas_content.bbox("all")
-    if not bbox:
-        bbox = (0, 0, w, h)
-    x0, y0, x1, y1 = bbox
-    canvas_content.configure(scrollregion=(0, 0, max(w, x1 - x0), max(h, y1 - y0)))
+        # Bind mouse wheel events
+        canvas_content.bind_all("<MouseWheel>", _on_mousewheel)
+        canvas_content.bind_all("<Button-4>", lambda e: canvas_content.yview_scroll(-1, "units"))
+        canvas_content.bind_all("<Button-5>", lambda e: canvas_content.yview_scroll(1, "units"))
 
-window.after(60, _sync_sizes)
-window.bind("<Configure>", _sync_sizes)
+    def _make_button(self, filename, cmd, x, y, w, h):
+        """Helper method to create buttons with images"""
+        if filename not in self._imgs:
+            try:
+                self._imgs[filename] = PhotoImage(file=relative_to_assets(filename))
+            except Exception as e:
+                print(f"[Frame08] Could not load button image {filename}: {e}")
+                return None
 
-# Cuộn chuột
-def _on_mousewheel(event):
-    delta = event.delta
-    if delta == 0:
-        return
-    step = -1 if delta > 0 else 1
-    canvas_content.yview_scroll(step, "units")
+        btn = Button(
+            self,
+            image=self._imgs[filename],
+            borderwidth=0,
+            highlightthickness=0,
+            relief="flat",
+            command=cmd
+        )
+        btn.place(x=x, y=y, width=w, height=h)
+        return btn
 
-# Win/macOS
-canvas_content.bind_all("<MouseWheel>", _on_mousewheel)
-# Linux
-canvas_content.bind_all("<Button-4>", lambda e: canvas_content.yview_scroll(-1, "units"))
-canvas_content.bind_all("<Button-5>", lambda e: canvas_content.yview_scroll(1, "units"))
 
-window.resizable(False, False)
-window.mainloop()
+# -------------------------
+# Standalone preview runner
+# -------------------------
+if __name__ == "__main__":
+    # Ensure project imports work even when running this file directly
+    try:
+        from Function.dropdown_profile import DropdownMenu  # validate import
+    except ModuleNotFoundError:
+        ROOT_LOCAL = Path(__file__).parent.resolve()
+        if str(ROOT_LOCAL) not in sys.path:
+            sys.path.insert(0, str(ROOT_LOCAL))
+        from Function.dropdown_profile import DropdownMenu
+
+
+    class _DummyController:
+        def show_frame(self, *args, **kwargs):
+            print(f"Navigate to: {args}")
+
+
+    root = tk.Tk()
+    root.title("Churn - Frame08")
+    root.geometry("1440x1024")
+    root.configure(bg="#FFFFFF")
+    app = Frame08(root, _DummyController())
+    app.pack(fill="both", expand=True)
+    root.resizable(False, False)
+    root.mainloop()
+

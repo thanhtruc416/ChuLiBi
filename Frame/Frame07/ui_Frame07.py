@@ -171,30 +171,21 @@ class Frame07(tk.Frame):
         self.canvas.create_text(120.0, 918.0, anchor="nw",
             text="ChuLiBi", fill="#FDE5F4", font=("Rubik Burned Regular", 35 * -1)
         )
-        self._img("image_10.png")
-        self.canvas.create_image(168.0, 512.0, image=self._imgs["image_10.png"])
+        self._img("image_sidebar_bg.png")
+        self.canvas.create_image(168.0, 512.0, image=self._imgs["image_sidebar_bg.png"])
         self.canvas.create_text(98.0, 927.0, anchor="nw",
             text="ChuLiBi", fill="#FDE5F4", font=("Rubik Burned Regular", 35 * -1)
         )
         self._img("image_11.png")
         self.canvas.create_image(162.0, 101.0, image=self._imgs["image_11.png"])
 
-        # Buttons
-        self._make_button("button_Recommendation.png",
-                          lambda: print("button_Recommendation clicked"),
-                          x=0.0, y=468.0, w=336.0, h=82.0)
-        self._make_button("button_Churn.png",
-                          lambda: self.controller.show_frame("Frame07"),
-                          x=0.0, y=381.0, w=336.0, h=86.0)
-        self._make_button("button_Delivery.png",
-                          lambda: self.controller.show_frame("Frame08"),
-                          x=0.0, y=552.0, w=337.0, h=90.0)
-        self._make_button("button_Report.png",
-                          lambda: print("button_Report clicked"),
-                          x=0.0, y=646.0, w=338.0, h=88.0)
-        self._make_button("button_Dashboard.png",
-                          lambda: self.controller.show_frame("Frame06"),
-                          x=0.0, y=193.0, w=336.0, h=88.0)
+        # --- Sidebar buttons ---
+        self._make_button("button_dashboard.png", cmd=lambda: self.controller.show_frame("Frame06"), x=0.0, y=198.0, w=335.0, h=97.0)
+        self._make_button("button_customer_1.png", cmd=lambda: print("Customer Analysis"), x=0.0, y=286.0, w=335.0, h=104.0)
+        self._make_button("button_churn.png", cmd=lambda: self.controller.show_frame("Frame08"), x=0.0,  y=374.0, w=335.0, h=98.0)
+        self._make_button("button_delivery.png", cmd=lambda: self.controller.show_frame("Frame09"), x=0.0, y=464.0, w=335.0, h=89.0)
+        self._make_button("button_recommend.png", cmd=lambda: self.controller.show_frame("Frame10"), x=0.0, y=544.0, w=335.0, h=98.0)
+        self._make_button("button_report.png", cmd=lambda: print("Report"), x=0.0, y=634.0, w=335.0, h=96.0)
 
         # Profile (dropdown)
         self._img("button_Profile.png")
@@ -206,13 +197,6 @@ class Frame07(tk.Frame):
             command=self._on_profile_clicked
         )
         self.button_Profile.place(x=1359.0, y=7.0, width=53.0, height=48.0)
-
-        self._make_button("button_CustomerAnalysis.png",
-                          lambda: print("button_CustomerAnalysis clicked"),
-                          x=0.0, y=275.0, w=336.0, h=100.0)
-
-        self._img("button_CustomerAnalysis.png")
-        self.canvas.create_image(14.0, 324.0, image=self._imgs["button_CustomerAnalysis.png"])
 
     def _img(self, filename: str):
         if filename not in self._imgs:

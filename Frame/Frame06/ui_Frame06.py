@@ -73,6 +73,7 @@ class Frame06(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
+        self._imgs = {}
         self.configure(bg="#D4C5D2")
 
         # --- Canvas ---
@@ -107,8 +108,8 @@ class Frame06(Frame):
             if img is not None:
                 canvas.create_image(x, y, image=img)
 
-        self.image_1  = _safe_img("image_1.png");  _add_img(self.image_1, 168.0, 512.0)
-        self.image_2  = _safe_img("image_2.png");  _add_img(self.image_2, 1.0,   245.0)
+        self.image_1  = _safe_img("image_sidebar_bg.png");  _add_img(self.image_1, 168.0, 512.0)
+        # self.image_2  = _safe_img("image_2.png");  _add_img(self.image_2, 1.0,   245.0)
         self.image_3  = _safe_img("image_3.png");  _add_img(self.image_3, 889.0, 202.0)
         self.image_4  = _safe_img("image_4.png");  _add_img(self.image_4, 452.0, 220.0)
         self.image_5  = _safe_img("image_5.png");  _add_img(self.image_5, 577.0, 220.0)
@@ -223,42 +224,12 @@ class Frame06(Frame):
         self.button_Profile.place(x=1332.0, y=16.0, width=57.0, height=51.0)
 
         # --- Sidebar buttons ---
-        def _btn_img(name): return _safe_img(name)
-        self.button_Dashboard_image = _btn_img("button_Dashboard.png")
-        self.button_Dashboard = Button(self, image=self.button_Dashboard_image, borderwidth=0,
-                                       highlightthickness=0, command=lambda: print("button_Dashboard clicked"),
-                                       relief="flat")
-        self.button_Dashboard.place(x=20.0, y=201.0, width=317.0, height=87.0)
-
-        self.button_Customer_analysis_image = _btn_img("button_Customer_analysis.png")
-        self.button_Customer_analysis = Button(self, image=self.button_Customer_analysis_image, borderwidth=0,
-                                               highlightthickness=0, command=lambda: self.controller.show_frame("Frame07"),
-                                               relief="flat")
-        self.button_Customer_analysis.place(x=0.0, y=302.0, width=337.0, height=77.0)
-
-        self.button_Churn_image = _btn_img("button_Churn.png")
-        self.button_Churn = Button(self, image=self.button_Churn_image, borderwidth=0,
-                                   highlightthickness=0, command=lambda: self.controller.show_frame("Frame08"),
-                                   relief="flat")
-        self.button_Churn.place(x=0.0, y=381.0, width=336.0, height=86.0)
-
-        self.button_Recommendation_image = _btn_img("button_Recommendation.png")
-        self.button_Recommendation = Button(self, image=self.button_Recommendation_image, borderwidth=0,
-                                            highlightthickness=0, command=lambda: self.controller.show_frame("Frame010"),
-                                            relief="flat")
-        self.button_Recommendation.place(x=0.0, y=500.0, width=337.0, height=200.0)
-
-        self.button_Delivery_image = _btn_img("button_Delivery.png")
-        self.button_Delivery = Button(self, image=self.button_Delivery_image, borderwidth=0,
-                                      highlightthickness=0, command=lambda: self.controller.show_frame("Frame09"),
-                                      relief="flat")
-        self.button_Delivery.place(x=0.0, y=468.0, width=336.0, height=82.0)
-
-        self.button_Report_image = _btn_img("button_Report.png")
-        self.button_Report = Button(self, image=self.button_Report_image, borderwidth=0,
-                                    highlightthickness=0, command=lambda: print("button_Report clicked"),
-                                    relief="flat")
-        self.button_Report.place(x=0.0, y=646.0, width=338.0, height=88.0)
+        self._make_button("button_dashboard_1.png", cmd=lambda: print("Dashboard"), x=0.0, y=197.0, w=335.3244934082031, h=97.0)
+        self._make_button("button_customer.png", cmd=lambda: self.controller.show_frame("Frame07"), x=0.0, y=289.0, w=335.0, h=90.0)
+        self._make_button("button_churn.png", cmd=lambda: self.controller.show_frame("Frame08"), x=0.0,  y=374.0, w=335.0, h=98.0)
+        self._make_button("button_delivery.png", cmd=lambda: self.controller.show_frame("Frame09"), x=0.0, y=464.0, w=335.0, h=89.0)
+        self._make_button("button_recommend.png", cmd=lambda: self.controller.show_frame("Frame10"), x=0.0, y=544.0, w=335.0, h=98.0)
+        self._make_button("button_report.png", cmd=lambda: print("Report"), x=0.0, y=634.0, w=335.0, h=96.0)
 
         # ---------------- Chart containers ----------------
         frame_bar_chart  = Frame(canvas, bg="#FFFFFF")
@@ -310,6 +281,19 @@ class Frame06(Frame):
             canvas4.get_tk_widget().pack(fill="both", expand=True)
         else:
             print("[Frame06] Bỏ qua vẽ chart vì không có dữ liệu dfp.")
+
+    def _img(self, filename: str):
+        if filename not in self._imgs:
+            self._imgs[filename] = PhotoImage(file=relative_to_assets(filename))
+        return self._imgs[filename]
+
+    def _make_button(self, filename, cmd, x, y, w, h):
+        self._img(filename)
+        btn = Button(self, image=self._imgs[filename],
+                     borderwidth=0, highlightthickness=0,
+                     relief="flat", command=cmd)
+        btn.place(x=x, y=y, width=w, height=h)
+        return btn
 
 # -------------------------
 # Standalone preview runner
