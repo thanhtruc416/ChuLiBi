@@ -280,7 +280,7 @@ def dual_expected_loss(df, df_cluster, PATH="../Dataset/Output/"):
     os.makedirs(PATH, exist_ok=True)
 
     # Cluster-level summary
-    heatmap_data.to_csv(os.path.join(PATH, "expected_loss_cluster_summary.csv"), index=False)
+    heatmap_data.to_csv(os.path.join(PATH, "expected_loss_by_customer.csv"), index=False)
 
     # === Gắn dự đoán ExpectedLoss_pred ===
     df_pred_full = df.copy()
@@ -340,7 +340,7 @@ def dual_expected_loss(df, df_cluster, PATH="../Dataset/Output/"):
     # Xuất file
     df_display.to_csv(os.path.join(PATH, "expected_loss_top50_display.csv"), index=False)
 
-    print(f"[INFO] Saved: {PATH}/expected_loss_cluster_summary.csv")
+    print(f"[INFO] Saved: {PATH}/expected_loss_by_customer.csv")
     print(f"[INFO] Saved: {PATH}/expected_loss_top50.csv")
     print(f"[INFO] Saved readable version for UI → expected_loss_top50_display.csv")
     print("[DONE] Dual Expected Loss analysis complete.")

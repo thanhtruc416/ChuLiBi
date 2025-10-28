@@ -1,0 +1,500 @@
+Customer_ID,action_id,action_name,priority_score,channel,template,group
+CUS000001,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000002,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.291263,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000003,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000004,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000005,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.246354,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000006,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.22848,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000007,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000008,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000009,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000010,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000011,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.289936,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000012,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.285965,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000013,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000014,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000015,COUPON10,Coupon 10%/bundle deal,0.15925,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000016,REMIND_APP,Nhắc mở app + ưu đãi chung,0.00864,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000017,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004016,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000018,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000447,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000019,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000020,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,2.1e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000021,COUPON10,Coupon 10%/bundle deal,0.08292,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000022,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000023,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000024,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000025,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000026,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002482,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000027,REMIND_APP,Nhắc mở app + ưu đãi chung,0.003113,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000028,REMIND_APP,Nhắc mở app + ưu đãi chung,0.003469,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000029,REMIND_APP,Nhắc mở app + ưu đãi chung,0.007479,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000030,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.078426,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000031,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000032,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.098707,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000033,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000034,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000035,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000036,REMIND_APP,Nhắc mở app + ưu đãi chung,0.000979,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000037,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000038,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000039,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.312421,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000040,COUPON10,Coupon 10%/bundle deal,0.126156,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000041,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.280821,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000042,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000043,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.228577,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000044,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000045,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000046,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.257271,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000047,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.186985,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000048,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,9.8e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000049,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.242673,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000050,REMIND_APP,Nhắc mở app + ưu đãi chung,0.003877,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000051,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.18056,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000052,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001539,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000053,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000054,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.242587,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000055,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.252299,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000056,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000057,REMIND_APP,Nhắc mở app + ưu đãi chung,0.015522,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000058,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000059,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000060,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.193602,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000061,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,2e-06,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000062,COUPON10,Coupon 10%/bundle deal,0.094992,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000063,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.276444,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000064,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.197976,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000065,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000066,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000254,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000067,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.237213,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000068,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001607,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000069,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.220094,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000070,REMIND_APP,Nhắc mở app + ưu đãi chung,0.007418,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000071,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000072,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000101,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000073,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.167151,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000074,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.306,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000075,COUPON10,Coupon 10%/bundle deal,0.059554,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000076,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.256524,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000077,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.281229,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000078,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.00043,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000079,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,1.9e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000080,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000081,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000082,REMIND_APP,Nhắc mở app + ưu đãi chung,0.007098,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000083,COUPON10,Coupon 10%/bundle deal,0.168518,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000084,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000085,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000086,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.227825,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000087,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000088,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.27734,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000089,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.198838,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000090,REMIND_APP,Nhắc mở app + ưu đãi chung,0.008963,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000091,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000092,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.300836,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000093,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000094,REMIND_APP,Nhắc mở app + ưu đãi chung,0.009559,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000095,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000113,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000096,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000097,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.131502,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000098,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.30489,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000099,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.249825,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000100,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000101,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000102,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000103,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000104,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000105,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000106,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000107,COUPON10,Coupon 10%/bundle deal,0.110737,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000108,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,4e-06,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000109,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.190197,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000110,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004958,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000111,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.00022,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000112,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.331287,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000113,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.187772,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000114,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.00027,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000115,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.091216,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000116,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000117,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000118,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.19537,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000119,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000120,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,5e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000121,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.22856,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000122,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000123,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,4.6e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000124,COUPON10,Coupon 10%/bundle deal,0.156897,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000125,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000631,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000126,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.2279,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000127,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.294766,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000128,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000129,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.243491,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000130,REMIND_APP,Nhắc mở app + ưu đãi chung,0.014262,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000131,REMIND_APP,Nhắc mở app + ưu đãi chung,0.00708,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000132,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000312,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000133,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.182327,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000134,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000135,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.203566,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000136,REMIND_APP,Nhắc mở app + ưu đãi chung,0.005054,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000137,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.092965,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000138,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000128,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000139,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000140,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001499,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000141,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.177548,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000142,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.062228,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000143,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.12557,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000144,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000305,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000145,REMIND_APP,Nhắc mở app + ưu đãi chung,0.005604,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000146,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.223857,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000147,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001362,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000148,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000149,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.172054,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000150,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000151,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000152,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000153,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000154,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000155,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000156,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000157,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,5.1e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000158,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.00027,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000159,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001636,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000160,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000161,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000162,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,2.9e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000163,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.00029,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000164,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000165,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000166,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.072564,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000167,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.09461,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000168,COUPON10,Coupon 10%/bundle deal,0.160571,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000169,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000170,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.136322,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000171,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.256502,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000172,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000173,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000174,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000175,REMIND_APP,Nhắc mở app + ưu đãi chung,0.00149,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000176,LOYALTY,Đăng ký loyalty/điểm thưởng quay lại,0.079684,In-app,"Thăng hạng loyalty, x2 điểm tuần này",HEAVY
+CUS000177,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000178,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000179,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,3.5e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000180,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000181,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000184,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000182,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.232597,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000183,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000184,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000185,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004544,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000186,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.257474,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000187,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000188,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000101,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000189,REMIND_APP,Nhắc mở app + ưu đãi chung,0.005129,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000190,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.16715,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000191,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000192,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000193,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000194,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.233196,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000195,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001543,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000196,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.225282,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000197,REMIND_APP,Nhắc mở app + ưu đãi chung,0.008157,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000198,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002171,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000199,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.08538,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000200,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000371,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000201,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,5.2e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000202,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000203,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002483,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000204,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000205,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000206,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000207,REMIND_APP,Nhắc mở app + ưu đãi chung,0.003969,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000208,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000132,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000209,REMIND_APP,Nhắc mở app + ưu đãi chung,0.003264,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000210,REMIND_APP,Nhắc mở app + ưu đãi chung,0.009529,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000211,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,6e-06,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000212,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000213,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000469,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000214,REMIND_APP,Nhắc mở app + ưu đãi chung,0.006563,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000215,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.266003,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000216,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000469,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000217,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000218,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000219,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.126056,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000220,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.223426,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000221,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,1.5e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000222,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002001,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000223,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.118151,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000224,REMIND_APP,Nhắc mở app + ưu đãi chung,0.01064,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000225,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000112,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000226,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000227,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.00066,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000228,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000229,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,8.5e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000230,REMIND_APP,Nhắc mở app + ưu đãi chung,0.005643,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000231,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.143043,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000232,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001532,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000233,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000234,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000235,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000236,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001283,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000237,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004583,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000238,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.125896,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000239,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.27799,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000240,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000241,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000242,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.084167,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000243,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.089826,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000244,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,9.4e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000245,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000246,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,1.7e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000247,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000248,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000719,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000249,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.089977,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000250,REMIND_APP,Nhắc mở app + ưu đãi chung,0.00755,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000251,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004368,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000252,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000253,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000254,REMIND_APP,Nhắc mở app + ưu đãi chung,0.003966,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000255,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000256,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000257,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004563,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000258,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000259,COUPON10,Coupon 10%/bundle deal,0.067674,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000260,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004375,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000261,REMIND_APP,Nhắc mở app + ưu đãi chung,0.003133,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000262,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000263,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000264,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004906,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000265,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000266,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000113,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000267,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000495,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000268,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.119698,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000269,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000270,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002809,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000271,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000272,REMIND_APP,Nhắc mở app + ưu đãi chung,0.008398,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000273,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.122026,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000274,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000275,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.235863,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000276,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.211991,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000277,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001456,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000278,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000158,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000279,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000142,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000280,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000281,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000282,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.210354,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000283,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001262,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000284,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000644,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000285,REMIND_APP,Nhắc mở app + ưu đãi chung,0.005321,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000286,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004952,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000287,REMIND_APP,Nhắc mở app + ưu đãi chung,0.007952,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000288,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000289,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.140043,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000290,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,8.8e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000291,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000292,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.260248,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000293,COUPON10,Coupon 10%/bundle deal,0.08292,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000294,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000215,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000295,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000122,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000296,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000297,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.175092,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000298,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.119445,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000299,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000300,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000301,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.183405,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000302,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.204588,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000303,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.19651,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000304,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000305,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.175178,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000306,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.238654,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000307,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000308,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000742,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000309,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001751,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000310,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.17296,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000311,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000312,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000313,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000314,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000315,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.207351,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000316,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.185067,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000317,REMIND_APP,Nhắc mở app + ưu đãi chung,0.005488,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000318,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.126555,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000319,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000320,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.184404,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000321,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.179369,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000322,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000323,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.076198,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000324,REMIND_APP,Nhắc mở app + ưu đãi chung,0.004916,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000325,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.19061,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000326,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000327,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.125796,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000328,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000142,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000329,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000330,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.21753,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000331,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.268898,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000332,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000333,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000396,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000334,REMIND_APP,Nhắc mở app + ưu đãi chung,0.00144,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000335,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.280227,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000336,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000337,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.271349,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000338,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000339,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.201376,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000340,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000551,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000341,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.216075,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000342,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002859,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000343,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.24819,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000344,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000222,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000345,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.177481,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000346,COUPON10,Coupon 10%/bundle deal,0.151521,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000347,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,7.7e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000348,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000349,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.246699,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000350,REMIND_APP,Nhắc mở app + ưu đãi chung,0.006021,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000351,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000167,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000352,COUPON10,Coupon 10%/bundle deal,0.147673,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000353,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000256,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000354,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000355,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.193502,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000356,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.342423,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000357,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000358,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.177425,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000359,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000360,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000361,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000362,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.245418,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000363,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000497,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000364,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.292472,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000365,LOYALTY,Đăng ký loyalty/điểm thưởng quay lại,0.088983,In-app,"Thăng hạng loyalty, x2 điểm tuần này",HEAVY
+CUS000366,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000367,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.16792,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000368,REMIND_APP,Nhắc mở app + ưu đãi chung,0.008023,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000369,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000370,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000371,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000372,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000373,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000374,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.192736,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000375,REMIND_APP,Nhắc mở app + ưu đãi chung,0.007458,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000376,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.00015,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000377,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.258547,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000378,COUPON10,Coupon 10%/bundle deal,0.160961,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000379,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.170447,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000380,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000381,REMIND_APP,Nhắc mở app + ưu đãi chung,0.008914,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000382,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.10286,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000383,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000233,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000384,COUPON10,Coupon 10%/bundle deal,0.188608,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000385,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.180583,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000386,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000387,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.292762,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000388,COUPON10,Coupon 10%/bundle deal,0.175954,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000389,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001942,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000390,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000391,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.281723,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000392,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000393,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.068401,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000394,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.289354,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000395,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.307638,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000396,COUPON10,Coupon 10%/bundle deal,0.185251,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000397,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.146704,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000398,LOYALTY,Đăng ký loyalty/điểm thưởng quay lại,0.068309,In-app,"Thăng hạng loyalty, x2 điểm tuần này",HEAVY
+CUS000399,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.173295,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000400,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,3.3e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000401,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.208502,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000402,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000403,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000404,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002559,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000405,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000406,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.334076,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000407,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000408,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001161,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000409,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.084803,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000410,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000411,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000412,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000413,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000414,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000512,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000415,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.135846,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000416,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.246998,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000417,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.178046,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000418,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.170976,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000419,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.217138,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000420,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002221,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000421,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000123,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000422,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000423,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000424,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000425,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000426,REMIND_APP,Nhắc mở app + ưu đãi chung,0.006916,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000427,REMIND_APP,Nhắc mở app + ưu đãi chung,0.00624,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000428,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.229196,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000429,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000430,COUPON10,Coupon 10%/bundle deal,0.184302,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000431,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000432,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000433,COUPON10,Coupon 10%/bundle deal,0.145948,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000434,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001823,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000435,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.187357,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000436,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.266566,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000437,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.073753,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000438,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000439,COUPON10,Coupon 10%/bundle deal,0.112779,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000440,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.138256,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000441,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.169954,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000442,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000443,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.110017,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000444,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.117798,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000445,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000446,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.252439,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000447,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000448,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000449,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000450,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000451,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000452,REMIND_APP,Nhắc mở app + ưu đãi chung,0.001162,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000453,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000454,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000455,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.118411,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000456,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.169864,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000457,REMIND_APP,Nhắc mở app + ưu đãi chung,0.008977,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000458,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.149631,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000459,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000460,LOYALTY,Đăng ký loyalty/điểm thưởng quay lại,0.084585,In-app,"Thăng hạng loyalty, x2 điểm tuần này",HEAVY
+CUS000461,REMIND_APP,Nhắc mở app + ưu đãi chung,0.006303,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000462,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000318,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000463,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,0.000644,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000464,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.221741,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000465,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002896,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000466,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.261711,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000467,REMIND_APP,Nhắc mở app + ưu đãi chung,0.015048,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000468,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000469,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.190732,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000470,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.212054,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000471,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000472,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000473,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000474,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000475,REMIND_APP,Nhắc mở app + ưu đãi chung,0.002033,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000476,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000477,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.167892,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000478,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,5.4e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000479,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000480,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.155114,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000481,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.221698,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000482,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000483,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000484,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000485,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.152659,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000486,REMIND_APP,Nhắc mở app + ưu đãi chung,0.005559,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000487,REMIND_APP,Nhắc mở app + ưu đãi chung,0.003663,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000488,REMIND_APP,Nhắc mở app + ưu đãi chung,0.005224,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000489,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000490,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.106113,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000491,REMIND_APP,Nhắc mở app + ưu đãi chung,0.015099,App/Email,"Nhắc mở app, xem ưu đãi chung",LIGHT
+CUS000492,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
+CUS000493,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.288348,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000494,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.140167,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000495,SLA_UP,Ưu tiên giao nhanh/slot VIP + ETA rõ,0.333315,Push/SMS,Ưu tiên giao nhanh + hiển thị ETA rõ cho đơn sắp tới,HEAVY
+CUS000496,QUALITY_SWITCH,Chuyển nhà hàng/đảm bảo chất lượng + xin lỗi,0.207184,CS call,"Xin lỗi + đề xuất nhà hàng chất lượng, bảo chứng vệ sinh",HEAVY
+CUS000497,COUPON10,Coupon 10%/bundle deal,0.099524,App/Email,Tặng Coupon 10% và gợi ý combo phù hợp,HEAVY
+CUS000498,EDU_CONTENT,Gợi ý nội dung/giải thích lợi ích,5.2e-05,App/Email,"Gợi ý nội dung hữu ích, giải thích lợi ích dịch vụ",LIGHT
+CUS000499,NO_ACTION,Không gửi – không đủ điều kiện / ưu tiên thấp,0.0,App,,NONE
