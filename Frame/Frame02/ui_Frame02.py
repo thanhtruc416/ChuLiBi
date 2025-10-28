@@ -225,7 +225,7 @@ class Frame02(tk.Frame):
             return
 
         try:
-            from Function.auth import AuthService
+            from Function.Frame01_auth import AuthService
 
             # Attempt registration
             result = AuthService.register_user(username, email, password, confirm_password)

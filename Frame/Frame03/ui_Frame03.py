@@ -150,7 +150,7 @@ class Frame03(Frame):
             return
 
         try:
-            from Function.auth import AuthService
+            from Function.Frame01_auth import AuthService
 
             # Update profile
             result = AuthService.update_user_profile(user_id, full_name, business_name, role)

@@ -1,6 +1,8 @@
 # Nội dung vùng bảng có thanh cuộn dọc bên phải
 
 import tkinter as tk
+import pandas as pd
+from pathlib import Path
 
 HEADER_BG = "#CFAFCA"   # header tím nhạt như mock
 ROW_EVEN = "#F7F4F7"
@@ -14,10 +16,17 @@ COLUMNS = [
     ("Recommendation", 600),
 ]
 
-def build_table(parent: tk.Widget, width: int, height: int) -> tk.Canvas:
+def build_table(parent: tk.Widget, width: int, height: int, data: pd.DataFrame = None, search_term: str = None) -> tk.Canvas:
     """
     Tạo một Canvas chứa khung bảng cuộn. Trả về chính canvas để .pack() ở file khung.
     Thanh cuộn nằm SÁT mép phải vùng bảng, chỉ cuộn phần bảng.
+    
+    Args:
+        parent: Parent widget
+        width: Width of the table
+        height: Height of the table
+        data: DataFrame with recommendation data
+        search_term: Search term to highlight (optional)
     """
     # Canvas làm viewport
     canvas = tk.Canvas(parent, bg="#FFFFFF", highlightthickness=0, bd=0)
@@ -43,23 +52,54 @@ def build_table(parent: tk.Widget, width: int, height: int) -> tk.Canvas:
         lbl.pack(side="left")
         lbl.config(width=max(1, col_w // 9))
 
-    # ----- Demo data (thay bằng dữ liệu thật) -----
-    def add_row(values, index):
-        bg = ROW_EVEN if index % 2 == 0 else ROW_ODD
+    # ----- Data rows (real or demo) -----
+    def add_row(values, index, customer_id=None):
+        # Highlight row if it matches search term
+        is_match = False
+        if search_term and customer_id:
+            is_match = search_term.lower() in str(customer_id).lower()
+        
+        if is_match:
+            bg = "#E8D4E3"  # Light purple highlight for matching rows
+        else:
+            bg = ROW_EVEN if index % 2 == 0 else ROW_ODD
+        
         row = tk.Frame(inner, bg=bg)
         row.pack(fill="x")
+        
         for (title, col_w), val in zip(COLUMNS, values):
+            # Truncate long text for Recommendation column
+            display_val = str(val)
+            if title == "Recommendation" and len(display_val) > 70:
+                display_val = display_val[:67] + "..."
+            
+            # Bold font for matching customer IDs
+            font_style = "Crimson Pro SemiBold" if (is_match and title == "ID") else "Crimson Pro"
+            
             lbl = tk.Label(
-                row, text=val, bg=bg, fg=TEXT,
-                font=("Crimson Pro", 14), anchor="w", padx=12, pady=10
+                row, text=display_val, bg=bg, fg=TEXT,
+                font=(font_style, 14), anchor="w", padx=12, pady=10,
+                wraplength=col_w - 24 if title == "Recommendation" else 0
             )
             lbl.pack(side="left")
             lbl.config(width=max(1, col_w // 9))
 
-    sample = [("C%03d" % i, "Premium", "20%", "Offer 10% discount on next purchase")
-              for i in range(1, 80)]
-    for i, vals in enumerate(sample, start=1):
-        add_row(vals, i)
+    # Load actual data or use sample
+    if data is not None and not data.empty:
+        # Use real recommendation data
+        for i, (_, row_data) in enumerate(data.iterrows(), start=1):
+            customer_id = str(row_data.get("Customer_ID", f"C{i:03d}"))
+            cluster = str(row_data.get("Cluster", "Unknown"))
+            churn_risk = str(row_data.get("Churn_Risk", "0%"))
+            recommendation = str(row_data.get("action_name", "No action"))
+            
+            add_row((customer_id, cluster, churn_risk, recommendation), i, customer_id=customer_id)
+    else:
+        # Sample data for preview
+        sample = [("C%03d" % i, "Premium", "20%", "Offer 10% discount on next purchase")
+                  for i in range(1, 80)]
+        for i, vals in enumerate(sample, start=1):
+            add_row(vals, i, customer_id=vals[0])
 
     # ----- Đồng bộ kích thước và scrollregion -----
     def _on_inner_config(_=None):
