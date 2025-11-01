@@ -179,17 +179,79 @@ class CustomerPredictor:
             wait_map = {'30 minutes': 1, '45 minutes': 2, '60 minutes': 3, 'more than 60 minutes': 4}
             if 'Maximum wait time' in df_cust.columns:
                 val = df_cust['Maximum wait time'].iloc[0]
-                df_cust['Maximum wait time_encoded'] = wait_map.get(val.lower().strip(), 2)
+                if isinstance(val, str):
+                    df_cust['Maximum wait time_encoded'] = wait_map.get(val.lower().strip(), 2)
+                elif isinstance(val, (int, float)):
+                    # Handle numeric input: convert to string format
+                    if val <= 30:
+                        df_cust['Maximum wait time_encoded'] = 1
+                    elif val <= 45:
+                        df_cust['Maximum wait time_encoded'] = 2
+                    elif val <= 60:
+                        df_cust['Maximum wait time_encoded'] = 3
+                    else:
+                        df_cust['Maximum wait time_encoded'] = 4
+                else:
+                    df_cust['Maximum wait time_encoded'] = 2
             else:
                 df_cust['Maximum wait time_encoded'] = 2
         
         if 'Influence of rating_encoded' not in df_cust.columns:
-            inf_map = {'no': 1, 'maybe': 2, 'yes': 3}
+            inf_map = {'no': 1, 'maybe': 2, 'yes': 3, 'low': 1, 'medium': 2, 'high': 3, 'very high': 3}
             if 'Influence of rating' in df_cust.columns:
                 val = df_cust['Influence of rating'].iloc[0]
-                df_cust['Influence of rating_encoded'] = inf_map.get(val.lower().strip(), 2)
+                if isinstance(val, str):
+                    df_cust['Influence of rating_encoded'] = inf_map.get(val.lower().strip(), 2)
+                else:
+                    df_cust['Influence of rating_encoded'] = val if 1 <= val <= 3 else 2
             else:
                 df_cust['Influence of rating_encoded'] = 2
+        
+        # ===== ONE-HOT ENCODING FOR CATEGORICAL VARIABLES =====
+        # Danh sách các cột categorical cần encode (theo 02_encoding.py)
+        cat_cols = [
+            'Gender', 'Marital Status', 'Occupation', 'Educational Qualifications',
+            'Frequently used Medium', 'Frequently ordered Meal category', 'Perference'
+        ]
+        
+        # Lọc chỉ các cột tồn tại
+        cat_cols_exist = [c for c in cat_cols if c in df_cust.columns]
+        
+        if cat_cols_exist:
+            # QUAN TRỌNG: Không dùng drop_first=True cho single row vì sẽ không tạo cột nào!
+            # Thay vào đó, tạo tất cả các cột one-hot rồi match với training data
+            df_cust = pd.get_dummies(df_cust, columns=cat_cols_exist, drop_first=False)
+            df_cust = df_cust.replace({True: 1, False: 0})
+        
+        # Đảm bảo có đầy đủ các cột one-hot như trong df_scaled_model
+        # Load danh sách cột từ df_scaled để đối chiếu
+        if self.df_scaled is not None:
+            expected_cols = self.df_scaled.columns.tolist()
+            
+            # Lấy danh sách các cột one-hot có trong expected (để biết drop first của từng category)
+            expected_onehot = [c for c in expected_cols if any(x in c for x in 
+                                ['Gender_', 'Marital Status_', 'Occupation_', 
+                                 'Educational Qualifications_', 'Frequently used Medium_',
+                                 'Frequently ordered Meal category_', 'Perference_'])]
+            
+            # Xóa các cột one-hot KHÔNG có trong expected (đó là các cột bị drop_first)
+            current_onehot = [c for c in df_cust.columns if any(x in c for x in 
+                               ['Gender_', 'Marital Status_', 'Occupation_', 
+                                'Educational Qualifications_', 'Frequently used Medium_',
+                                'Frequently ordered Meal category_', 'Perference_'])]
+            
+            for col in current_onehot:
+                if col not in expected_onehot:
+                    df_cust = df_cust.drop(columns=[col])
+            
+            # Thêm các cột one-hot thiếu (set = 0)
+            for col in expected_cols:
+                if col not in df_cust.columns and col != 'CustomerID':
+                    df_cust[col] = 0
+            
+            # Sắp xếp lại thứ tự cột giống df_scaled (trừ CustomerID để sau)
+            ordered_cols = ['CustomerID'] + [c for c in expected_cols if c != 'CustomerID' and c in df_cust.columns]
+            df_cust = df_cust[ordered_cols]
         
         return df_cust
     
@@ -245,29 +307,54 @@ class CustomerPredictor:
         df_cust = self._preprocess_customer(customer)
         df_cust_scaled = self._scale_customer(df_cust)
         
-        # Tạo PCA groups nếu cần
-        df_cust_with_pca = attach_group_pca(df_cust_scaled, random_state=42)
-        
-        # Chọn features cho clustering
-        features = [c for c in CLUSTER_FEATURES if c in df_cust_with_pca.columns]
-        if len(features) < 2:
-            print("⚠ Không đủ features để phân cụm, trả về cluster 0")
-            return 0
-        
-        X_cust = select_X(df_cust_with_pca, features)
-        
-        # Nếu có df_cluster_full, dùng để train KMeans và predict
+        # Nếu có df_cluster_full, dùng để train PCA và KMeans
         if self.df_cluster_full is not None and len(self.df_cluster_full) > 0:
-            # Load toàn bộ dữ liệu cluster để train KMeans
-            # Không cần import run_pipeline vì đã có đủ hàm từ đầu file
+            # df_cluster_full đã chứa scaled data nhưng ta cần FIT PCA trên toàn bộ training data
+            # rồi TRANSFORM customer mới để có PCA components chính xác
             
+            # Lấy training data KHÔNG có PCA và cluster label
+            df_train = self.df_scaled.drop(columns=['CustomerID'], errors='ignore') if self.df_scaled is not None else None
+            
+            if df_train is None or len(df_train) == 0:
+                print("⚠ Không có dữ liệu training, trả về cluster 0")
+                return 0
+            
+            # Fit PCA trên TOÀN BỘ training data
+            from sklearn.decomposition import PCA
+            pca_transformers = {}
+            for new_col, cols in LIKERT_GROUPS.items():
+                miss = [c for c in cols if c not in df_train.columns]
+                if miss:
+                    continue
+                pca = PCA(n_components=1, random_state=42)
+                pca.fit(df_train[cols])
+                pca_transformers[new_col] = (pca, cols)
+            
+            # TRANSFORM customer với PCA đã fit
+            df_cust_with_pca = df_cust_scaled.copy()
+            for new_col, (pca, cols) in pca_transformers.items():
+                miss = [c for c in cols if c not in df_cust_with_pca.columns]
+                if miss:
+                    df_cust_with_pca[new_col] = 0.0
+                else:
+                    comp = pca.transform(df_cust_with_pca[cols])
+                    df_cust_with_pca[new_col] = comp
+            
+            # Chọn features cho clustering
+            features = [c for c in CLUSTER_FEATURES if c in df_cust_with_pca.columns]
+            if len(features) < 2:
+                print("⚠ Không đủ features để phân cụm, trả về cluster 0")
+                return 0
+            
+            X_cust = select_X(df_cust_with_pca, features)
+            
+            # df_cluster_full đã chứa PCA components được tính từ training data
             # Đếm số cluster từ dữ liệu có sẵn
             if 'cluster' in self.df_cluster_full.columns:
                 self.k_final = int(self.df_cluster_full['cluster'].nunique())
             
-            # Tạo X từ df_cluster_full
-            df_cluster_features = attach_group_pca(self.df_cluster_full, random_state=42)
-            X_full = select_X(df_cluster_features, features)
+            # Tạo X từ df_cluster_full (đã có PCA)
+            X_full = select_X(self.df_cluster_full, features)
             
             # Train KMeans trên toàn bộ data
             from sklearn.cluster import KMeans
@@ -301,8 +388,33 @@ class CustomerPredictor:
         df_cust = self._preprocess_customer(customer)
         df_cust_scaled = self._scale_customer(df_cust)
         
-        # Tạo PCA groups
-        df_cust_with_pca = attach_group_pca(df_cust_scaled, random_state=42)
+        # Tạo PCA groups (PHẢI fit trên training data trước)
+        if self.df_scaled is not None and len(self.df_scaled) > 0:
+            df_train = self.df_scaled.drop(columns=['CustomerID'], errors='ignore')
+            
+            # Fit PCA trên training data
+            from sklearn.decomposition import PCA
+            pca_transformers = {}
+            for new_col, cols in LIKERT_GROUPS.items():
+                miss = [c for c in cols if c not in df_train.columns]
+                if miss:
+                    continue
+                pca = PCA(n_components=1, random_state=42)
+                pca.fit(df_train[cols])
+                pca_transformers[new_col] = (pca, cols)
+            
+            # Transform customer với PCA đã fit
+            df_cust_with_pca = df_cust_scaled.copy()
+            for new_col, (pca, cols) in pca_transformers.items():
+                miss = [c for c in cols if c not in df_cust_with_pca.columns]
+                if miss:
+                    df_cust_with_pca[new_col] = 0.0
+                else:
+                    comp = pca.transform(df_cust_with_pca[cols])
+                    df_cust_with_pca[new_col] = comp
+        else:
+            # Fallback nếu không có training data
+            df_cust_with_pca = attach_group_pca(df_cust_scaled, random_state=42)
         
         # Thêm cluster nếu chưa có
         if 'cluster' not in df_cust_with_pca.columns:
@@ -311,15 +423,40 @@ class CustomerPredictor:
             else:
                 df_cust_with_pca['cluster'] = self.predict_cluster(customer)
         
-        # Tạo proxy churn (cần merge với df_raw để có đủ thông tin)
-        df_with_churn = create_proxy_churn(df_cust_with_pca.copy())
+        # CRITICAL FIX: Frame08's preprocess() function re-scales ALL numeric features
+        # (including PCA and cluster) with StandardScaler.fit_transform on the BATCH data.
+        # We need to replicate this: fit scaler on TRAINING data, then transform customer.
         
-        # Prepare core features như trong Frame08
-        leak_cols = detect_leakage(df_with_churn)
-        df_core = prepare_core_df(df_with_churn, leak_cols=leak_cols)
-        
-        # Preprocess để có X (features)
-        X, y, _ = preprocess(df_core)
+        # Lấy df_cluster_full để làm training data (đã có PCA và cluster)
+        if self.df_cluster_full is not None and len(self.df_cluster_full) > 0:
+            # Chuẩn bị training data giống Frame08's prepare_core_df
+            df_train_full = self.df_cluster_full.copy()
+            
+            # Lấy các features cho churn model (bỏ churn và churn_percent nếu có)
+            exclude_cols = ['CustomerID', 'churn', 'churn_percent'] 
+            train_features = [c for c in df_train_full.columns if c not in exclude_cols]
+            
+            # Lấy ONLY numeric features (Frame08's preprocess scales ALL numeric)
+            X_train = df_train_full[train_features].select_dtypes(include=[np.number])
+            
+            # Fit scaler trên training data
+            batch_scaler = StandardScaler()
+            batch_scaler.fit(X_train)
+            
+            # Lấy features tương ứng từ customer (đã có PCA và cluster)
+            X_cust = df_cust_with_pca[[c for c in X_train.columns if c in df_cust_with_pca.columns]]
+            
+            # Transform customer với scaler đã fit trên training data
+            X_cust_scaled = pd.DataFrame(
+                batch_scaler.transform(X_cust),
+                columns=X_cust.columns,
+                index=X_cust.index
+            )
+            
+            X = X_cust_scaled.copy()
+        else:
+            # Fallback: dùng data chưa scale lại
+            X = df_cust_with_pca.copy()
         
         # Lấy danh sách features mà model thực sự mong đợi
         # Model được train với ImbPipeline có imputer và scaler steps
@@ -385,7 +522,7 @@ class CustomerPredictor:
             
             # Đảm bảo X_for_pred có đúng thứ tự features như expected_features
             X_for_pred = X_for_pred[[f for f in expected_features if f in X_for_pred.columns]]
-            
+                
         except Exception as e:
             print(f"⚠ Lỗi khi lấy expected features: {e}")
             print(f"⚠ Thử predict trực tiếp với tất cả features...")
