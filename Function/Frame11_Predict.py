@@ -52,7 +52,7 @@ except ImportError:
     )
     # Không cần import compute_expected_loss vì tự tính trong predict_expected_loss
     # from Frame09_EL import compute_expected_loss
-    from Frame11_Recommend import (
+    from Frame10_Recommend import (
         get_signals, match_score, eligible, compute_best_action, 
         ACTION_LIB, ACTION_LIB_EXT, ACTION_CHANNEL, ID_CANDS
     )
@@ -321,9 +321,84 @@ class CustomerPredictor:
         # Preprocess để có X (features)
         X, y, _ = preprocess(df_core)
         
+        # Lấy danh sách features mà model thực sự mong đợi
+        # Model được train với ImbPipeline có imputer và scaler steps
+        try:
+            expected_features = None
+            
+            # Thử lấy từ imputer (bước đầu tiên)
+            if hasattr(self.churn_model, 'named_steps') and 'imputer' in self.churn_model.named_steps:
+                imputer = self.churn_model.named_steps['imputer']
+                if hasattr(imputer, 'feature_names_in_'):
+                    expected_features = list(imputer.feature_names_in_)
+            
+            # Thử lấy từ scaler nếu imputer không có
+            if expected_features is None and hasattr(self.churn_model, 'named_steps') and 'scaler' in self.churn_model.named_steps:
+                scaler = self.churn_model.named_steps['scaler']
+                if hasattr(scaler, 'feature_names_in_'):
+                    expected_features = list(scaler.feature_names_in_)
+            
+            # Thử predict với một sample nhỏ để xem model mong đợi features gì
+            if expected_features is None:
+                try:
+                    # Thử predict với X hiện tại để xem lỗi
+                    _ = self.churn_model.predict_proba(X.iloc[[0]])[0, 1]
+                    # Nếu không lỗi, có nghĩa là X đã đúng
+                    expected_features = list(X.columns)
+                except ValueError as ve:
+                    # Parse error message để lấy expected features
+                    error_msg = str(ve)
+                    if "feature_names" in error_msg.lower() or "unseen" in error_msg.lower():
+                        # Thử lấy từ error message
+                        print(f"⚠ Không thể lấy feature names từ model, sử dụng features hiện có")
+                        expected_features = list(X.columns)
+                    else:
+                        raise
+            
+            # Fallback cuối cùng: sử dụng features hiện có
+            if expected_features is None:
+                expected_features = list(X.columns)
+            
+            # Kiểm tra và loại bỏ features không có trong model
+            missing_features = [f for f in expected_features if f not in X.columns]
+            if missing_features:
+                print(f"⚠ Cảnh báo: Thiếu features trong dữ liệu: {missing_features}")
+            
+            # Loại bỏ features không có trong model (như pca_service_issue nếu bị loại khi train)
+            extra_features = [f for f in X.columns if f not in expected_features]
+            if extra_features:
+                print(f"⚠ Loại bỏ features không có trong model: {extra_features}")
+            
+            # Chỉ giữ lại features mà model mong đợi và có trong X
+            available_expected = [f for f in expected_features if f in X.columns]
+            if len(available_expected) == 0:
+                raise ValueError("Không có feature nào khớp với model")
+            
+            # Tạo X với đúng features và đúng thứ tự như model mong đợi
+            X_for_pred = X[available_expected].copy()
+            
+            # Nếu thiếu features, điền giá trị mặc định (median hoặc 0)
+            if len(missing_features) > 0:
+                print(f"⚠ Điền giá trị mặc định cho {len(missing_features)} features thiếu")
+                for f in missing_features:
+                    X_for_pred[f] = 0.0  # Giá trị mặc định
+            
+            # Đảm bảo X_for_pred có đúng thứ tự features như expected_features
+            X_for_pred = X_for_pred[[f for f in expected_features if f in X_for_pred.columns]]
+            
+        except Exception as e:
+            print(f"⚠ Lỗi khi lấy expected features: {e}")
+            print(f"⚠ Thử predict trực tiếp với tất cả features...")
+            # Fallback: thử loại bỏ pca_service_issue nếu có
+            if 'pca_service_issue' in X.columns:
+                print(f"⚠ Thử loại bỏ pca_service_issue...")
+                X_for_pred = X.drop(columns=['pca_service_issue'], errors='ignore').copy()
+            else:
+                X_for_pred = X.copy()
+        
         # Predict với model
         try:
-            proba_churn = self.churn_model.predict_proba(X)[0, 1]
+            proba_churn = self.churn_model.predict_proba(X_for_pred)[0, 1]
             pred_churn = (proba_churn >= self.churn_threshold).astype(int)
             return float(proba_churn), int(pred_churn)
         except Exception as e:
