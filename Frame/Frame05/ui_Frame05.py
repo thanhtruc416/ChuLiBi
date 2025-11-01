@@ -16,6 +16,7 @@ class Frame05(Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg="#FFFFFF")
+        self.lower()
 
         # sẽ nhận từ frame trước qua on_show(email=...)
         self.email = None

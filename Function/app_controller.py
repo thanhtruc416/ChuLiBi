@@ -13,7 +13,7 @@ class AppController:
         self.container = container or root    # cho phép pass container riêng
         self.frames: dict[str, tk.Frame] = {}
         self.last_kwargs: dict[str, dict] = {}  # lưu tham số lần cuối mỗi frame
-
+        self.current_user = {}
         # bảo đảm container có layout
         if isinstance(self.container, tk.Frame):
             self.container.grid_rowconfigure(0, weight=1)
@@ -63,3 +63,18 @@ class AppController:
             kwargs = self.last_kwargs.get(frame_name, {})
             frame.on_show(**kwargs)
         frame.tkraise()
+
+    # =========================
+    # 🧠 Quản lý người dùng hiện tại
+    # =========================
+    def get_current_user(self):
+        """Trả về thông tin người dùng hiện tại."""
+        return getattr(self, "current_user", {})
+
+    def set_current_user(self, user_data: dict):
+        """Lưu thông tin người dùng hiện tại."""
+        self.current_user = user_data or {}
+
+    def clear_current_user(self):
+        """Xóa thông tin người dùng hiện tại."""
+        self.current_user = {}

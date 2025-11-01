@@ -1,327 +1,496 @@
-# ui_Frame10.py — Recommendations Frame (class-based)
+# -*- coding: utf-8 -*-
+# File: class10.py
+# Converted from Tkinter Designer to Frame10 class + backend display
+# Assets: ./assets_frame10/
 
 from pathlib import Path
 import tkinter as tk
-from tkinter import Canvas, Entry, Button, PhotoImage, Frame, messagebox
-import pandas as pd
+from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 
-# Import table builder
+from Function.dropdown_profile import DropdownMenu
+
+# ==== Import backend recommendation ====
 try:
-    from .ui_content_Frame10 import build_table
-except ImportError:
-    from ui_content_Frame10 import build_table
-
-# Import recommendation engine
-try:
-    from Function.Frame10_Recommend import get_recommendations
-except ImportError:
-    get_recommendations = None
-
-# Import dropdown for profile button
-try:
-    from Function.dropdown_profile import DropdownMenu
-except ImportError:
-    DropdownMenu = None
-
-OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame10")
-
-
-def relative_to_assets(path: str) -> Path:
-    return ASSETS_PATH / Path(path)
+    from Function.Frame10_Recommend import get_recommendation_data
+except Exception as e:
+    print("[WARN] Không thể import Function.Frame10_Recommend:", e)
 
 
 class Frame10(tk.Frame):
-    def __init__(self, parent, controller=None):
-        super().__init__(parent)
+    def __init__(self, parent=None, controller=None):
+        super().__init__(parent, bg="#ECE7EB")
         self.controller = controller
-        self._imgs = {}  # Store images to prevent garbage collection
-        self.configure(bg="#ECE7EB")
+        self.lower()
 
-        # Load recommendation data
-        self.df_recommendations = None
-        self.filtered_data = None
-        self._load_recommendations()
+        # ---- Đường dẫn tương đối ----
+        OUTPUT_PATH = Path(__file__).parent
+        ASSETS_PATH = OUTPUT_PATH / Path("assets_frame10")
 
-        # Main Canvas
-        canvas = Canvas(
-            self, bg="#ECE7EB", height=1024, width=1440,
-            bd=0, highlightthickness=0, relief="ridge"
+        def relative_to_assets(path: str) -> Path:
+            return ASSETS_PATH / Path(path)
+
+        # ---- Canvas chính ----
+        self.canvas = Canvas(
+            self,
+            bg="#ECE7EB",
+            height=1024,
+            width=1440,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge"
         )
-        canvas.place(x=0, y=0)
-        self.canvas = canvas
+        self.canvas.place(x=0, y=0)
 
-        # ---- Top bar ----
-        self._imgs["image_1"] = PhotoImage(file=relative_to_assets("image_1.png"))
-        canvas.create_image(890.0, 42.0, image=self._imgs["image_1"])
+        # ================= IMAGE & BUTTONS =================
+        self.image_image_1 = PhotoImage(file=relative_to_assets("image_1.png"))
+        self.image_1 = self.canvas.create_image(889.0, 266.0, image=self.image_image_1)
 
-        canvas.create_text(
-            385.0, 14.0, anchor="nw",
-            text="Recommendations",
-            fill="#000000", font=("Young Serif", 40 * -1),
+        self.image_image_2 = PhotoImage(file=relative_to_assets("image_2.png"))
+        self.image_2 = self.canvas.create_image(168.0, 512.0, image=self.image_image_2)
+
+        self.image_image_3 = PhotoImage(file=relative_to_assets("image_3.png"))
+        self.image_3 = self.canvas.create_image(888.0, 42.0, image=self.image_image_3)
+
+        self.image_image_4 = PhotoImage(file=relative_to_assets("image_4.png"))
+        self.image_4 = self.canvas.create_image(580.0, 42.0, image=self.image_image_4)
+
+        self.button_image_Profile = PhotoImage(file=relative_to_assets("button_Profile.png"))
+        self.dropdown = DropdownMenu(self,controller=self.controller)
+        self.button_Profile = Button(
+            self,
+            image=self.button_image_Profile,
+            borderwidth=0,
+            highlightthickness=0,
+            command=self.dropdown.show,
+            relief="flat"
         )
+        self.button_Profile.place(x=1361.18, y=17.03, width=44.18, height=44.69)
 
-        # Profile button with dropdown
-        if DropdownMenu:
-            self._imgs["button_Profile"] = PhotoImage(file=relative_to_assets("button_Profile.png"))
-            self.dropdown = DropdownMenu(self)
-            self.button_Profile = Button(
-                self,
-                image=self._imgs["button_Profile"],
-                borderwidth=0, highlightthickness=0,
-                command=self.dropdown.show,
-                relief="flat"
-            )
-            self.button_Profile.place(x=1361.18, y=17.03, width=44.18, height=44.69)
-        else:
-            self._imgs["button_Profile"] = PhotoImage(file=relative_to_assets("button_Profile.png"))
-            self.button_Profile = Button(
-                self,
-                image=self._imgs["button_Profile"],
-                borderwidth=0, highlightthickness=0,
-                command=lambda: print("Profile"),
-                relief="flat"
-            )
-            self.button_Profile.place(x=1361.18, y=17.03, width=44.18, height=44.69)
+        self.image_image_5 = PhotoImage(file=relative_to_assets("image_5.png"))
+        self.image_5 = self.canvas.create_image(889.0, 527.0, image=self.image_image_5)
 
-        # Notification button
-        self._imgs["button_Noti"] = PhotoImage(file=relative_to_assets("button_Noti.png"))
+        self.button_image_search = PhotoImage(file=relative_to_assets("button_search.png"))
+        self.button_search = Button(
+            self,
+            image=self.button_image_search,
+            borderwidth=0,
+            highlightthickness=0,
+            command=self._filter_by_search,
+            relief="flat"
+        )
+        self.button_search.place(x=1273.0, y=506.0, width=105.0, height=46.0)
+
+        self.button_image_Noti = PhotoImage(file=relative_to_assets("button_Noti.png"))
         self.button_Noti = Button(
             self,
-            image=self._imgs["button_Noti"],
-            borderwidth=0, highlightthickness=0,
-            command=lambda: print("Notification"),
+            image=self.button_image_Noti,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("Noti clicked"),
             relief="flat"
         )
         self.button_Noti.place(x=1292.0, y=17.0, width=49.0, height=49.0)
 
-        # ---- Search block ----
-        canvas.create_text(
-            389.0, 144.0, anchor="nw",
+        # ================= TEXT =================
+        self.canvas.create_text(
+            375.0, 461.0, anchor="nw",
             text="Customer research",
-            fill="#374A5A", font=("Young Serif", 24 * -1),
+            fill="#374A5A", font=("Young Serif", -24)
         )
 
-        self._imgs["image_2"] = PhotoImage(file=relative_to_assets("image_2.png"))
-        canvas.create_image(832.0, 215.0, image=self._imgs["image_2"])
-
-        self._imgs["button_Search"] = PhotoImage(file=relative_to_assets("button_Search.png"))
-        self.button_Search = Button(
-            self,
-            image=self._imgs["button_Search"],
-            borderwidth=0, highlightthickness=0,
-            command=self.search_action,
-            relief="flat"
+        self.canvas.create_text(
+            375.0, 563.0, anchor="nw",
+            text="Search by Customer ID or Recommendation only",
+            fill="#9282AA", font=("Young Serif", -15)
         )
-        self.button_Search.place(x=1287.0, y=193.0, width=102.0, height=45.0)
 
-        self._imgs["entry_1"] = PhotoImage(file=relative_to_assets("entry_1.png"))
-        canvas.create_image(823.0, 217.0, image=self._imgs["entry_1"])
-        self.entry_search = Entry(
-            self, bd=0, bg="#FFFFFF", fg="#000716",
-            highlightthickness=0, font=("Crimson Pro Regular", 16 * -1)
-        )
-        self.entry_search.place(x=400.0, y=206.0, width=846.0, height=20.0)
+        self.image_image_6 = PhotoImage(file=relative_to_assets("image_6.png"))
+        self.image_6 = self.canvas.create_image(818.0, 527.0, image=self.image_image_6)
 
-        # Bind Enter key to search
-        self.entry_search.bind("<Return>", lambda e: self.search_action())
-        self.entry_search.bind("<KP_Enter>", lambda e: self.search_action())  # Numpad Enter
+        # ================= ENTRY =================
+        self.entry_image_1 = PhotoImage(file=relative_to_assets("entry_1.png"))
+        self.entry_bg_1 = self.canvas.create_image(809.0, 529.0, image=self.entry_image_1)
+        self.entry_1 = Entry(
+            self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,font=("Crimson Pro", 15, "bold"))
+        self.entry_1.place(x=386.0, y=518.0, width=846.0, height=20.0)
 
-        # ---- White card containing table ----
-        canvas.create_rectangle(359.0, 298.0, 1419.0, 1001.0, fill="#FFFFFF", outline="")
-        canvas.create_text(
-            389.0, 328.0, anchor="nw",
+        # ================= FOOTER =================
+        self.image_image_7 = PhotoImage(file=relative_to_assets("image_7.png"))
+        self.image_7 = self.canvas.create_image(889.0, 807.0, image=self.image_image_7)
+
+        self.canvas.create_text(
+            375.0, 630.0, anchor="nw",
             text="Recommendations Table",
-            fill="#374A5A", font=("Young Serif", 24 * -1),
+            fill="#374A5A", font=("Young Serif", -24)
         )
 
-        # ==== TABLE WITH SCROLLBAR (only inside card) ====
-        # Table dimensions and position inside card
-        TABLE_X = 389  # left edge of table display area
-        TABLE_Y = 366  # below title
-        TABLE_W = 1389 - 389
-        TABLE_H = 1001 - 366
-
-        self.table_holder = Frame(self, bg="#FFFFFF")
-        self.table_holder.place(x=TABLE_X, y=TABLE_Y, width=TABLE_W, height=TABLE_H)
-
-        # Build table with recommendation data
-        display_data = self.filtered_data if self.filtered_data is not None else self.df_recommendations
-        self.table_canvas = build_table(self.table_holder, TABLE_W, TABLE_H, data=display_data, search_term=None)
-        self.table_canvas.pack(fill="both", expand=True)
-
-        # Store current search term
-        self.current_search = None
-
-        # ---- Sidebar & mascot ----
-        # Sidebar background gradient
-        self._imgs["image_sidebar_bg"] = PhotoImage(file=relative_to_assets("image_sidebar_bg.png"))
-        canvas.create_image(168.0, 512.0, image=self._imgs["image_sidebar_bg"])
-
-        # Logo text
-        canvas.create_text(
-            92.0, 942.0, anchor="nw",
-            text="ChuLiBi", fill="#FDE5F4",
-            font=("Rubik Burned Regular", 35 * -1)
+        self.canvas.create_text(
+            99.0, 956.0, anchor="nw",
+            text="ChuLiBi",
+            fill="#FDE5F4", font=("Rubik Burned Regular", -35)
         )
 
-        # Logo icon
-        self._imgs["image_5"] = PhotoImage(file=relative_to_assets("image_5.png"))
-        canvas.create_image(169.0, 103.0, image=self._imgs["image_5"])
+        self.image_image_8 = PhotoImage(file=relative_to_assets("image_8.png"))
+        self.image_8 = self.canvas.create_image(163.0, 130.0, image=self.image_image_8)
 
-        # ---- Sidebar navigation buttons ----
-        self._make_button("button_dashboard.png", cmd=lambda: self.controller.show_frame("Frame06"), x=0.0, y=198.0,
-                          w=335.0, h=97.0)
-        self._make_button("button_customer.png", cmd=lambda: self.controller.show_frame("Frame07"), x=0.0, y=289.0,
-                          w=335.0, h=90.0)
-        self._make_button("button_churn.png", cmd=lambda: self.controller.show_frame("Frame08"), x=0.0, y=378.0,
-                          w=335.0, h=92.0)
-        self._make_button("button_recommend_1.png", cmd=lambda: print("Recommend (current page)"), x=0.0, y=543.0,
-                          w=335.0, h=98.0)  # Current page
-        self._make_button("button_delivery.png", cmd=lambda: self.controller.show_frame("Frame09"), x=0.0, y=464.0,
-                          w=335.0, h=89.0)
-        self._make_button("button_report.png", cmd=lambda: print("Report"), x=0.0, y=634.0, w=335.0, h=96.0)
+        # ================= SIDEBAR =================
+        # (không đổi cấu trúc)
+        self.button_image_CustomerAnalysis = PhotoImage(file=relative_to_assets("button_CustomerAnalysis.png"))
+        self.button_CustomerAnalysis = Button(self, image=self.button_image_CustomerAnalysis, borderwidth=0,
+            highlightthickness=0, command=lambda: self.controller.show_frame("Frame07"), relief="flat")
+        self.button_CustomerAnalysis.place(x=0.0, y=305.0, width=337.0, height=78.0)
 
-    def _make_button(self, filename, cmd, x, y, w, h):
-        """Helper method to create buttons with images"""
-        if filename not in self._imgs:
-            try:
-                self._imgs[filename] = PhotoImage(file=relative_to_assets(filename))
-            except Exception as e:
-                print(f"[Frame10] Could not load button image {filename}: {e}")
-                return None
+        self.button_image_Recommendation = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
+        self.button_Recommendation = Button(self, image=self.button_image_Recommendation, borderwidth=0,
+            highlightthickness=0, command=lambda: self.controller.show_frame("Frame10"), relief="flat")
+        self.button_Recommendation.place(x=0.0, y=547.0, width=336.0, height=79.0)
 
-        btn = Button(
-            self,
-            image=self._imgs[filename],
-            borderwidth=0,
-            highlightthickness=0,
-            relief="flat",
-            command=cmd
-        )
-        btn.place(x=x, y=y, width=w, height=h)
-        return btn
+        self.button_image_Dashboard = PhotoImage(file=relative_to_assets("button_Dashboard.png"))
+        self.button_Dashboard = Button(self, image=self.button_image_Dashboard, borderwidth=0,
+            highlightthickness=0, command=lambda: self.controller.show_frame("Frame06"), relief="flat")
+        self.button_Dashboard.place(x=1.0, y=222.0, width=336.0, height=88.0)
 
+        self.button_image_El = PhotoImage(file=relative_to_assets("button_El.png"))
+        self.button_El = Button(self, image=self.button_image_El, borderwidth=0,
+            highlightthickness=0, command=lambda: self.controller.show_frame("Frame09_EL"), relief="flat")
+        self.button_El.place(x=1.0, y=469.0, width=336.0, height=78.0)
+
+        self.button_image_Churn = PhotoImage(file=relative_to_assets("button_Churn.png"))
+        self.button_Churn = Button(self, image=self.button_image_Churn, borderwidth=0,
+            highlightthickness=0, command=lambda: self.controller.show_frame("Frame08"), relief="flat")
+        self.button_Churn.place(x=1.0, y=383.0, width=336.0, height=86.0)
+
+        self.button_image_PredictCustomer = PhotoImage(file=relative_to_assets("button_PredictCustomer.png"))
+        self.button_PredictCustomer = Button(self, image=self.button_image_PredictCustomer, borderwidth=0,
+            highlightthickness=0, command=lambda: self.controller.show_frame("Frame11"), relief="flat")
+        self.button_PredictCustomer.place(x=0.0, y=626.0, width=336.0, height=75.0)
+
+        # ================= KPI (có hình + text phần trăm) =================
+        # ================= KPI =================
+        # ---- Vẽ 8 ảnh khung KPI trước ----
+        self.image_service = PhotoImage(file=relative_to_assets("image_9.png"))
+        self.canvas.create_image(480.0, 213.0, image=self.image_service)
+
+        self.image_sla = PhotoImage(file=relative_to_assets("image_11.png"))
+        self.canvas.create_image(751.0, 213.0, image=self.image_sla)
+
+        self.image_quality = PhotoImage(file=relative_to_assets("image_13.png"))
+        self.canvas.create_image(1020.0, 213.0, image=self.image_quality)
+
+        self.image_coupon = PhotoImage(file=relative_to_assets("image_15.png"))
+        self.canvas.create_image(1291.0, 213.0, image=self.image_coupon)
+
+        self.image_loyalty = PhotoImage(file=relative_to_assets("image_10.png"))
+        self.canvas.create_image(480.0, 351.0, image=self.image_loyalty)
+
+        self.image_care = PhotoImage(file=relative_to_assets("image_12.png"))
+        self.canvas.create_image(751.0, 351.0, image=self.image_care)
+
+        self.image_remind = PhotoImage(file=relative_to_assets("image_14.png"))
+        self.canvas.create_image(1020.0, 351.0, image=self.image_remind)
+
+        self.image_edu = PhotoImage(file=relative_to_assets("image_16.png"))
+        self.canvas.create_image(1291.0, 351.0, image=self.image_edu)
+
+        # ---- Sau đó vẽ chữ nhãn KPI ----
+        self.canvas.create_text(375.0, 115.0, anchor="nw", text="Service Package",
+                                fill="#374A5A", font=("Young Serif", -25))
+        self.canvas.create_text(441.0, 171.0, anchor="nw", text="SLA_UP",
+                                fill="#374A5A", font=("Young Serif", -18))
+        self.canvas.create_text(665.0, 171.0, anchor="nw", text="QUALITY SWITCH",
+                                fill="#374A5A", font=("Young Serif", -16))
+        self.canvas.create_text(976.0, 171.0, anchor="nw", text="COUPON",
+                                fill="#374A5A", font=("Young Serif", -18))
+        self.canvas.create_text(1247.0, 171.0, anchor="nw", text="LOYALTY",
+                                fill="#374A5A", font=("Young Serif", -18))
+        self.canvas.create_text(423.0, 312.0, anchor="nw", text="CARE CALL",
+                                fill="#374A5A", font=("Young Serif", -18))
+        self.canvas.create_text(688.0, 312.0, anchor="nw", text="REMIND APP",
+                                fill="#374A5A", font=("Young Serif", -18))
+        self.canvas.create_text(949.0, 312.0, anchor="nw", text="EDU CONTENT",
+                                fill="#374A5A", font=("Young Serif", -18))
+        self.canvas.create_text(1234.0, 312.0, anchor="nw", text="NO ACTION",
+                                fill="#374A5A", font=("Young Serif", -18))
+
+        # ---- Vẽ số KPI (phần trăm, auto canh giữa khung) ----
+        # Lấy đúng vị trí giữa các ảnh KPI
+        kpi_centers = {
+            "SLA_UP": (480.0, 213.0),
+            "QUALITY_SWITCH": (751.0, 213.0),
+            "COUPON10": (1020.0, 213.0),
+            "LOYALTY": (1291.0, 213.0),
+            "CARE_CALL": (480.0, 351.0),
+            "REMIND_APP": (751.0, 351.0),
+            "EDU_CONTENT": (1020.0, 351.0),
+            "NO_ACTION": (1291.0, 351.0),
+        }
+
+        self.kpi_labels = {}
+        for key, (cx, cy) in kpi_centers.items():
+            self.kpi_labels[key] = self.canvas.create_text(
+                cx, cy +12,  # nhích lên 8px
+                text="0%",
+                fill="#794679",
+                font=("Kodchasan Regular", -36),
+                anchor="center",  # canh giữa tuyệt đối
+            )
+
+        # ==== Table holder ====
+        self.table_holder = tk.Frame(self, bg="#FFFFFF")
+        self.table_holder.place(x=380, y=670, width=980, height=300)
+        self.table_widget = None
+
+    # ===================================================
+    # ==== BACKEND & KPI UPDATE ====
+    # ===================================================
     def _load_recommendations(self):
-        """Load recommendation data from file or generate new"""
+        """Load dữ liệu gốc từ backend và hiển thị bảng ban đầu"""
         try:
-            if get_recommendations:
-                # Try to get recommendations
-                # Path: Frame/Frame10/ui_Frame10.py -> Frame/Frame10 -> Frame -> ChuLiBi -> Dataset/Output
-                data_path = Path(__file__).parent.parent.parent / "Dataset" / "Output"
-                print(f"📂 Looking for data in: {data_path}")
-
-                if not data_path.exists():
-                    print(f"⚠️ Data path does not exist: {data_path}")
-                    self.df_recommendations = None
-                    self.filtered_data = None
-                    return
-
-                self.df_recommendations = get_recommendations(data_path)
-                self.filtered_data = self.df_recommendations.copy()
-                print(f"✅ Loaded {len(self.df_recommendations)} recommendations")
-            else:
-                print("⚠️ Recommendation engine not available - using sample data")
-                self.df_recommendations = None
-                self.filtered_data = None
+            df, df_rec, thr = get_recommendation_data()
         except Exception as e:
-            print(f"⚠️ Error loading recommendations: {e}")
-            import traceback
-            traceback.print_exc()
-            messagebox.showwarning(
-                "Data Loading",
-                f"Could not load recommendations:\n{str(e)}\n\nUsing sample data instead."
-            )
-            self.df_recommendations = None
-            self.filtered_data = None
-
-    def search_action(self):
-        """Handle search action - filter by Customer_ID"""
-        search_text = self.entry_search.get().strip()
-
-        if not search_text:
-            # Reset to show all data
-            self.current_search = None
-            self.filtered_data = self.df_recommendations.copy() if self.df_recommendations is not None else None
-            self.refresh_table()
-            print("🔄 Showing all customers")
+            messagebox.showerror("Error", f"Lỗi khi tải dữ liệu: {e}")
             return
 
-        if self.df_recommendations is None or self.df_recommendations.empty:
-            messagebox.showinfo("Search", "No data available to search")
+        if df_rec is None or df_rec.empty:
+            messagebox.showinfo("Thông báo", "Không có dữ liệu khuyến nghị.")
             return
 
-        # Store search term for highlighting
-        self.current_search = search_text
+        # Lưu dữ liệu gốc
+        self.df_rec_raw = df_rec.copy()  # dữ liệu gốc
+        self.df_rec_original = df_rec.copy()
+        self._render_table(df_rec)
+        self._update_kpi(df_rec)
 
-        # Filter by Customer_ID (case-insensitive partial match)
-        search_lower = search_text.lower()
-        mask = self.df_recommendations["Customer_ID"].astype(str).str.lower().str.contains(search_lower, na=False,
-                                                                                           regex=False)
+    def _filter_by_search(self):
+        """Lọc theo Customer_ID hoặc Recommendation"""
+        keyword = self.entry_1.get().strip().lower()
+        self.active_mode = "search"
 
-        self.filtered_data = self.df_recommendations[mask].copy()
+        if not hasattr(self, "df_rec_raw") or self.df_rec_raw is None:
+            self._load_recommendations()
+            return
 
-        if self.filtered_data.empty:
-            messagebox.showinfo(
-                "Search Result",
-                f"No customers found with ID containing '{search_text}'\n\nShowing all data."
-            )
-            self.current_search = None
-            self.filtered_data = self.df_recommendations.copy()
+        df_full = self.df_rec_raw.copy()  # dữ liệu gốc
+
+        if not keyword:
+            messagebox.showinfo("Thông báo", "Vui lòng nhập Customer ID hoặc gói cần tìm.")
+            return
+
+        df_filtered = df_full[
+            df_full["Customer_ID"].astype(str).str.lower().str.contains(keyword)
+            | df_full.get("action_name", "").astype(str).str.lower().str.contains(keyword)
+            ]
+
+        if df_filtered.empty:
+            messagebox.showinfo("Kết quả tìm kiếm", f"Không tìm thấy khách hàng hoặc gói phù hợp với '{keyword}'.")
+            return
+
+        # ✅ Hiển thị kết quả search, KHÔNG render lại dropdown
+        self._render_table(df_filtered, show_filter=True)
+
+        print(f"[SEARCH] Found {len(df_filtered)} rows matching '{keyword}'")
+
+    def _render_table(self, df_rec, show_filter=True):
+        import tkinter as tk
+        from tkinter import ttk
+        import pandas as pd
+
+        # Xóa bảng cũ
+        for w in self.table_holder.winfo_children():
+            w.destroy()
+
+        HEADER_BG = "#B79AC8"
+        ROW_EVEN = "#FFFFFF"
+        ROW_ODD = "#F7F4F7"
+        TEXT = "#2E2E2E"
+
+        # ==== Chuẩn hoá dữ liệu hiển thị ban đầu ====
+        df_show = df_rec.copy()
+        df_show["ID"] = df_show.get("Customer_ID", "")
+        if "priority_score" in df_show.columns:
+            df_show["Expected Loss"] = (df_show["priority_score"].astype(float) * 100).round(1).astype(str) + "%"
         else:
-            count = len(self.filtered_data)
-            print(f"🔍 Found {count} customer(s) matching '{search_text}'")
+            df_show["Expected Loss"] = "0.0%"
+        df_show["Cluster"] = "Cluster 1"
+        df_show["Recommendation"] = df_show.apply(
+            lambda r: f"{r.get('action_id', '')} – {r.get('action_name', '')}", axis=1
+        )
+        df_show = df_show[["ID", "Cluster", "Expected Loss", "Recommendation"]]
+        self.df_full = df_show.copy()
 
-        self.refresh_table()
+        # ==== Khung filter (dropdown) ====
+        if show_filter:
+            filter_outer = tk.Frame(self.table_holder, bg="#ECE7EB")
+            filter_outer.pack(fill="x", padx=0, pady=(0, 4))
 
-    def refresh_table(self):
-        """Refresh the table with current filtered data"""
-        # Clear current table
-        for widget in self.table_holder.winfo_children():
-            widget.destroy()
+            filter_inner = tk.Frame(filter_outer, bg="#FFFFFF", bd=0, relief="flat", height=36)
+            filter_inner.pack(fill="x")
+            filter_inner.pack_propagate(False)
 
-        # Rebuild table with new data and search term for highlighting
-        TABLE_W = 1389 - 389
-        TABLE_H = 1001 - 366
-        display_data = self.filtered_data if self.filtered_data is not None else self.df_recommendations
-        search_term = self.current_search if hasattr(self, 'current_search') else None
-        self.table_canvas = build_table(self.table_holder, TABLE_W, TABLE_H, data=display_data, search_term=search_term)
-        self.table_canvas.pack(fill="both", expand=True)
+            right_wrap = tk.Frame(filter_inner, bg="#FFFFFF")
+            right_wrap.place(relx=1.0, rely=0.5, anchor="e", x=-20)
+
+            lbl = tk.Label(
+                right_wrap,
+                text="Filter by Recommendation:",
+                bg="#FFFFFF",
+                fg="#374A5A",
+                font=("Crimson Pro", 12, "bold")
+            )
+            lbl.pack(side="left", padx=(0, 6))
+
+            base_df = getattr(self, "df_rec_raw", df_rec)
+            rec_packages = sorted(base_df["action_id"].dropna().unique().tolist())
+            rec_opts = ["All Packages"] + rec_packages
+            self.selected_package = tk.StringVar(value="All Packages")
+
+            self.cmb_package = ttk.Combobox(
+                right_wrap,
+                values=rec_opts,
+                textvariable=self.selected_package,
+                state="readonly",
+                width=25,
+                font=("Crimson Pro", 12)
+            )
+            self.cmb_package.pack(side="left")
+
+        # ==== Khung table chính ====
+        table_frame = tk.Frame(self.table_holder, bg="#FFFFFF")
+        table_frame.pack(fill="both", expand=True)
+
+        canvas = tk.Canvas(table_frame, bg="#FFFFFF", highlightthickness=0, bd=0)
+        canvas.pack(fill="both", expand=True, side="left")
+
+        scrollbar = tk.Scrollbar(table_frame, orient="vertical", command=canvas.yview)
+        scrollbar.pack(side="right", fill="y")
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        inner = tk.Frame(canvas, bg="#FFFFFF")
+        inner_id = canvas.create_window((0, 0), window=inner, anchor="nw")
+
+        def _label(parent, text, bg, fg=TEXT, bold=False, anchor="w", padx=12, pady=8, width=None):
+            font = ("Crimson Pro", 12, "bold" if bold else "normal")
+            lbl = tk.Label(parent, text=text, bg=bg, fg=fg, font=font,
+                           anchor=anchor, padx=padx, pady=pady, justify="left")
+            if width:
+                lbl.config(width=int(width / 8))
+            return lbl
+
+        # Header
+        header = tk.Frame(inner, bg=HEADER_BG)
+        header.pack(fill="x")
+        COLUMNS = [
+            ("ID", 100),
+            ("Cluster", 120),
+            ("Expected Loss", 160),
+            ("Recommendation", 580),
+        ]
+        for col, col_w in COLUMNS:
+            lbl = _label(header, col, HEADER_BG, fg="#FFFFFF", bold=True)
+            lbl.pack(side="left")
+            lbl.config(width=int(col_w / 8))
+
+        # Row function
+        def _add_row(values, index):
+            bg = ROW_EVEN if index % 2 == 0 else ROW_ODD
+            row = tk.Frame(inner, bg=bg)
+            row.pack(fill="x")
+            for (col, col_w), val in zip(COLUMNS, values):
+                anchor = "center" if col == "Expected Loss" else "w"
+                lbl = _label(row, str(val), bg, width=col_w, anchor=anchor)
+                lbl.pack(side="left")
+
+        # ==== Filter dropdown logic ====
+        def render_filtered_table(sel_pkg):
+            base_df = getattr(self, "df_rec_original", None)
+            if base_df is None:
+                return
+
+            # Clear search box khi chọn dropdown
+            self.entry_1.delete(0, tk.END)
+
+            data = base_df.copy()
+            data["ID"] = data.get("Customer_ID", "")
+            if "priority_score" in data.columns:
+                data["Expected Loss"] = (data["priority_score"].astype(float) * 100).round(1).astype(str) + "%"
+            else:
+                data["Expected Loss"] = "0.0%"
+            data["Cluster"] = "Cluster 1"
+            data["Recommendation"] = data.apply(
+                lambda r: f"{r.get('action_id', '')} – {r.get('action_name', '')}", axis=1
+            )
+            data = data[["ID", "Cluster", "Expected Loss", "Recommendation", "action_id"]]
+
+            if sel_pkg != "All Packages":
+                data = data[data["action_id"].astype(str).str.strip() == sel_pkg]
+
+            # clear old rows
+            for w in inner.winfo_children():
+                if w != header:
+                    w.destroy()
+
+            for i, row in enumerate(data.itertuples(index=False), start=1):
+                _add_row(list(row), i)
+
+            _sync_scroll()
+            print(f"[UI] Filter dropdown applied: {sel_pkg} → {len(data)} rows")
+
+        # ==== Scroll sync ====
+        def _sync_scroll(_=None):
+            canvas.configure(scrollregion=canvas.bbox("all"))
+            canvas.itemconfigure(inner_id, width=canvas.winfo_width())
+
+        inner.bind("<Configure>", _sync_scroll)
+        canvas.bind("<Configure>", _sync_scroll)
+
+        # ==== Hiển thị dữ liệu ban đầu (theo dataset truyền vào) ====
+        for i, row in enumerate(df_show.itertuples(index=False), start=1):
+            _add_row(list(row), i)
+        _sync_scroll()
+
+        # ==== Bind dropdown ====
+        if show_filter and hasattr(self, "cmb_package"):
+            self.cmb_package.bind("<<ComboboxSelected>>",
+                                  lambda e: render_filtered_table(self.selected_package.get()))
+            # ⚡ Nếu đây là kết quả search, KHÔNG render lại full
+            if getattr(self, "active_mode", "") != "search":
+                render_filtered_table("All Packages")
+
+    def _update_kpi(self, df_rec):
+        counts = df_rec["action_id"].value_counts(normalize=True).mul(100).to_dict()
+        for aid, item in self.kpi_labels.items():
+            pct = counts.get(aid, 0)
+            self.canvas.itemconfigure(item, text=f"{pct:.1f}%")
+
+    # ===================================================
+    def _on_profile_clicked(self):
+        messagebox.showinfo("Profile", "Profile clicked")
 
     def on_show(self):
-        """Called when Frame10 is displayed"""
-        print("Frame10 (Recommendations) displayed")
-        # Refresh data when shown
-        if self.df_recommendations is None:
-            self._load_recommendations()
-            if self.df_recommendations is not None:
-                self.refresh_table()
-        # Clear search field and reset filter
-        self.entry_search.delete(0, tk.END)
-        self.current_search = None
-        self.filtered_data = self.df_recommendations.copy() if self.df_recommendations is not None else None
+        self._load_recommendations()
 
 
-# -------------------------
-# Standalone preview runner
-# -------------------------
+# =========================
+# Test độc lập
+# =========================
 if __name__ == "__main__":
-    import sys
-
-
-    # Dummy controller for testing
-    class _DummyController:
-        def show_frame(self, frame_name):
-            print(f"Navigate to: {frame_name}")
-
-
     root = tk.Tk()
-    root.title("Recommendations - Frame10")
+    root.title("Demo – Frame10")
     root.geometry("1440x1024")
     root.configure(bg="#ECE7EB")
 
-    app = Frame10(root, _DummyController())
-    app.pack(fill="both", expand=True)
+    # Mock controller
+    class MockController:
+        def show_frame(self, name, **kwargs):
+            print(f"[MOCK] show_frame({name}, {kwargs})")
+        def get_current_user(self):
+            return {"username": "test_user"}
+        def clear_current_user(self):
+            print("[MOCK] clear_current_user()")
 
-    root.resizable(False, False)
+    mock_controller = MockController()
+    app = Frame10(root, controller=mock_controller)
+    app.pack(fill="both", expand=True)
+    app.on_show()
     root.mainloop()
+

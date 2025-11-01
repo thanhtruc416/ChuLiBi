@@ -6,7 +6,7 @@ import tkinter as tk
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame03")
 
-
+from Function.Frame03_Profile import AuthService
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
@@ -15,6 +15,7 @@ class Frame03(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
+        self.lower()
         self.configure(bg="#FFFFFF")
 
         # --- Canvas ---
@@ -150,7 +151,7 @@ class Frame03(Frame):
             return
 
         try:
-            from Function.Frame01_auth import AuthService
+            from Function.Frame03_Profile import AuthService
 
             # Update profile
             result = AuthService.update_user_profile(user_id, full_name, business_name, role)

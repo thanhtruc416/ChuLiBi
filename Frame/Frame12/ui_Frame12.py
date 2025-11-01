@@ -1,11 +1,12 @@
-
+# ui_Frame12.py
+# Converted from Tkinter Designer output to class-based structure
+# Layout, text, fonts, images, and buttons are fully preserved.
 
 from pathlib import Path
+import tkinter as tk
+from tkinter import Canvas, Entry, Button, PhotoImage
 
-# from tkinter import *
-# Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
+from Function.dropdown_profile import DropdownMenu
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH /Path("assets_Frame12")
@@ -15,735 +16,688 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
-window = Tk()
-
-window.geometry("1440x1024")
-window.configure(bg = "#FFFFFF")
-
-
-canvas = Canvas(
-    window,
-    bg = "#FFFFFF",
-    height = 1024,
-    width = 1440,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
-)
-
-canvas.place(x = 0, y = 0)
-image_image_1 = PhotoImage(
-    file=relative_to_assets("image_1.png"))
-image_1 = canvas.create_image(
-    891.0,
-    554.0,
-    image=image_image_1
-)
-
-image_image_2 = PhotoImage(
-    file=relative_to_assets("image_2.png"))
-image_2 = canvas.create_image(
-    890.0,
-    554.0,
-    image=image_image_2
-)
-
-image_image_3 = PhotoImage(
-    file=relative_to_assets("image_3.png"))
-image_3 = canvas.create_image(
-    889.0,
-    329.0,
-    image=image_image_3
-)
-
-image_image_4 = PhotoImage(
-    file=relative_to_assets("image_4.png"))
-image_4 = canvas.create_image(
-    889.0,
-    795.0,
-    image=image_image_4
-)
-
-image_image_5 = PhotoImage(
-    file=relative_to_assets("image_5.png"))
-image_5 = canvas.create_image(
-    929.0,
-    1493.0,
-    image=image_image_5
-)
-
-image_image_6 = PhotoImage(
-    file=relative_to_assets("image_6.png"))
-image_6 = canvas.create_image(
-    889.0,
-    153.0,
-    image=image_image_6
-)
-
-canvas.create_text(
-    423.0,
-    130.0,
-    anchor="nw",
-    text="Change Information",
-    fill="#000000",
-    font=("Young Serif", 35 * -1)
-)
-
-entry_image_FullName = PhotoImage(
-    file=relative_to_assets("entry_FullName.png"))
-entry_bg_FullName = canvas.create_image(
-    558.0,
-    295.5,
-    image=entry_image_FullName
-)
-entry_FullName = Entry(
-    bd=0,
-    bg="#D9D9D9",
-    fg="#000716",
-    highlightthickness=0,
-    font=("Crimson Pro Regular", 24 * -1)
-)
-entry_FullName.place(
-    x=431.0,
-    y=272.0,
-    width=254.0,
-    height=45.0
-)
-
-entry_image_Username = PhotoImage(
-    file=relative_to_assets("entry_Username.png"))
-entry_bg_Username = canvas.create_image(
-    558.0,
-    417.5,
-    image=entry_image_Username
-)
-entry_Username = Entry(
-    bd=0,
-    bg="#D9D9D9",
-    fg="#000716",
-    highlightthickness=0,
-    font=("Crimson Pro Regular", 24 * -1)
-)
-entry_Username.place(
-    x=431.0,
-    y=394.0,
-    width=254.0,
-    height=45.0
-)
-
-entry_image_Business_Name = PhotoImage(
-    file=relative_to_assets("entry_Business_Name.png"))
-entry_bg_Business_Name = canvas.create_image(
-    890.0,
-    295.5,
-    image=entry_image_Business_Name
-)
-entry_Business_Name = Entry(
-    bd=0,
-    bg="#D9D9D9",
-    fg="#000716",
-    highlightthickness=0,
-    font=("Crimson Pro Regular", 24 * -1)
-)
-entry_Business_Name.place(
-    x=763.0,
-    y=272.0,
-    width=254.0,
-    height=45.0
-)
-
-entry_image_Password = PhotoImage(
-    file=relative_to_assets("entry_Password.png"))
-entry_bg_Password = canvas.create_image(
-    890.0,
-    417.5,
-    image=entry_image_Password
-)
-entry_Password = Entry(
-    bd=0,
-    bg="#D9D9D9",
-    fg="#000716",
-    highlightthickness=0,
-    font=("Crimson Pro Regular", 24 * -1)
-)
-entry_Password.place(
-    x=763.0,
-    y=394.0,
-    width=254.0,
-    height=45.0
-)
-
-entry_image_Your_Role = PhotoImage(
-    file=relative_to_assets("entry_Your_Role.png"))
-entry_bg_Your_Role = canvas.create_image(
-    1221.0,
-    295.5,
-    image=entry_image_Your_Role
-)
-entry_Your_Role = Entry(
-    bd=0,
-    bg="#D9D9D9",
-    fg="#000716",
-    highlightthickness=0,
-    font=("Crimson Pro Regular", 24 * -1)
-)
-entry_Your_Role.place(
-    x=1094.0,
-    y=272.0,
-    width=254.0,
-    height=45.0
-)
-
-entry_image_Gmail = PhotoImage(
-    file=relative_to_assets("entry_Gmail.png"))
-entry_bg_Gmail = canvas.create_image(
-    1221.0,
-    417.5,
-    image=entry_image_Gmail
-)
-entry_Gmail = Entry(
-    bd=0,
-    bg="#D9D9D9",
-    fg="#000716",
-    highlightthickness=0,
-    font=("Crimson Pro Regular", 24 * -1)
-)
-entry_Gmail.place(
-    x=1094.0,
-    y=394.0,
-    width=254.0,
-    height=45.0
-)
-
-canvas.create_text(
-    466.0,
-    238.0,
-    anchor="nw",
-    text="FullName",
-    fill="#000000",
-    font=("Crimson Pro SemiBold", 28 * -1)
-)
-
-canvas.create_text(
-    466.0,
-    362.0,
-    anchor="nw",
-    text="Username",
-    fill="#000000",
-    font=("Crimson Pro SemiBold", 28 * -1)
-)
-
-image_image_7 = PhotoImage(
-    file=relative_to_assets("image_7.png"))
-image_7 = canvas.create_image(
-    441.0,
-    254.0,
-    image=image_image_7
-)
-
-image_image_8 = PhotoImage(
-    file=relative_to_assets("image_8.png"))
-image_8 = canvas.create_image(
-    441.0,
-    378.0,
-    image=image_image_8
-)
-
-image_image_9 = PhotoImage(
-    file=relative_to_assets("image_9.png"))
-image_9 = canvas.create_image(
-    442.0,
-    236.0,
-    image=image_image_9
-)
-
-image_image_10 = PhotoImage(
-    file=relative_to_assets("image_10.png"))
-image_10 = canvas.create_image(
-    442.0,
-    360.0,
-    image=image_image_10
-)
-
-canvas.create_text(
-    798.0,
-    237.0,
-    anchor="nw",
-    text="Business Name",
-    fill="#000000",
-    font=("Crimson Pro SemiBold", 28 * -1)
-)
-
-image_image_11 = PhotoImage(
-    file=relative_to_assets("image_11.png"))
-image_11 = canvas.create_image(
-    773.0,
-    252.0,
-    image=image_image_11
-)
-
-image_image_12 = PhotoImage(
-    file=relative_to_assets("image_12.png"))
-image_12 = canvas.create_image(
-    773.0,
-    254.0,
-    image=image_image_12
-)
-
-image_image_13 = PhotoImage(
-    file=relative_to_assets("image_13.png"))
-image_13 = canvas.create_image(
-    773.0,
-    243.0,
-    image=image_image_13
-)
-
-canvas.create_text(
-    1136.0,
-    240.0,
-    anchor="nw",
-    text="Your Role",
-    fill="#000000",
-    font=("Crimson Pro SemiBold", 28 * -1)
-)
-
-canvas.create_text(
-    1123.0,
-    362.0,
-    anchor="nw",
-    text="Gmail",
-    fill="#000000",
-    font=("Crimson Pro SemiBold", 28 * -1)
-)
-
-image_image_14 = PhotoImage(
-    file=relative_to_assets("image_14.png"))
-image_14 = canvas.create_image(
-    1106.8125,
-    242.0,
-    image=image_image_14
-)
-
-image_image_15 = PhotoImage(
-    file=relative_to_assets("image_15.png"))
-image_15 = canvas.create_image(
-    1107.0,
-    255.5,
-    image=image_image_15
-)
-
-image_image_16 = PhotoImage(
-    file=relative_to_assets("image_16.png"))
-image_16 = canvas.create_image(
-    1119.75,
-    247.90625,
-    image=image_image_16
-)
-
-canvas.create_text(
-    799.0,
-    363.0,
-    anchor="nw",
-    text="Password",
-    fill="#000000",
-    font=("Crimson Pro SemiBold", 28 * -1)
-)
-
-image_image_17 = PhotoImage(
-    file=relative_to_assets("image_17.png"))
-image_17 = canvas.create_image(
-    775.0,
-    377.0,
-    image=image_image_17
-)
-
-image_image_18 = PhotoImage(
-    file=relative_to_assets("image_18.png"))
-image_18 = canvas.create_image(
-    775.0,
-    366.0,
-    image=image_image_18
-)
-
-image_image_19 = PhotoImage(
-    file=relative_to_assets("image_19.png"))
-image_19 = canvas.create_image(
-    1104.0,
-    371.0,
-    image=image_image_19
-)
-
-image_image_20 = PhotoImage(
-    file=relative_to_assets("image_20.png"))
-image_20 = canvas.create_image(
-    1104.0,
-    374.0,
-    image=image_image_20
-)
-
-image_image_21 = PhotoImage(
-    file=relative_to_assets("image_21.png"))
-image_21 = canvas.create_image(
-    889.0,
-    619.0,
-    image=image_image_21
-)
-
-canvas.create_text(
-    423.0,
-    598.0,
-    anchor="nw",
-    text="Our Team",
-    fill="#000000",
-    font=("Young Serif", 35 * -1)
-)
-
-button_image_save = PhotoImage(
-    file=relative_to_assets("button_save.png"))
-button_save = Button(
-    image=button_image_save,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_save clicked"),
-    relief="flat"
-)
-button_save.place(
-    x=1226.0,
-    y=458.0,
-    width=137.0,
-    height=54.0
-)
-
-image_image_22 = PhotoImage(
-    file=relative_to_assets("image_22.png"))
-image_22 = canvas.create_image(
-    1091.0,
-    822.0,
-    image=image_image_22
-)
-
-image_image_23 = PhotoImage(
-    file=relative_to_assets("image_23.png"))
-image_23 = canvas.create_image(
-    1089.86767578125,
-    741.0,
-    image=image_image_23
-)
-
-canvas.create_text(
-    1045.0,
-    785.0,
-    anchor="nw",
-    text="John Đỗ",
-    fill="#706093",
-    font=("Crimson Pro SemiBold", 24 * -1)
-)
-
-image_image_24 = PhotoImage(
-    file=relative_to_assets("image_24.png"))
-image_24 = canvas.create_image(
-    1290.0,
-    819.0,
-    image=image_image_24
-)
-
-image_image_25 = PhotoImage(
-    file=relative_to_assets("image_25.png"))
-image_25 = canvas.create_image(
-    1289.0,
-    744.0,
-    image=image_image_25
-)
-
-canvas.create_text(
-    1246.0,
-    785.0,
-    anchor="nw",
-    text="US Link",
-    fill="#706093",
-    font=("Crimson Pro SemiBold", 24 * -1)
-)
-
-image_image_26 = PhotoImage(
-    file=relative_to_assets("image_26.png"))
-image_26 = canvas.create_image(
-    892.0,
-    822.0,
-    image=image_image_26
-)
-
-image_image_27 = PhotoImage(
-    file=relative_to_assets("image_27.png"))
-image_27 = canvas.create_image(
-    889.0,
-    744.0,
-    image=image_image_27
-)
-
-canvas.create_text(
-    837.0,
-    785.0,
-    anchor="nw",
-    text="quàng uk",
-    fill="#706093",
-    font=("Crimson Pro SemiBold", 24 * -1)
-)
-
-canvas.create_text(
-    872.0,
-    816.0,
-    anchor="nw",
-    text="hello",
-    fill="#B992B9",
-    font=("Crimson Pro Regular", 15 * -1)
-)
-
-image_image_28 = PhotoImage(
-    file=relative_to_assets("image_28.png"))
-image_28 = canvas.create_image(
-    688.0,
-    824.0,
-    image=image_image_28
-)
-
-image_image_29 = PhotoImage(
-    file=relative_to_assets("image_29.png"))
-image_29 = canvas.create_image(
-    687.0,
-    744.0,
-    image=image_image_29
-)
-
-canvas.create_text(
-    605.0,
-    785.0,
-    anchor="nw",
-    text="Quỳnh Cheese",
-    fill="#706093",
-    font=("Crimson Pro SemiBold", 24 * -1)
-)
-
-canvas.create_text(
-    645.0,
-    816.0,
-    anchor="nw",
-    text="Data Analyst",
-    fill="#B992B9",
-    font=("Crimson Pro Regular", 15 * -1)
-)
-
-image_image_30 = PhotoImage(
-    file=relative_to_assets("image_30.png"))
-image_30 = canvas.create_image(
-    492.0,
-    822.0,
-    image=image_image_30
-)
-
-image_image_31 = PhotoImage(
-    file=relative_to_assets("image_31.png"))
-image_31 = canvas.create_image(
-    491.0,
-    744.0,
-    image=image_image_31
-)
-
-canvas.create_text(
-    408.0,
-    785.0,
-    anchor="nw",
-    text="Thank Bamboo",
-    fill="#706093",
-    font=("Crimson Pro SemiBold", 24 * -1)
-)
-
-canvas.create_text(
-    467.0,
-    816.0,
-    anchor="nw",
-    text="Leader",
-    fill="#B992B9",
-    font=("Crimson Pro Regular", 15 * -1)
-)
-
-canvas.create_text(
-    448.0,
-    841.0,
-    anchor="nw",
-    text="Generate and ",
-    fill="#FFFFFF",
-    font=("Crimson Pro Regular", 15 * -1)
-)
-
-canvas.create_text(
-    438.0,
-    858.0,
-    anchor="nw",
-    text="export analytics ",
-    fill="#FFFFFF",
-    font=("Crimson Pro Regular", 15 * -1)
-)
-
-canvas.create_text(
-    468.0,
-    875.0,
-    anchor="nw",
-    text="reports",
-    fill="#FFFFFF",
-    font=("Crimson Pro Regular", 15 * -1)
-)
-
-image_image_32 = PhotoImage(
-    file=relative_to_assets("image_32.png"))
-image_32 = canvas.create_image(
-    172.0,
-    512.0,
-    image=image_image_32
-)
-
-canvas.create_text(
-    103.0,
-    927.0,
-    anchor="nw",
-    text="ChuLiBi",
-    fill="#FDE5F4",
-    font=("Rubik Burned Regular", 35 * -1)
-)
-
-image_image_33 = PhotoImage(
-    file=relative_to_assets("image_33.png"))
-image_33 = canvas.create_image(
-    167.0,
-    101.0,
-    image=image_image_33
-)
-
-button_image_Customer_Analysis = PhotoImage(
-    file=relative_to_assets("button_Customer_Analysis.png"))
-button_Customer_Analysis = Button(
-    image=button_image_Customer_Analysis,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_Customer_Analysis clicked"),
-    relief="flat"
-)
-button_Customer_Analysis.place(
-    x=5.0,
-    y=302.0,
-    width=337.0,
-    height=77.0
-)
-
-button_image_Recommendation = PhotoImage(
-    file=relative_to_assets("button_Recommendation.png"))
-button_Recommendation = Button(
-    image=button_image_Recommendation,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_Recommendation clicked"),
-    relief="flat"
-)
-button_Recommendation.place(
-    x=5.0,
-    y=468.0,
-    width=336.0,
-    height=82.0
-)
-
-button_image_Churn = PhotoImage(
-    file=relative_to_assets("button_Churn.png"))
-button_Churn = Button(
-    image=button_image_Churn,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_Churn clicked"),
-    relief="flat"
-)
-button_Churn.place(
-    x=5.0,
-    y=381.0,
-    width=336.0,
-    height=86.0
-)
-
-button_image_Delivery = PhotoImage(
-    file=relative_to_assets("button_Delivery.png"))
-button_Delivery = Button(
-    image=button_image_Delivery,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_Delivery clicked"),
-    relief="flat"
-)
-button_Delivery.place(
-    x=5.0,
-    y=552.0,
-    width=337.0,
-    height=90.0
-)
-
-button_image_Report = PhotoImage(
-    file=relative_to_assets("button_Report.png"))
-button_Report = Button(
-    image=button_image_Report,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_Report clicked"),
-    relief="flat"
-)
-button_Report.place(
-    x=5.0,
-    y=646.0,
-    width=338.0,
-    height=88.0
-)
-
-button_image_Dashboard = PhotoImage(
-    file=relative_to_assets("button_Dashboard.png"))
-button_Dashboard = Button(
-    image=button_image_Dashboard,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_Dashboard clicked"),
-    relief="flat"
-)
-button_Dashboard.place(
-    x=6.0,
-    y=226.0,
-    width=337.0,
-    height=64.0
-)
-
-image_image_34 = PhotoImage(
-    file=relative_to_assets("image_34.png"))
-image_34 = canvas.create_image(
-    890.0,
-    44.0,
-    image=image_image_34
-)
-
-image_image_35 = PhotoImage(
-    file=relative_to_assets("image_35.png"))
-image_35 = canvas.create_image(
-    1320.0,
-    38.0,
-    image=image_image_35
-)
-
-button_image_Profile = PhotoImage(
-    file=relative_to_assets("button_Profile.png"))
-button_Profile = Button(
-    image=button_image_Profile,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_Profile clicked"),
-    relief="flat"
-)
-button_Profile.place(
-    x=1361.0,
-    y=16.0,
-    width=44.0,
-    height=45.0
-)
-window.resizable(False, False)
-window.mainloop()
+class Frame12(tk.Frame):
+    def __init__(self, parent=None, controller=None):
+        super().__init__(parent)
+        self.controller = controller
+        self.configure(bg="#FFFFFF")
+        self.configure(bg="#FFFFFF")
+
+        # ========== CONTAINER ==========
+        self.main_container = tk.Frame(self, bg="#FFFFFF")
+        self.main_container.place(x=0, y=0, relwidth=1, relheight=1)
+
+        self.canvas = Canvas(
+            self.main_container,
+            bg="#FFFFFF",
+            height=1024,
+            width=1440,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge"
+        )
+        self.canvas.place(x=0, y=0)
+
+        # ========== IMAGES (Top layer background) ==========
+        self.image_image_1 = PhotoImage(file=relative_to_assets("image_1.png"))
+        self.image_1 = self.canvas.create_image(
+            892.0,
+            555.0,
+            image=self.image_image_1
+        )
+
+        self.image_image_2 = PhotoImage(file=relative_to_assets("image_2.png"))
+        self.image_2 = self.canvas.create_image(
+            891.0,
+            555.0,
+            image=self.image_image_2
+        )
+
+        self.image_image_3 = PhotoImage(file=relative_to_assets("image_3.png"))
+        self.image_3 = self.canvas.create_image(
+            890.0,
+            330.0,
+            image=self.image_image_3
+        )
+
+        self.image_image_4 = PhotoImage(file=relative_to_assets("image_4.png"))
+        self.image_4 = self.canvas.create_image(
+            890.0,
+            796.0,
+            image=self.image_image_4
+        )
+
+        self.image_image_5 = PhotoImage(file=relative_to_assets("image_5.png"))
+        self.image_5 = self.canvas.create_image(
+            890.0,
+            154.0,
+            image=self.image_image_5
+        )
+
+        self.canvas.create_text(
+            424.0,
+            131.0,
+            anchor="nw",
+            text="Change Information",
+            fill="#000000",
+            font=("Young Serif", 35 * -1)
+        )
+
+        # ========== ENTRIES ==========
+        self.entry_image_1 = PhotoImage(file=relative_to_assets("entry_1.png"))
+        self.entry_bg_1 = self.canvas.create_image(
+            559.0,
+            296.5,
+            image=self.entry_image_1
+        )
+        self.entry_FullName = Entry(
+            self.main_container,
+            bd=0,
+            bg="#D9D9D9",
+            fg="#000716",
+            highlightthickness=0,
+            font=("Crimson Pro", 16, "bold")
+        )
+        self.entry_FullName.place(
+            x=432.0,
+            y=273.0,
+            width=254.0,
+            height=45.0
+        )
+
+        self.entry_image_2 = PhotoImage(file=relative_to_assets("entry_2.png"))
+        self.entry_bg_2 = self.canvas.create_image(
+            559.0,
+            418.5,
+            image=self.entry_image_2
+        )
+        self.canvas.create_rectangle(
+            432.0, 395.0, 432.0 + 254.0, 395.0 + 45.0,
+            fill="#D9D9D9", outline="", width=0
+        )
+        self.label_Username_value = tk.Label(
+            self.main_container,
+            text="thanhtruc1",  # tạm text, sau gán bằng user_data
+            bg="#D9D9D9",
+            fg="#6E6E6E",
+            font=("Crimson Pro", 16, "bold"),
+            anchor="w",
+            padx=10
+        )
+        self.label_Username_value.place(x=432.0, y=395.0, width=254.0, height=45.0)
+        self.entry_image_3 = PhotoImage(file=relative_to_assets("entry_3.png"))
+        self.entry_bg_3 = self.canvas.create_image(
+            891.0,
+            296.5,
+            image=self.entry_image_3
+        )
+        self.entry_Business_Name = Entry(
+            self.main_container,
+            bd=0,
+            bg="#D9D9D9",
+            fg="#000716",
+            highlightthickness=0,
+            font=("Crimson Pro", 16, "bold")
+        )
+        self.entry_Business_Name.place(
+            x=764.0,
+            y=273.0,
+            width=254.0,
+            height=45.0
+        )
+
+        self.entry_image_4 = PhotoImage(file=relative_to_assets("entry_4.png"))
+        self.entry_bg_4 = self.canvas.create_image(
+            891.0,
+            418.5,
+            image=self.entry_image_4
+        )
+        self.entry_Password = Entry(
+            self.main_container,
+            bd=0,
+            bg="#D9D9D9",
+            fg="#000716",
+            highlightthickness=0,
+            font=("Crimson Pro", 16, "bold")
+        )
+        self.entry_Password.place(
+            x=764.0,
+            y=395.0,
+            width=254.0,
+            height=45.0
+        )
+
+        self.entry_image_5 = PhotoImage(file=relative_to_assets("entry_5.png"))
+        self.entry_bg_5 = self.canvas.create_image(
+            1222.0,
+            296.5,
+            image=self.entry_image_5
+        )
+        self.entry_Your_Role = Entry(
+            self.main_container,
+            bd=0,
+            bg="#D9D9D9",
+            fg="#000716",
+            highlightthickness=0,
+            font=("Crimson Pro", 16, "bold")
+
+        )
+        self.entry_Your_Role.place(
+            x=1095.0,
+            y=273.0,
+            width=254.0,
+            height=45.0
+        )
+
+        self.entry_image_6 = PhotoImage(file=relative_to_assets("entry_6.png"))
+        self.entry_bg_6 = self.canvas.create_image(
+            1222.0,
+            418.5,
+            image=self.entry_image_6
+        )
+        self.canvas.create_rectangle(
+            1095.0, 395.0, 1095.0 + 254.0, 395.0 + 45.0,
+            fill="#D9D9D9", outline="", width=0
+        )
+
+        # Entry giả Label (có scroll, không focus được)
+        self.entry_Gmail = tk.Entry(
+            self.main_container,
+            bd=0,
+            bg="#D9D9D9",
+            fg="#6E6E6E",
+            font=("Crimson Pro", 16, "bold"),
+            highlightthickness=0,
+            relief="flat",
+            exportselection=0,
+            justify="left"
+        )
+        self.entry_Gmail.place(x=1095.0, y=395.0, width=254.0, height=45.0)
+        self.entry_Gmail.insert(0, "truccct23416@st.uel.edu.vn")
+
+        # Khóa toàn bộ thao tác bàn phím và chuột
+        def block_all(event): return "break"
+
+        self.entry_Gmail.bind("<Key>", block_all)
+        self.entry_Gmail.bind("<Button-1>", lambda e: "break")  # chặn click focus
+
+        # Nhưng cho phép cuộn ngang (nếu text dài)
+        def on_mousewheel(event):
+            self.entry_Gmail.xview_scroll(int(-1 * (event.delta / 120)), "units")
+
+        self.entry_Gmail.bind("<MouseWheel>", on_mousewheel)
+
+        # Tự động scroll nếu text dài
+        self.entry_Gmail.configure(xscrollcommand=lambda *args: None)
+        self.entry_Gmail.xview_moveto(0)
+        # Labels for entry fields
+        self.canvas.create_text(
+            467.0,
+            239.0,
+            anchor="nw",
+            text="FullName",
+            fill="#000000",
+            font=("Crimson Pro Bold", 28 * -1)
+        )
+
+        self.canvas.create_text(
+            467.0,
+            363.0,
+            anchor="nw",
+            text="Username",
+            fill="#000000",
+            font=("Crimson Pro Bold", 28 * -1)
+        )
+        # Icons beside labels
+        self.image_image_6 = PhotoImage(file=relative_to_assets("image_6.png"))
+        self.image_6 = self.canvas.create_image(442.0, 255.0, image=self.image_image_6)
+
+        self.image_image_7 = PhotoImage(file=relative_to_assets("image_7.png"))
+        self.image_7 = self.canvas.create_image(442.0, 379.0, image=self.image_image_7)
+
+        self.image_image_8 = PhotoImage(file=relative_to_assets("image_8.png"))
+        self.image_8 = self.canvas.create_image(443.0, 237.0, image=self.image_image_8)
+
+        self.image_image_9 = PhotoImage(file=relative_to_assets("image_9.png"))
+        self.image_9 = self.canvas.create_image(443.0, 361.0, image=self.image_image_9)
+
+        # Business info
+        self.canvas.create_text(
+            799.0,
+            238.0,
+            anchor="nw",
+            text="Business Name",
+            fill="#000000",
+            font=("Crimson Pro Bold", 28 * -1)
+        )
+
+        self.image_image_10 = PhotoImage(file=relative_to_assets("image_10.png"))
+        self.image_10 = self.canvas.create_image(774.0, 253.0, image=self.image_image_10)
+
+        self.image_image_11 = PhotoImage(file=relative_to_assets("image_11.png"))
+        self.image_11 = self.canvas.create_image(774.0, 255.0, image=self.image_image_11)
+
+        self.image_image_12 = PhotoImage(file=relative_to_assets("image_12.png"))
+        self.image_12 = self.canvas.create_image(774.0, 244.0, image=self.image_image_12)
+
+        self.canvas.create_text(
+            1137.0,
+            241.0,
+            anchor="nw",
+            text="Your Role",
+            fill="#000000",
+            font=("Crimson Pro Bold", 28 * -1)
+        )
+
+        self.image_image_13 = PhotoImage(file=relative_to_assets("image_13.png"))
+        self.image_13 = self.canvas.create_image(1107.8125, 243.0, image=self.image_image_13)
+
+        self.image_image_14 = PhotoImage(file=relative_to_assets("image_14.png"))
+        self.image_14 = self.canvas.create_image(1108.0, 256.5, image=self.image_image_14)
+
+        self.image_image_15 = PhotoImage(file=relative_to_assets("image_15.png"))
+        self.image_15 = self.canvas.create_image(1120.75, 248.90625, image=self.image_image_15)
+
+        self.canvas.create_text(
+            800.0,
+            364.0,
+            anchor="nw",
+            text="Password",
+            fill="#000000",
+            font=("Crimson Pro SemiBold", 28 * -1)
+        )
+
+        self.image_image_16 = PhotoImage(file=relative_to_assets("image_16.png"))
+        self.image_16 = self.canvas.create_image(776.0, 378.0, image=self.image_image_16)
+
+        self.canvas.create_text(
+            1124.0,
+            363.0,
+            anchor="nw",
+            text="Gmail",
+            fill="#000000",
+            font=("Crimson Pro Bold", 28 * -1)
+        )
+
+        self.image_image_17 = PhotoImage(file=relative_to_assets("image_17.png"))
+        self.image_17 = self.canvas.create_image(776.0, 367.0, image=self.image_image_17)
+
+        self.image_image_18 = PhotoImage(file=relative_to_assets("image_18.png"))
+        self.image_18 = self.canvas.create_image(1105.0, 372.0, image=self.image_image_18)
+
+        self.image_image_19 = PhotoImage(file=relative_to_assets("image_19.png"))
+        self.image_19 = self.canvas.create_image(1105.0, 375.0, image=self.image_image_19)
+
+        # Our Team section
+        self.image_image_20 = PhotoImage(file=relative_to_assets("image_20.png"))
+        self.image_20 = self.canvas.create_image(890.0, 620.0, image=self.image_image_20)
+
+        self.canvas.create_text(
+            424.0,
+            599.0,
+            anchor="nw",
+            text="Our Team",
+            fill="#000000",
+            font=("Young Serif", 35 * -1)
+        )
+
+        # Save button
+        from Function.Frame12_ChangeInformation import Frame12_ChangeInformation
+        self.button_image_1 = PhotoImage(file=relative_to_assets("button_Save.png"))
+        self.button_Save = Button(  # <-- đổi chữ S thành thường để đồng nhất
+            self,
+            image=self.button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self._on_save_clicked(),
+            relief="flat"
+        )
+        self.button_Save.place(
+            x=1227.0,
+            y=459.0,
+            width=137.0,
+            height=54.0
+        )
+
+        # --- Team members ---
+        self.image_image_21 = PhotoImage(file=relative_to_assets("image_21.png"))
+        self.image_21 = self.canvas.create_image(1092.0, 883.0, image=self.image_image_21)
+        self.canvas.create_text(
+            1037.0,
+            882.0,
+            anchor="nw",
+            text="Nhật Bản",
+            fill="#706093",
+            font=("Crimson Pro Bold", 26 * -1)
+        )
+
+        self.image_image_22 = PhotoImage(file=relative_to_assets("image_22.png"))
+        self.image_22 = self.canvas.create_image(1291.0, 881.0, image=self.image_image_22)
+        self.canvas.create_text(
+            1244.0,
+            883.0,
+            anchor="nw",
+            text="Mỹ Linh",
+            fill="#706093",
+            font=("Crimson Pro Bold", 26 * -1)
+        )
+
+        self.image_image_23 = PhotoImage(file=relative_to_assets("image_23.png"))
+        self.image_23 = self.canvas.create_image(893.0, 883.0, image=self.image_image_23)
+        self.canvas.create_text(
+            830.0,
+            879.0,
+            anchor="nw",
+            text="Hoàng Anh",
+            fill="#706093",
+            font=("Crimson Pro Bold", 26 * -1)
+        )
+
+        self.image_image_24 = PhotoImage(file=relative_to_assets("image_24.png"))
+        self.image_24 = self.canvas.create_image(689.0, 890.0, image=self.image_image_24)
+        self.canvas.create_text(
+            630.0,
+            879.0,
+            anchor="nw",
+            text="Quỳnh Chi",
+            fill="#706093",
+            font=("Crimson Pro Bold", 26 * -1)
+        )
+
+        # Trúc
+        self.image_image_33 = PhotoImage(file=relative_to_assets("image_33.png"))
+        self.image_33 = self.canvas.create_image(492.0, 890.0, image=self.image_image_33)
+        self.canvas.create_text(
+            430.0,
+            880.0,
+            anchor="nw",
+            text="Thanh Trúc",
+            fill="#706093",
+            font=("Crimson Pro Bold", 26 * -1)
+        )
+
+        # --- Roles ---
+        self.image_image_34 = PhotoImage(file=relative_to_assets("image_34.png"))
+        self.image_34 = self.canvas.create_image(491.0, 791.0, image=self.image_image_34)
+        self.canvas.create_text(
+            440.0,
+            920.0,
+            anchor="nw",
+            text="Project Manager",
+            fill="#000000",
+            font=("Crimson Pro Bold", 16 * -1)
+        )
+        self.canvas.create_text(
+            632.0,
+            920.0,
+            anchor="nw",
+            text="Data & ML Lead",
+            fill="#000000",
+            font=("Crimson Pro Bold", 16 * -1)
+        )
+        self.canvas.create_text(
+            840.0,
+            920.0,
+            anchor="nw",
+            text="UI/UX Designer",
+            fill="#000000",
+            font=("Crimson Pro Bold", 16 * -1)
+        )
+        self.canvas.create_text(
+            1020.0,
+            924.0,
+            anchor="nw",
+            text="Front-End Developer",
+            fill="#000000",
+            font=("Crimson Pro Bold", 16 * -1)
+        )
+        self.canvas.create_text(
+            1240.0,
+            924.0,
+            anchor="nw",
+            text="Documentation",
+            fill="#000000",
+            font=("Crimson Pro Bold", 16 * -1)
+        )
+        # --- Side bar, logo, and top bar ---
+        self.image_image_25 = PhotoImage(file=relative_to_assets("image_25.png"))
+        self.image_25 = self.canvas.create_image(891.0, 43.0, image=self.image_image_25)
+
+        self.image_image_26 = PhotoImage(file=relative_to_assets("image_26.png"))
+        self.image_26 = self.canvas.create_image(1321.0, 39.0, image=self.image_image_26)
+
+        # Profile button
+        self.button_image_2 = PhotoImage(file=relative_to_assets("button_Profile.png"))
+        self.dropdown = DropdownMenu(self, controller=self.controller)
+        self.button_Profile = Button(
+            self,
+            image=self.button_image_2,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.dropdown.show,
+            relief="flat"
+        )
+        self.button_Profile.place(
+            x=1362.0,
+            y=17.0,
+            width=44.0,
+            height=45.0
+        )
+
+        # Sidebar
+        self.image_image_27 = PhotoImage(file=relative_to_assets("image_27.png"))
+        self.image_27 = self.canvas.create_image(171.0, 512.0, image=self.image_image_27)
+
+        self.canvas.create_text(
+            100.0,
+            892.0,
+            anchor="nw",
+            text="ChuLiBi",
+            fill="#FDE5F4",
+            font=("Rubik Burned Regular", 35 * -1)
+        )
+
+        self.image_image_28 = PhotoImage(file=relative_to_assets("image_28.png"))
+        self.image_28 = self.canvas.create_image(169.0, 106.0, image=self.image_image_28)
+
+        # Sidebar buttons
+        self.button_image_3 = PhotoImage(file=relative_to_assets("button_CustomerAnalysis.png"))
+        self.button_CustomerAnalysis = Button(
+            self,
+            image=self.button_image_3,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame07"),
+            relief="flat"
+        )
+        self.button_CustomerAnalysis.place(
+            x=2.0,
+            y=267.0,
+            width=337.0,
+            height=77.0
+        )
+
+        self.button_image_4 = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
+        self.button_Recommendation = Button(
+            self,
+            image=self.button_image_4,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame10"),
+            relief="flat"
+        )
+        self.button_Recommendation.place(
+            x=5.0,
+            y=523.0,
+            width=336.0,
+            height=82.0
+        )
+
+        self.button_image_5 = PhotoImage(file=relative_to_assets("button_Dashboard.png"))
+        self.button_Dashboard = Button(
+            self,
+            image=self.button_image_5,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame06"),
+            relief="flat"
+        )
+        self.button_Dashboard.place(
+            x=0.0,
+            y=177.0,
+            width=339.0,
+            height=88.0
+        )
+
+        self.button_image_6 = PhotoImage(file=relative_to_assets("button_EL.png"))
+        self.button_EL = Button(
+            self,
+            image=self.button_image_6,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda:self.controller.show_frame("Frame09_EL"),
+            relief="flat"
+        )
+        self.button_EL.place(
+            x=4.0,
+            y=438.0,
+            width=336.0,
+            height=78.0
+        )
+
+        self.button_image_7 = PhotoImage(file=relative_to_assets("button_Churn.png"))
+        self.button_Churn = Button(
+            self,
+            image=self.button_image_7,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame08"),
+            relief="flat"
+        )
+        self.button_Churn.place(
+            x=0.0,
+            y=344.0,
+            width=338.0,
+            height=87.0
+        )
+
+        self.button_image_8 = PhotoImage(file=relative_to_assets("button_PredictCustomer.png"))
+        self.button_PredictCustomer = Button(
+            self,
+            image=self.button_image_8,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame11"),
+            relief="flat"
+        )
+        self.button_PredictCustomer.place(
+            x=1.0,
+            y=619.0,
+            width=337.0,
+            height=76.0
+        )
+
+        # Background decor around team
+        self.image_image_29 = PhotoImage(file=relative_to_assets("image_29.png"))
+        self.image_29 = self.canvas.create_image(695.0, 788.0, image=self.image_image_29)
+
+        self.image_image_30 = PhotoImage(file=relative_to_assets("image_30.png"))
+        self.image_30 = self.canvas.create_image(1092.0, 783.0, image=self.image_image_30)
+
+        self.image_image_31 = PhotoImage(file=relative_to_assets("image_31.png"))
+        self.image_31 = self.canvas.create_image(1292.0, 780.0, image=self.image_image_31)
+
+        self.image_image_32 = PhotoImage(file=relative_to_assets("image_32.png"))
+        self.image_32 = self.canvas.create_image(898.0, 788.0, image=self.image_image_32)
+    # =====================================================
+    # 🧩 THÊM CHỨC NĂNG XỬ LÝ NGƯỜI DÙNG TRỰC TIẾP TRONG UI
+    # =====================================================
+
+    def on_show(self, user_data=None):
+        """Khi Frame12 được hiển thị → điền thông tin user."""
+        if not user_data and self.controller:
+            try:
+                user_data = self.controller.get_current_user()
+            except Exception:
+                user_data = {}
+
+        user_data = user_data or {}
+        self.label_Username_value.config(text=user_data.get("username", ""))
+
+
+        def set_entry(entry, value, readonly=False):
+            entry.configure(state="normal")
+            entry.delete(0, tk.END)
+            entry.insert(0, value)
+            if readonly:
+                entry.configure(state="readonly", fg="#6f6f6f")
+
+        set_entry(self.entry_FullName, user_data.get("full_name", ""))
+        set_entry(self.entry_Gmail, user_data.get("email", ""))
+        set_entry(self.entry_Business_Name, user_data.get("business_name", ""))
+        set_entry(self.entry_Your_Role, user_data.get("role", ""))
+
+
+        self.entry_Password.configure(state="normal")
+        self.entry_Password.delete(0, tk.END)
+        print(f"[Frame12] Hiển thị thông tin user: {user_data.get('username', '')}")
+
+    def _on_save_clicked(self):
+        """Khi nhấn nút Save → cập nhật thông tin người dùng"""
+        from tkinter import messagebox
+        from Function.user_repository import update_user_info
+        print("[DEBUG] Save button clicked")
+
+        full_name = self.entry_FullName.get().strip()
+        business_name = self.entry_Business_Name.get().strip()
+        role = self.entry_Your_Role.get().strip()
+        password = self.entry_Password.get().strip()
+        username = self.label_Username_value.cget("text").strip()
+        email = self.entry_Gmail.get().strip()
+
+
+        if not full_name or not business_name or not role:
+            messagebox.showwarning("Thiếu thông tin", "Vui lòng điền đầy đủ thông tin.")
+            return
+
+        try:
+            update_user_info(username, full_name, business_name, role, email, password if password else None)
+            messagebox.showinfo("Thành công", "Thông tin người dùng đã được lưu thành công!")
+            self.entry_Password.delete(0, tk.END)
+        except Exception as e:
+            messagebox.showerror("Lỗi", f"Không thể lưu thông tin:\n{e}")
+
+
+
+# =====================================================
+# ⚡ Chạy trực tiếp Frame12 mà không cần main.py
+# =====================================================
+if __name__ == "__main__":
+    import tkinter as tk
+
+    root = tk.Tk()
+    root.title("Test Frame12 — Change Information")
+    root.geometry("1440x1024")
+
+    # Tạo instance của frame
+    from Frame.Frame12.ui_Frame12 import Frame12
+    test_frame = Frame12(root)
+    test_frame.pack(fill="both", expand=True)
+
+    # Giả lập dữ liệu người dùng (nếu cần test hiển thị)
+    sample_user = {
+        "username": "thanhtruc1",
+        "email": "truccct23416@st.uel.edu.vn",
+        "full_name": "Nguyễn Thanh Trúc",
+        "business_name": "ChuLiBi",
+        "role": "Project Manager"
+    }
+    # Gọi hàm on_show để nạp dữ liệu mẫu
+    test_frame.on_show(user_data=sample_user)
+
+    root.mainloop()
+
+
+
+
+

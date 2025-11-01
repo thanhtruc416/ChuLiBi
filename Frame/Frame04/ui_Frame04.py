@@ -13,6 +13,7 @@ class Frame04(Frame):
         super().__init__(parent)
         self.controller = controller
         self.configure(bg="#FFFFFF")
+        self.lower()
 
         # --- Canvas ---
         canvas = Canvas(

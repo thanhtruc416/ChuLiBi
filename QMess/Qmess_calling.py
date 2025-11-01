@@ -118,7 +118,7 @@ class PopupWindow:
             return None
         n = self.spec.asset_index
         preferred = [f"button_{n}.png", f"button_{n}_*.png"]
-        generic = ["button_1.png", "button_*.png"]
+        generic = ["button_Save.png", "button_*.png"]
         path = _first_match(d, preferred + generic)
         if path:
             try:

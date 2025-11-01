@@ -3,7 +3,7 @@
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
-
+from Function.Frame01_auth import login_with_password
 # ========== Đường dẫn asset ==========
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame01")
@@ -165,7 +165,7 @@ class Frame01(tk.Frame):
             self,
             image=self.dn_signin_image,
             borderwidth=0, highlightthickness=0, relief="flat",
-            command=(lambda: self.controller.show_frame("Frame02")) if self.controller else (lambda: print("Go to Register"))
+            command=(lambda: self.controller.show_frame("Frame02_ex")) if self.controller else (lambda: print("Go to Register"))
         )
         self.dn_signin.place(x=1151.0, y=855.0, width=92.0, height=24.0)
 
@@ -251,22 +251,27 @@ class Frame01(tk.Frame):
             return
 
         try:
-            from Function.Frame01_auth import AuthService
-            result = AuthService.verify_login(username, password)
+            ok, data = login_with_password(username, password)
 
-            if result.get("success"):
+            if ok:
+                # data là dict {"id","email","username"}
+                user_data = data
+
+                # lưu vào controller (nếu có)
                 if self.controller:
                     if not hasattr(self.controller, "current_user"):
                         self.controller.current_user = {}
-                    self.controller.current_user = result["user_data"]
+                    self.controller.current_user = user_data
 
+                # clear password field
                 self.dn_password.delete(0, tk.END)
 
-                user_data = result["user_data"]
+                # vì API login trả về chưa có full_name/business_name/role
+                # => xem như chưa hoàn tất hồ sơ -> chuyển về Frame03 để bổ sung
                 profile_complete = (
-                    user_data.get("full_name")
-                    and user_data.get("business_name")
-                    and user_data.get("role")
+                        user_data.get("full_name")
+                        and user_data.get("business_name")
+                        and user_data.get("role")
                 )
 
                 if not profile_complete:
@@ -290,7 +295,8 @@ class Frame01(tk.Frame):
                         except KeyError:
                             print("Dashboard frame not registered yet - using Frame06")
             else:
-                messagebox.showerror("Login Failed", result.get("message", "Unknown error"))
+                # data lúc này là thông báo lỗi (string)
+                messagebox.showerror("Login Failed", data or "Unknown error")
                 self.dn_password.delete(0, tk.END)
                 self.dn_password.focus()
 

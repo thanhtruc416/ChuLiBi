@@ -43,6 +43,7 @@ class Frame07(tk.Frame):
         self.dropdown = None      # sẽ khởi tạo nếu DropdownMenu có
         self.canvas = None
         self.button_Profile = None
+        self.lower()
 
         # build UI phần tĩnh
         self._build_static_ui()
@@ -107,7 +108,7 @@ class Frame07(tk.Frame):
         self.canvas.create_image(1131.0, 350, image=self._imgs["image_4.png"])
 
         self._img("image_5.png")
-        self.canvas.create_image(1130.0, 775, image=self._imgs["image_5.png"])
+        self.canvas.create_image(1130.0, 790, image=self._imgs["image_5.png"])
 
         self._img("image_6.png")
         self.canvas.create_image(588.0, 688.0, image=self._imgs["image_6.png"])
@@ -180,12 +181,101 @@ class Frame07(tk.Frame):
         self.canvas.create_image(162.0, 101.0, image=self._imgs["image_11.png"])
 
         # --- Sidebar buttons ---
-        self._make_button("button_dashboard.png", cmd=lambda: self.controller.show_frame("Frame06"), x=0.0, y=198.0, w=335.0, h=97.0)
-        self._make_button("button_customer_1.png", cmd=lambda: print("Customer Analysis"), x=0.0, y=286.0, w=335.0, h=104.0)
-        self._make_button("button_churn.png", cmd=lambda: self.controller.show_frame("Frame08"), x=0.0,  y=374.0, w=335.0, h=98.0)
-        self._make_button("button_delivery.png", cmd=lambda: self.controller.show_frame("Frame09"), x=0.0, y=464.0, w=335.0, h=89.0)
-        self._make_button("button_recommend.png", cmd=lambda: self.controller.show_frame("Frame10"), x=0.0, y=544.0, w=335.0, h=98.0)
-        self._make_button("button_report.png", cmd=lambda: print("Report"), x=0.0, y=634.0, w=335.0, h=96.0)
+        self.button_image_1 = PhotoImage(
+            file=relative_to_assets("button_CustomerAnalysis.png"))
+        button_CustomerAnalysis = Button(self,
+                                         image=self.button_image_1,
+                                         borderwidth=0,
+                                         highlightthickness=0,
+                                         command=lambda: self.controller.show_frame("Frame07"),
+                                         relief="flat"
+                                         )
+        button_CustomerAnalysis.place(
+            x=2.0,
+            y=285.0,
+            width=337.0,
+            height=77.0
+        )
+
+        self.button_image_2 = PhotoImage(
+            file=relative_to_assets("button_Recommendation.png"))
+        button_Recommendation = Button(self,
+                                       image=self.button_image_2,
+                                       borderwidth=0,
+                                       highlightthickness=0,
+                                       command=lambda: self.controller.show_frame("Frame10"),
+                                       relief="flat"
+                                       )
+        button_Recommendation.place(
+            x=0.0,
+            y=525.0,
+            width=336.0,
+            height=82.0
+        )
+
+        self.button_image_3 = PhotoImage(
+            file=relative_to_assets("button_EL.png"))
+        button_EL = Button(self,
+                           image=self.button_image_3,
+                           borderwidth=0,
+                           highlightthickness=0,
+                           command=lambda: self.controller.show_frame("Frame09_EL"),
+                           relief="flat"
+                           )
+        button_EL.place(
+            x=1.0,
+            y=447.0,
+            width=336.0,
+            height=78.0
+        )
+
+        self.button_image_4 = PhotoImage(
+            file=relative_to_assets("button_Churn.png"))
+        button_Churn = Button(self,
+                              image=self.button_image_4,
+                              borderwidth=0,
+                              highlightthickness=0,
+                              command=lambda: self.controller.show_frame("Frame08"),
+                              relief="flat"
+                              )
+        button_Churn.place(
+            x=0.0,
+            y=361.0,
+            width=334.0,
+            height=86.0
+        )
+
+        self.button_image_5 = PhotoImage(
+            file=relative_to_assets("button_PredictCustomer.png"))
+        button_PredictCustomer = Button(self,
+                                        image=self.button_image_5,
+                                        borderwidth=0,
+                                        highlightthickness=0,
+                                        command=lambda: self.controller.show_frame("Frame11"),
+                                        relief="flat"
+                                        )
+        button_PredictCustomer.place(
+            x=0.0,
+            y=607.0,
+            width=337.0,
+            height=76.0
+        )
+
+        self.button_image_6 = PhotoImage(
+            file=relative_to_assets("button_Dashboard.png"))
+        button_Dashboard = Button(self,
+                                  image=self.button_image_6,
+                                  borderwidth=0,
+                                  highlightthickness=0,
+                                  command=lambda: self.controller.show_frame("Frame06"),
+                                  relief="flat"
+                                  )
+        button_Dashboard.place(
+            x=0.0,
+            y=204.0,
+            width=336.0,
+            height=81.0
+        )
 
         # Profile (dropdown)
         self._img("button_Profile.png")
@@ -246,6 +336,13 @@ class Frame07(tk.Frame):
                 fill="#b00020", font=("Crimson Pro", 16 * -1)
             )
             return
+        for tag in ["image_4.png", "image_5.png", "chart_frame"]:
+            try:
+                items = self.canvas.find_withtag(tag)
+                for i in items:
+                    self.canvas.itemconfigure(i, state="hidden")
+            except Exception:
+                pass
 
         # Elbow
         fig_elbow = figure_elbow_silhouette(X, k_min=2, k_max=11)
@@ -254,13 +351,13 @@ class Frame07(tk.Frame):
         # kmeans & 2 chart còn lại
         labels = kmeans_labels(X, k=3, random_state=42, n_init=10)
 
-        # PCA scatter
-        fig_scatter = figure_pca_scatter(X, labels)
-        self._mount(fig_scatter, x=855, y=225, w=520, h=320)
-
-        # Pie chart
+        # --- Cluster Distribution (Pie) ở TRÊN ---
         fig_pie = figure_cluster_distribution(labels, scale=1.3)
-        self._mount(fig_pie, x=870, y=650, w=520, h=280)
+        self._mount(fig_pie, x=890, y=210, w=480, h=340)
+
+        # --- PCA Scatter ở DƯỚI ---
+        fig_scatter = figure_pca_scatter(X, labels)
+        self._mount(fig_scatter, x=890, y=650, w=520, h=310)
 
         # ----- Top-3 feature theo từng cụm (hiển thị trong 3 ô text) -----
         cols_src = CLUSTER_FEATURES

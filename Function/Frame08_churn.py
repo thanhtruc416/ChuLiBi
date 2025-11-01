@@ -595,10 +595,479 @@ def main(args):
     print("\nBảng dự đoán churn:")
     print(df_show[cols_show].head(15).to_string(index=False))
 
+# ==== >>> ADD THIS TO Frame08_churn.py (GLUE FOR UI) <<< ====
+
+from pathlib import Path
+
+def _safe_feature_importance(bundle, X):
+    """Return DataFrame [Feature, Importance] regardless of model type."""
+    try:
+        mdl = bundle['model']
+        clf = mdl.named_steps['clf'] if hasattr(mdl, 'named_steps') else mdl
+        import pandas as pd
+        if hasattr(clf, 'feature_importances_'):
+            vals = clf.feature_importances_
+        elif hasattr(clf, 'coef_'):
+            import numpy as np
+            vals = np.abs(clf.coef_).ravel()
+        else:
+            # fallback: correlation with proba as proxy
+            proba = mdl.predict_proba(X)[:, 1]
+            vals = pd.Series(proba).corr(X).abs().reindex(X.columns).fillna(0.0).values
+        fi = pd.DataFrame({'Feature': X.columns, 'Importance': vals}).sort_values('Importance', ascending=False)
+        return fi
+    except Exception:
+        return None
+
+def _quick_eval_table(y_true, proba, pred):
+    """Build eval table in shape UI expects: Model, AUC, F1, Precision, Recall, Accuracy."""
+    from sklearn.metrics import roc_auc_score, f1_score, precision_score, recall_score, accuracy_score
+    import pandas as pd
+    return pd.DataFrame([{
+        'Model': 'Best',
+        'AUC': roc_auc_score(y_true, proba),
+        'F1': f1_score(y_true, pred),
+        'Precision': precision_score(y_true, pred),
+        'Recall': recall_score(y_true, pred),
+        'Accuracy': accuracy_score(y_true, pred),
+    }])
+
+def get_churn_data(input_path=None, output_dir=None, prefer_existing_model=True):
+    """
+    Load everything the UI needs in one shot.
+    - Returns dict with keys used in ui_content_Frame08.py
+    """
+    import os
+    import numpy as np
+    import pandas as pd
+
+    # ------- Paths -------
+    if input_path is None:
+        input_path = Path(__file__).resolve().parents[1] / "Dataset" / "Output" / "df_cluster_full.csv"
+        if not input_path.exists():
+            input_path = Path(__file__).resolve().parents[1] / "Dataset" / "Output" / "df_scaled_model.csv"
+    if output_dir is None:
+        output_dir = Path(__file__).resolve().parents[1] / "Dataset" / "Output"
+    os.makedirs(output_dir, exist_ok=True)
+    input_path = str(input_path)
+    output_dir = str(output_dir)
+
+    # ------- Load + proxy churn + core df -------
+    df = load_data(input_path)
+    if 'churn' not in df.columns or 'churn_percent' not in df.columns:
+        df = create_proxy_churn(df)
+    leak_cols = detect_leakage(df)
+    df_core = prepare_core_df(df, leak_cols=leak_cols)
+    X, y, _ = preprocess(df_core)
+
+    # ------- Model bundle (load or train quick) -------
+    model_path = os.path.join(output_dir, 'best_churn_model.pkl')
+    bundle = None
+    if prefer_existing_model and os.path.exists(model_path):
+        try:
+            bundle = joblib.load(model_path)
+        except Exception:
+            bundle = None
+
+    if bundle is None:
+        from sklearn.linear_model import LogisticRegression
+        from imblearn.pipeline import Pipeline as ImbPipeline
+        from sklearn.impute import SimpleImputer
+        from sklearn.preprocessing import StandardScaler
+        from imblearn.over_sampling import SMOTE
+
+        pipe = ImbPipeline([
+            ("imputer", SimpleImputer(strategy='median')),
+            ("scaler", StandardScaler()),
+            ("smote", SMOTE(random_state=RND, k_neighbors=5)),
+            ("clf", LogisticRegression(max_iter=1000, class_weight='balanced', random_state=RND))
+        ])
+        pipe.fit(X, y)
+
+        from sklearn.metrics import precision_recall_curve
+        proba_val = pipe.predict_proba(X)[:, 1]
+        P, R, T = precision_recall_curve(y, proba_val)
+        F1s = 2 * P * R / (P + R + 1e-9)
+        import numpy as np
+        best_idx = np.nanargmax(F1s)
+        best_thr = T[best_idx - 1] if best_idx > 0 else 0.5
+        bundle = {'model': pipe, 'threshold': float(best_thr)}
+
+    # ------- Predictions -------
+    df_result = make_prediction_table(df, X, bundle)
+    proba = bundle['model'].predict_proba(X)[:, 1]
+    pred = (proba >= bundle['threshold']).astype(int)
+
+    # ------- Evaluation table -------
+    try:
+        eval_metrics, _ = compare_models(X, y)
+    except Exception as e:
+        print("⚠ compare_models failed, fallback single-row metrics:", e)
+        eval_metrics = _quick_eval_table(y, proba, pred)
+
+    # ------- Aggregates for KPIs -------
+    avg_churn = float(np.mean(df_core['churn']))
+    num_clusters = int(len(pd.Series(df.get('cluster', pd.Series([0]*len(df)))).dropna().unique()))
+    best_model = eval_metrics.iloc[0]['Model']
+
+    # ------- Feature importance for “Reasons” -------
+    feature_importance = _safe_feature_importance(bundle, X)
+
+    # ======== (MỚI THÊM) TÍNH SHAP CHO UI ========
+    X_for_shap = None
+    try:
+        import shap
+
+        # Lấy mẫu nhỏ để nhanh
+        n_bg = min(200, len(X))
+        if isinstance(X, pd.DataFrame):
+            X_bg = X.sample(n_bg, random_state=RND)
+        else:
+            X_bg = pd.DataFrame(X, columns=[f"f{i}" for i in range(X.shape[1])]).sample(n_bg, random_state=RND)
+
+        # Hàm dự đoán xác suất cho SHAP
+        def _f_predict(xin):
+            if not isinstance(xin, pd.DataFrame):
+                xin = pd.DataFrame(xin, columns=X.columns)
+            return bundle["model"].predict_proba(xin)[:, 1]
+
+        explainer = shap.Explainer(_f_predict, X_bg, feature_names=X.columns)
+        sv = explainer(X_bg)          # Explanation
+        bundle["shap_values"] = sv    # UI đọc từ đây
+        X_for_shap = X_bg             # UI dùng X này ghép với sv
+        print("✓ SHAP computed on sample:", X_for_shap.shape)
+    except Exception as e:
+        print("⚠ SHAP computation failed:", e)
+    # ==============================================
+
+    return {
+        'df': df,
+        'df_core': df_core,
+        'X': X_for_shap if X_for_shap is not None else X,
+        'y': y,
+        'bundle': bundle,
+        'df_result': df_result,
+        'eval_metrics': eval_metrics,
+        'feature_importance': feature_importance,
+        'avg_churn': avg_churn,
+        'num_clusters': num_clusters,
+        'best_model': str(best_model),
+    }
+
+# --------- Plot helpers (UI calls these) ---------
+def _plot_churn_rate_by_segment(ax, df_core, df_original=None):
+    """
+    Bar chart churn rate theo segment, KHÔNG tô nền (figure trong suốt, axes nền trắng).
+    """
+    import pandas as pd
+    import numpy as np
+    import seaborn as sns
+    from matplotlib.ticker import FuncFormatter
+
+    ax.clear()
+
+    # style (không đổi nền)
+    text_color = "#2E2E2E"
+    base_palette = ['#644E94', '#9B86C2', '#E3D4E0']
+    sns.set_style("whitegrid")  # chỉ grid trắng, không đè màu nền
+
+    # làm figure trong suốt + axes nền trắng (đồng màu card)
+    fig = ax.get_figure()
+    if fig is not None:
+        try:
+            fig.patch.set_alpha(0.0)   # figure transparent
+        except Exception:
+            pass
+    ax.set_facecolor("#FFFFFF")       # axes trắng (không tím nhạt)
+
+    # ---- churn series ----
+    if 'churn' in df_core.columns:
+        churn_series = pd.to_numeric(df_core['churn'], errors='coerce')
+        if churn_series.dtype == bool:
+            churn_series = churn_series.astype(int)
+        churn_series = churn_series.fillna(0).astype(int)
+    else:
+        churn_series = pd.Series(0, index=df_core.index, dtype=int)
+
+    # ---- chọn segment ----
+    seg_col = None
+    for c in ['cluster', 'Segment', 'Gender', 'Group']:
+        if (df_original is not None and hasattr(df_original, 'columns') and c in df_original.columns) \
+           or (c in df_core.columns):
+            seg_col = c
+            break
+
+    # ---- dữ liệu nhóm ----
+    if seg_col is None:
+        data_plot = pd.DataFrame({'Segment': ['All'], 'churn_rate': [float(churn_series.mean())]})
+        x_col = 'Segment'
+    else:
+        seg_series = (df_original[seg_col] if (df_original is not None and seg_col in df_original.columns)
+                      else df_core[seg_col])
+        tmp = (pd.DataFrame({seg_col: seg_series, 'churn': churn_series})
+                 .groupby(seg_col, dropna=False)['churn'].mean()
+                 .reset_index(name='churn_rate'))
+        data_plot = tmp.rename(columns={seg_col: 'Segment'})
+        x_col = 'Segment'
+
+    # mở rộng palette nếu cần
+    if len(base_palette) < len(data_plot):
+        reps = int(np.ceil(len(data_plot) / len(base_palette)))
+        palette = (base_palette * reps)[:len(data_plot)]
+    else:
+        palette = base_palette[:len(data_plot)]
+
+    # vẽ
+    ax.grid(True, axis='y', alpha=0.25, linestyle='-')
+    bars = sns.barplot(
+        data=data_plot, x=x_col, y='churn_rate',
+        palette=palette, edgecolor="#3a2a68", ax=ax
+    )
+
+    for p in ax.patches:
+        ax.text(p.get_x() + p.get_width()/2,
+                p.get_height() + 0.01,
+                f"{p.get_height():.1%}",
+                ha='center', va='bottom',
+                fontsize=10, color=text_color, fontweight='bold')
+
+    ax.set_xlabel(x_col, color=text_color, fontsize=11)
+    ax.set_ylabel("Churn rate", color=text_color, fontsize=11)
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:.0%}"))
+    ax.tick_params(colors=text_color, labelsize=10)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.set_ylim(0, max(1.0, (data_plot['churn_rate'].max() if len(data_plot) else 0) + 0.12))
+    # === Đổi nhãn trục X thành "Cụm 1, 2, 3" nếu là số ===
+    try:
+        xticks = ax.get_xticks()
+        xtick_labels = [f"Cụm {int(x) + 1}" if str(x).isdigit() or float(x).is_integer() else str(x)
+                        for x in xticks]
+        ax.set_xticklabels(xtick_labels)
+    except Exception as e:
+        print("[DEBUG] cannot relabel xticks:", e)
+
+    # === Hover mô tả cho từng cụm ===
+    try:
+        import mplcursors
+        desc = {
+            0: "Cụm 1 - Khách hàng dịch vụ cao cấp / nhạy cảm trải nghiệm",
+            1: "Cụm 2 - Khách hàng nhạy cảm ưu đãi / ổn định",
+            2: "Cụm 3 - Khách hàng giá trị thấp / ít tương tác"
+        }
+
+        bars = [p for p in ax.patches if p.get_height() > 0]
+        cursor = mplcursors.cursor(bars, hover=True)
+
+        @cursor.connect("add")
+        def _on_hover(sel):
+            # Lấy index của cột
+            idx = bars.index(sel.artist) if sel.artist in bars else 0
+            txt = desc.get(idx, f"Cụm {idx+1}")
+            rate = sel.artist.get_height()
+            sel.annotation.set_text(f"{txt}\nChurn Rate: {rate:.1%}")
+            sel.annotation.get_bbox_patch().set(fc="white", ec="#644E94", alpha=0.95)
+            sel.annotation.set_fontsize(9)
+    except Exception as e:
+        print("[DEBUG] hover segment failed:", e)
+
+
+
+def _plot_reasons_pie(ax, feature_importance_df, top_n=8):
+    import numpy as np
+    ax.clear()
+    if feature_importance_df is None or feature_importance_df.empty:
+        ax.text(0.5, 0.5, "No feature importance", ha='center', va='center')
+        return [], [], []  # <-- trả list rỗng (để UI không unpack None)
+
+    top = feature_importance_df.nlargest(top_n, 'Importance').copy()
+    vals = top['Importance'].to_numpy()
+    vals = vals / (vals.sum() + 1e-9)
+    labels = top['Feature'].astype(str).tolist()
+
+    colors = ['#644E94', '#8B76B5', '#A88BC5', '#BA9ACE',
+              '#CBAAD7', '#D8BCE0', '#E6CFE8', '#F4E4F2']
+    if len(colors) < len(labels):
+        colors = (colors * (len(labels)//len(colors) + 1))[:len(labels)]
+
+    pie_out = ax.pie(vals, labels=None, autopct=None, startangle=140,
+                     colors=colors, wedgeprops=dict(linewidth=0.8, edgecolor='#ffffff'))
+    wedges = pie_out[0]  # matplotlib trả tuple; phần 0 luôn là list wedges
+    ax.axis('equal')
+    return wedges, labels, vals
+
+def _plot_feature_importance(ax, feature_importance_df, top_n=10, show_ylabels=True):
+    import seaborn as sns
+    ax.clear()
+    if feature_importance_df is None or feature_importance_df.empty:
+        ax.text(0.5, 0.5, "No feature importance", ha='center'); return
+    top = feature_importance_df.head(top_n).iloc[::-1]
+    sns.barplot(x='Importance', y='Feature', data=top, ax=ax, color='#644E94', edgecolor='#3a2a68')
+    ax.set_xlabel('Importance')
+    ax.set_ylabel('' if not show_ylabels else 'Feature')
+    ax.grid(True, axis='x', alpha=0.15)
+    if not show_ylabels:
+        ax.set_yticklabels([])
+        ax.set_yticks([])
+        ax.tick_params(axis='y', length=0)
+        ax.spines['left'].set_visible(False)
+
+def _plot_shap_summary(fig, bundle, X, size=(4.2, 3.0), dpi=100, max_display=20):
+    """
+    Vẽ SHAP summary và TRẢ VỀ matplotlib.figure.Figure đã set size.
+    - size: (inch_w, inch_h) để embed vừa khung UI
+    - Không phụ thuộc import/global bên ngoài; tự import trong hàm.
+    """
+    # --- imports cục bộ để IDE khỏi báo đỏ ---
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from matplotlib.figure import Figure
+    from matplotlib.colors import LinearSegmentedColormap
+
+    # các model class để isinstance() không bị unresolved
+    try:
+        from sklearn.linear_model import LogisticRegression
+        from sklearn.ensemble import RandomForestClassifier
+        from xgboost import XGBClassifier
+    except Exception:
+        LogisticRegression = type("LR", (), {})   # dummy để isinstance() không vỡ
+        RandomForestClassifier = type("RF", (), {})
+        XGBClassifier = type("XGB", (), {})
+
+    # shap là optional → cố gắng import an toàn
+    try:
+        import shap  # type: ignore
+    except Exception:
+        shap = None
+
+    # --- guard: thiếu dữ liệu hoặc chưa cài shap ---
+    if shap is None or bundle is None or X is None:
+        f = Figure(figsize=size, dpi=dpi, facecolor='white')
+        ax = f.add_subplot(111)
+        ax.text(0.5, 0.5, "No SHAP data.\n(bundle/X missing or shap not installed)",
+                ha="center", va="center", color="#7A5FA5")
+        ax.set_axis_off()
+        return f
+
+    # --- lấy model/CLF ---
+    mdl = bundle.get("model")
+    clf = mdl.named_steps['clf'] if hasattr(mdl, 'named_steps') else mdl
+
+    # --- chuẩn hóa dữ liệu giống pipeline để SHAP đúng scale ---
+    try:
+        Xp = mdl.named_steps['imputer'].transform(X)
+        Xp = mdl.named_steps['scaler'].transform(Xp)
+    except Exception:
+        from sklearn.impute import SimpleImputer
+        from sklearn.preprocessing import StandardScaler
+        Xp = SimpleImputer(strategy='median').fit_transform(X)
+        Xp = StandardScaler().fit_transform(X)
+    Xp = pd.DataFrame(Xp, columns=X.columns)
+
+    # --- lấy shap values theo loại model ---
+    try:
+        if isinstance(clf, (RandomForestClassifier, XGBClassifier)):
+            explainer = shap.TreeExplainer(clf)
+            sv = explainer.shap_values(Xp)
+        elif isinstance(clf, LogisticRegression):
+            explainer = shap.LinearExplainer(clf, Xp)
+            sv = explainer.shap_values(Xp)
+        else:
+            explainer = shap.KernelExplainer(clf.predict_proba, Xp.sample(min(50, len(Xp)), random_state=42))
+            sv = explainer.shap_values(Xp)
+
+        if isinstance(sv, list):  # binary -> lấy class 1
+            sv = sv[1]
+    except Exception as e:
+        # Nếu có lỗi tính SHAP, trả về figure thông báo đẹp
+        f = Figure(figsize=size, dpi=dpi, facecolor='white')
+        ax = f.add_subplot(111)
+        ax.text(0.5, 0.5, f"SHAP error:\n{e}", ha="center", va="center", color="#7A5FA5", fontsize=10)
+        ax.set_axis_off()
+        return f
+
+    # --- tạo figure riêng và vẽ ---
+    plt.close('all')  # dọn pyplot cũ
+    f = plt.figure(figsize=size, dpi=dpi, facecolor='white')
+    ax = f.add_subplot(111)
+    plt.sca(ax)  # để shap vẽ vào đúng axes này
+
+    cmap = LinearSegmentedColormap.from_list("shap_grad", ['#E3D4E0', '#644E94'])
+    try:
+        shap.summary_plot(sv, Xp, show=False, plot_type="dot", cmap=cmap, max_display=max_display)
+    except Exception:
+        # API mới
+        shap.plots.beeswarm(sv, show=False, max_display=max_display)
+
+    # thu gọn lề để không tràn khỏi khung (chừa chỗ colorbar bên phải)
+    try:
+        f.subplots_adjust(left=0.30, right=0.92, top=0.95, bottom=0.12)
+    except Exception:
+        pass
+
+    return f
+
+
+def draw_shap_only(input_path: str, output_dir: str):
+    if shap is None:
+        print("✗ Chưa cài shap. Cài nhanh:")
+        print("   pip install -U shap")
+        return
+
+    # 1) Load & chuẩn bị dữ liệu/tính churn
+    df = load_data(input_path)
+    if 'churn' not in df.columns or 'churn_percent' not in df.columns:
+        df = create_proxy_churn(df)
+    leak_cols = detect_leakage(df)
+    df_core = prepare_core_df(df, leak_cols=leak_cols)
+    X, y, _ = preprocess(df_core)
+
+    # 2) Tải model sẵn có (nếu có) hoặc train nhanh Logistic cho đủ để vẽ SHAP
+    os.makedirs(output_dir, exist_ok=True)
+    model_path = os.path.join(output_dir, 'best_churn_model.pkl')
+
+    bundle = None
+    if os.path.exists(model_path):
+        try:
+            bundle = joblib.load(model_path)
+            print(f"✓ Loaded existing model: {model_path}")
+        except Exception as e:
+            print("⚠ Load model thất bại, sẽ train nhanh Logistic:", e)
+
+    if bundle is None:
+        pipe = ImbPipeline([
+            ("imputer", SimpleImputer(strategy='median')),
+            ("scaler", StandardScaler()),
+            ("smote", SMOTE(random_state=RND, k_neighbors=5)),
+            ("clf", LogisticRegression(max_iter=1000, class_weight='balanced', random_state=RND))
+        ])
+        pipe.fit(X, y)
+        # lấy threshold theo F1 (không bắt buộc cho SHAP, nhưng để bundle đầy đủ)
+        P, R, T = precision_recall_curve(y, pipe.predict_proba(X)[:, 1])
+        F1s = 2 * P * R / (P + R + 1e-9)
+        best_idx = np.nanargmax(F1s)
+        thr = T[best_idx - 1] if best_idx > 0 else 0.5
+        bundle = {'model': pipe, 'threshold': float(thr)}
+        print("✓ Trained quick Logistic model for SHAP")
+
+    # 3) Vẽ SHAP (dùng hàm có sẵn)
+    fi_df = shap_analysis(bundle, X, output_dir)
+    if fi_df is None:
+        print("⚠ Không tạo được SHAP plots. Kiểm tra phiên bản shap/numpy:")
+        print("   pip install -U shap numpy")
+
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', type=str, default='../Dataset/Output/df_cluster_full.csv')
-    parser.add_argument('--output_dir', type=str, default='../Dataset/Output/')
-    parser.add_argument('--test_mode', action='store_true', help='If set, will load existing model instead of training')
+    parser.add_argument('--input_path', type=str, default=r'D:\ChuLiBi\Dataset\Output\df_cluster_full.csv')
+    parser.add_argument('--output_dir', type=str, default=r'D:\ChuLiBi\Dataset\Output')
+    parser.add_argument('--test_mode', action='store_true', help='Load existing model instead of training')
+    parser.add_argument('--shap_only', action='store_true', help='Chỉ vẽ SHAP, bỏ qua các bước khác')
     args = parser.parse_args()
-    main(args)
+
+    if args.shap_only:
+        draw_shap_only(args.input_path, args.output_dir)
+    else:
+        main(args)

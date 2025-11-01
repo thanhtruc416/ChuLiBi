@@ -73,6 +73,7 @@ class Frame06(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
+        self.lower()
         self._imgs = {}
         self.configure(bg="#D4C5D2")
 
@@ -224,13 +225,101 @@ class Frame06(Frame):
         self.button_Profile.place(x=1332.0, y=16.0, width=57.0, height=51.0)
 
         # --- Sidebar buttons ---
-        self._make_button("button_dashboard_1.png", cmd=lambda: print("Dashboard"), x=0.0, y=197.0, w=335.3244934082031, h=97.0)
-        self._make_button("button_customer.png", cmd=lambda: self.controller.show_frame("Frame07"), x=0.0, y=289.0, w=335.0, h=90.0)
-        self._make_button("button_churn.png", cmd=lambda: self.controller.show_frame("Frame08"), x=0.0,  y=374.0, w=335.0, h=98.0)
-        self._make_button("button_delivery.png", cmd=lambda: self.controller.show_frame("Frame09"), x=0.0, y=464.0, w=335.0, h=89.0)
-        self._make_button("button_recommend.png", cmd=lambda: self.controller.show_frame("Frame10"), x=0.0, y=544.0, w=335.0, h=98.0)
-        self._make_button("button_report.png", cmd=lambda: print("Report"), x=0.0, y=634.0, w=335.0, h=96.0)
+        self.button_image_1 = PhotoImage(
+            file=relative_to_assets("button_CustomerAnalysis.png"))
+        button_CustomerAnalysis = Button(self,
+            image=self.button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame07"),
+            relief="flat"
+        )
+        button_CustomerAnalysis.place(
+            x=2.0,
+            y=285.0,
+            width=337.0,
+            height=77.0
+        )
 
+        self.button_image_2 = PhotoImage(
+            file=relative_to_assets("button_Recommendation.png"))
+        button_Recommendation = Button(self,
+            image=self.button_image_2,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame10"),
+            relief="flat"
+        )
+        button_Recommendation.place(
+            x=0.0,
+            y=525.0,
+            width=336.0,
+            height=82.0
+        )
+
+        self.button_image_3 = PhotoImage(
+            file=relative_to_assets("button_EL.png"))
+        button_EL = Button(self,
+            image=self.button_image_3,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame09_EL"),
+            relief="flat"
+        )
+        button_EL.place(
+            x=1.0,
+            y=447.0,
+            width=336.0,
+            height=78.0
+        )
+
+        self.button_image_4 = PhotoImage(
+            file=relative_to_assets("button_Churn.png"))
+        button_Churn = Button(self,
+            image=self.button_image_4,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame08"),
+            relief="flat"
+        )
+        button_Churn.place(
+            x=0.0,
+            y=361.0,
+            width=334.0,
+            height=86.0
+        )
+
+        self.button_image_5 = PhotoImage(
+            file=relative_to_assets("button_PredictCustomer.png"))
+        button_PredictCustomer = Button(self,
+            image=self.button_image_5,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_PredictCustomer clicked"),
+            relief="flat"
+        )
+        button_PredictCustomer.place(
+            x=0.0,
+            y=607.0,
+            width=337.0,
+            height=76.0
+        )
+
+        self.button_image_6 = PhotoImage(
+            file=relative_to_assets("button_Dashboard.png"))
+        button_Dashboard = Button(self,
+            image=self.button_image_6,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame06"),
+            relief="flat"
+        )
+        button_Dashboard.place(
+            x=0.0,
+            y=204.0,
+            width=336.0,
+            height=81.0
+        )
         # ---------------- Chart containers ----------------
         frame_bar_chart  = Frame(canvas, bg="#FFFFFF")
         frame_histogram  = Frame(canvas, bg="#FFFFFF")

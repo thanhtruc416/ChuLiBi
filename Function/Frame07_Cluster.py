@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib import font_manager
 
 from matplotlib.figure import Figure
 from sklearn.decomposition import PCA
@@ -171,32 +172,58 @@ def figure_cluster_distribution(labels: Iterable[int], scale: float = 1.2) -> Fi
 
 def figure_pca_scatter(X, labels: Iterable[int]) -> Figure:
     X = _ensure_X_array(X)
+    labels = np.asarray(list(labels))
     X2 = PCA(n_components=2, random_state=42).fit_transform(X)
-    fig = Figure(figsize=(5.0, 2.8), dpi=120)
+
+    uniq = np.sort(np.unique(labels))
+    idx_map = {lab: i for i, lab in enumerate(uniq)}
+    disp = np.array([idx_map[l] + 1 for l in labels])
+    hue_order = list(range(1, len(uniq) + 1))
+
+    # 🔹 tăng chiều ngang cho legend + giữ bố cục cân
+    fig = Figure(figsize=(7.5, 3.0), dpi=120)
     fig.patch.set_alpha(0)
     ax = fig.add_subplot(111)
 
-    palette = ["#644E94", "#C6ABC5", "#9282AA", "#FAE4F2"][:len(np.unique(labels))]
+    palette = ["#FAE4F2", "#C6ABC5", "#644E94", "#ffcc99"][:len(uniq)]
+
     sns.scatterplot(
-        x=X2[:, 0], y=X2[:, 1], hue=list(labels),
-        palette=palette, s=26, edgecolor="#3a2a68", linewidth=0.35, ax=ax
+        x=X2[:, 0], y=X2[:, 1],
+        hue=disp,
+        hue_order=hue_order,
+        palette=palette,
+        s=26, edgecolor="#3a2a68", linewidth=0.35, ax=ax
     )
 
+    # viền & lưới
     for spine in ax.spines.values():
         spine.set_color("#7A5FA5")
     ax.grid(True, alpha=0.18, color="#7A5FA5", linewidth=0.7)
 
+    # trục
     ax.set_xlabel("PC1", fontsize=9, labelpad=6)
-    ax.set_ylabel("PC2", fontsize=9, labelpad=8)
+    ax.set_ylabel("PC2", fontsize=9, labelpad=12)
 
-    ax.legend(
-        title="Cluster", fontsize=8, title_fontsize=9,
-        loc="upper right", bbox_to_anchor=(0.98, 0.98),
-        frameon=False
+    # 🔹 legend ra ngoài, nhưng ép figure chừa đủ khoảng trống
+    font_legend = font_manager.FontProperties(family="Crimson Pro", size=8)
+
+    leg = ax.legend(
+        title="Cluster",
+        loc="center left",
+        bbox_to_anchor=(1.06, 0.5),
+        frameon=False,
+        labelspacing=0.4,
+        prop=font_legend,  # 👈 dùng prop thay vì font
+        title_fontsize=9
     )
 
-    fig.subplots_adjust(left=0.18, right=0.98, bottom=0.18, top=0.96)
+    # 🔹 chừa thêm khoảng trắng bên trái & phải để không đè chữ
+    fig.subplots_adjust(left=0.16, right=0.82, bottom=0.18, top=0.90)
+
     return fig
+
+
+
 
 # ========== SAVE OUTPUTS ==========
 def save_outputs(
