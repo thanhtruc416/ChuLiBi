@@ -1,6 +1,7 @@
 # frame05.py
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox, StringVar, NORMAL, DISABLED
+import tkinter as tk
 
 # ===== functions: lấy username theo email + verify OTP & reset mật khẩu =====
 from Function.Frame05_ResetPassword import get_username_by_email, reset_password_with_otp
@@ -100,7 +101,7 @@ class Frame05(Frame):
         self.eye_show_img = PhotoImage(file=relative_to_assets("eye_show.png"))
 
         # --- Text ---
-        canvas.create_text(839.0, 115.0, anchor="nw", text="Reset Password", fill="#000000",
+        canvas.create_text(865.0, 115.0, anchor="nw", text="Reset Password", fill="#000000",
                            font=("Young Serif", 55 * -1))
         canvas.create_text(906.0, 418.0, anchor="nw", text="New Password", fill="#000000",
                            font=("Crimson Pro SemiBold", 28 * -1))
@@ -120,13 +121,20 @@ class Frame05(Frame):
                            font=("Crimson Pro SemiBold", 28 * -1))
 
         # --- Entry ---
-        self.entry_image_username = PhotoImage(file=relative_to_assets("entry_username.png"))
-        canvas.create_image(1083.5, 341.0, image=self.entry_image_username)
-        self.entry_username = Entry(
-            self, bd=0, bg="#E8E8E8", fg="#000716", highlightthickness=0,
-            font=("Crimson Pro Regular", 26 * -1), textvariable=self.username_var, state="readonly"
+        # Ảnh nền bo tròn cho ô Username
+        self.image_username_bg = PhotoImage(file=relative_to_assets("image_username.png"))
+        self.username_bg_item = canvas.create_image(1083.5, 341.0, image=self.image_username_bg)
+
+        # Label hiển thị username nằm đè lên ảnh (chữ thay đổi được)
+        self.username_text = tk.Label(
+            self,
+            text="",  # để trống ban đầu
+            bg="#D9D9D9",  # trùng màu nền ảnh (hoặc #E8E8E8 nếu ảnh sáng hơn)
+            fg="#000716",  # màu chữ
+            font=("Crimson Pro Regular", 26),
+            anchor="w"
         )
-        self.entry_username.place(x=859.0, y=306.5, width=449.0, height=67.0)
+        self.username_text.place(x=859.0, y=306.5, width=449.0, height=67.0)
 
         self.entry_image_newpassword = PhotoImage(file=relative_to_assets("entry_newpassword.png"))
         canvas.create_image(1083.5, 488.5, image=self.entry_image_newpassword)
@@ -200,7 +208,7 @@ class Frame05(Frame):
 
         ok, res = get_username_by_email(self.email)
         if ok:
-            self.username_var.set(res)
+            self.username_text.config(text=res)
         else:
             messagebox.showerror("Lỗi", res)
 
@@ -262,3 +270,45 @@ class Frame05(Frame):
         """
         self.button_eyes_password.config(image=self.eye_show_img if self.pw1_visible else self.eye_hide_img)
         self.button_eyes.config(image=self.eye_show_img if self.pw2_visible else self.eye_hide_img)
+
+
+# ==========================
+# CHẠY ĐỘC LẬP FRAME05
+# ==========================
+if __name__ == "__main__":
+    import tkinter as tk
+
+    # Mock (giả lập) 2 hàm trong Frame05_ResetPassword để test độc lập
+    def get_username_by_email(email):
+        if email == "thanhtruc.yee@gmail.com":
+            return True, "thanhtruc"
+        elif email == "truc@gmail.com":
+            return True, "Cao Trúc"
+        else:
+            return False, "Email không tồn tại"
+
+    def reset_password_with_otp(email, otp, new_pw):
+        if otp == "123456":
+            return True, f"Đặt lại mật khẩu cho {email} thành công!"
+        else:
+            return False, "OTP không hợp lệ"
+
+    # Mock controller (để không lỗi show_frame)
+    class DummyController:
+        def show_frame(self, name):
+            print(f"Điều hướng tới: {name}")
+
+    # Tạo cửa sổ Tkinter
+    root = tk.Tk()
+    root.title("Test Frame05 - Reset Password")
+    root.geometry("1440x1024")
+    root.configure(bg="#FFFFFF")
+
+    # Khởi tạo frame
+    frame = Frame05(root, DummyController())
+    frame.pack(fill="both", expand=True)
+
+    # Giả lập gọi từ frame trước (email người dùng nhập)
+    frame.on_show(email="thanhtruc.yee@gmail.com")
+
+    root.mainloop()

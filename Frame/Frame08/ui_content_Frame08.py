@@ -313,12 +313,12 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
     canvas.create_text(59.0, 213.0, anchor="nw",
                        text="Churn Rate by Customer Segment",
                        fill="#000000", font=("Young Serif", 20))
-    chart_frame_1 = Frame(canvas, bg="#FFFFFF", width=420, height=300)
-    canvas.create_window(350, 420, window=chart_frame_1, anchor="center")
+    chart_frame_1 = Frame(canvas, bg="#FFFFFF", width=550, height=310)
+    canvas.create_window(338, 415, window=chart_frame_1, anchor="center")
 
     if data:
         try:
-            axfig = Figure(figsize=(4.2, 3.0), dpi=100, facecolor='#FFFFFF')
+            axfig = Figure(figsize=(5.7,3.05), dpi=100, facecolor='#FFFFFF')
             ax = axfig.add_subplot(111)
 
             # --- gọi hàm plot ---
@@ -338,7 +338,7 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
             # --- căn layout để không bị cắt ---
             try:
                 axfig.tight_layout(pad=0.8)
-                axfig.subplots_adjust(left=0.12, right=0.98, bottom=0.22, top=0.86)
+                axfig.subplots_adjust(left=0.2, right=0.98, bottom=0.22, top=0.90)
             except Exception:
                 pass
 
@@ -353,16 +353,16 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
         except Exception as e:
             print("✗ Chart1 failed:", e)
 
-    # ===== CHART 2: Reasons / Feature importance (Pie) =====
+    # ===== CHART 2: Reasons Chart =====
     img_reason_bg = _img("image_ReasonsChart.png")
     if img_reason_bg: canvas.create_image(880.0, 380.0, image=img_reason_bg)
     canvas.create_text(740.0, 216.0, anchor="nw", text="Reasons Chart",
                        fill="#000000", font=("Young Serif", 20))
-    chart_frame_2 = Frame(canvas, bg="#FFFFFF", width=420, height=300)
-    canvas.create_window(880, 410, window=chart_frame_2, anchor="center")
+    chart_frame_2 = Frame(canvas, bg="#FFFFFF", width=420, height=280)
+    canvas.create_window(880, 418, window=chart_frame_2, anchor="center")
 
     try:
-        fig2 = Figure(figsize=(3.0, 2.8), dpi=100, facecolor="#FFFFFF")
+        fig2 = Figure(figsize=(3.13, 2.85), dpi=100, facecolor="#FFFFFF")
         ax2 = fig2.add_subplot(111)
 
         wedges, labels, vals = _plot_reasons_pie(ax2, data["feature_importance"])
@@ -512,10 +512,10 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
         fill="#000000", font=("Young Serif", 20)
     )
 
-    TABLE_W_EVAL = 940
-    TABLE_H_EVAL = 230
+    TABLE_W_EVAL = 1000
+    TABLE_H_EVAL = 250
     title_bottom = canvas.bbox(title_id)[3]
-    EVAL_Y = title_bottom + 24
+    EVAL_Y = title_bottom + 10
 
     table_frame = Frame(canvas, bg="#FFFFFF")
     canvas.create_window(
@@ -536,8 +536,8 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
             table_container = Frame(table_frame, bg="#FFFFFF")
             table_container.pack(fill="both", expand=True, padx=14, pady=10)
 
-            header_font = tkfont.Font(family="Young Serif", size=12, weight="bold")
-            cell_font = tkfont.Font(family="Crimson Pro", size=11)
+            header_font = tkfont.Font(family="Young Serif", size=15, weight="bold")
+            cell_font = tkfont.Font(family="Crimson Pro", size=17)
 
             if {"AUC_mean", "F1_mean"}.issubset(set(eval_df.columns)):
                 columns = ["Model", "AUC_mean", "F1_mean", "AUC_std", "F1_std", "Brier_mean"]
@@ -554,7 +554,7 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
             for j, title in enumerate(columns):
                 Label(header_row, text=title, bg=header_bg, fg=header_fg,
                       font=header_font, width=15 if j == 0 else 12,
-                      anchor="center", padx=8, pady=8).grid(row=0, column=j, sticky="ew", padx=1)
+                      anchor="center", padx=16, pady=8).grid(row=0, column=j, sticky="ew", padx=1)
 
             for i, (_, r) in enumerate(eval_df.iterrows()):
                 row_bg = row_bg_1 if i % 2 == 0 else row_bg_2
@@ -566,10 +566,10 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
                         except:
                             val = str(val)
                     fg = "#644E94" if i == 0 else text_color
-                    font = tkfont.Font(family="Crimson Pro", size=11, weight="bold") if i == 0 else cell_font
+                    font = tkfont.Font(family="Crimson Pro", size=17, weight="bold") if i == 0 else cell_font
                     Label(table_container, text=str(val), bg=row_bg, fg=fg, font=font,
                           width=15 if j == 0 else 12, anchor="center",
-                          padx=8, pady=6).grid(row=i + 1, column=j, sticky="ew", padx=1, pady=1)
+                          padx=16, pady=6).grid(row=i + 1, column=j, sticky="ew", padx=1, pady=1)
             print("✓ Model evaluation table created")
         except Exception as e:
             print("✗ Eval table failed:", e)
@@ -614,11 +614,23 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
         pass
 
     # vẽ biểu đồ
-    fig3 = Figure(figsize=(4.2,3), dpi=100, facecolor="#FFFFFF")
+    fig3 = Figure(figsize=(4.2,4), dpi=100, facecolor="#FFFFFF")
     ax3 = fig3.add_subplot(111)
     ax3.set_title("Feature Importance", fontsize=13, fontweight="bold", color="#4A3F6A", pad=10)
     _plot_feature_importance(ax3, data["feature_importance"], top_n=10)
+    # Ép các cột chiếm hết không gian dọc (giảm trắng trên–dưới)
+    ax3.margins(y=0.02)  # giảm margin vertical
+    fig3.subplots_adjust(top=0.95, bottom=0.08)  # ép sát trên dưới
     ax3.set_xlabel("")  # ẩn nhãn trục X
+    # --- ép biểu đồ phủ kín khung ---
+    for bar in ax3.patches:
+        bar.set_height(0.95)  # tăng độ dày cột
+
+    # Giới hạn trục X khít với dữ liệu, không để thừa trắng
+    xmax = max([p.get_width() for p in ax3.patches])
+    ax3.set_xlim(0, xmax * 1.02)  # chỉ chừa 2% khoảng trắng bên phải
+    ax3.set_position([0.12, 0.15, 0.82, 0.75])  # ép vùng plot chiếm gần hết khung
+    fig3.tight_layout(pad=0.1)
 
     # lưu tên feature rồi ẩn trục y
     feature_names = [t.get_text() for t in ax3.get_yticklabels()]
@@ -639,7 +651,10 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
         c = PALETTE[i % len(PALETTE)]
         bar.set_facecolor(c)
         bar.set_edgecolor(c)
-
+    # --- Ép sát biên trên và dưới (xoá khoảng trắng vertical) ---
+    ax3.margins(y=4)
+    ax3.set_ylim(-0.5, len(bars) - 0.5)  # giữ vừa khít tất cả các thanh
+    fig3.subplots_adjust(top=0.97, bottom=0.07)
     # --- HOVER: chỉ trên các thanh bar ---
     try:
         import mplcursors
@@ -673,7 +688,7 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
 
     # ===== SHAP =====
 
-    SHAP_W, SHAP_H = 460, 340
+    SHAP_W, SHAP_H = 440, 480
     DPI = 100
 
     shap_bg_id = None
@@ -755,8 +770,14 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
             plt.close('all')
             shap_values = bundle.get("shap_values", bundle.get("shap"))
             try:
-                shap.summary_plot(shap_values, X, show=False, plot_type="dot",
-                                  max_display=12, color=SHAP_CMAP)
+                shap.summary_plot(
+                    shap_values, X,
+                    show=False,
+                    plot_type="dot",
+                    max_display=12,
+                    color=SHAP_CMAP,
+                    plot_size=(4.8, 5.2)  # (width, height) → tăng height để chart cao hơn
+                )
             except Exception:
                 shap.plots.beeswarm(shap_values, max_display=12, show=False, color=SHAP_CMAP)
             fig_shap = plt.gcf()
@@ -816,15 +837,9 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
             pass
 
         # --- Title + margin chuẩn cho SHAP ---
-        SHAP_TITLE = "SHAP Summary Plot"
         try:
-            fig_shap.suptitle(SHAP_TITLE, fontsize=12, y=0.98)
-        except Exception:
-            pass
-        try:
-            top_margin = 0.88
-            bottom_margin = 0.22 if used_beeswarm else 0.10
-            fig_shap.subplots_adjust(left=0.06, right=0.98, top=top_margin, bottom=bottom_margin)
+            fig_shap.subplots_adjust(left=0.15, right=0.95, top=0.90, bottom=0.15)
+
         except Exception:
             pass
         try:
@@ -902,8 +917,9 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
             filtered = df_result
         else:
             try:
-                cluster_num = int(cluster_selection.split()[-1])
+                cluster_num = int(cluster_selection.split()[-1]) - 1
                 filtered = df_result[df_result["cluster"].astype(float).astype(int) == cluster_num]
+
             except Exception:
                 filtered = df_result
 

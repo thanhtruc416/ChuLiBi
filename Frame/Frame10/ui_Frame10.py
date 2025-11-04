@@ -256,7 +256,55 @@ class Frame10(tk.Frame):
             return
 
         # Lưu dữ liệu gốc
-        self.df_rec_raw = df_rec.copy()  # dữ liệu gốc
+        # ✅ Merge cluster từ df_cluster_full.csv (df) vào df_rec
+        # ================= DEBUG CỘT TRƯỚC KHI MERGE =================
+        print("[DEBUG] df_cluster_full columns:", df.columns.tolist())
+        print("[DEBUG] df_rec columns:", df_rec.columns.tolist())
+
+        # ================= MERGE CLUSTER CHÍNH XÁC =================
+        try:
+            # Trường hợp 1: file cluster dùng Customer_ID_STD
+            if "cluster" in df.columns and "Customer_ID_STD" in df.columns and "Customer_ID" in df_rec.columns:
+                print("[INFO] Dùng Customer_ID_STD để merge cluster")
+                df_rec = df_rec.merge(
+                    df[["Customer_ID_STD", "cluster"]],
+                    left_on="Customer_ID",
+                    right_on="Customer_ID_STD",
+                    how="left"
+                )
+                df_rec.drop(columns=["Customer_ID_STD"], inplace=True)
+
+            # Trường hợp 2: file cluster dùng Customer_ID
+            elif "cluster" in df.columns and "Customer_ID" in df.columns and "Customer_ID" in df_rec.columns:
+                print("[INFO] Dùng Customer_ID để merge cluster")
+                df_rec = df_rec.merge(df[["Customer_ID", "cluster"]], on="Customer_ID", how="left")
+
+            # Trường hợp 3: cột bị viết hoa (Cluster)
+            elif "Cluster" in df.columns and "Customer_ID" in df.columns:
+                print("[INFO] Dùng cột Cluster (viết hoa) để merge")
+                df_rec = df_rec.merge(df[["Customer_ID", "Cluster"]], on="Customer_ID", how="left")
+
+            else:
+                print("[WARN] Không tìm thấy cột hợp lệ để merge Cluster")
+        except Exception as e:
+            print(f"[ERROR] Merge cluster thất bại: {e}")
+
+        # ================= SAU KHI MERGE =================
+        # Đảm bảo đồng bộ tên cột
+        if "Cluster" not in df_rec.columns and "cluster" in df_rec.columns:
+            df_rec.rename(columns={"cluster": "Cluster"}, inplace=True)
+
+        # ✅ Cộng +1 để hiển thị từ 1 -> 3 thay vì 0 -> 2
+        try:
+            df_rec["Cluster"] = df_rec["Cluster"].astype(float).astype(int) + 1
+        except:
+            print("[WARN] Không thể cộng +1 cho Cluster, giữ nguyên.")
+
+        # In ra xem có merge thành công không
+        print(f"[CHECK] Cluster merged? {df_rec['Cluster'].notna().sum()} / {len(df_rec)} rows có Cluster")
+
+        # ================= LƯU DỮ LIỆU & HIỂN THỊ =================
+        self.df_rec_raw = df_rec.copy()
         self.df_rec_original = df_rec.copy()
         self._render_table(df_rec)
         self._update_kpi(df_rec)
@@ -287,8 +335,11 @@ class Frame10(tk.Frame):
 
         # ✅ Hiển thị kết quả search, KHÔNG render lại dropdown
         self._render_table(df_filtered, show_filter=True)
+        if "Cluster" not in df_filtered.columns and "cluster" in df_filtered.columns:
+            df_filtered.rename(columns={"cluster": "Cluster"}, inplace=True)
 
         print(f"[SEARCH] Found {len(df_filtered)} rows matching '{keyword}'")
+
 
     def _render_table(self, df_rec, show_filter=True):
         import tkinter as tk
@@ -311,7 +362,23 @@ class Frame10(tk.Frame):
             df_show["Expected Loss"] = (df_show["priority_score"].astype(float) * 100).round(1).astype(str) + "%"
         else:
             df_show["Expected Loss"] = "0.0%"
-        df_show["Cluster"] = "Cluster 1"
+        # Giữ nguyên cột Cluster nếu có trong data
+        if "Cluster" not in df_show.columns and "cluster" in df_show.columns:
+            df_show.rename(columns={"cluster": "Cluster"}, inplace=True)
+        elif "Cluster" not in df_show.columns:
+            df_show["Cluster"] = ""
+            # Hiển thị Cluster từ 1 thay vì 0
+
+        # Hiển thị Cluster từ 1 thay vì 0
+        def format_cluster(val):
+            try:
+                num = int(float(val))
+                return f"Cluster {num}"
+            except:
+                return ""
+
+        df_show["Cluster"] = df_show["Cluster"].apply(format_cluster)
+
         df_show["Recommendation"] = df_show.apply(
             lambda r: f"{r.get('action_id', '')} – {r.get('action_name', '')}", axis=1
         )
@@ -340,19 +407,87 @@ class Frame10(tk.Frame):
             lbl.pack(side="left", padx=(0, 6))
 
             base_df = getattr(self, "df_rec_raw", df_rec)
-            rec_packages = sorted(base_df["action_id"].dropna().unique().tolist())
+            # Danh sách gói cố định (dù có 0% vẫn xuất hiện)
+            all_packages_full = [
+                "SLA_UP", "QUALITY_SWITCH", "COUPON", "LOYALTY",
+                "CARE_CALL", "REMIND_APP", "EDU_CONTENT", "NO_ACTION"
+            ]
+
+            base_df = getattr(self, "df_rec_raw", df_rec)
+
+            # lấy các gói có trong data (đã làm sạch)
+            existing = (
+                base_df["action_id"]
+                .astype(str)
+                .map(lambda x: x.strip())
+                .replace(["", "nan", "None", "NaN"], None)
+                .dropna()
+                .unique()
+                .tolist()
+            )
+
+            # hợp nhất danh sách chuẩn với danh sách thực tế
+            # Danh sách gói cố định (dù có 0% vẫn xuất hiện)
+            all_packages_full = [
+                "SLA_UP", "QUALITY_SWITCH", "COUPON", "LOYALTY",
+                "CARE_CALL", "REMIND_APP", "EDU_CONTENT", "NO_ACTION"
+            ]
+
+            base_df = getattr(self, "df_rec_raw", df_rec)
+
+            # lấy các gói có trong data (đã làm sạch)
+            existing = (
+                base_df["action_id"]
+                .astype(str)
+                .map(lambda x: x.strip())
+                .replace(["", "nan", "None", "NaN"], None)
+                .dropna()
+                .unique()
+                .tolist()
+            )
+
+            # hợp nhất danh sách chuẩn với danh sách thực tế (đảm bảo có đủ CARE_CALL)
+            rec_packages = [pkg for pkg in all_packages_full if pkg in all_packages_full]
             rec_opts = ["All Packages"] + rec_packages
+
+            # --- Dùng customtkinter OptionMenu thay cho ttk.Combobox ---
             self.selected_package = tk.StringVar(value="All Packages")
 
-            self.cmb_package = ttk.Combobox(
+            # --- Custom dropdown giống Frame11 ---
+            self.selected_package = tk.StringVar(value="All Packages")
+
+            # Nút chính để hiển thị giá trị
+            # --- Nút dropdown có khung và hover pastel ---
+            self.btn_package = tk.Label(
                 right_wrap,
-                values=rec_opts,
-                textvariable=self.selected_package,
-                state="readonly",
-                width=25,
-                font=("Crimson Pro", 12)
+                text=f"{self.selected_package.get()} ▼",
+                font=("Crimson Pro", 12),
+                bg="#FFFFFF",
+                fg="#374A5A",
+                bd=1,
+                relief="solid",
+                highlightbackground="#C2A8C2",
+                highlightcolor="#C2A8C2",
+                highlightthickness=1,
+                padx=10,
+                pady=4,
+                cursor="hand2"
             )
-            self.cmb_package.pack(side="left")
+            self.btn_package.pack(side="left", padx=(0, 10))
+
+            # --- Hiệu ứng hover ---
+            def on_enter(e):
+                self.btn_package.config(bg="#F3E8F9")  # nền tím nhạt khi hover
+
+            def on_leave(e):
+                self.btn_package.config(bg="#FFFFFF")  # trở lại trắng
+
+            self.btn_package.bind("<Enter>", on_enter)
+            self.btn_package.bind("<Leave>", on_leave)
+
+            # --- Click hiển thị dropdown ---
+            self.btn_package.bind("<Button-1>",
+                                  lambda e: self.show_dropdown_custom(right_wrap, self.selected_package, rec_opts))
 
         # ==== Khung table chính ====
         table_frame = tk.Frame(self.table_holder, bg="#FFFFFF")
@@ -368,37 +503,110 @@ class Frame10(tk.Frame):
         inner = tk.Frame(canvas, bg="#FFFFFF")
         inner_id = canvas.create_window((0, 0), window=inner, anchor="nw")
 
-        def _label(parent, text, bg, fg=TEXT, bold=False, anchor="w", padx=12, pady=8, width=None):
+        def _label(parent, text, bg, fg=TEXT, bold=False, anchor="center", padx=12, pady=10, width=None):
             font = ("Crimson Pro", 12, "bold" if bold else "normal")
-            lbl = tk.Label(parent, text=text, bg=bg, fg=fg, font=font,
-                           anchor=anchor, padx=padx, pady=pady, justify="left")
+            lbl = tk.Label(
+                parent,
+                text=text,
+                bg=bg,
+                fg=fg,
+                font=font,
+                anchor=anchor,
+                padx=padx,
+                pady=pady,
+                justify="center"  # 👈 canh giữa cả text nhiều dòng nếu có
+            )
             if width:
-                lbl.config(width=int(width / 8))
+                lbl.config(width=int(width / 8), height=2)  # 👈 thêm height để dọc giữa
             return lbl
 
-        # Header
+        # Header (dòng tiêu đề)
         header = tk.Frame(inner, bg=HEADER_BG)
         header.pack(fill="x")
+
         COLUMNS = [
-            ("ID", 100),
-            ("Cluster", 120),
+            ("ID", 120),
+            ("Cluster", 140),
             ("Expected Loss", 160),
-            ("Recommendation", 580),
+            ("Recommendation", 560),
         ]
-        for col, col_w in COLUMNS:
-            lbl = _label(header, col, HEADER_BG, fg="#FFFFFF", bold=True)
-            lbl.pack(side="left")
-            lbl.config(width=int(col_w / 8))
+
+        for j, (col, col_w) in enumerate(COLUMNS):
+            # 👇 canh riêng header "Recommendation"
+            if col == "Recommendation":
+                anchor = "w"  # canh trái
+                pad_x = 50  # nhích nhẹ sang phải
+            else:
+                anchor = "center"
+                pad_x = 0
+
+            lbl = tk.Label(
+                header,
+                text=col,
+                bg=HEADER_BG,
+                fg="#FFFFFF",
+                font=("Crimson Pro", 12, "bold"),
+                width=int(col_w / 8),
+                pady=8,
+                anchor=anchor,
+                padx=pad_x,
+            )
+            lbl.grid(row=0, column=j, sticky="nsew")
+            header.grid_columnconfigure(j, minsize=col_w)
+
+        # ==================== ROW RENDER FIXED ====================
+        def _add_row(values, index):
+            bg = ROW_EVEN if index % 2 == 0 else ROW_ODD
+            row = tk.Frame(inner, bg=bg)
+            row.pack(fill="x")
+
+            for j, ((col, col_w), val) in enumerate(zip(COLUMNS, values)):
+                anchor = "w" if col == "Recommendation" else "center"
+                justify = "left" if anchor == "w" else "center"
+
+                lbl = tk.Label(
+                    row,
+                    text=str(val),
+                    bg=bg,
+                    fg=TEXT,
+                    font=("Crimson Pro", 12),
+                    width=int(col_w / 8),
+                    padx=8,
+                    pady=6,
+                    anchor=anchor,
+                    justify=justify,
+                )
+                lbl.grid(row=0, column=j, sticky="nsew")
+                row.grid_columnconfigure(j, minsize=col_w)
 
         # Row function
         def _add_row(values, index):
             bg = ROW_EVEN if index % 2 == 0 else ROW_ODD
             row = tk.Frame(inner, bg=bg)
-            row.pack(fill="x")
+            row.pack(fill="x", padx=10)  # 👈 thêm padding ngang cho nguyên hàng
+
             for (col, col_w), val in zip(COLUMNS, values):
-                anchor = "center" if col == "Expected Loss" else "w"
-                lbl = _label(row, str(val), bg, width=col_w, anchor=anchor)
-                lbl.pack(side="left")
+                # Tạo cell có chiều rộng cụ thể
+                cell = tk.Frame(row, bg=bg, width=col_w, height=42)
+                cell.pack_propagate(False)
+                cell.pack(side="left", padx=3)  # 👈 thêm khoảng cách giữa các cột
+
+                # ✅ Canh giữa tất cả trừ Recommendation (canh trái)
+                anchor = "w" if col == "Recommendation" else "center"
+
+                pad_x = 35 if col == "Recommendation" else 8
+
+                lbl = tk.Label(
+                    cell,
+                    text=str(val),
+                    bg=bg,
+                    fg=TEXT,
+                    font=("Crimson Pro", 12),
+                    anchor=anchor,
+                    justify="left" if col == "Recommendation" else "center",  # 👈 fix chuẩn căn trái nội dung
+                    padx=pad_x,  # 👈 đẩy nhẹ sang phải cho recommendation
+                )
+                lbl.pack(expand=True, fill="both")
 
         # ==== Filter dropdown logic ====
         def render_filtered_table(sel_pkg):
@@ -415,7 +623,10 @@ class Frame10(tk.Frame):
                 data["Expected Loss"] = (data["priority_score"].astype(float) * 100).round(1).astype(str) + "%"
             else:
                 data["Expected Loss"] = "0.0%"
-            data["Cluster"] = "Cluster 1"
+            if "Cluster" not in data.columns and "cluster" in data.columns:
+                data.rename(columns={"cluster": "Cluster"}, inplace=True)
+            elif "Cluster" not in data.columns:
+                data["Cluster"] = ""
             data["Recommendation"] = data.apply(
                 lambda r: f"{r.get('action_id', '')} – {r.get('action_name', '')}", axis=1
             )
@@ -448,13 +659,79 @@ class Frame10(tk.Frame):
             _add_row(list(row), i)
         _sync_scroll()
 
-        # ==== Bind dropdown ====
-        if show_filter and hasattr(self, "cmb_package"):
-            self.cmb_package.bind("<<ComboboxSelected>>",
-                                  lambda e: render_filtered_table(self.selected_package.get()))
             # ⚡ Nếu đây là kết quả search, KHÔNG render lại full
-            if getattr(self, "active_mode", "") != "search":
+        if getattr(self, "active_mode", "") != "search":
                 render_filtered_table("All Packages")
+
+    def show_dropdown_custom(self, parent_widget, var, options):
+        """Dropdown tùy chỉnh kiểu Frame11."""
+        popup = tk.Toplevel(self)
+        popup.overrideredirect(True)
+        popup.config(bg="#ECE7EB")
+
+        # Lấy vị trí nút để hiển thị popup ngay bên dưới
+        x = self.btn_package.winfo_rootx()
+        y = self.btn_package.winfo_rooty() + self.btn_package.winfo_height()
+        popup.geometry(f"220x{len(options) * 26}+{x}+{y}")
+
+        def on_select(value):
+            var.set(value)
+            self.btn_package.config(text=f"{value} ▼")  # 👈 giữ lại mũi tên sau khi chọn
+            popup.destroy()
+            self._filter_dropdown_selected(value)
+
+        for opt in options:
+            lbl = tk.Label(popup, text=opt, bg="#FFFFFF", fg="#374A5A",
+                           font=("Crimson Pro", 11), anchor="w", padx=10)
+            lbl.pack(fill="x", pady=1)
+            lbl.bind("<Button-1>", lambda e, v=opt: on_select(v))
+            lbl.bind("<Enter>", lambda e, l=lbl: l.config(bg="#D8C6E2"))
+            lbl.bind("<Leave>", lambda e, l=lbl: l.config(bg="#FFFFFF"))
+
+        popup.focus_force()
+        popup.bind("<FocusOut>", lambda e: popup.destroy())
+
+    def _filter_dropdown_selected(self, sel_pkg):
+        """Lọc dữ liệu khi chọn gói từ dropdown custom."""
+        base_df = getattr(self, "df_rec_original", None)
+        if base_df is None:
+            return
+
+        self.entry_1.delete(0, tk.END)  # clear search box
+
+        data = base_df.copy()
+        data["ID"] = data.get("Customer_ID", "")
+        if "priority_score" in data.columns:
+            data["Expected Loss"] = (data["priority_score"].astype(float) * 100).round(1).astype(str) + "%"
+        else:
+            data["Expected Loss"] = "0.0%"
+
+        # ✅ Giữ nguyên cluster thật (từ file)
+        if "Cluster" not in data.columns and "cluster" in data.columns:
+            data.rename(columns={"cluster": "Cluster"}, inplace=True)
+        elif "Cluster" not in data.columns:
+            data["Cluster"] = ""
+
+        # ✅ Nếu muốn hiển thị dạng “Cluster 1”, “Cluster 2”, …
+        def format_cluster(val):
+            try:
+                num = int(float(val))
+                return f"Cluster {num + 1}"
+            except:
+                return ""
+
+        data["Cluster"] = data["Cluster"].apply(format_cluster)
+
+        data["Recommendation"] = data.apply(
+            lambda r: f"{r.get('action_id', '')} – {r.get('action_name', '')}", axis=1
+        )
+        data = data[["ID", "Cluster", "Expected Loss", "Recommendation", "action_id"]]
+
+        if sel_pkg != "All Packages":
+            data = data[data["action_id"].astype(str).str.strip() == sel_pkg]
+
+        # ✅ Render lại bảng (đúng chỗ)
+        self._render_table(data, show_filter=True)
 
     def _update_kpi(self, df_rec):
         counts = df_rec["action_id"].value_counts(normalize=True).mul(100).to_dict()

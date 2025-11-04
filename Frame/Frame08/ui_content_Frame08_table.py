@@ -107,7 +107,8 @@ def build_prediction_table(parent: tk.Widget, width: int, height: int, df_result
         proba_pct = row.get('proba_churn_pct', '0.0%')
         pred_label = row.get('pred_churn_label', 'Unknown')
         cluster_label = row.get('cluster_label', 'N/A')
-        return (customer_id, f"Cluster {cluster} +1", proba_pct, pred_label, cluster_label)
+        return (customer_id, f"Cluster {int(cluster) + 1}", proba_pct, pred_label, cluster_label)
+
 
     def _add_row(values, index):
         bg = ROW_EVEN if index % 2 == 0 else ROW_ODD
@@ -183,7 +184,7 @@ def build_cluster_filter_dropdown(parent: tk.Widget, df_result=None, on_filter_c
     if df_result is not None and hasattr(df_result, "columns") and "cluster" in df_result.columns:
         try:
             unique_clusters = sorted(map(int, set(df_result["cluster"].dropna().tolist())))
-            cluster_options += [f"Cluster {c+1}" for c in unique_clusters]
+            cluster_options += [f"Cluster {c+1}" for c  in unique_clusters]
         except Exception:
             cluster_options += ["Cluster 0", "Cluster 1", "Cluster 2"]
     else:

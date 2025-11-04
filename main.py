@@ -4,8 +4,6 @@
 # Giữ đầy đủ tất cả Frame (01–12)
 
 import tkinter as tk
-
-from Function.Frame09_EL import Frame09_EL
 from Function.app_controller import AppController
 from dotenv import load_dotenv
 load_dotenv()
@@ -20,8 +18,11 @@ from Frame.Frame05.ui_Frame05 import Frame05
 from Frame.Frame06.ui_Frame06 import Frame06
 from Frame.Frame07.ui_Frame07 import Frame07
 from Frame.Frame08.ui_Frame08 import Frame08
+from Function.Frame09_EL import Frame09_EL
 from Frame.Frame10.ui_Frame10 import Frame10
+from Frame.Frame11.ui_Frame11 import Frame11
 from Frame.Frame12.ui_Frame12 import Frame12
+
 
 
 
@@ -65,6 +66,7 @@ class Main(tk.Tk):
             Frame08,
             Frame09_EL,
             Frame10,
+            Frame11,
             Frame12
         ]
 

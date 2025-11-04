@@ -295,7 +295,7 @@ class Frame06(Frame):
             image=self.button_image_5,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_PredictCustomer clicked"),
+            command=lambda: self.controller.show_frame("Frame11"),
             relief="flat"
         )
         button_PredictCustomer.place(

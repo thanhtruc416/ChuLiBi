@@ -5,6 +5,8 @@ from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 import re
 from typing import Optional
 
+from Function.app_controller import AppController
+
 # === NEW: gọi file chức năng riêng cho màn ex ===
 # API: send_otp_if_email_not_exists(email) -> (ok: bool, msg: str)
 try:
@@ -21,7 +23,7 @@ class Frame02_ex(tk.Frame):
     - on_otp_sent: nếu cần chuyển màn, hãy gọi qua controller trong Main
     """
 
-    def __init__(self, parent, controller: Optional[object] = None):
+    def __init__(self, parent, controller: AppController):
         super().__init__(parent)
         self.controller = controller
         self.lower()
@@ -159,7 +161,7 @@ class Frame02_ex(tk.Frame):
             image=self._img("button_login", "button_login.png"),
             borderwidth=0,
             highlightthickness=0,
-            command=self.controller.show_frame("Frame01"),
+            command=lambda: self.controller.show_frame("Frame01"),
             relief="flat",
             cursor="hand2"
         )

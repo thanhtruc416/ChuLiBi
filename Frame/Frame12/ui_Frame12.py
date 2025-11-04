@@ -75,8 +75,8 @@ class Frame12(tk.Frame):
         )
 
         self.canvas.create_text(
-            424.0,
-            131.0,
+            420.0,
+            120.0,
             anchor="nw",
             text="Change Information",
             fill="#000000",
@@ -333,8 +333,8 @@ class Frame12(tk.Frame):
         self.image_20 = self.canvas.create_image(890.0, 620.0, image=self.image_image_20)
 
         self.canvas.create_text(
-            424.0,
-            599.0,
+            420.0,
+            585.0,
             anchor="nw",
             text="Our Team",
             fill="#000000",
@@ -342,7 +342,6 @@ class Frame12(tk.Frame):
         )
 
         # Save button
-        from Function.Frame12_ChangeInformation import Frame12_ChangeInformation
         self.button_image_1 = PhotoImage(file=relative_to_assets("button_Save.png"))
         self.button_Save = Button(  # <-- đổi chữ S thành thường để đồng nhất
             self,
@@ -363,8 +362,8 @@ class Frame12(tk.Frame):
         self.image_image_21 = PhotoImage(file=relative_to_assets("image_21.png"))
         self.image_21 = self.canvas.create_image(1092.0, 883.0, image=self.image_image_21)
         self.canvas.create_text(
-            1037.0,
-            882.0,
+            1040.0,
+            879.0,
             anchor="nw",
             text="Nhật Bản",
             fill="#706093",
@@ -374,8 +373,8 @@ class Frame12(tk.Frame):
         self.image_image_22 = PhotoImage(file=relative_to_assets("image_22.png"))
         self.image_22 = self.canvas.create_image(1291.0, 881.0, image=self.image_image_22)
         self.canvas.create_text(
-            1244.0,
-            883.0,
+            1245.0,
+            879.0,
             anchor="nw",
             text="Mỹ Linh",
             fill="#706093",
@@ -428,7 +427,7 @@ class Frame12(tk.Frame):
             font=("Crimson Pro Bold", 16 * -1)
         )
         self.canvas.create_text(
-            632.0,
+            633.5,
             920.0,
             anchor="nw",
             text="Data & ML Lead",
@@ -445,7 +444,7 @@ class Frame12(tk.Frame):
         )
         self.canvas.create_text(
             1020.0,
-            924.0,
+            920.0,
             anchor="nw",
             text="Front-End Developer",
             fill="#000000",
@@ -453,9 +452,9 @@ class Frame12(tk.Frame):
         )
         self.canvas.create_text(
             1240.0,
-            924.0,
+            920.0,
             anchor="nw",
-            text="Documentation",
+            text="Technical Writer",
             fill="#000000",
             font=("Crimson Pro Bold", 16 * -1)
         )
@@ -474,7 +473,7 @@ class Frame12(tk.Frame):
             image=self.button_image_2,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: self.dropdown.show,
+            command=lambda: self.dropdown.show(),
             relief="flat"
         )
         self.button_Profile.place(
