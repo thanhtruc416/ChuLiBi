@@ -7,7 +7,6 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import shap
-from matplotlib.collections import PathCollection
 from matplotlib.colors import ListedColormap
 
 if matplotlib.get_backend().lower() != "tkagg":
@@ -15,7 +14,6 @@ if matplotlib.get_backend().lower() != "tkagg":
 print("[DEBUG] Matplotlib backend (after set):", matplotlib.get_backend())
 
 # --- Đặt font mặc định toàn cục cho Matplotlib ---
-import matplotlib.font_manager as fm
 from matplotlib import rcParams
 
 

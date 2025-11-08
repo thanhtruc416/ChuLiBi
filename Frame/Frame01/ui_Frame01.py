@@ -120,7 +120,6 @@ class Frame01(tk.Frame):
             show="*"
         )
         self.dn_password.place(x=855.0, y=614.0, width=420.0, height=58.0)
-
         # --- Button hiện/ẩn mật khẩu (auto-resize icon) ---
         self.eye_imgs = self._load_eye_icons()
 

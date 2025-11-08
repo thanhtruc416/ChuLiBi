@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# File: Function/Frame02_Create.py
-# Đăng ký tài khoản cho Frame02 — xử lý lệch múi giờ OTP 1 lần cho tất cả dữ liệu.
 
 from typing import Optional, Dict, Any
 from datetime import datetime, timezone, timedelta
@@ -135,7 +132,6 @@ def _create_user(username: str, email: str, password: str) -> Dict[str, Any]:
         "business_name": None,
         "role": None,
     }
-
 
 # ===== Parse thời gian an toàn (vá lệch UTC/+07) =====
 def _parse_as(dt_val, tz_assume):

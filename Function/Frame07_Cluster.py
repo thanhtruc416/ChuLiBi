@@ -1,4 +1,4 @@
-# Function/Frame07_Cluster.py
+
 from __future__ import annotations
 from pathlib import Path
 from typing import Iterable, Optional, List, Tuple
@@ -6,10 +6,8 @@ from typing import Iterable, Optional, List, Tuple
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib import font_manager
-
 from matplotlib.figure import Figure
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans

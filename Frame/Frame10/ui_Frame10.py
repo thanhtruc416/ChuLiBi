@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# File: class10.py
-# Converted from Tkinter Designer to Frame10 class + backend display
-# Assets: ./assets_frame10/
-
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
@@ -46,7 +41,7 @@ class Frame10(tk.Frame):
         self.image_1 = self.canvas.create_image(889.0, 266.0, image=self.image_image_1)
 
         self.image_image_2 = PhotoImage(file=relative_to_assets("image_2.png"))
-        self.image_2 = self.canvas.create_image(168.0, 512.0, image=self.image_image_2)
+        self.image_2 = self.canvas.create_image(169.0, 512.0, image=self.image_image_2)
 
         self.image_image_3 = PhotoImage(file=relative_to_assets("image_3.png"))
         self.image_3 = self.canvas.create_image(888.0, 42.0, image=self.image_image_3)
@@ -132,43 +127,111 @@ class Frame10(tk.Frame):
         )
 
         self.image_image_8 = PhotoImage(file=relative_to_assets("image_8.png"))
-        self.image_8 = self.canvas.create_image(163.0, 130.0, image=self.image_image_8)
+        self.image_8 = self.canvas.create_image( 162.0, 101.0, image=self.image_image_8)
 
-        # ================= SIDEBAR =================
-        # (không đổi cấu trúc)
-        self.button_image_CustomerAnalysis = PhotoImage(file=relative_to_assets("button_CustomerAnalysis.png"))
-        self.button_CustomerAnalysis = Button(self, image=self.button_image_CustomerAnalysis, borderwidth=0,
-            highlightthickness=0, command=lambda: self.controller.show_frame("Frame07"), relief="flat")
-        self.button_CustomerAnalysis.place(x=0.0, y=305.0, width=337.0, height=78.0)
-
-        self.button_image_Recommendation = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
-        self.button_Recommendation = Button(self, image=self.button_image_Recommendation, borderwidth=0,
-            highlightthickness=0, command=lambda: self.controller.show_frame("Frame10"), relief="flat")
-        self.button_Recommendation.place(x=0.0, y=547.0, width=336.0, height=79.0)
-
+        # --- Sidebar buttons ---
+        # Dashboard
         self.button_image_Dashboard = PhotoImage(file=relative_to_assets("button_Dashboard.png"))
-        self.button_Dashboard = Button(self, image=self.button_image_Dashboard, borderwidth=0,
-            highlightthickness=0, command=lambda: self.controller.show_frame("Frame06"), relief="flat")
-        self.button_Dashboard.place(x=1.0, y=222.0, width=336.0, height=88.0)
+        self.button_Dashboard = Button(
+            self,
+            image=self.button_image_Dashboard,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame06"),
+            relief="flat"
+        )
+        self.button_Dashboard.place(
+            x=0.0,
+            y=223.0,
+            width=338.0,
+            height=81.0
+        )
 
-        self.button_image_El = PhotoImage(file=relative_to_assets("button_El.png"))
-        self.button_El = Button(self, image=self.button_image_El, borderwidth=0,
-            highlightthickness=0, command=lambda: self.controller.show_frame("Frame09_EL"), relief="flat")
-        self.button_El.place(x=1.0, y=469.0, width=336.0, height=78.0)
+        # Customer Analysis
+        self.button_image_CustomerAnalysis = PhotoImage(file=relative_to_assets("button_CustomerAnalysis.png"))
+        self.button_CustomerAnalysis = Button(
+            self,
+            image=self.button_image_CustomerAnalysis,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame07"),
+            relief="flat"
+        )
+        self.button_CustomerAnalysis.place(
+            x=0.0,
+            y=304.0,
+            width=338.0,
+            height=81.0
+        )
 
+        # Churn
         self.button_image_Churn = PhotoImage(file=relative_to_assets("button_Churn.png"))
-        self.button_Churn = Button(self, image=self.button_image_Churn, borderwidth=0,
-            highlightthickness=0, command=lambda: self.controller.show_frame("Frame08"), relief="flat")
-        self.button_Churn.place(x=1.0, y=383.0, width=336.0, height=86.0)
+        self.button_Churn = Button(
+            self,
+            image=self.button_image_Churn,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame08"),
+            relief="flat"
+        )
+        self.button_Churn.place(
+            x=0.0,
+            y=385.0,
+            width=338.0,
+            height=81.0
+        )
 
+        # Expected Loss
+        self.button_image_El = PhotoImage(file=relative_to_assets("button_El.png"))
+        self.button_El = Button(
+            self,
+            image=self.button_image_El,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame09_EL"),
+            relief="flat"
+        )
+        self.button_El.place(
+            x=0.0,
+            y=466.0,
+            width=338.0,
+            height=81.0
+        )
+
+        # Recommendation
+        self.button_image_Recommendation = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
+        self.button_Recommendation = Button(
+            self,
+            image=self.button_image_Recommendation,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame10"),
+            relief="flat"
+        )
+        self.button_Recommendation.place(
+            x=0.0,
+            y=547.0,
+            width=338.0,
+            height=81.0
+        )
+
+        # Predict Customer
         self.button_image_PredictCustomer = PhotoImage(file=relative_to_assets("button_PredictCustomer.png"))
-        self.button_PredictCustomer = Button(self, image=self.button_image_PredictCustomer, borderwidth=0,
-            highlightthickness=0, command=lambda: self.controller.show_frame("Frame11"), relief="flat")
-        self.button_PredictCustomer.place(x=0.0, y=626.0, width=336.0, height=75.0)
-
+        self.button_PredictCustomer = Button(
+            self,
+            image=self.button_image_PredictCustomer,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame11"),
+            relief="flat"
+        )
+        self.button_PredictCustomer.place(
+            x=0.0,
+            y=628.0,
+            width=338.0,
+            height=81.0
+        )
         # ================= KPI (có hình + text phần trăm) =================
-        # ================= KPI =================
-        # ---- Vẽ 8 ảnh khung KPI trước ----
         self.image_service = PhotoImage(file=relative_to_assets("image_9.png"))
         self.canvas.create_image(480.0, 213.0, image=self.image_service)
 
@@ -287,12 +350,6 @@ class Frame10(tk.Frame):
         if "Cluster" not in df_rec.columns and "cluster" in df_rec.columns:
             df_rec.rename(columns={"cluster": "Cluster"}, inplace=True)
 
-        # # Cộng +1 để hiển thị từ 1 -> 3 thay vì 0 -> 2
-        # try:
-        #     df_rec["Cluster"] = df_rec["Cluster"].astype(float).astype(int) + 1
-        # except:
-        #     print("[WARN] Không thể cộng +1 cho Cluster, giữ nguyên.")
-
         # In ra xem có merge thành công không
         print(f"[CHECK] Cluster merged? {df_rec['Cluster'].notna().sum()} / {len(df_rec)} rows có Cluster")
 
@@ -328,13 +385,6 @@ class Frame10(tk.Frame):
                         title="Warning",
                         subtitle=f"Do not found customer or package matching '{keyword}'.")
             return
-
-        # ✅ Giữ format Cluster hiển thị "Cluster x"
-        import pandas as pd
-        # if "Cluster" in df_filtered.columns:
-        #     df_filtered["Cluster"] = df_filtered["Cluster"].apply(
-        #         lambda x: f"Cluster {int(float(x))}" if pd.notna(x) else ""
-        #     )
 
         self.df_search_result = df_filtered.copy()
         self._render_table(df_filtered, show_filter=True)

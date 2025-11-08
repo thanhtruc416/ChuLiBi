@@ -1,6 +1,6 @@
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox  # <— thêm messagebox
-from Function.Frame04_ForgetPassword import send_otp_if_email_exists                      # <— thêm import
+from Function.Frame04_ForgetPassword import send_otp_if_email_exists
 from QMess.Qmess_calling import Qmess
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame04")
@@ -80,7 +80,7 @@ class Frame04(Frame):
             image=self.button_image_sendOTP,
             borderwidth=0,
             highlightthickness=0,
-            command=self.on_click_send_otp,       # <— SỬA Ở ĐÂY
+            command=self.on_click_send_otp,
             relief="flat"
         )
         self.button_sendOTP.place(x=842.0, y=574.0, width=479.0, height=70.0)

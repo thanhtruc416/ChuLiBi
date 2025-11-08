@@ -6,26 +6,8 @@ Controller / pipeline cho Frame09 (Expected Loss).
 """
 
 import os
-import random
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 import matplotlib
-from pathlib import Path
-import tkinter as tk
-from tkinter import ttk, messagebox, Menu
 from matplotlib import font_manager
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
-from sklearn.preprocessing import MinMaxScaler, LabelEncoder
-from sklearn.model_selection import train_test_split, KFold
-from sklearn.metrics import (
-    roc_auc_score, r2_score, mean_squared_error, mean_absolute_error, roc_curve
-)
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from xgboost import XGBClassifier
 from QMess.Qmess_calling import Qmess
 # View (UI layout)
 from Frame.Frame09.ui_Frame09 import Frame09
@@ -327,7 +309,7 @@ def dual_expected_loss(df, df_cluster, PATH=PATH):
     else:
         df_dual_map["cluster"] = np.nan
 
-    # ⚙️ dịch cluster lên 1 để thành 1–3 thay vì 0–2
+    # dịch cluster lên 1 để thành 1–3 thay vì 0–2
     df_dual_map["cluster"] = df_dual_map["cluster"] + 1
 
     scaler = MinMaxScaler()
@@ -925,7 +907,7 @@ class Frame09_EL(Frame09):
     def update_cards(self):
         """Cập nhật KPI — Total EL từ full dataset, High-Risk theo cluster hiển thị."""
         try:
-            # --- 1️⃣ High Risk Count (tính từ bảng đang hiển thị) ---
+            # --- High Risk Count (tính từ bảng đang hiển thị) ---
             df_display = getattr(self, "df_display", pd.DataFrame())
             if not df_display.empty and "Churn Probability (%)" in df_display.columns:
                 pd_series = pd.to_numeric(df_display["Churn Probability (%)"], errors="coerce").fillna(0)
@@ -933,7 +915,7 @@ class Frame09_EL(Frame09):
             else:
                 high_risk_count = 0
 
-            # --- 2️⃣ Total Expected Loss (tính từ file full) ---
+            # --- Total Expected Loss (tính từ file full) ---
             df_full = getattr(self, "df_full", pd.DataFrame())
             total_el = 0.0
             if not df_full.empty:
@@ -956,7 +938,7 @@ class Frame09_EL(Frame09):
                 else:
                     print("[WARN] Không tìm thấy cột 'Expected Loss (Value 1–3)' trong df_full.")
 
-            # --- 3️⃣ Cập nhật UI ---
+            # ---  Cập nhật UI ---
             self.canvas.itemconfig(self.text_highrisk_value, text=str(int(high_risk_count)))
             self.canvas.itemconfig(self.text_totalel_value, text=f"{total_el:,.2f}")
 

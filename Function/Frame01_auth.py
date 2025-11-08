@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# File: Function/Frame01_auth.py
+
 """
 Login bằng username + password.
 Return:

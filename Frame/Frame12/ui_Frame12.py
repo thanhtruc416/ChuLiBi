@@ -1,7 +1,3 @@
-# ui_Frame12.py
-# Converted from Tkinter Designer output to class-based structure
-# Layout, text, fonts, images, and buttons are fully preserved.
-
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage
@@ -497,41 +493,12 @@ class Frame12(tk.Frame):
         )
 
         self.image_image_28 = PhotoImage(file=relative_to_assets("image_28.png"))
-        self.image_28 = self.canvas.create_image(169.0, 106.0, image=self.image_image_28)
+        self.image_28 = self.canvas.create_image( 162.0, 101.0, image=self.image_image_28)
 
         # Sidebar buttons
-        self.button_image_3 = PhotoImage(file=relative_to_assets("button_CustomerAnalysis.png"))
-        self.button_CustomerAnalysis = Button(
-            self,
-            image=self.button_image_3,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame07"),
-            relief="flat"
-        )
-        self.button_CustomerAnalysis.place(
-            x=2.0,
-            y=267.0,
-            width=337.0,
-            height=77.0
-        )
+        # --- Sidebar buttons ---
 
-        self.button_image_4 = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
-        self.button_Recommendation = Button(
-            self,
-            image=self.button_image_4,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame10"),
-            relief="flat"
-        )
-        self.button_Recommendation.place(
-            x=5.0,
-            y=523.0,
-            width=336.0,
-            height=82.0
-        )
-
+        # Dashboard
         self.button_image_5 = PhotoImage(file=relative_to_assets("button_Dashboard.png"))
         self.button_Dashboard = Button(
             self,
@@ -543,27 +510,29 @@ class Frame12(tk.Frame):
         )
         self.button_Dashboard.place(
             x=0.0,
-            y=177.0,
-            width=339.0,
-            height=88.0
+            y=223.0,
+            width=338.0,
+            height=81.0
         )
 
-        self.button_image_6 = PhotoImage(file=relative_to_assets("button_EL.png"))
-        self.button_EL = Button(
+        # Customer Analysis
+        self.button_image_3 = PhotoImage(file=relative_to_assets("button_CustomerAnalysis.png"))
+        self.button_CustomerAnalysis = Button(
             self,
-            image=self.button_image_6,
+            image=self.button_image_3,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda:self.controller.show_frame("Frame09_EL"),
+            command=lambda: self.controller.show_frame("Frame07"),
             relief="flat"
         )
-        self.button_EL.place(
-            x=4.0,
-            y=438.0,
-            width=336.0,
-            height=78.0
+        self.button_CustomerAnalysis.place(
+            x=0.0,
+            y=304.0,
+            width=338.0,
+            height=81.0
         )
 
+        # Churn
         self.button_image_7 = PhotoImage(file=relative_to_assets("button_Churn.png"))
         self.button_Churn = Button(
             self,
@@ -575,11 +544,46 @@ class Frame12(tk.Frame):
         )
         self.button_Churn.place(
             x=0.0,
-            y=344.0,
+            y=385.0,
             width=338.0,
-            height=87.0
+            height=81.0
         )
 
+        # Expected Loss (EL)
+        self.button_image_6 = PhotoImage(file=relative_to_assets("button_EL.png"))
+        self.button_EL = Button(
+            self,
+            image=self.button_image_6,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame09_EL"),
+            relief="flat"
+        )
+        self.button_EL.place(
+            x=0.0,
+            y=466.0,
+            width=338.0,
+            height=81.0
+        )
+
+        # Recommendation
+        self.button_image_4 = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
+        self.button_Recommendation = Button(
+            self,
+            image=self.button_image_4,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame10"),
+            relief="flat"
+        )
+        self.button_Recommendation.place(
+            x=0.0,
+            y=547.0,
+            width=338.0,
+            height=81.0
+        )
+
+        # Predict Customer
         self.button_image_8 = PhotoImage(file=relative_to_assets("button_PredictCustomer.png"))
         self.button_PredictCustomer = Button(
             self,
@@ -590,12 +594,11 @@ class Frame12(tk.Frame):
             relief="flat"
         )
         self.button_PredictCustomer.place(
-            x=1.0,
-            y=619.0,
-            width=337.0,
-            height=76.0
+            x=0.0,
+            y=628.0,
+            width=338.0,
+            height=81.0
         )
-
         # Background decor around team
         self.image_image_29 = PhotoImage(file=relative_to_assets("image_29.png"))
         self.image_29 = self.canvas.create_image(695.0, 788.0, image=self.image_image_29)
@@ -609,7 +612,7 @@ class Frame12(tk.Frame):
         self.image_image_32 = PhotoImage(file=relative_to_assets("image_32.png"))
         self.image_32 = self.canvas.create_image(898.0, 788.0, image=self.image_image_32)
     # =====================================================
-    # 🧩 THÊM CHỨC NĂNG XỬ LÝ NGƯỜI DÙNG TRỰC TIẾP TRONG UI
+    # THÊM CHỨC NĂNG XỬ LÝ NGƯỜI DÙNG TRỰC TIẾP TRONG UI
     # =====================================================
 
     def on_show(self, user_data=None):

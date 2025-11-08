@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-# ui_Frame08.py — Tkinter-Designer layout + embedded ui_content_Frame08 (with vertical scrollbar)
 from pathlib import Path
 import sys
 import tkinter as tk
-from tkinter import Canvas, Button, PhotoImage, messagebox
+from tkinter import Canvas, Button, PhotoImage
 
 from Function.dropdown_profile import DropdownMenu
 
@@ -85,17 +83,17 @@ class Frame08(tk.Frame):
         if img: self.canvas.create_image(720.0, 512.0, image=img)
 
         img = _img("image_2.png")
-        if img: self.canvas.create_image(172.0, 514.0, image=img)
+        if img: self.canvas.create_image(168.0, 514.0, image=img)
 
         self.canvas.create_text(81.0, 914.0, anchor="nw",
                                 text="ChuLiBi", fill="#FDE5F4",
                                 font=("Rubik Burned Regular", 35 * -1))
 
         img = _img("image_3.png")
-        if img: self.canvas.create_image(185.0, 86.0, image=img)
+        if img: self.canvas.create_image( 162.0, 101.0, image=img)
 
         img = _img("image_4.png")
-        if img: self.canvas.create_image(892.0, 31.0, image=img)
+        if img: self.canvas.create_image(887.0, 31.0, image=img)
 
         self.canvas.create_text(348.0, 2.0, anchor="nw",
                                 text="   Churn", fill="#000000",
@@ -117,9 +115,27 @@ class Frame08(tk.Frame):
             relief="flat"
         )
         self.button_Profile.place(x=1359.0, y=6.0, width=50.0, height=45.0)
+        # --- Sidebar buttons --
 
-        # --- Sidebar buttons ---
-        self.button_image_2 = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
+        self.button_image_1 = PhotoImage(
+            file=relative_to_assets("button_EL.png"))
+        button_EL = Button(
+            self,
+            image=self.button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame09_EL"),
+            relief="flat"
+        )
+        button_EL.place(
+            x=0.0,
+            y=466.0,
+            width=338.0,
+            height=81.0
+        )
+
+        self.button_image_2 = PhotoImage(
+            file=relative_to_assets("button_Recommendation.png"))
         button_Recommendation = Button(
             self,
             image=self.button_image_2,
@@ -128,62 +144,80 @@ class Frame08(tk.Frame):
             command=lambda: self.controller.show_frame("Frame10"),
             relief="flat"
         )
-        button_Recommendation.place(x=0.0, y=533.0, width=344.0, height=84.0)
-
-        self.button_image_3 = PhotoImage(file=relative_to_assets("button_EL.png"))
-        button_EL = Button(
-            self,
-            image=self.button_image_3,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame09_EL"),
-            relief="flat"
+        button_Recommendation.place(
+            x=0.0,
+            y=547.0,
+            width=338.0,
+            height=81.0
         )
-        button_EL.place(x=0.0, y=453.0, width=345.0, height=80.0)
 
-        self.button_image_5 = PhotoImage(file=relative_to_assets("button_PredictCustomer.png"))
+        self.button_image_3 = PhotoImage(
+            file=relative_to_assets("button_PredictCustomer.png"))
         button_PredictCustomer = Button(
             self,
-            image=self.button_image_5,
+            image=self.button_image_3,
             borderwidth=0,
             highlightthickness=0,
             command=lambda: self.controller.show_frame("Frame11"),
             relief="flat"
         )
-        button_PredictCustomer.place(x=0.0, y=617.0, width=344.0, height=76.0)
-
-        self.button_image_1 = PhotoImage(file=relative_to_assets("button_CustomerAnalysis.png"))
-        button_CustomerAnalysis = Button(
-            self,
-            image=self.button_image_1,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame07"),
-            relief="flat"
+        button_PredictCustomer.place(
+            x=0.0,
+            y=628.0,
+            width=338.0,
+            height=81.0
         )
-        button_CustomerAnalysis.place(x=0.0, y=294.0, width=344.0, height=79.0)
 
-        self.button_image_6 = PhotoImage(file=relative_to_assets("button_Dashboard.png"))
+        self.button_image_4 = PhotoImage(
+            file=relative_to_assets("button_Dashboard.png"))
         button_Dashboard = Button(
             self,
-            image=self.button_image_6,
+            image=self.button_image_4,
             borderwidth=0,
             highlightthickness=0,
             command=lambda: self.controller.show_frame("Frame06"),
             relief="flat"
         )
-        button_Dashboard.place(x=0.0, y=205.0, width=344.0, height=89.0)
+        button_Dashboard.place(
+            x=0.0,
+            y=223.0,
+            width=338.0,
+            height=81.0
+        )
 
-        self.button_image_4 = PhotoImage(file=relative_to_assets("button_Churn.png"))
+        self.button_image_5 = PhotoImage(
+            file=relative_to_assets("button_Churn.png"))
         button_Churn = Button(
             self,
-            image=self.button_image_4,
+            image=self.button_image_5,
             borderwidth=0,
             highlightthickness=0,
             command=lambda: self.controller.show_frame("Frame08"),
             relief="flat"
         )
-        button_Churn.place(x=0.0, y=373.0, width=344.0, height=80.0)
+        button_Churn.place(
+            x=0.0,
+            y=385.0,
+            width=338.0,
+            height=81.0
+        )
+
+        self.button_image_6 = PhotoImage(
+            file=relative_to_assets("button_CustomerAnalysis.png"))
+        button_CustomerAnalysis = Button(
+            self,
+            image=self.button_image_6,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame07"),
+            relief="flat"
+        )
+        button_CustomerAnalysis.place(
+            x=0.0,
+            y=304.0,
+            width=338.0,
+            height=81.0
+        )
         # ======= CONTENT HOST (embedded ui_content_Frame08 + SCROLLBAR) =======
         self.CONTENT_X, self.CONTENT_Y = 370, 70
         self.CONTENT_W, self.CONTENT_H = 1040, 900

@@ -6,7 +6,6 @@ import string
 import bcrypt
 from email.message import EmailMessage
 from datetime import datetime, timedelta, timezone
-
 from Function.db import get_conn
 
 OTP_TTL_MINUTES = 10  # OTP hết hạn sau 10 phút

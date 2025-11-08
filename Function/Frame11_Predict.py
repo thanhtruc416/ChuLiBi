@@ -10,14 +10,12 @@ Sử dụng các models và pipelines đã có sẵn từ các file chức năng
 """
 
 from pathlib import Path
-from typing import Dict, Optional, Union, Tuple
-import os
+from typing import Dict, Tuple
 import warnings
 import numpy as np
 import pandas as pd
 import joblib
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 warnings.filterwarnings("ignore")
 
@@ -67,48 +65,48 @@ def validate_customer_input(customer: Dict) -> Tuple[bool, list]:
     try:
         t = float(customer.get("Delivery Time", 0))
         if t <= 0 or t > 90:
-            errors.append("❌ Delivery Time phải trong khoảng 1–90 phút.")
+            errors.append("Delivery Time phải trong khoảng 1–90 phút.")
     except ValueError:
-        errors.append("❌ Delivery Time phải là số.")
+        errors.append("Delivery Time phải là số.")
     # Tuổi
     try:
         age = float(customer.get("Age", 0))
         if age <= 0 or age > 100:
-            errors.append("❌ Age phải nằm trong khoảng 1–120.")
+            errors.append(" Age phải nằm trong khoảng 1–120.")
     except ValueError:
-        errors.append("❌ Age phải là số.")
+        errors.append(" Age phải là số.")
 
     # Family size
     try:
         fam = int(customer.get("Family size", 0))
         if fam < 1 or fam > 10:
-            errors.append("❌ Family size phải từ 1–20.")
+            errors.append(" Family size phải từ 1–20.")
     except ValueError:
-        errors.append("❌ Family size phải là số nguyên.")
+        errors.append(" Family size phải là số nguyên.")
 
     # Restaurant Rating
     try:
         r = float(customer.get("Restaurant Rating", 0))
         if r < 1 or r > 5:
-            errors.append("❌ Restaurant Rating phải trong khoảng 1–5.")
+            errors.append(" Restaurant Rating phải trong khoảng 1–5.")
     except ValueError:
-        errors.append("❌ Restaurant Rating phải là số.")
+        errors.append(" Restaurant Rating phải là số.")
 
     # Delivery Rating
     try:
         d = float(customer.get("Delivery Rating", 0))
         if d < 1 or d > 5:
-            errors.append("❌ Delivery Rating phải trong khoảng 1–5.")
+            errors.append(" Delivery Rating phải trong khoảng 1–5.")
     except ValueError:
-        errors.append("❌ Delivery Rating phải là số.")
+        errors.append(" Delivery Rating phải là số.")
 
     # No. of orders placed
     try:
         n = int(customer.get("No. of orders placed", 0))
         if n <= 0:
-            errors.append("❌ Số đơn hàng phải lớn hơn 0.")
+            errors.append(" Số đơn hàng phải lớn hơn 0.")
     except ValueError:
-        errors.append("❌ No. of orders placed phải là số.")
+        errors.append(" No. of orders placed phải là số.")
 
     return len(errors) == 0, errors
 # ==================== CLASS PREDICT CUSTOMER ====================
@@ -862,10 +860,10 @@ def predict_customer(customer: Dict, data_dir: Path = None) -> Dict:
     """
     is_valid, errors = validate_customer_input(customer)
     if not is_valid:
-        print("\n⚠️ DỮ LIỆU KHÔNG HỢP LỆ, DỪNG DỰ ĐOÁN:")
+        print("\n DỮ LIỆU KHÔNG HỢP LỆ, DỪNG DỰ ĐOÁN:")
         for e in errors:
             print(e)
-        raise ValueError("❌ Dữ liệu khách hàng không hợp lệ. Hãy nhập lại đúng giá trị.")
+        raise ValueError("Dữ liệu khách hàng không hợp lệ. Hãy nhập lại đúng giá trị.")
 
     # Nếu hợp lệ thì mới chạy model
     predictor = CustomerPredictor(data_dir=data_dir)

@@ -126,7 +126,7 @@ class Frame02_ex(tk.Frame):
         self.canvas.create_image(1079.0, 492.0, image=self._img("entry_1", "entry_1.png"))
 
         # Entry widget
-        self.entry_email = Entry(self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0)
+        self.entry_email = Entry(self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0, font=("Crimson Pro Regular", -26))
         self.entry_email.place(x=869.0, y=462.0, width=420.0, height=58.0)
 
         # Email icon / decoration

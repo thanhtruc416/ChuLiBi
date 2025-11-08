@@ -1,10 +1,4 @@
-# -*- coding: utf-8 -*-
-# File: Function/Frame03_Profile.py
-#
-# Chức năng: cập nhật hồ sơ (FullName, Business Name, Role) cho Frame03.
-# Cung cấp class:
-#   AuthService.update_user_profile(user_id, full_name, business_name, role)
-# Trả về dict: {"success": bool, "message": str, "user_data": {...} (nếu thành công)}
+
 
 from datetime import datetime, timezone
 from typing import Dict, Any, Optional

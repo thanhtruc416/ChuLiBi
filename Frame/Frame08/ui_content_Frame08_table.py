@@ -5,10 +5,9 @@
 # - Có thể chạy riêng file này để preview
 
 import tkinter as tk
-from tkinter import ttk
 
-HEADER_BG = "#B79AC8"   # purple (theme)
-HEADER_HOVER = "#C9B1DA"  # lighter purple
+HEADER_BG = "#B79AC8"
+HEADER_HOVER = "#C9B1DA"
 ROW_EVEN  = "#FFFFFF"
 ROW_ODD   = "#F7F4F7"
 TEXT      = "#2E2E2E"

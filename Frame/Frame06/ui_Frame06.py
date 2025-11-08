@@ -6,7 +6,6 @@
 
 from pathlib import Path
 from tkinter import Frame, Canvas, Button, PhotoImage
-
 import sys
 import pandas as pd
 import matplotlib.font_manager as fm
@@ -30,12 +29,6 @@ from Function.Frame06_kpi_dashboard import get_all_kpis
 # ---------------- Paths & Fonts ----------------
 OUTPUT_PATH = Path(__file__).parent                      # e.g., .../Frame/Frame06
 ASSETS_PATH = OUTPUT_PATH / "assets_Frame06"
-
-# Project root (adjust if your repo layout differs)
-# Expected structure:
-#   ROOT/
-#     Dataset/Output/df_raw_dashboard.csv
-#     Font/Crimson_Pro/static/CrimsonPro-Regular.ttf
 ROOT = Path(__file__).resolve().parents[2]
 font_path = ROOT / "Font" / "Crimson_Pro" / "static" / "CrimsonPro-Regular.ttf"
 CSV_PATH = ROOT / "Dataset" / "Output" / "df_raw_dashboard.csv"
@@ -52,9 +45,9 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / path
 
 # ---------------- KPI Font Sizes (tweak here) ----------------
-KPI_FONT_MAIN  = 16  # was 20
-KPI_FONT_UNIT  = 8   # was 10
-KPI_FONT_LABEL = 9   # was 11
+KPI_FONT_MAIN  = 16
+KPI_FONT_UNIT  = 8
+KPI_FONT_LABEL = 9
 
 # ---------------- Data load & preprocess ----------------
 try:
@@ -109,8 +102,7 @@ class Frame06(Frame):
             if img is not None:
                 canvas.create_image(x, y, image=img)
 
-        self.image_1  = _safe_img("image_sidebar_bg.png");  _add_img(self.image_1, 168.0, 512.0)
-        # self.image_2  = _safe_img("image_2.png");  _add_img(self.image_2, 1.0,   245.0)
+        self.image_1  = _safe_img("image_1.png");  _add_img(self.image_1, 168.0, 512.0)
         self.image_3  = _safe_img("image_3.png");  _add_img(self.image_3, 889.0, 202.0)
         self.image_4  = _safe_img("image_4.png");  _add_img(self.image_4, 452.0, 220.0)
         self.image_5  = _safe_img("image_5.png");  _add_img(self.image_5, 577.0, 220.0)
@@ -204,101 +196,103 @@ class Frame06(Frame):
         self.button_Profile.place(x=1332.0, y=16.0, width=57.0, height=51.0)
 
         # --- Sidebar buttons ---
+        # --- Sidebar buttons ---
         self.button_image_1 = PhotoImage(
             file=relative_to_assets("button_CustomerAnalysis.png"))
         button_CustomerAnalysis = Button(self,
-            image=self.button_image_1,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame07"),
-            relief="flat"
-        )
+                                         image=self.button_image_1,
+                                         borderwidth=0,
+                                         highlightthickness=0,
+                                         command=lambda: self.controller.show_frame("Frame07"),
+                                         relief="flat"
+                                         )
         button_CustomerAnalysis.place(
-            x=2.0,
-            y=285.0,
-            width=337.0,
-            height=77.0
+            x=1.0,
+            y=304.0,
+            width=336.0,
+            height=81.0
         )
 
         self.button_image_2 = PhotoImage(
-            file=relative_to_assets("button_Recommendation.png"))
-        button_Recommendation = Button(self,
-            image=self.button_image_2,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame10"),
-            relief="flat"
-        )
-        button_Recommendation.place(
-            x=0.0,
-            y=525.0,
+            file=relative_to_assets("button_Churn.png"))
+        button_Churn = Button(self,
+                              image=self.button_image_2,
+                              borderwidth=0,
+                              highlightthickness=0,
+                              command=lambda: self.controller.show_frame("Frame08"),
+                              relief="flat"
+                              )
+        button_Churn.place(
+            x=1.0,
+            y=385.0,
             width=336.0,
-            height=82.0
+            height=81.0
         )
 
         self.button_image_3 = PhotoImage(
             file=relative_to_assets("button_EL.png"))
         button_EL = Button(self,
-            image=self.button_image_3,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame09_EL"),
-            relief="flat"
-        )
+                           image=self.button_image_3,
+                           borderwidth=0,
+                           highlightthickness=0,
+                           command=lambda: self.controller.show_frame("Frame09_EL"),
+                           relief="flat"
+                           )
         button_EL.place(
             x=1.0,
-            y=447.0,
+            y=466.0,
             width=336.0,
-            height=78.0
+            height=81.0
         )
 
         self.button_image_4 = PhotoImage(
-            file=relative_to_assets("button_Churn.png"))
-        button_Churn = Button(self,
-            image=self.button_image_4,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame08"),
-            relief="flat"
-        )
-        button_Churn.place(
-            x=0.0,
-            y=361.0,
-            width=334.0,
-            height=86.0
+            file=relative_to_assets("button_Recommendation.png"))
+        button_Recommendation = Button(self,
+                                       image=self.button_image_4,
+                                       borderwidth=0,
+                                       highlightthickness=0,
+                                       command=lambda: self.controller.show_frame("Frame10"),
+                                       relief="flat"
+                                       )
+        button_Recommendation.place(
+            x=1.0,
+            y=547.0,
+            width=336.0,
+            height=81.0
         )
 
         self.button_image_5 = PhotoImage(
             file=relative_to_assets("button_PredictCustomer.png"))
         button_PredictCustomer = Button(self,
-            image=self.button_image_5,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame11"),
-            relief="flat"
-        )
+                                        image=self.button_image_5,
+                                        borderwidth=0,
+                                        highlightthickness=0,
+                                        command=lambda: self.controller.show_frame("Frame11"),
+                                        relief="flat"
+                                        )
         button_PredictCustomer.place(
-            x=0.0,
-            y=607.0,
-            width=337.0,
-            height=76.0
+            x=1.0,
+            y=628.0,
+            width=336.0,
+            height=81.0
         )
 
         self.button_image_6 = PhotoImage(
             file=relative_to_assets("button_Dashboard.png"))
         button_Dashboard = Button(self,
-            image=self.button_image_6,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame06"),
-            relief="flat"
-        )
+                                  image=self.button_image_6,
+                                  borderwidth=0,
+                                  highlightthickness=0,
+                                  command=lambda: self.controller.show_frame("Frame06"),
+                                  relief="flat"
+                                  )
         button_Dashboard.place(
             x=0.0,
-            y=204.0,
-            width=336.0,
+            y=223.0,
+            width=337.0,
             height=81.0
         )
+
         # ---------------- Chart containers ----------------
         frame_bar_chart  = Frame(canvas, bg="#FFFFFF")
         frame_histogram  = Frame(canvas, bg="#FFFFFF")

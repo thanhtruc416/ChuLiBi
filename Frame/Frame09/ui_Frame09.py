@@ -48,7 +48,7 @@ class Frame09(Frame):
                 self.canvas.create_image(x, y, image=img)
 
         # --- Images nền / decor ---
-        self.image_image_1 = _safe_img("image_1.png");  _add_img(self.image_image_1, 168.0, 512.0)
+        self.image_image_1 = _safe_img("image_1.png");  _add_img(self.image_image_1, 169.0, 512.0)
         self.image_image_2 = _safe_img("image_2.png");  _add_img(self.image_image_2, 888.0, 42.0)
         self.image_image_3 = _safe_img("image_3.png");  _add_img(self.image_image_3, 580.0, 42.0)
         # đổi chữ + ẩn Table
@@ -75,7 +75,7 @@ class Frame09(Frame):
             font=("Crimson Pro Bold", -30)
         )
 
-        self.image_image_6 = _safe_img("image_6.png");  _add_img(self.image_image_6, 163.0, 130.0)
+        self.image_image_6 = _safe_img("image_6.png");  _add_img(self.image_image_6,  162.0, 101.0)
         self.image_image_7 = _safe_img("image_7.png");  _add_img(self.image_image_7, 482.0, 190.0)
         self.image_image_8 = _safe_img("image_8.png");  _add_img(self.image_image_8, 779.0, 190.0)
         self.image_image_9 = _safe_img("image_9.png");  _add_img(self.image_image_9, 629.0, 458.0)
@@ -167,72 +167,114 @@ class Frame09(Frame):
             font=("Kodchasan Regular", -40)
         )
 
-        # ================== SIDEBAR ==================
-        self.button_image_1 = _safe_img("button_CustomerAnalysis.png")
-        self.button_CustomerAnalysis = Button(
-            self,
-            image=self.button_image_1,
-            borderwidth=0, highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame07"),
-            relief="flat"
-        )
-        self.button_CustomerAnalysis.place(x=1.0, y=310.0, width=335.0, height=77.0)
-
+        # --- Sidebar buttons ---
+        # Dashboard
         self.button_image_4 = _safe_img("button_Dashboard.png")
         self.button_Dashboard = Button(
             self,
             image=self.button_image_4,
-            borderwidth=0, highlightthickness=0,
+            borderwidth=0,
+            highlightthickness=0,
             command=lambda: self.controller.show_frame("Frame06"),
             relief="flat"
         )
-        self.button_Dashboard.place(x=0.0, y=222.0, width=335.2258, height=88.0)
+        self.button_Dashboard.place(
+            x=0.0,
+            y=223.0,
+            width=338.0,
+            height=81.0
+        )
 
-        self.button_image_5 = _safe_img("button_EL.png")
-        self.button_EL = Button(
+        # Customer Analysis
+        self.button_image_1 = _safe_img("button_CustomerAnalysis.png")
+        self.button_CustomerAnalysis = Button(
             self,
-            image=self.button_image_5,
-            borderwidth=0, highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame09_EL"),
+            image=self.button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame07"),
             relief="flat"
         )
-        self.button_EL.place(x=0.0, y=473.0, width=336.0, height=81.0)
+        self.button_CustomerAnalysis.place(
+            x=0.0,
+            y=304.0,
+            width=338.0,
+            height=81.0
+        )
 
+        # Churn
         self.button_image_6 = _safe_img("button_Churn.png")
         self.button_Churn = Button(
             self,
             image=self.button_image_6,
-            borderwidth=0, highlightthickness=0,
+            borderwidth=0,
+            highlightthickness=0,
             command=lambda: self.controller.show_frame("Frame08"),
             relief="flat"
         )
-        self.button_Churn.place(x=0.0, y=387.0, width=334.0, height=86.0)
+        self.button_Churn.place(
+            x=0.0,
+            y=385.0,
+            width=338.0,
+            height=81.0
+        )
 
+        # Expected Loss
+        self.button_image_5 = _safe_img("button_EL.png")
+        self.button_EL = Button(
+            self,
+            image=self.button_image_5,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: self.controller.show_frame("Frame09_EL"),
+            relief="flat"
+        )
+        self.button_EL.place(
+            x=0.0,
+            y=467.0,
+            width=338.0,
+            height=80.0
+        )
+
+        # Recommendation
         self.button_image_8 = _safe_img("button_Recommendation.png")
         self.button_Recommendation = Button(
             self,
             image=self.button_image_8,
-            borderwidth=0, highlightthickness=0,
+            borderwidth=0,
+            highlightthickness=0,
             command=lambda: self.controller.show_frame("Frame10"),
             relief="flat"
         )
-        self.button_Recommendation.place(x=0.0, y=554.0, width=336.0, height=82.0)
+        self.button_Recommendation.place(
+            x=0.0,
+            y=547.0,
+            width=338.0,
+            height=81.0
+        )
 
+        # Predict Customer
         self.button_image_7 = _safe_img("button_PredictCustomer.png")
         self.button_PredictCustomer = Button(
             self,
             image=self.button_image_7,
-            borderwidth=0, highlightthickness=0,
+            borderwidth=0,
+            highlightthickness=0,
             command=lambda: self.controller.show_frame("Frame11"),
             relief="flat"
         )
-        self.button_PredictCustomer.place(x=0.0, y=636.0, width=336.0, height=75.0)
+        self.button_PredictCustomer.place(
+            x=0.0,
+            y=628.0,
+            width=338.0,
+            height=81.0
+        )
         # ====================================================================
 
         # --- Entries ---
         self.entry_image_1 = _safe_img("entry_1.png")
         if self.entry_image_1:
-            _add_img(self.entry_image_1, 842.0, 705.5)
+            _add_img(self.entry_image_1, 843.0, 705.5)
 
         # --- Entry giả làm ô Cluster ---
         self.entry_cluster = tk.Label(

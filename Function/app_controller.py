@@ -65,7 +65,7 @@ class AppController:
         frame.tkraise()
 
     # =========================
-    # 🧠 Quản lý người dùng hiện tại
+    # Quản lý người dùng hiện tại
     # =========================
     def get_current_user(self):
         """Trả về thông tin người dùng hiện tại."""

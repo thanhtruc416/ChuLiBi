@@ -1,11 +1,7 @@
 # frame05.py
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox, StringVar, NORMAL, DISABLED
-
 from QMess.Qmess_calling import Qmess
-import tkinter as tk
-
-
 # ===== functions: lấy username theo email + verify OTP & reset mật khẩu =====
 from Function.Frame05_ResetPassword import get_username_by_email, reset_password_with_otp
 
@@ -131,9 +127,9 @@ class Frame05(Frame):
         # Label hiển thị username nằm đè lên ảnh (chữ thay đổi được)
         self.username_text = tk.Label(
             self,
-            text="",  # để trống ban đầu
-            bg="#D9D9D9",  # trùng màu nền ảnh (hoặc #E8E8E8 nếu ảnh sáng hơn)
-            fg="#000716",  # màu chữ
+            text="",
+            bg="#D9D9D9",
+            fg="#000716",
             font=("Crimson Pro Regular", 26),
             anchor="w"
         )

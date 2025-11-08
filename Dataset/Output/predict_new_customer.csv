@@ -1,20 +1,3 @@
-Age,Gender,Marital Status,Occupation,Educational Qualifications,Family size,Frequently used Medium,Frequently ordered Meal category,Perference,Restaurant Rating,Delivery Rating,No. of orders placed,Delivery Time,Order Value,Ease and convenient,Self Cooking,Health Concern,Late Delivery,Poor Hygiene,Bad past experience,More Offers and Discount,Maximum wait time,Influence of rating
-,,,,,,,,,,,,,,,,,,,,,,
-27,Male,Single,Under,1,2,3,3,3,3.0,3.0,3,3,3.0,3,3,3,3,3,3,3,3,3
-20,Female,Single,Student,Post Graduate,4,Food delivery apps,Breakfast,Non Veg foods (Lunch / Dinner),1,1,150,45,1,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,30 minutes,Yes
-27,54,1,67,2,756,3,346,4,463,56,346,987,654,4231,34,23,3456,431,436,54,5634,13
-27,Female,Married,Self Employeed,Graduate,4,Direct call,Dinner,3,3,3,4,60,3,Neutral,Agree,Neutral,Neutral,Agree,Neutral,Neutral,45 minutes,Maybe
-25,Female,Married,Student,Ph.D,2,Direct call,Dinner,3,5,2,3,30,3,Disagree,Neutral,Disagree,Disagree,Strongly disagree,Neutral,Neutral,30 minutes,Yes
-32,Female,Married,Employee,Graduate,3,Walk-in,Dinner,3,3,2,3,60,2,Neutral,Neutral,Disagree,Neutral,Disagree,Neutral,Neutral,45 minutes,No
-20,Female,Single,Employee,School,3,Walk-in,Dinner,3,3,3,12,50,3,Strongly disagree,Agree,Neutral,Neutral,Disagree,Agree,Neutral,30 minutes,Yes
-30,Prefer not to say,Married,Employee,Graduate,2,Direct call,Snacks,3,3,3,3,60,3,Neutral,Neutral,Agree,Neutral,Neutral,Neutral,Neutral,45 minutes,Maybe
-32,Female,Married,Employee,Graduate,3,Direct call,Lunch,2,3,3,3,60,2,Agree,Disagree,Neutral,Neutral,Disagree,Disagree,Disagree,45 minutes,No
-32,Female,Married,Employee,Graduate,3,Direct call,Lunch,2,3,3,3,60,2,Agree,Disagree,Neutral,Neutral,Disagree,Disagree,Disagree,45 minutes,No
-32,Female,Married,Employee,Graduate,3,Direct call,Lunch,2,3,3,3,60,2,Agree,Disagree,Neutral,Neutral,Disagree,Disagree,Disagree,45 minutes,No
-32,Female,Married,Self Employeed,Post Graduate,2,Direct call,Lunch,2,2,3,12,60,2,Disagree,Neutral,Neutral,Disagree,Agree,Neutral,Strongly agree,45 minutes,No
-32,Prefer not to say,Married,Employee,Graduate,2,Direct call,Lunch,3,4,3,3,32,3,Neutral,Neutral,Disagree,Agree,Neutral,Neutral,Agree,45 minutes,Maybe
-32,Prefer not to say,Prefer not to say,Self Employeed,Ph.D,2,Walk-in,Dinner,4,4,3,2,20,2,Strongly agree,Neutral,Agree,Agree,Neutral,Agree,Disagree,More than 60 minutes,No
-32,Prefer not to say,Prefer not to say,Self Employeed,Post Graduate,1,Direct call,Snacks,3,3,3,2,90,2,Strongly agree,Neutral,Strongly agree,Neutral,Strongly agree,Neutral,Strongly agree,More than 60 minutes,No
-32,Female,Married,Employee,School,10,Web browser,Snacks,4,4,5,21,30,3,Neutral,Agree,Agree,Neutral,Strongly agree,Strongly disagree,Strongly agree,60 minutes,Yes
-11,Prefer not to say,Married,Employee,Graduate,2,Direct call,Dinner,2,3,3,212,2,2,Neutral,Neutral,Neutral,Disagree,Disagree,Disagree,Neutral,45 minutes,Yes
-11,Prefer not to say,Married,Employee,Graduate,2,Direct call,Dinner,2,3,3,212,2,2,Neutral,Neutral,Neutral,Disagree,Disagree,Disagree,Neutral,45 minutes,Yes
+Age,Gender,Marriage Status,Occupation,Educational Qualifications,Family size,Frequently used Medium,Frequently ordered Meal category,Preference,Restaurant Rating,Delivery Rating,No. of orders placed,Delivery Time,Order Value,Ease and Convenient,Self Cooking,Health Concern,Late Delivery,Poor Hygiene,Bad past experience,More Offers and Discount,Maximum wait time,Influence of rating
+12,Female,Single,Self Employeed,Post Graduate,6,Direct call,Lunch,4,3,2,5,45,6,Disagree,Agree,Neutral,Disagree,Agree,Strongly agree,Agree,30 minutes,Yes
+15,Female,Married,Employee,Ph.D,4,Walk-in,Lunch,4,3,2,23,45,3,Agree,Agree,Neutral,Neutral,Disagree,Strongly disagree,Agree,30 minutes,Yes

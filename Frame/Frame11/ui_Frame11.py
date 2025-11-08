@@ -1,7 +1,3 @@
-# Frame11.py
-# Giữ nguyên layout gốc, chuyển sang dạng class
-# Với controller logic + on_show() + run_this_frame_only()
-
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
@@ -54,7 +50,7 @@ class Frame11(tk.Frame):
         self.image_2 = self.canvas.create_image(888.0, 42.0, image=self.image_image_2)
 
         self.image_image_3 = PhotoImage(file=relative_to_assets("image_3.png"))
-        self.image_3 = self.canvas.create_image(163.0, 130.0, image=self.image_image_3)
+        self.image_3 = self.canvas.create_image( 162.0, 101.0, image=self.image_image_3)
 
         self.image_image_4 = PhotoImage(file=relative_to_assets("image_4.png"))
         self.image_4 = self.canvas.create_image(888.0, 903.0, image=self.image_image_4)
@@ -157,7 +153,7 @@ class Frame11(tk.Frame):
                 bg="#FFFFFF",
                 fg="#000716",
                 highlightthickness=0,
-                font=("Crimson Pro SemiBold", 15 * -1)  # 👈 Thêm dòng này
+                font=("Crimson Pro SemiBold", 15 * -1)
             )
             entry.place(x=x_place, y=y_place, width=w, height=h)
             entry.bind("<FocusIn>", self.on_entry_click)
@@ -205,14 +201,14 @@ class Frame11(tk.Frame):
         # -----------------------------
         # PHẦN BUTTON
         # -----------------------------
-        # 🧠 Profile
+        # Profile
         self.button_image_1 = PhotoImage(file=relative_to_assets("button_1.png"))
         self.dropdown = DropdownMenu(self)
         self.button_Profile = Button(self, image=self.button_image_1, borderwidth=0,
                                      highlightthickness=0, command=self.dropdown.show, relief="flat")
         self.button_Profile.place(x=1361.18, y=17.03, width=44.18, height=44.69)
 
-        # ⚙️ Nút phụ thứ 2 (icon tròn nhỏ)
+        # Nút phụ thứ 2 (icon tròn nhỏ)
         self.button_image_2 = PhotoImage(file=relative_to_assets("button_2.png"))
         button_2 = Button(
             self,
@@ -224,8 +220,10 @@ class Frame11(tk.Frame):
         )
         button_2.place(x=1292.0, y=17.0, width=49.0, height=49.0)
 
-        # 📊 Dashboard
-        self.button_image_4 = PhotoImage(file=relative_to_assets("button_4.png"))
+        # --- Sidebar buttons ---
+
+        # Dashboard
+        self.button_image_4 = PhotoImage(file=relative_to_assets("button_Dashboard.png"))
         button_Dashboard = Button(
             self,
             image=self.button_image_4,
@@ -234,10 +232,15 @@ class Frame11(tk.Frame):
             command=lambda: self.controller.show_frame("Frame06"),
             relief="flat"
         )
-        button_Dashboard.place(x=0.0, y=222.0, width=335.22, height=88.0)
+        button_Dashboard.place(
+            x=0.0,
+            y=223.0,
+            width=338.0,
+            height=81.0
+        )
 
-        # 👤 Customer Analysis
-        self.button_image_3 = PhotoImage(file=relative_to_assets("button_3.png"))
+        # Customer Analysis
+        self.button_image_3 = PhotoImage(file=relative_to_assets("button_CustomerAnalysis.png"))
         button_CustomerAnalysis = Button(
             self,
             image=self.button_image_3,
@@ -246,10 +249,15 @@ class Frame11(tk.Frame):
             command=lambda: self.controller.show_frame("Frame07"),
             relief="flat"
         )
-        button_CustomerAnalysis.place(x=1.0, y=331.0, width=335.0, height=77.0)
+        button_CustomerAnalysis.place(
+            x=0.0,
+            y=304.0,
+            width=338.0,
+            height=81.0
+        )
 
-        # 📉 Churn
-        self.button_image_5 = PhotoImage(file=relative_to_assets("button_5.png"))
+        # Churn
+        self.button_image_5 = PhotoImage(file=relative_to_assets("button_Churn.png"))
         button_Churn = Button(
             self,
             image=self.button_image_5,
@@ -258,10 +266,15 @@ class Frame11(tk.Frame):
             command=lambda: self.controller.show_frame("Frame08"),
             relief="flat"
         )
-        button_Churn.place(x=2.0, y=409.0, width=334.0, height=86.0)
+        button_Churn.place(
+            x=0.0,
+            y=385.0,
+            width=338.0,
+            height=81.0
+        )
 
-        # 📦 El (giả sử là Elastic / Explore)
-        self.button_image_8 = PhotoImage(file=relative_to_assets("button_8.png"))
+        # Expected Loss (EL)
+        self.button_image_8 = PhotoImage(file=relative_to_assets("button_EL.png"))
         button_el = Button(
             self,
             image=self.button_image_8,
@@ -270,10 +283,15 @@ class Frame11(tk.Frame):
             command=lambda: self.controller.show_frame("Frame09"),
             relief="flat"
         )
-        button_el.place(x=0.0, y=497.0, width=336.0, height=78.0)
+        button_el.place(
+            x=0.0,
+            y=466.0,
+            width=338.0,
+            height=81.0
+        )
 
-        # 💡 Recommendation
-        self.button_image_6 = PhotoImage(file=relative_to_assets("button_6.png"))
+        # Recommendation
+        self.button_image_6 = PhotoImage(file=relative_to_assets("button_Recommendation.png"))
         button_Recommendation = Button(
             self,
             image=self.button_image_6,
@@ -282,10 +300,15 @@ class Frame11(tk.Frame):
             command=lambda: self.controller.show_frame("Frame10"),
             relief="flat"
         )
-        button_Recommendation.place(x=1.0, y=596.0, width=336.0, height=82.0)
+        button_Recommendation.place(
+            x=0.0,
+            y=547.0,
+            width=338.0,
+            height=81.0
+        )
 
-        # 🔮 Predict Customer
-        self.button_image_7 = PhotoImage(file=relative_to_assets("button_7.png"))
+        # Predict Customer
+        self.button_image_7 = PhotoImage(file=relative_to_assets("button_PredictCustomer.png"))
         button_PredictCustomer = Button(
             self,
             image=self.button_image_7,
@@ -294,9 +317,13 @@ class Frame11(tk.Frame):
             command=lambda: self.controller.show_frame("Frame11"),
             relief="flat"
         )
-        button_PredictCustomer.place(x=11.0, y=690.0, width=325.0, height=76.0)
-
-        # 🧾 Predict (nút chạy model)
+        button_PredictCustomer.place(
+            x=0.0,
+            y=628.0,
+            width=338.0,
+            height=81.0
+        )
+        # Predict (nút chạy model)
         self.button_image_9 = PhotoImage(file=relative_to_assets("button_9.png"))
         button_Predict = Button(
             self,
@@ -381,7 +408,7 @@ class Frame11(tk.Frame):
             for key in readonly_keys:
                 entry_widget = entry_map.get(key)
                 if entry_widget:
-                    # 🔒 Không cho nhập, vẫn giữ nền trắng (ăn theo ảnh PNG)
+                    # Không cho nhập, vẫn giữ nền trắng (ăn theo ảnh PNG)
                     entry_widget.configure(
                         state="disabled",
                         disabledbackground="#FFFFFF",

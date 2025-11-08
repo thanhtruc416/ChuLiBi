@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-# File: Function/signup_ex_fn.py
-#
-# Dùng cho màn ui_Frame02_ex (đăng ký, bước nhập email -> gửi OTP)
-# - Validate email
-# - Nếu email CHƯA tồn tại trong user_data:
-#     + Kiểm tra rate-limit (mỗi 120s)
-#     + Sinh OTP, lưu hash + hạn 10 phút vào password_resets
-#     + Gửi email OTP
-# - Trả (True, "msg") hoặc (False, "lý do")
 
 import os
 import re
