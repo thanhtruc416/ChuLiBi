@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 import re
 from typing import Optional
-
+from QMess.Qmess_calling import Qmess
 from Function.app_controller import AppController
 
 # === NEW: gọi file chức năng riêng cho màn ex ===
@@ -173,10 +173,12 @@ class Frame02_ex(tk.Frame):
     def on_send_otp(self):
         email = (self.entry_email.get() or "").strip()
         if not email:
-            messagebox.showwarning("Missing email", "Please enter your email first")
+            Qmess.popup_06(parent=self, title="Invalid Email",
+                        subtitle="Please enter your email first")
             return
         if not self._valid_email(email):
-            messagebox.showerror("Invalid email", "Please enter a valid email address")
+            Qmess.popup_06(parent=self, title="Invalid Email",
+                        subtitle="Please enter a valid email address.")
             return
 
         # Module chức năng riêng
@@ -202,15 +204,18 @@ class Frame02_ex(tk.Frame):
         try:
             ok, msg = send_otp_if_email_not_exists(email)
         except Exception as e:
-            messagebox.showerror("System Error", f"Send OTP failed: {e}")
+            Qmess.popup_15(parent=self, title="System Error",
+                        subtitle=f"Send OTP failed: {e}")
             return
 
         if not ok:
-            messagebox.showerror("Failed to send OTP", msg or "Please try again.")
+            Qmess.popup_15(parent=self, title="Failed to send OTP",
+                        subtitle=msg or "Please try again.")
             return
 
         # Thành công
-        messagebox.showinfo("OTP sent", msg or "We sent a verification code to your email.")
+        Qmess.popup_07(parent=self, title="OTP Sent",
+                        subtitle="The OTP has been sent successfully!\nPlease check your inbox.")
 
         if self.controller:
             if not hasattr(self.controller, "current_user") or self.controller.current_user is None:

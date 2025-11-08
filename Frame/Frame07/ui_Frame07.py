@@ -9,6 +9,19 @@ from tkinter import Canvas, Button, PhotoImage
 import tkinter.font as tkfont
 import pandas as pd
 
+import matplotlib.font_manager as fm
+from matplotlib import rcParams
+
+# Đường dẫn tới file font (đổi nếu bạn để nơi khác)
+font_path = Path(__file__).resolve().parents[2] / "Font" / "Crimson_Pro" / "static" / "CrimsonPro-Regular.ttf"
+
+# Đăng ký font cho matplotlib nếu chưa có
+if font_path.exists():
+    fm.fontManager.addfont(str(font_path))
+    rcParams['font.family'] = 'Crimson Pro'
+else:
+    print("[WARNING] Font không tồn tại tại:", font_path)
+
 # dropdown profile (nếu bạn có sẵn)
 try:
     from Function.dropdown_profile import DropdownMenu
@@ -94,30 +107,61 @@ class Frame07(tk.Frame):
         self._img("image_3.png")
         self.canvas.create_image(580.0, 205.0, image=self._imgs["image_3.png"])
 
-        self.canvas.create_text(490.0, 85.0, anchor="nw",
-            text="Elbow Method", fill="#706093", font=("Young Serif", 24 * -1)
+        self.canvas.create_text(475.0, 85.0, anchor="nw",
+            text="Elbow Method", fill="#706093", font=("Crimson Pro Bold", 35 * -1)
         )
         text_spaced = "   ".join("RESULT")
         self.canvas.create_text(985.0, 75.0, anchor="nw", text=text_spaced,
                         fill="#706093", font=("Young Serif", 40 * -1))
 
-        self.canvas.create_rectangle(824.0, 62.0, 825.0, 353.0, fill="#706093", outline="")
-        self.canvas.create_rectangle(332.0, 352.0, 825.0, 353.0, fill="#706093", outline="")
+        self.canvas.create_rectangle(824.0, 62.0, 825.0, 353.0, fill="#D9D9D9", outline="")
+        self.canvas.create_rectangle(332.0, 352.0, 825.0, 353.0, fill="#D9D9D9", outline="")
 
         self._img("image_4.png")  # (giữ đúng như file gốc)
         self.canvas.create_image(1131.0, 350, image=self._imgs["image_4.png"])
+        # Nền trắng che chữ cũ trong ảnh (tăng height nếu chữ chưa che hết)
+        self.canvas.create_rectangle(
+            970.0, 165.0, 1290.0, 195.0,  # vùng phủ trắng
+            fill="#FFFFFF",
+            outline=""
+        )
+        # Text đè lên image_4
+        self.canvas.create_text(
+            1130.0, 190.0,  # cùng toạ độ với hình
+            text="Cluster Distribution Chart",
+            fill="#706093",  # màu chữ
+            font=("Crimson Pro Bold", 30),
+            anchor="center"
+        )
 
+        # --- Scatter Plot Chart (image_5) ---
         self._img("image_5.png")
         self.canvas.create_image(1130.0, 790, image=self._imgs["image_5.png"])
+
+        # Nền trắng che chữ cũ trong ảnh (tùy chiều cao, có thể chỉnh lại y1, y2)
+        self.canvas.create_rectangle(
+            970.0, 600.0, 1310.0, 790.0,  # vùng phủ trắng
+            fill="#FFFFFF",
+            outline=""
+        )
+
+        # Thêm tiêu đề mới
+        self.canvas.create_text(
+            1130.0, 625.0,  # canh giữa
+            text="Scatter Plot Chart",
+            fill="#706093",  # màu chữ đồng bộ
+            font=("Crimson Pro Bold", 30),
+            anchor="center"
+        )
 
         self._img("image_6.png")
         self.canvas.create_image(588.0, 688.0, image=self._imgs["image_6.png"])
 
-        self.canvas.create_text(472.0, 390.0, anchor="nw",
-            text="Characteristics of", fill="#706093", font=("Young Serif", 24 * -1)
+        self.canvas.create_text(450.0, 390.0, anchor="nw",
+            text="Characteristics of", fill="#706093", font=("Crimson Pro Bold", 35 * -1)
         )
-        self.canvas.create_text(443.0, 424.0, anchor="nw",
-            text="Customer Segmentation", fill="#706093", font=("Young Serif", 24 * -1)
+        self.canvas.create_text(408.0, 424.0, anchor="nw",
+            text="Customer Segmentation", fill="#706093", font=("Crimson Pro Bold", 35 * -1)
         )
 
         # === placeholder cho 3 ô feature — LƯU ID để cập nhật về sau ===
@@ -148,14 +192,18 @@ class Frame07(tk.Frame):
         self._img("image_9.png")
         self.canvas.create_image(588.0, 896.0, image=self._imgs["image_9.png"])
 
-        # 3 con số mặc định (sẽ cập nhật sau)
-        self.canvas.create_text(421.0, 548.0, anchor="nw",
+        # --- 3 con số mặc định (có lưu ID để cập nhật về sau) ---
+        self.card_number_ids = {}
+        self.card_number_ids[0] = self.canvas.create_text(
+            435.0, 530.0, anchor="nw",
             text="244", fill="#000000", font=("Kodchasan Regular", 40 * -1)
         )
-        self.canvas.create_text(421.0, 721.0, anchor="nw",
+        self.card_number_ids[1] = self.canvas.create_text(
+            435.0, 703.0, anchor="nw",
             text="244", fill="#000000", font=("Kodchasan Regular", 40 * -1)
         )
-        self.canvas.create_text(421.0, 895.0, anchor="nw",
+        self.card_number_ids[2] = self.canvas.create_text(
+            435.0, 877.0, anchor="nw",
             text="244", fill="#000000", font=("Kodchasan Regular", 40 * -1)
         )
 
@@ -346,7 +394,7 @@ class Frame07(tk.Frame):
 
         # Elbow
         fig_elbow = figure_elbow_silhouette(X, k_min=2, k_max=11)
-        self._mount(fig_elbow, x=390, y=130, w=380, h=190)
+        self._mount(fig_elbow, x=352, y=130, w=450, h=190)
 
         # kmeans & 2 chart còn lại
         labels = kmeans_labels(X, k=3, random_state=42, n_init=10)
@@ -357,7 +405,7 @@ class Frame07(tk.Frame):
 
         # --- PCA Scatter ở DƯỚI ---
         fig_scatter = figure_pca_scatter(X, labels)
-        self._mount(fig_scatter, x=890, y=650, w=520, h=310)
+        self._mount(fig_scatter, x=850, y=650, w=550, h=340)
 
         # ----- Top-3 feature theo từng cụm (hiển thị trong 3 ô text) -----
         cols_src = CLUSTER_FEATURES
@@ -444,7 +492,7 @@ class Frame07(tk.Frame):
                 txt_id = self.feature_text_ids.get(i)
                 if txt_id:
                     # Font thống nhất
-                    common_font = tkfont.Font(family="Crimson Pro", size=-20, slant="italic")
+                    common_font = tkfont.Font(family="Crimson Pro", size=-20, slant="roman")
 
                     # --- BULLET LIST ---
                     max_len = max(len(line) for line in bullets)
@@ -465,10 +513,12 @@ class Frame07(tk.Frame):
                     self.canvas.coords(txt_id, x0 - 60, y0 - 29)
 
                     # --- MÔ TẢ ---
-                    desc_font = tkfont.Font(family="Crimson Pro", size=-20, slant="italic")
+                    desc_font = tkfont.Font(family="Crimson Pro", size=-19, slant="roman")
 
                     line_spacing = 22  # giãn cách đều hơn
                     y_desc = y0 - 15 + (len(bullets) * line_spacing) + 2
+
+                    y_desc -= 3  # dịch lên nhẹ cho dòng mô tả gần bullet hơn
 
                     desc_width = est_width - 20
 
@@ -493,14 +543,14 @@ class Frame07(tk.Frame):
         cv.get_tk_widget().pack(fill="both", expand=True)
 
     def _set_card_number_at(self, x, y, value):
-        item_id = self.canvas.find_closest(x + 5, y + 5)
-        try:
-            self.canvas.itemconfigure(item_id, text=str(value), fill="#2E126A")
-        except Exception:
-            self.canvas.create_rectangle(x - 6, y - 2, x + 120, y + 42,
-                                         fill="#ECE4EE", outline="", stipple="")
-            self.canvas.create_text(x, y, anchor="nw", text=str(value),
-                                    fill="#2E126A", font=("Kodchasan Regular", 40 * -1))
+        """Cập nhật con số card tại đúng vị trí (x, y) nếu có ID đã lưu."""
+        ref_positions = [(421.0, 548.0), (421.0, 721.0), (421.0, 895.0)]
+        for i, (x_ref, y_ref) in enumerate(ref_positions):
+            if abs(x - x_ref) < 5 and abs(y - y_ref) < 5:
+                item_id = self.card_number_ids.get(i)
+                if item_id:
+                    self.canvas.itemconfigure(item_id, text=str(value), fill="#2E126A")
+                return
 
     def _set_feature_text_at(self, idx: int, text: str):
         """Cập nhật text theo index cụm (0/1/2) đã lưu sẵn ID."""

@@ -1,7 +1,8 @@
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
-
+from QMess.Qmess_calling import Qmess
+import re
 # --- Đường dẫn chung ngoài class ---
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_frame02")
@@ -180,11 +181,14 @@ class Frame02(tk.Frame):
         self.button_2.config(image=self.button_2_img if self.terms_accepted else self.button_3_img)
 
     def register_action(self):
+        from Function.Frame02_Create import AuthService
+
         username = self.entry_username.get().strip()
         password = self.entry_password.get().strip()
         confirm_password = self.entry_password_confirm.get().strip()
         otp = self.entry_OTP.get().strip()
 
+        # Lấy email từ controller
         email = ""
         if self.controller:
             if getattr(self.controller, "pending_email", None):
@@ -192,36 +196,58 @@ class Frame02(tk.Frame):
             elif getattr(self.controller, "current_user", None) and isinstance(self.controller.current_user, dict):
                 email = (self.controller.current_user.get("pending_email") or "").strip()
 
-        if not self.terms_accepted:
-            messagebox.showwarning("Terms & Conditions", "Please accept the Terms & Privacy Policy to continue")
-            return
-        if not email:
-            messagebox.showerror("Missing Email", "Không tìm thấy email từ màn trước. Vui lòng quay lại bước trước.")
+        # Kiểm tra các ô nhập
+        if not username or not email or not password or not confirm_password or not otp:
+            Qmess.popup_04(parent=self, title="Registration Failed",
+                        subtitle="Please fill the missing entry")
             return
 
+        if password != confirm_password:
+            Qmess.popup_11(parent=self, title="Registration Failed",
+                        subtitle="Confirm Password must be same as Password")
+            return
+
+        if not self.terms_accepted:
+            Qmess.popup_08(parent=self, title="Terms & Conditions",
+                        subtitle="Please accept the Terms & Privacy Policy to continue")
+            return
+
+        # Gọi logic đăng ký từ Create
         try:
-            from Function.Frame02_Create import AuthService
             result = AuthService.register_user(username, email, password, confirm_password, otp)
+
+            if not result:
+                Qmess.popup_09(parent=self, title="System Error",
+                            subtitle="Unexpected empty response from AuthService.")
+                return
+
+            # --- Hiển thị popup theo kết quả trả về ---
+            popup_func = getattr(Qmess, result.get("popup", "popup_09"), None)
+            if callable(popup_func):
+                popup_func(parent=self, title=result.get("title", "Notice"),
+                        subtitle=result.get("subtitle", ""))
+
+            # --- Nếu đăng ký thành công ---
             if result.get("success"):
-                messagebox.showinfo("Registration Successful", "Account created! Please complete your profile.")
                 if self.controller:
                     if not hasattr(self.controller, 'current_user'):
                         self.controller.current_user = {}
-                    self.controller.current_user = result['user_data']
-                    self.controller.current_user['profile_completed'] = 0
-                self.clear_form()
-                if self.controller:
+                    self.controller.current_user = result["user_data"]
+                    self.controller.current_user["profile_completed"] = 0
+
                     try:
                         self.controller.show_frame("Frame03")
                     except KeyError:
                         self.controller.show_frame("Frame01")
-            else:
-                messagebox.showerror("Registration Failed", result.get("message", "Unknown error"))
+
+                self.clear_form()
+
         except ImportError as e:
             messagebox.showerror("System Error", f"Authentication module not found: {str(e)}")
         except Exception as e:
             messagebox.showerror("System Error", f"An unexpected error occurred: {str(e)}")
             print(f"Registration error: {e}")
+
 
     def clear_form(self):
         self.entry_username.delete(0, tk.END)

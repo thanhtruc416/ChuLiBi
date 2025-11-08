@@ -60,12 +60,12 @@ class Frame08(tk.Frame):
     - Nhúng content động (charts + table) ở khu vực bên phải, có scrollbar dọc.
     """
     def __init__(self, parent, controller=None):
-        super().__init__(parent, bg="#D4C5D2")
+        super().__init__(parent, bg="#E2E2E2")
         self.controller = controller
         self.lower()
 
         # === MAIN CANVAS (giữ layout gốc) ===
-        self.canvas = Canvas(self, bg="#D4C5D2", height=1024, width=1440,
+        self.canvas = Canvas(self, bg="#E2E2E2", height=1024, width=1440,
                              bd=0, highlightthickness=0, relief="ridge")
         self.canvas.place(x=0, y=0)
 
@@ -188,16 +188,16 @@ class Frame08(tk.Frame):
         self.CONTENT_X, self.CONTENT_Y = 370, 70
         self.CONTENT_W, self.CONTENT_H = 1040, 900
 
-        self.content_host = tk.Frame(self, bg="#D4C5D2", highlightthickness=0, bd=0)
+        self.content_host = tk.Frame(self, bg="#E2E2E2", highlightthickness=0, bd=0)
         self.canvas.create_window(self.CONTENT_X, self.CONTENT_Y,
                                   window=self.content_host, anchor="nw",
                                   width=self.CONTENT_W, height=self.CONTENT_H)
 
         # wrapper + content_area
-        self.wrapper = tk.Frame(self.content_host, bg="#D4C5D2")
+        self.wrapper = tk.Frame(self.content_host, bg="#E2E2E2")
         self.wrapper.pack(fill="both", expand=True, padx=(0, 20))
 
-        self.content_area = tk.Frame(self.wrapper, bg="#D4C5D2")
+        self.content_area = tk.Frame(self.wrapper, bg="#E2E2E2")
         self.content_area.pack(fill="both", expand=True)
 
         # scrollbar dọc — đặt "in_" = content_host để dán vào mép phải khung content
@@ -219,7 +219,7 @@ class Frame08(tk.Frame):
 
         if build_content_frame08 is None:
             tk.Label(self.content_area, text="(ui_content_Frame08 not available)",
-                     bg="#D4C5D2", fg="#3a2a68", font=("Crimson Pro", 14)).pack(expand=True, fill="both")
+                     bg="#E2E2E2", fg="#3a2a68", font=("Crimson Pro", 14)).pack(expand=True, fill="both")
             return
 
         try:
@@ -232,7 +232,7 @@ class Frame08(tk.Frame):
         except Exception as e:
             print("Error mounting ui_content_Frame08:", e)
             tk.Label(self.content_area, text=f"Error loading content: {e}",
-                     bg="#D4C5D2", fg="#B00020", font=("Crimson Pro", 12)).pack(expand=True, fill="both")
+                     bg="#E2E2E2", fg="#B00020", font=("Crimson Pro", 12)).pack(expand=True, fill="both")
             self._content_canvas = None
             return
 
@@ -275,7 +275,7 @@ def run_this_frame_only():
     root = tk.Tk()
     root.title("Frame08 — Churn")
     root.geometry("1440x1024")
-    root.configure(bg="#D4C5D2")
+    root.configure(bg="#E2E2E2")
     root.resizable(False, False)
 
     app = Frame08(root)

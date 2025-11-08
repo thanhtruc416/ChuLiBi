@@ -80,7 +80,7 @@ class Frame06(Frame):
         # --- Canvas ---
         canvas = Canvas(
             self,
-            bg="#D4C5D2",
+            bg="#E2E2E2",
             height=1024,
             width=1440,
             bd=0,
@@ -123,15 +123,15 @@ class Frame06(Frame):
         self.image_12 = _safe_img("image_12.png"); _add_img(self.image_12, 426.0, 199.0)
         self.image_13 = _safe_img("image_13.png"); _add_img(self.image_13, 550.0, 199.0)
         self.image_14 = _safe_img("image_14.png"); _add_img(self.image_14, 676.0, 199.0)
-        self.image_15 = _safe_img("image_15.png"); _add_img(self.image_15, 801.0, 195.0)
-        self.image_16 = _safe_img("image_16.png"); _add_img(self.image_16, 633.0, 469.0)
-        self.image_17 = _safe_img("image_17.png"); _add_img(self.image_17, 1151.0, 469.0)
+        self.image_15 = _safe_img("image_15.png"); _add_img(self.image_15, 801.0, 198.0)
+        self.image_16 = _safe_img("image_16.png"); _add_img(self.image_16, 633.0, 470.0)
+        self.image_17 = _safe_img("image_17.png"); _add_img(self.image_17, 1151.0, 470.0)
         self.image_18 = _safe_img("image_18.png"); _add_img(self.image_18, 664.0, 802.0)
         self.image_19 = _safe_img("image_19.png"); _add_img(self.image_19, 1184.0, 802.0)
         self.image_20 = _safe_img("image_20.png"); _add_img(self.image_20, 888.0, 42.0)
         self.image_21 = _safe_img("image_21.png"); _add_img(self.image_21, 162.0, 101.0)
-        self.image_22 = _safe_img("image_22.png"); _add_img(self.image_22, 924.0, 198.0)
-        self.image_23 = _safe_img("image_23.png"); _add_img(self.image_23, 1050.0, 197.0)
+        self.image_22 = _safe_img("image_22.png"); _add_img(self.image_22, 924.0, 199.0)
+        self.image_23 = _safe_img("image_23.png"); _add_img(self.image_23, 1050.0, 199.0)
         self.image_24 = _safe_img("image_24.png"); _add_img(self.image_24, 1181.0, 196.0)
         self.image_25 = _safe_img("image_25.png"); _add_img(self.image_25, 1303.0, 196.0)
         self.image_26 = _safe_img("image_26.png"); _add_img(self.image_26, 1296.0, 42.0)
@@ -139,83 +139,62 @@ class Frame06(Frame):
         # --- Texts ---
         canvas.create_text(98.0,  927.0, anchor="nw", text="ChuLiBi", fill="#FDE5F4", font=("Rubik Burned", 35 * -1))
         canvas.create_text(1142.0, 972.0, anchor="nw", text="Copyright by ChuLiBi", fill="#706093", font=("Young Serif", 22 * -1))
-        canvas.create_text(399.0, 125.0, anchor="nw", text="KPI cards", fill="#706093", font=("Young Serif", 24 * -1))
-        canvas.create_text(542.0, 133.0, anchor="nw", text="Top Metrics", fill="#B992B9", font=("Crimson Pro", 17 * -1))
+        canvas.create_text(399.0, 115.0, anchor="nw", text="KPI cards", fill="#706093", font=("Crimson Pro Bold", 35 * -1))
+        canvas.create_text(555.0, 132.0, anchor="nw", text="Top Metrics", fill="#B992B9", font=("Crimson Pro", 17 * -1))
 
-        # --- KPI Display ---
-        kpi_positions = [
-            (452, 220),  # 1 - Total Customers
-            (577, 220),  # 2 - Average Age
-            (702, 220),  # 3 - Total Orders
-            (827, 220),  # 4 - High Frequency Rate
-            (952, 220),  # 5 - Average Order Value
-            (1077, 220), # 6 - Average Delivery Time
-            (1202, 220), # 7 - Restaurant Rating
-            (1327, 220), # 8 - Delivery Rating
-        ]
-        kpi_labels = [
-            "Total customers",
-            "Average Age",
-            "Total Orders",
-            "High-Frequency\nCustomer Rate",
-            "Average\nOrder Value",
-            "Average\nDelivery Time",
-            "Average\nRestaurant Rating",
-            "Average\nDelivery Rating",
-        ]
-        kpi_values = [
-            f"{self.kpis.get('total_customers', 'N/A')}\n(people)",
-            f"{self.kpis.get('avg_age', 'N/A')}\n(years old)",
-            f"{self.kpis.get('total_orders', 'N/A')}\n(orders)",
-            f"{self.kpis.get('high_frequency_customer_rate', 'N/A')}\n(%)",
-            f"${self.kpis.get('avg_order_value', 'N/A')}",
-            f"{self.kpis.get('avg_delivery_time', 'N/A')}\n(hours)",
-            f"{self.kpis.get('avg_restaurant_rating', 'N/A')}",
-            f"{self.kpis.get('avg_delivery_rating', 'N/A')}",
-        ]
+        # --- KPI Display (giữ nguyên layout, tách từng KPI) ---
+        KPI_FONT_MAIN = -20
+        KPI_FONT_UNIT = -13
+        KPI_FONT_LABEL = -12
 
-        for i, (x, y) in enumerate(kpi_positions):
-            # NOTE: dùng "\n" để tách dòng đúng
-            parts = kpi_values[i].split("\n")
-            main_value = parts[0]
-            unit = parts[1] if len(parts) > 1 else ""
-            # Main value (smaller font)
-            canvas.create_text(
-                x + 18, y - 20,
-                text=main_value,
-                fill="#706093",
-                font=("Kodchasan Bold", KPI_FONT_MAIN),
-                anchor="center"
-            )
-            # Unit (smaller font)
-            if unit:
-                canvas.create_text(
-                    x + 18, y,
-                    text=unit,
-                    fill="#B992B9",
-                    font=("Kodchasan", KPI_FONT_UNIT),
-                    anchor="center"
-                )
-            # Label (smaller font)
-            canvas.create_text(
-                x, y + 20,
-                text=kpi_labels[i],
-                fill="#644E94",
-                font=("Kodchasan", KPI_FONT_LABEL),
-                anchor="center",
-                justify="center"
-            )
+        # KPI 1 - Total Customers
+        canvas.create_text(477, 200, anchor="center", text=f"{self.kpis.get('total_customers', 'N/A')}", fill="#644E94", font=("Kodchasan Bold", KPI_FONT_MAIN))
+        canvas.create_text(475, 220, anchor="center", text="(people)", fill="#B992B9", font=("Kodchasan", KPI_FONT_UNIT))
+        canvas.create_text(452, 245, anchor="center", text="Total customers", fill="#644E94", font=("Kodchasan", KPI_FONT_LABEL))
+
+        # KPI 2 - Average Age
+        canvas.create_text(600, 200, anchor="center", text=f"{self.kpis.get('avg_age', 'N/A')}", fill="#644E94", font=("Kodchasan Bold", KPI_FONT_MAIN))
+        canvas.create_text(594, 220, anchor="center", text="(years old)", fill="#B992B9", font=("Kodchasan", KPI_FONT_UNIT))
+        canvas.create_text(577, 245, anchor="center", text="Average Age", fill="#644E94", font=("Kodchasan", KPI_FONT_LABEL))
+
+        # KPI 3 - Total Orders
+        canvas.create_text(720, 200, anchor="center", text=f"{self.kpis.get('total_orders', 'N/A')}", fill="#706093", font=("Kodchasan Bold", KPI_FONT_MAIN))
+        canvas.create_text(725, 220, anchor="center", text="(orders)", fill="#B992B9", font=("Kodchasan", KPI_FONT_UNIT))
+        canvas.create_text(702, 245, anchor="center", text="Total Orders", fill="#644E94", font=("Kodchasan", KPI_FONT_LABEL))
+
+        # KPI 4 - High-Frequency Customer Rate
+        canvas.create_text(850, 200, anchor="center", text=f"{self.kpis.get('high_frequency_customer_rate', 'N/A')}", fill="#6f618f", font=("Kodchasan Bold", KPI_FONT_MAIN))
+        canvas.create_text(865, 220, anchor="center", text="(%)", fill="#B992B9", font=("Kodchasan", KPI_FONT_UNIT))
+        canvas.create_text(827, 245, anchor="center", text="High-Frequency\nCustomer Rate", fill="#644E94", font=("Kodchasan", KPI_FONT_LABEL), justify="center")
+
+        # KPI 5 - Average Order Value
+        canvas.create_text(973, 200, anchor="center", text=f"${self.kpis.get('avg_order_value', 'N/A')}", fill="#756991", font=("Kodchasan Bold", KPI_FONT_MAIN))
+        canvas.create_text(952, 240, anchor="center", text="Average\nOrder Value", fill="#644E94",
+                           font=("Kodchasan", KPI_FONT_LABEL), justify="center")
+
+        # KPI 6 - Average Delivery Time
+        canvas.create_text(1100, 200, anchor="center", text=f"{self.kpis.get('avg_delivery_time', 'N/A')}", fill="#79689c", font=("Kodchasan Bold", KPI_FONT_MAIN))
+        canvas.create_text(1077, 220, anchor="center", text="(hours)", fill="#B992B9", font=("Kodchasan", KPI_FONT_UNIT))
+        canvas.create_text(1077, 240, anchor="center", text="Average\nDelivery Time", fill="#644E94", font=("Kodchasan", KPI_FONT_LABEL), justify="center")
+
+        # KPI 7 - Average Restaurant Rating
+        canvas.create_text(1227, 200, anchor="center", text=f"{self.kpis.get('avg_restaurant_rating', 'N/A')}", fill="#79689c", font=("Kodchasan Bold", KPI_FONT_MAIN))
+        canvas.create_text(1202, 240, anchor="center", text="Average\nRestaurant Rating", fill="#644E94", font=("Kodchasan", KPI_FONT_LABEL), justify="center")
+
+        # KPI 8 - Average Delivery Rating
+        canvas.create_text(1350, 200, anchor="center", text=f"{self.kpis.get('avg_delivery_rating', 'N/A')}", fill="#796a9c", font=("Kodchasan Bold", KPI_FONT_MAIN))
+        canvas.create_text(1327, 240, anchor="center", text="Average\nDelivery Rating", fill="#644E94", font=("Kodchasan", KPI_FONT_LABEL), justify="center")
 
         # Additional section titles
-        canvas.create_text(405.0, 322.0, anchor="nw", text="Bar chart", fill="#706093", font=("Young Serif", 27 * -1))
-        canvas.create_text(544.0, 335.0, anchor="nw", text="Customer group with the highest spending", fill="#B992B9", font=("Crimson Pro", 18 * -1))
-        canvas.create_text(937.0, 324.0, anchor="nw", text="Histogram chart", fill="#706093", font=("Young Serif", 27 * -1))
-        canvas.create_text(1180.0, 324.0, anchor="nw", text="Delivery Performance \nImpact of Late Delivery", fill="#B992B9", font=("Crimson Pro", 18 * -1))
-        canvas.create_text(407.0, 659.0, anchor="nw", text="Line chart", fill="#706093", font=("Young Serif", 27 * -1))
-        canvas.create_text(560.0, 674.0, anchor="nw", text="Order Trends by Age Group", fill="#B992B9", font=("Crimson Pro", 18 * -1))
-        canvas.create_text(999.0, 659.0, anchor="nw", text="Pie chart", fill="#706093", font=("Young Serif", 27 * -1))
-        canvas.create_text(1135.0, 673.0, anchor="nw", text="Proportion of Meal Types", fill="#B992B9", font=("Crimson Pro", 18 * -1))
-        canvas.create_text(373.0, 16.0, anchor="nw", text="Dashboard", fill="#000000", font=("Young Serif", 40 * -1))
+        canvas.create_text(405.0, 313.0, anchor="nw", text="Bar chart", fill="#706093", font=("Crimson Pro Bold", 35 * -1))
+        canvas.create_text(555.0, 329.0, anchor="nw", text="Customer group with the highest spending", fill="#B992B9", font=("Crimson Pro", 18 * -1))
+        canvas.create_text(937.0, 313.0, anchor="nw", text="Histogram chart", fill="#706093", font=("Crimson Pro Bold", 34 * -1))
+        canvas.create_text(1195.0, 318.0, anchor="nw", text="Delivery Performance \nImpact of Late Delivery", fill="#B992B9", font=("Crimson Pro", 18 * -1))
+        canvas.create_text(407.0, 659.0, anchor="nw", text="Line chart", fill="#706093", font=("Crimson Pro Bold", 34 * -1))
+        canvas.create_text(571.0, 674.0, anchor="nw", text="Order Trends by Age Group", fill="#B992B9", font=("Crimson Pro", 18 * -1))
+        canvas.create_text(999.0, 659.0, anchor="nw", text="Pie chart", fill="#706093", font=("Crimson Pro Bold", 34 * -1))
+        canvas.create_text(1145.0, 673.0, anchor="nw", text="Proportion of Meal Types", fill="#B992B9", font=("Crimson Pro", 18 * -1))
+        canvas.create_text(373.0, 8.0, anchor="nw", text="Dashboard", fill="#000000", font=("Young Serif", 40 * -1))
 
         # --- Dropdown/Profile button ---
         self.button_Profile_image = _safe_img("button_Profile.png")
@@ -327,7 +306,7 @@ class Frame06(Frame):
         frame_pie_chart  = Frame(canvas, bg="#FFFFFF")
 
         canvas.create_window(410, 360, window=frame_bar_chart,  anchor="nw", width=480, height=270)
-        canvas.create_window(930, 375, window=frame_histogram,  anchor="nw", width=450, height=220)
+        canvas.create_window(930, 382, window=frame_histogram,  anchor="nw", width=450, height=220)
         canvas.create_window(420, 700, window=frame_line_chart, anchor="nw", width=520, height=260)
         canvas.create_window(980, 700, window=frame_pie_chart,  anchor="nw", width=400, height=220)
 

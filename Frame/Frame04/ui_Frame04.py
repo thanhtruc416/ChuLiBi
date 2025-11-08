@@ -1,7 +1,7 @@
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox  # <— thêm messagebox
 from Function.Frame04_ForgetPassword import send_otp_if_email_exists                      # <— thêm import
-
+from QMess.Qmess_calling import Qmess
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame04")
 
@@ -99,7 +99,9 @@ class Frame04(Frame):
     def on_click_send_otp(self):
         email = self.entry_email.get().strip()
         if not email:
-            messagebox.showwarning("Cảnh báo", "Vui lòng nhập email")
+            Qmess.popup_15(parent=self,
+                        title="Warning",
+                        subtitle="Please enter your email first")
             return
 
         # Chặn double-click trong lúc gửi
@@ -107,14 +109,27 @@ class Frame04(Frame):
         try:
             ok, msg = send_otp_if_email_exists(email)
             if ok:
-                messagebox.showinfo("Thành công", msg)
+                Qmess.popup_16(parent=self,
+                        title="Success",
+                        subtitle="The OTP is valid for 10 minutes.\nPlease continue to enter it quickly.")
                 # sang Frame05 và TRUYỀN email để frame sau biết mà verify OTP
                 if self.controller:
                     # Yêu cầu controller hỗ trợ show_frame(name, **kwargs) và gọi on_show(**kwargs)
                     self.controller.show_frame("Frame05", email=email)
             else:
-                messagebox.showwarning("Cảnh báo", msg)
+                Qmess.popup_17(parent=self,
+                        title="Email Not Found",
+                        subtitle="This email does not exist in our system. Please check and try again.")
         except Exception as e:
-            messagebox.showerror("Lỗi", f"Không thể gửi OTP: {e}")
+            Qmess.popup_17(parent=self,
+                        title="Email Not Found",
+                        subtitle="This email does not exist in our system. Please check and try again.")
         finally:
             self.button_sendOTP.config(state="normal")
+
+        # Bind Enter để gọi lại handler này (giống Frame01)
+        try:
+            self.entry_email.bind("<Return>", lambda _e: self.on_click_send_otp())
+            self.bind("<Return>", lambda _e: self.on_click_send_otp())
+        except Exception:
+            pass

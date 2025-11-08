@@ -2,7 +2,7 @@
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox
 import tkinter as tk
-
+from QMess.Qmess_calling import Qmess
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame03")
 
@@ -125,28 +125,22 @@ class Frame03(Frame):
 
         # Validate inputs
         if not full_name or not business_name or not role:
-            messagebox.showerror(
-                "Incomplete Profile",
-                "Please fill in all fields to complete your profile"
-            )
+            Qmess.popup_13(parent=self, title="Incomplete Profile",
+                        subtitle="Please fill in all fields to complete your profile")
             return
 
         # Get current user from controller
         if not self.controller or not hasattr(self.controller, 'current_user'):
-            messagebox.showerror(
-                "Error",
-                "No user session found. Please login again."
-            )
+            Qmess.popup_29(parent=self, title="Error",
+                        subtitle="No user session found. Please login again.")
             if self.controller:
                 self.controller.show_frame("Frame01")
             return
 
         user_id = self.controller.current_user.get('id')
         if not user_id:
-            messagebox.showerror(
-                "Error",
-                "Invalid user session. Please login again."
-            )
+            Qmess.popup_29(parent=self, title="Error",
+                        subtitle="No user session found. Please login again.")
             self.controller.show_frame("Frame01")
             return
 
@@ -162,10 +156,8 @@ class Frame03(Frame):
                 self.controller.current_user['business_name'] = business_name
                 self.controller.current_user['role'] = role
 
-                messagebox.showinfo(
-                    "Profile Completed",
-                    f"Welcome, {full_name}! Your profile has been completed successfully! Please login again."
-                )
+                Qmess.popup_14(parent=self, title="Profile Completed",
+                        subtitle=f"Welcome, {full_name}! Your profile has been completed successfully! Please login again.")
 
                 # Clear user session and navigate back to login
                 if self.controller:

@@ -117,11 +117,11 @@ def figure_elbow_silhouette(X, k_min: int = 2, k_max: int = 11) -> Figure:
     ax.grid(True, alpha=0.18, color="#7A5FA5", linewidth=0.6)
 
     ax.set_xticks(Ks)
-    ax.tick_params(axis="both", labelsize=7, pad=1)
-    ax2.tick_params(axis="y", labelsize=7, pad=1)
-    ax.set_xlabel("k", fontsize=8, labelpad=2)
-    ax.set_ylabel("Inertia", fontsize=8, color="#644E94")
-    ax2.set_ylabel("Silhouette", fontsize=8, color="#BB95BB")
+    ax.tick_params(axis="both", labelsize=10, pad=1)
+    ax2.tick_params(axis="y", labelsize=10, pad=1)
+    ax.set_xlabel("k", fontsize=13, labelpad=2)
+    ax.set_ylabel("Inertia", fontsize=13, color="#644E94")
+    ax2.set_ylabel("Silhouette", fontsize=13, color="#BB95BB")
 
     leg = ax.legend([l1, l2], ["Inertia (WCSS)", "Silhouette"],
                     loc="upper right", bbox_to_anchor=(0.98, 0.98),
@@ -144,8 +144,8 @@ def figure_cluster_distribution(labels: Iterable[int], scale: float = 1.2) -> Fi
 
     colors = ["#FAE4F2", "#C6ABC5", "#644E94", "#ffcc99"][:len(s)]
 
-    label_fs   = max(8, int(9 * scale))
-    legend_fs  = max(8, int(8 * scale))
+    label_fs   = max(9, int(10 * scale))
+    legend_fs  = max(8, int(9 * scale))
     edge_lw    = 0.6 * (0.9 + 0.25 * (scale - 1))
 
     wedges, _texts, autotexts = ax.pie(
@@ -180,7 +180,7 @@ def figure_pca_scatter(X, labels: Iterable[int]) -> Figure:
     disp = np.array([idx_map[l] + 1 for l in labels])
     hue_order = list(range(1, len(uniq) + 1))
 
-    # 🔹 tăng chiều ngang cho legend + giữ bố cục cân
+    # tăng chiều ngang cho legend + giữ bố cục cân
     fig = Figure(figsize=(7.5, 3.0), dpi=120)
     fig.patch.set_alpha(0)
     ax = fig.add_subplot(111)
@@ -201,29 +201,26 @@ def figure_pca_scatter(X, labels: Iterable[int]) -> Figure:
     ax.grid(True, alpha=0.18, color="#7A5FA5", linewidth=0.7)
 
     # trục
-    ax.set_xlabel("PC1", fontsize=9, labelpad=6)
-    ax.set_ylabel("PC2", fontsize=9, labelpad=12)
+    ax.set_xlabel("PC1", fontsize=14, labelpad=6)
+    ax.set_ylabel("PC2", fontsize=14, labelpad=12)
 
-    # 🔹 legend ra ngoài, nhưng ép figure chừa đủ khoảng trống
-    font_legend = font_manager.FontProperties(family="Crimson Pro", size=8)
+    # +legend ra ngoài, nhưng ép figure chừa đủ khoảng trống
+    font_legend = font_manager.FontProperties(family="Crimson Pro", size=11)
 
     leg = ax.legend(
         title="Cluster",
         loc="center left",
-        bbox_to_anchor=(1.06, 0.5),
+        bbox_to_anchor=(1.02, 0.5),
         frameon=False,
         labelspacing=0.4,
-        prop=font_legend,  # 👈 dùng prop thay vì font
-        title_fontsize=9
+        prop=font_legend,  #dùng prop thay vì font
+        title_fontsize=13
     )
 
-    # 🔹 chừa thêm khoảng trắng bên trái & phải để không đè chữ
+    # chừa thêm khoảng trắng bên trái & phải để không đè chữ
     fig.subplots_adjust(left=0.16, right=0.82, bottom=0.18, top=0.90)
 
     return fig
-
-
-
 
 # ========== SAVE OUTPUTS ==========
 def save_outputs(

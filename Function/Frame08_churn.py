@@ -394,7 +394,7 @@ def churn_by_segment_and_plot(df_core: pd.DataFrame, df_original: pd.DataFrame):
     print(churn_by_seg)
 
     # --- Thiết lập style & 3 màu tím ---
-    sns.set_style("whitegrid")
+    plt.rcParams["font.family"] = "Crimson Pro"
     custom_palette = ['#644E94', '#9B86C2', '#E3D4E0']  # đậm → nhạt
     bg_color = "#F9F7FB"
     text_color = "#2E2E2E"
@@ -758,27 +758,31 @@ def get_churn_data(input_path=None, output_dir=None, prefer_existing_model=True)
 def _plot_churn_rate_by_segment(ax, df_core, df_original=None):
     """
     Bar chart churn rate theo segment, KHÔNG tô nền (figure trong suốt, axes nền trắng).
+    Font: Crimson Pro
     """
     import pandas as pd
     import numpy as np
     import seaborn as sns
+    import matplotlib.pyplot as plt
     from matplotlib.ticker import FuncFormatter
 
     ax.clear()
 
-    # style (không đổi nền)
+    # --- Font & style ---
+    plt.rcParams["font.family"] = "Crimson Pro"
     text_color = "#2E2E2E"
     base_palette = ['#644E94', '#9B86C2', '#E3D4E0']
-    sns.set_style("whitegrid")  # chỉ grid trắng, không đè màu nền
+    # sns.set_style("white")  # chỉ grid trắng, không đè màu nền
+    # ax.grid(False)
 
-    # làm figure trong suốt + axes nền trắng (đồng màu card)
+    # --- Làm figure trong suốt + axes nền trắng ---
     fig = ax.get_figure()
     if fig is not None:
         try:
-            fig.patch.set_alpha(0.0)   # figure transparent
+            fig.patch.set_alpha(0.0)
         except Exception:
             pass
-    ax.set_facecolor("#FFFFFF")       # axes trắng (không tím nhạt)
+    ax.set_facecolor("#FFFFFF")
 
     # ---- churn series ----
     if 'churn' in df_core.columns:
@@ -810,44 +814,67 @@ def _plot_churn_rate_by_segment(ax, df_core, df_original=None):
         data_plot = tmp.rename(columns={seg_col: 'Segment'})
         x_col = 'Segment'
 
-    # mở rộng palette nếu cần
+    # ---- mở rộng palette nếu cần ----
     if len(base_palette) < len(data_plot):
         reps = int(np.ceil(len(data_plot) / len(base_palette)))
         palette = (base_palette * reps)[:len(data_plot)]
     else:
         palette = base_palette[:len(data_plot)]
 
-    # vẽ
-    ax.grid(True, axis='y', alpha=0.25, linestyle='-')
+    # ---- vẽ bar phẳng không viền ----
+    ax.grid(False)
     bars = sns.barplot(
         data=data_plot, x=x_col, y='churn_rate',
-        palette=palette, edgecolor="#3a2a68", ax=ax
+        palette=palette, ax=ax,
+        edgecolor=None, linewidth=0, alpha=1.0
     )
+    for p in bars.patches:
+        p.set_linewidth(0)
+        p.set_edgecolor(p.get_facecolor())
 
+    # ---- thêm giá trị phần trăm ----
     for p in ax.patches:
-        ax.text(p.get_x() + p.get_width()/2,
-                p.get_height() + 0.01,
-                f"{p.get_height():.1%}",
-                ha='center', va='bottom',
-                fontsize=10, color=text_color, fontweight='bold')
+        ax.text(
+            p.get_x() + p.get_width()/2,
+            p.get_height() + 0.01,
+            f"{p.get_height():.1%}",
+            ha='center', va='bottom',
+            fontsize=10, color=text_color,
+            fontweight='bold', fontname='Crimson Pro'
+        )
 
-    ax.set_xlabel(x_col, color=text_color, fontsize=11)
-    ax.set_ylabel("Churn rate", color=text_color, fontsize=11)
+    # ---- nhãn trục & format ----
+    ax.set_xlabel(x_col, color=text_color, fontsize=15, fontname='Crimson Pro')
+    ax.set_ylabel("Churn rate", color=text_color, fontsize=15, fontname='Crimson Pro')
     ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:.0%}"))
-    ax.tick_params(colors=text_color, labelsize=10)
+    ax.tick_params(colors=text_color, labelsize=12)
+    for label in ax.get_xticklabels() + ax.get_yticklabels():
+        label.set_fontname('Crimson Pro')
+
+    # ---- ĐỔI MÀU TRỤC X & Y  ----
+    axis_color = "#7A467A"  # màu tím bạn yêu cầu
+    # Trục X
+    ax.tick_params(axis='x', colors=axis_color)
+    ax.spines['bottom'].set_color(axis_color)
+    # Trục Y
+    ax.tick_params(axis='y', colors=axis_color)
+    ax.spines['left'].set_color(axis_color)
+
+    # ---- ẩn viền thừa ----
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.set_ylim(0, max(1.0, (data_plot['churn_rate'].max() if len(data_plot) else 0) + 0.12))
-    # === Đổi nhãn trục X thành "Cụm 1, 2, 3" nếu là số ===
+
+    # ---- Đổi nhãn trục X thành "Cụm 1, 2, 3" ----
     try:
         xticks = ax.get_xticks()
         xtick_labels = [f"Cụm {int(x) + 1}" if str(x).isdigit() or float(x).is_integer() else str(x)
                         for x in xticks]
-        ax.set_xticklabels(xtick_labels)
+        ax.set_xticklabels(xtick_labels, fontname='Crimson Pro')
     except Exception as e:
         print("[DEBUG] cannot relabel xticks:", e)
 
-    # === Hover mô tả cho từng cụm ===
+    # ---- Hover mô tả ----
     try:
         import mplcursors
         desc = {
@@ -861,16 +888,15 @@ def _plot_churn_rate_by_segment(ax, df_core, df_original=None):
 
         @cursor.connect("add")
         def _on_hover(sel):
-            # Lấy index của cột
             idx = bars.index(sel.artist) if sel.artist in bars else 0
             txt = desc.get(idx, f"Cụm {idx+1}")
             rate = sel.artist.get_height()
             sel.annotation.set_text(f"{txt}\nChurn Rate: {rate:.1%}")
             sel.annotation.get_bbox_patch().set(fc="white", ec="#644E94", alpha=0.95)
-            sel.annotation.set_fontsize(9)
+            sel.annotation.set_fontsize(12)
+            sel.annotation.set_fontfamily("Crimson Pro")
     except Exception as e:
         print("[DEBUG] hover segment failed:", e)
-
 
 
 def _plot_reasons_pie(ax, feature_importance_df, top_n=8):
@@ -911,6 +937,8 @@ def _plot_feature_importance(ax, feature_importance_df, top_n=10, show_ylabels=T
         ax.set_yticks([])
         ax.tick_params(axis='y', length=0)
         ax.spines['left'].set_visible(False)
+    for spine in ax.spines.values():
+        spine.set_visible(False)
 
 def _plot_shap_summary(fig, bundle, X, size=(4.2, 3.0), dpi=100, max_display=20):
     """
@@ -1054,10 +1082,8 @@ def draw_shap_only(input_path: str, output_dir: str):
     # 3) Vẽ SHAP (dùng hàm có sẵn)
     fi_df = shap_analysis(bundle, X, output_dir)
     if fi_df is None:
-        print("⚠ Không tạo được SHAP plots. Kiểm tra phiên bản shap/numpy:")
-        print("   pip install -U shap numpy")
-
-
+        print("Không tạo được SHAP plots. Kiểm tra phiên bản shap/numpy:")
+        print("pip install -U shap numpy")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

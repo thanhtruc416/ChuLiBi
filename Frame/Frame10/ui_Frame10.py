@@ -8,7 +8,7 @@ import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 
 from Function.dropdown_profile import DropdownMenu
-
+from QMess.Qmess_calling import Qmess
 # ==== Import backend recommendation ====
 try:
     from Function.Frame10_Recommend import get_recommendation_data
@@ -78,7 +78,7 @@ class Frame10(tk.Frame):
             command=self._filter_by_search,
             relief="flat"
         )
-        self.button_search.place(x=1273.0, y=506.0, width=105.0, height=46.0)
+        self.button_search.place(x=1282.0, y=506.0, width=105.0, height=46.0)
 
         self.button_image_Noti = PhotoImage(file=relative_to_assets("button_Noti.png"))
         self.button_Noti = Button(
@@ -95,13 +95,13 @@ class Frame10(tk.Frame):
         self.canvas.create_text(
             375.0, 461.0, anchor="nw",
             text="Customer research",
-            fill="#374A5A", font=("Young Serif", -24)
+            fill="#706093", font=("Crimson Pro Bold", -30)
         )
 
         self.canvas.create_text(
             375.0, 563.0, anchor="nw",
             text="Search by Customer ID or Recommendation only",
-            fill="#9282AA", font=("Young Serif", -15)
+            fill="#9282AA", font=("Crimson Pro Bold", -20)
         )
 
         self.image_image_6 = PhotoImage(file=relative_to_assets("image_6.png"))
@@ -113,15 +113,16 @@ class Frame10(tk.Frame):
         self.entry_1 = Entry(
             self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,font=("Crimson Pro", 15, "bold"))
         self.entry_1.place(x=386.0, y=518.0, width=846.0, height=20.0)
+        self.entry_1.bind("<Return>", lambda event: self.button_search.invoke())
 
         # ================= FOOTER =================
         self.image_image_7 = PhotoImage(file=relative_to_assets("image_7.png"))
         self.image_7 = self.canvas.create_image(889.0, 807.0, image=self.image_image_7)
 
         self.canvas.create_text(
-            375.0, 630.0, anchor="nw",
+            385.0, 635.0, anchor="nw",
             text="Recommendations Table",
-            fill="#374A5A", font=("Young Serif", -24)
+            fill="#706093", font=("Crimson Pro Bold", -33)
         )
 
         self.canvas.create_text(
@@ -193,24 +194,16 @@ class Frame10(tk.Frame):
         self.canvas.create_image(1291.0, 351.0, image=self.image_edu)
 
         # ---- Sau đó vẽ chữ nhãn KPI ----
-        self.canvas.create_text(375.0, 115.0, anchor="nw", text="Service Package",
-                                fill="#374A5A", font=("Young Serif", -25))
-        self.canvas.create_text(441.0, 171.0, anchor="nw", text="SLA_UP",
-                                fill="#374A5A", font=("Young Serif", -18))
-        self.canvas.create_text(665.0, 171.0, anchor="nw", text="QUALITY SWITCH",
-                                fill="#374A5A", font=("Young Serif", -16))
-        self.canvas.create_text(976.0, 171.0, anchor="nw", text="COUPON",
-                                fill="#374A5A", font=("Young Serif", -18))
-        self.canvas.create_text(1247.0, 171.0, anchor="nw", text="LOYALTY",
-                                fill="#374A5A", font=("Young Serif", -18))
-        self.canvas.create_text(423.0, 312.0, anchor="nw", text="CARE CALL",
-                                fill="#374A5A", font=("Young Serif", -18))
-        self.canvas.create_text(688.0, 312.0, anchor="nw", text="REMIND APP",
-                                fill="#374A5A", font=("Young Serif", -18))
-        self.canvas.create_text(949.0, 312.0, anchor="nw", text="EDU CONTENT",
-                                fill="#374A5A", font=("Young Serif", -18))
-        self.canvas.create_text(1234.0, 312.0, anchor="nw", text="NO ACTION",
-                                fill="#374A5A", font=("Young Serif", -18))
+        self.canvas.create_text(375.0, 110.0, anchor="nw", text="Service Package",
+                                fill="#706093", font=("Crimson Pro Bold", -32))
+        self.canvas.create_text(441.0, 171.0, anchor="nw", text="SLA_UP",fill="#374A5A", font=("Crimson Pro Bold", -23))
+        self.canvas.create_text(665.0, 171.0, anchor="nw", text="QUALITY SWITCH",fill="#374A5A", font=("Crimson Pro Bold", -22))
+        self.canvas.create_text(976.0, 171.0, anchor="nw", text="COUPON",fill="#374A5A", font=("Crimson Pro Bold", -23))
+        self.canvas.create_text(1247.0, 171.0, anchor="nw", text="LOYALTY",fill="#374A5A", font=("Crimson Pro Bold", -23))
+        self.canvas.create_text(423.0, 312.0, anchor="nw", text="CARE CALL",fill="#374A5A", font=("Crimson Pro Bold", -23))
+        self.canvas.create_text(688.0, 312.0, anchor="nw", text="REMIND APP", fill="#374A5A", font=("Crimson Pro Bold", -23))
+        self.canvas.create_text(949.0, 312.0, anchor="nw", text="EDU CONTENT",fill="#374A5A", font=("Crimson Pro Bold", -23))
+        self.canvas.create_text(1234.0, 312.0, anchor="nw", text="NO ACTION",fill="#374A5A", font=("Crimson Pro Bold", -23))
 
         # ---- Vẽ số KPI (phần trăm, auto canh giữa khung) ----
         # Lấy đúng vị trí giữa các ảnh KPI
@@ -237,7 +230,7 @@ class Frame10(tk.Frame):
 
         # ==== Table holder ====
         self.table_holder = tk.Frame(self, bg="#FFFFFF")
-        self.table_holder.place(x=380, y=670, width=980, height=300)
+        self.table_holder.place(x=365, y=670, width=1030, height=300)
         self.table_widget = None
 
     # ===================================================
@@ -256,7 +249,7 @@ class Frame10(tk.Frame):
             return
 
         # Lưu dữ liệu gốc
-        # ✅ Merge cluster từ df_cluster_full.csv (df) vào df_rec
+        # Merge cluster từ df_cluster_full.csv (df) vào df_rec
         # ================= DEBUG CỘT TRƯỚC KHI MERGE =================
         print("[DEBUG] df_cluster_full columns:", df.columns.tolist())
         print("[DEBUG] df_rec columns:", df_rec.columns.tolist())
@@ -294,11 +287,11 @@ class Frame10(tk.Frame):
         if "Cluster" not in df_rec.columns and "cluster" in df_rec.columns:
             df_rec.rename(columns={"cluster": "Cluster"}, inplace=True)
 
-        # ✅ Cộng +1 để hiển thị từ 1 -> 3 thay vì 0 -> 2
-        try:
-            df_rec["Cluster"] = df_rec["Cluster"].astype(float).astype(int) + 1
-        except:
-            print("[WARN] Không thể cộng +1 cho Cluster, giữ nguyên.")
+        # # Cộng +1 để hiển thị từ 1 -> 3 thay vì 0 -> 2
+        # try:
+        #     df_rec["Cluster"] = df_rec["Cluster"].astype(float).astype(int) + 1
+        # except:
+        #     print("[WARN] Không thể cộng +1 cho Cluster, giữ nguyên.")
 
         # In ra xem có merge thành công không
         print(f"[CHECK] Cluster merged? {df_rec['Cluster'].notna().sum()} / {len(df_rec)} rows có Cluster")
@@ -310,7 +303,6 @@ class Frame10(tk.Frame):
         self._update_kpi(df_rec)
 
     def _filter_by_search(self):
-        """Lọc theo Customer_ID hoặc Recommendation"""
         keyword = self.entry_1.get().strip().lower()
         self.active_mode = "search"
 
@@ -318,304 +310,300 @@ class Frame10(tk.Frame):
             self._load_recommendations()
             return
 
-        df_full = self.df_rec_raw.copy()  # dữ liệu gốc
+        df_full = self.df_rec_raw.copy()
 
         if not keyword:
-            messagebox.showinfo("Thông báo", "Vui lòng nhập Customer ID hoặc gói cần tìm.")
+            Qmess.popup_29(parent=self,
+                        title="Warning",
+                        subtitle="Please enter Customer ID or package to search.")
             return
 
         df_filtered = df_full[
             df_full["Customer_ID"].astype(str).str.lower().str.contains(keyword)
-            | df_full.get("action_name", "").astype(str).str.lower().str.contains(keyword)
+            | df_full.get("action_name", df_full.get("Action_Name", "")).astype(str).str.lower().str.contains(keyword)
             ]
 
         if df_filtered.empty:
-            messagebox.showinfo("Kết quả tìm kiếm", f"Không tìm thấy khách hàng hoặc gói phù hợp với '{keyword}'.")
+            Qmess.popup_23(parent=self,
+                        title="Warning",
+                        subtitle=f"Do not found customer or package matching '{keyword}'.")
             return
 
-        # ✅ Hiển thị kết quả search, KHÔNG render lại dropdown
+        # ✅ Giữ format Cluster hiển thị "Cluster x"
+        import pandas as pd
+        # if "Cluster" in df_filtered.columns:
+        #     df_filtered["Cluster"] = df_filtered["Cluster"].apply(
+        #         lambda x: f"Cluster {int(float(x))}" if pd.notna(x) else ""
+        #     )
+
+        self.df_search_result = df_filtered.copy()
         self._render_table(df_filtered, show_filter=True)
-        if "Cluster" not in df_filtered.columns and "cluster" in df_filtered.columns:
-            df_filtered.rename(columns={"cluster": "Cluster"}, inplace=True)
 
         print(f"[SEARCH] Found {len(df_filtered)} rows matching '{keyword}'")
-
 
     def _render_table(self, df_rec, show_filter=True):
         import tkinter as tk
         from tkinter import ttk
         import pandas as pd
 
-        # Xóa bảng cũ
-        for w in self.table_holder.winfo_children():
+        # --- preserve raw/original
+        if not hasattr(self, "df_rec_raw") or getattr(self, "df_rec_raw") is None:
+            self.df_rec_raw = df_rec.copy()
+
+        # chỉ cập nhật df_rec_original nếu KHÔNG phải search mode
+        mode = getattr(self, "active_mode", "")
+        if mode != "search":
+            self.df_rec_original = df_rec.copy()
+
+        for w in getattr(self, "table_holder").winfo_children():
             w.destroy()
+        # --- Dọn sạch toàn bộ table cũ (canvas, frame, scroll...) ---
+        if hasattr(self, "table_holder") and self.table_holder is not None:
+            for widget in self.table_holder.winfo_children():
+                widget.destroy()
+                print("[DEBUG] Table inner recreated, rows:", len(df_rec))
+
+        print("[DEBUG] Table inner recreated, rows:", len(df_rec))
 
         HEADER_BG = "#B79AC8"
         ROW_EVEN = "#FFFFFF"
         ROW_ODD = "#F7F4F7"
         TEXT = "#2E2E2E"
 
-        # ==== Chuẩn hoá dữ liệu hiển thị ban đầu ====
         df_show = df_rec.copy()
         df_show["ID"] = df_show.get("Customer_ID", "")
         if "priority_score" in df_show.columns:
             df_show["Expected Loss"] = (df_show["priority_score"].astype(float) * 100).round(1).astype(str) + "%"
         else:
             df_show["Expected Loss"] = "0.0%"
-        # Giữ nguyên cột Cluster nếu có trong data
-        if "Cluster" not in df_show.columns and "cluster" in df_show.columns:
-            df_show.rename(columns={"cluster": "Cluster"}, inplace=True)
-        elif "Cluster" not in df_show.columns:
-            df_show["Cluster"] = ""
-            # Hiển thị Cluster từ 1 thay vì 0
 
-        # Hiển thị Cluster từ 1 thay vì 0
-        def format_cluster(val):
+        # --- Đảm bảo cột Cluster tồn tại đúng ---
+        if "Cluster" in df_rec.columns:
+            df_show["Cluster"] = df_rec["Cluster"]
+        elif "cluster" in df_rec.columns:
+            df_show["Cluster"] = df_rec["cluster"]
+        else:
+            df_show["Cluster"] = ""
+
+        # --- Format lại thành "Cluster 1", "Cluster 2" ---
+        def format_cluster_display(v):
             try:
-                num = int(float(val))
-                return f"Cluster {num}"
+                return f"Cluster {int(float(v)) + 1}"
             except:
                 return ""
 
-        df_show["Cluster"] = df_show["Cluster"].apply(format_cluster)
+        df_show["Cluster"] = df_show["Cluster"].apply(format_cluster_display)
 
         df_show["Recommendation"] = df_show.apply(
             lambda r: f"{r.get('action_id', '')} – {r.get('action_name', '')}", axis=1
         )
+
         df_show = df_show[["ID", "Cluster", "Expected Loss", "Recommendation"]]
         self.df_full = df_show.copy()
 
-        # ==== Khung filter (dropdown) ====
+        # DỊCH FILTER & TABLE SANG TRÁI
         if show_filter:
             filter_outer = tk.Frame(self.table_holder, bg="#ECE7EB")
-            filter_outer.pack(fill="x", padx=0, pady=(0, 4))
+            filter_outer.pack(fill="x", padx=(20, 0), pady=(0, 4))
 
-            filter_inner = tk.Frame(filter_outer, bg="#FFFFFF", bd=0, relief="flat", height=36)
+            filter_inner = tk.Frame(filter_outer, bg="#FFFFFF", height=36)
             filter_inner.pack(fill="x")
             filter_inner.pack_propagate(False)
 
             right_wrap = tk.Frame(filter_inner, bg="#FFFFFF")
-            right_wrap.place(relx=1.0, rely=0.5, anchor="e", x=-20)
+            right_wrap.place(relx=1.0, rely=0.5, anchor="e", x=4, y=-2)
 
-            lbl = tk.Label(
-                right_wrap,
-                text="Filter by Recommendation:",
-                bg="#FFFFFF",
-                fg="#374A5A",
-                font=("Crimson Pro", 12, "bold")
-            )
+            lbl = tk.Label(right_wrap, text="Filter by Recommendation:",
+                           font=("Crimson Pro", 15, "bold"), bg="#FFFFFF", fg="#374A5A")
             lbl.pack(side="left", padx=(0, 6))
 
-            base_df = getattr(self, "df_rec_raw", df_rec)
-            # Danh sách gói cố định (dù có 0% vẫn xuất hiện)
-            all_packages_full = [
-                "SLA_UP", "QUALITY_SWITCH", "COUPON", "LOYALTY",
-                "CARE_CALL", "REMIND_APP", "EDU_CONTENT", "NO_ACTION"
-            ]
+            all_packages_full = ["SLA_UP", "QUALITY_SWITCH", "COUPON", "LOYALTY",
+                                 "CARE_CALL", "REMIND_APP", "EDU_CONTENT", "NO_ACTION"]
 
-            base_df = getattr(self, "df_rec_raw", df_rec)
+            base_df = df_rec.copy()
+            print(f"[DEBUG] Rendering table with {len(base_df)} rows (input df_rec={len(df_rec)})")
 
-            # lấy các gói có trong data (đã làm sạch)
             existing = (
-                base_df["action_id"]
-                .astype(str)
-                .map(lambda x: x.strip())
-                .replace(["", "nan", "None", "NaN"], None)
-                .dropna()
-                .unique()
-                .tolist()
+                base_df.get("action_id", pd.Series(dtype=str))
+                .astype(str).str.strip()
+                .replace(["", "nan", "None", "NaN"], None).dropna().unique().tolist()
             )
 
-            # hợp nhất danh sách chuẩn với danh sách thực tế
-            # Danh sách gói cố định (dù có 0% vẫn xuất hiện)
-            all_packages_full = [
-                "SLA_UP", "QUALITY_SWITCH", "COUPON", "LOYALTY",
-                "CARE_CALL", "REMIND_APP", "EDU_CONTENT", "NO_ACTION"
-            ]
-
-            base_df = getattr(self, "df_rec_raw", df_rec)
-
-            # lấy các gói có trong data (đã làm sạch)
-            existing = (
-                base_df["action_id"]
-                .astype(str)
-                .map(lambda x: x.strip())
-                .replace(["", "nan", "None", "NaN"], None)
-                .dropna()
-                .unique()
-                .tolist()
-            )
-
-            # hợp nhất danh sách chuẩn với danh sách thực tế (đảm bảo có đủ CARE_CALL)
-            rec_packages = [pkg for pkg in all_packages_full if pkg in all_packages_full]
-            rec_opts = ["All Packages"] + rec_packages
-
-            # --- Dùng customtkinter OptionMenu thay cho ttk.Combobox ---
+            rec_opts = ["All Packages"] + all_packages_full
             self.selected_package = tk.StringVar(value="All Packages")
 
-            # --- Custom dropdown giống Frame11 ---
-            self.selected_package = tk.StringVar(value="All Packages")
-
-            # Nút chính để hiển thị giá trị
-            # --- Nút dropdown có khung và hover pastel ---
             self.btn_package = tk.Label(
                 right_wrap,
                 text=f"{self.selected_package.get()} ▼",
                 font=("Crimson Pro", 12),
                 bg="#FFFFFF",
                 fg="#374A5A",
-                bd=1,
-                relief="solid",
+                relief="solid", bd=1, padx=10, pady=4,
                 highlightbackground="#C2A8C2",
-                highlightcolor="#C2A8C2",
                 highlightthickness=1,
-                padx=10,
-                pady=4,
                 cursor="hand2"
             )
             self.btn_package.pack(side="left", padx=(0, 10))
-
-            # --- Hiệu ứng hover ---
-            def on_enter(e):
-                self.btn_package.config(bg="#F3E8F9")  # nền tím nhạt khi hover
-
-            def on_leave(e):
-                self.btn_package.config(bg="#FFFFFF")  # trở lại trắng
-
-            self.btn_package.bind("<Enter>", on_enter)
-            self.btn_package.bind("<Leave>", on_leave)
-
-            # --- Click hiển thị dropdown ---
             self.btn_package.bind("<Button-1>",
                                   lambda e: self.show_dropdown_custom(right_wrap, self.selected_package, rec_opts))
 
-        # ==== Khung table chính ====
+        # ==== TABLE FRAME (dịch trái)
         table_frame = tk.Frame(self.table_holder, bg="#FFFFFF")
-        table_frame.pack(fill="both", expand=True)
+        table_frame.pack(fill="both", expand=True, padx=(20, 0))
 
         canvas = tk.Canvas(table_frame, bg="#FFFFFF", highlightthickness=0, bd=0)
         canvas.pack(fill="both", expand=True, side="left")
 
-        scrollbar = tk.Scrollbar(table_frame, orient="vertical", command=canvas.yview)
-        scrollbar.pack(side="right", fill="y")
-        canvas.configure(yscrollcommand=scrollbar.set)
+        # === Custom pastel scrollbar (giống Frame09) ===
+        scroll_canvas = tk.Canvas(
+            table_frame,
+            width=6,
+            bg="#F7F4F7",
+            highlightthickness=0,
+            bd=0
+        )
+        scroll_canvas.pack(side="right", fill="y", padx=(2, 6), pady=6)
+
+        scroll_thumb = scroll_canvas.create_rectangle(
+            1, 0, 5, 40,
+            outline="",
+            fill="#C9C4CE",
+            width=0
+        )
+
+        self._scroll_drag_start = None
+        self._scroll_start_pos = None
+
+        def update_thumb(first, last):
+            """Cập nhật thumb khi Treeview (ở đây là Canvas) cuộn"""
+            height = scroll_canvas.winfo_height()
+            first, last = float(first), float(last)
+            thumb_len = max(30, (last - first) * height)
+            y1 = first * height
+            y2 = y1 + thumb_len
+            scroll_canvas.coords(scroll_thumb, 1, y1 + 3, 5, y2 - 3)
+
+        def scroll(*args):
+            """Cuộn canvas + cập nhật thumb"""
+            canvas.yview(*args)
+            update_thumb(*canvas.yview())
+
+        def on_mousewheel(event):
+            canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+            update_thumb(*canvas.yview())
+            return "break"
+
+        # === Kéo thả thanh scroll bằng chuột ===
+        def on_thumb_press(event):
+            self._scroll_drag_start = event.y
+            self._scroll_start_pos = canvas.yview()[0]
+
+        def on_thumb_drag(event):
+            if self._scroll_drag_start is None:
+                return
+            dy = event.y - self._scroll_drag_start
+            height = scroll_canvas.winfo_height()
+            first, last = canvas.yview()
+            visible = last - first
+            thumb_len = max(30, visible * height)
+            scrollable_height = height - thumb_len
+            if scrollable_height <= 0:
+                return  # không cuộn được nếu không có nội dung
+            delta_fraction = dy / scrollable_height * (1 - visible)
+
+            new_first = max(0, min(1 - visible, self._scroll_start_pos + delta_fraction))
+            canvas.yview_moveto(new_first)
+            update_thumb(*canvas.yview())
+
+        def on_thumb_release(event):
+            self._scroll_drag_start = None
+            self._scroll_start_pos = None
+
+        # === Bind events ===
+        scroll_canvas.tag_bind(scroll_thumb, "<ButtonPress-1>", on_thumb_press)
+        scroll_canvas.tag_bind(scroll_thumb, "<B1-Motion>", on_thumb_drag)
+        scroll_canvas.tag_bind(scroll_thumb, "<ButtonRelease-1>", on_thumb_release)
+        canvas.configure(yscrollcommand=update_thumb)
+        canvas.bind_all("<MouseWheel>", on_mousewheel)
 
         inner = tk.Frame(canvas, bg="#FFFFFF")
         inner_id = canvas.create_window((0, 0), window=inner, anchor="nw")
 
-        def _label(parent, text, bg, fg=TEXT, bold=False, anchor="center", padx=12, pady=10, width=None):
-            font = ("Crimson Pro", 12, "bold" if bold else "normal")
-            lbl = tk.Label(
-                parent,
-                text=text,
-                bg=bg,
-                fg=fg,
-                font=font,
-                anchor=anchor,
-                padx=padx,
-                pady=pady,
-                justify="center"  # 👈 canh giữa cả text nhiều dòng nếu có
-            )
-            if width:
-                lbl.config(width=int(width / 8), height=2)  # 👈 thêm height để dọc giữa
-            return lbl
+        COLUMNS = [
+            ("Customer ID", 120),
+            ("Cluster", 140),
+            ("Expected Loss", 160),
+            ("Recommendation", 600),
+        ]
 
-        # Header (dòng tiêu đề)
+        # ==== HEADER (dùng grid, không pack) ====
         header = tk.Frame(inner, bg=HEADER_BG)
         header.pack(fill="x")
 
-        COLUMNS = [
-            ("ID", 120),
-            ("Cluster", 140),
-            ("Expected Loss", 160),
-            ("Recommendation", 560),
-        ]
-
         for j, (col, col_w) in enumerate(COLUMNS):
-            # 👇 canh riêng header "Recommendation"
-            if col == "Recommendation":
-                anchor = "w"  # canh trái
-                pad_x = 50  # nhích nhẹ sang phải
-            else:
-                anchor = "center"
-                pad_x = 0
-
+            anchor = "c" if col == "Recommendation" else "center"
             lbl = tk.Label(
                 header,
                 text=col,
                 bg=HEADER_BG,
                 fg="#FFFFFF",
-                font=("Crimson Pro", 12, "bold"),
-                width=int(col_w / 8),
-                pady=8,
+                font=("Crimson Pro", 15, "bold"),
                 anchor=anchor,
-                padx=pad_x,
+                pady=8
             )
-            lbl.grid(row=0, column=j, sticky="nsew")
+            lbl.grid(row=0, column=j, sticky="nsew", padx=(2, 0))
             header.grid_columnconfigure(j, minsize=col_w)
 
-        # ==================== ROW RENDER FIXED ====================
+        # ==== ROW CHUẨN, KHÔNG BỊ LỆCH, GRID FULL CELL ====
         def _add_row(values, index):
             bg = ROW_EVEN if index % 2 == 0 else ROW_ODD
-            row = tk.Frame(inner, bg=bg)
+
+            row = tk.Frame(inner, bg=bg, height=42)
             row.pack(fill="x")
+            row.pack_propagate(False)
 
             for j, ((col, col_w), val) in enumerate(zip(COLUMNS, values)):
-                anchor = "w" if col == "Recommendation" else "center"
-                justify = "left" if anchor == "w" else "center"
-
-                lbl = tk.Label(
-                    row,
-                    text=str(val),
-                    bg=bg,
-                    fg=TEXT,
-                    font=("Crimson Pro", 12),
-                    width=int(col_w / 8),
-                    padx=8,
-                    pady=6,
-                    anchor=anchor,
-                    justify=justify,
-                )
-                lbl.grid(row=0, column=j, sticky="nsew")
-                row.grid_columnconfigure(j, minsize=col_w)
-
-        # Row function
-        def _add_row(values, index):
-            bg = ROW_EVEN if index % 2 == 0 else ROW_ODD
-            row = tk.Frame(inner, bg=bg)
-            row.pack(fill="x", padx=10)  # 👈 thêm padding ngang cho nguyên hàng
-
-            for (col, col_w), val in zip(COLUMNS, values):
-                # Tạo cell có chiều rộng cụ thể
                 cell = tk.Frame(row, bg=bg, width=col_w, height=42)
+                cell.pack(side="left", fill="y")
                 cell.pack_propagate(False)
-                cell.pack(side="left", padx=3)  # 👈 thêm khoảng cách giữa các cột
-
-                # ✅ Canh giữa tất cả trừ Recommendation (canh trái)
-                anchor = "w" if col == "Recommendation" else "center"
-
-                pad_x = 35 if col == "Recommendation" else 8
 
                 lbl = tk.Label(
                     cell,
                     text=str(val),
                     bg=bg,
                     fg=TEXT,
-                    font=("Crimson Pro", 12),
-                    anchor=anchor,
-                    justify="left" if col == "Recommendation" else "center",  # 👈 fix chuẩn căn trái nội dung
-                    padx=pad_x,  # 👈 đẩy nhẹ sang phải cho recommendation
+                    font=("Crimson Pro", 13),
+                    anchor="w" if col == "Recommendation" else "center"
                 )
-                lbl.pack(expand=True, fill="both")
+                lbl.place(
+                    x=80 if col == "Recommendation" else 0,
+                    relx=0.5 if col != "Recommendation" else 0.0,
+                    rely=0.5,
+                    anchor="center" if col != "Recommendation" else "w"
+                )
 
-        # ==== Filter dropdown logic ====
+        # --- Hiển thị các dòng dữ liệu ---
+        for i, row in enumerate(df_show.itertuples(index=False), start=1):
+            vals = list(row)
+            _add_row(vals, i)
+        print(f"[DEBUG] Rendered {len(df_show)} rows into table.")
+
+        # ==== Filter dropdown render logic (dùng để re-render khi chọn filter) ====
         def render_filtered_table(sel_pkg):
+            # Luôn lọc từ dữ liệu gốc, KHÔNG phụ thuộc vào kết quả search
             base_df = getattr(self, "df_rec_original", None)
-            if base_df is None:
+            print(f"[DEBUG] Filter luôn dùng dataset gốc ({len(base_df) if base_df is not None else 0} rows)")
+
+            if base_df is None or base_df.empty:
+                print("[WARN] Không có dữ liệu để filter")
                 return
 
-            # Clear search box khi chọn dropdown
-            self.entry_1.delete(0, tk.END)
+            # Clear search box nếu có
+            if hasattr(self, "entry_1") and getattr(self, "entry_1") is not None:
+                try:
+                    self.entry_1.delete(0, "end")
+                except Exception:
+                    pass
 
             data = base_df.copy()
             data["ID"] = data.get("Customer_ID", "")
@@ -623,28 +611,38 @@ class Frame10(tk.Frame):
                 data["Expected Loss"] = (data["priority_score"].astype(float) * 100).round(1).astype(str) + "%"
             else:
                 data["Expected Loss"] = "0.0%"
+
             if "Cluster" not in data.columns and "cluster" in data.columns:
                 data.rename(columns={"cluster": "Cluster"}, inplace=True)
             elif "Cluster" not in data.columns:
                 data["Cluster"] = ""
+
+            data["Cluster"] = data["Cluster"].apply(format_cluster_display)
+
             data["Recommendation"] = data.apply(
                 lambda r: f"{r.get('action_id', '')} – {r.get('action_name', '')}", axis=1
             )
+            # thêm action_id để filter
             data = data[["ID", "Cluster", "Expected Loss", "Recommendation", "action_id"]]
 
             if sel_pkg != "All Packages":
                 data = data[data["action_id"].astype(str).str.strip() == sel_pkg]
 
-            # clear old rows
+            # clear old rows (giữ header)
             for w in inner.winfo_children():
-                if w != header:
+                if w is not header:
                     w.destroy()
 
             for i, row in enumerate(data.itertuples(index=False), start=1):
-                _add_row(list(row), i)
+                # loại bỏ field action_id khi render (itertuples trả cả action_id)
+                vals = list(row)[:4]
+                _add_row(vals, i)
 
             _sync_scroll()
             print(f"[UI] Filter dropdown applied: {sel_pkg} → {len(data)} rows")
+
+        # Thêm dòng này:
+        self.render_filtered_table = render_filtered_table
 
         # ==== Scroll sync ====
         def _sync_scroll(_=None):
@@ -654,90 +652,117 @@ class Frame10(tk.Frame):
         inner.bind("<Configure>", _sync_scroll)
         canvas.bind("<Configure>", _sync_scroll)
 
-        # ==== Hiển thị dữ liệu ban đầu (theo dataset truyền vào) ====
-        for i, row in enumerate(df_show.itertuples(index=False), start=1):
-            _add_row(list(row), i)
-        _sync_scroll()
+        # Fix: chỉ render lại bảng All Packages khi KHÔNG ở search mode
+        mode = getattr(self, "active_mode", "")
+        if mode == "search":
+            print("[DEBUG] Đang ở chế độ search — vẫn hiển thị filter đầy đủ, KHÔNG tự động lọc lại.")
+            _sync_scroll()
+            # KHÔNG return nữa — để filter dropdown được khởi tạo bình thường
 
-            # ⚡ Nếu đây là kết quả search, KHÔNG render lại full
-        if getattr(self, "active_mode", "") != "search":
-                render_filtered_table("All Packages")
+        else:
+            sel = getattr(self, "selected_package", tk.StringVar(value="All Packages")).get()
+            render_filtered_table(sel)
 
     def show_dropdown_custom(self, parent_widget, var, options):
-        """Dropdown tùy chỉnh kiểu Frame11."""
+        """Dropdown tùy chỉnh — style pastel tím, font Crimson Pro."""
+        import tkinter as tk
+
         popup = tk.Toplevel(self)
         popup.overrideredirect(True)
-        popup.config(bg="#ECE7EB")
+        popup.config(bg="#FFFFFF", bd=1, highlightthickness=1, highlightbackground="#B992B9")
 
-        # Lấy vị trí nút để hiển thị popup ngay bên dưới
-        x = self.btn_package.winfo_rootx()
-        y = self.btn_package.winfo_rooty() + self.btn_package.winfo_height()
-        popup.geometry(f"220x{len(options) * 26}+{x}+{y}")
+        # Lấy vị trí hiển thị popup từ btn_package nếu có
+        btn = getattr(self, "btn_package", None)
+        if btn:
+            x = btn.winfo_rootx()
+            y = btn.winfo_rooty() + btn.winfo_height() + 2
+            width = max(btn.winfo_width(), 165)
+        else:
+            # fallback
+            x = parent_widget.winfo_rootx()
+            y = parent_widget.winfo_rooty()
+            width = 165
+
+        popup.geometry(f"{width}x{max(30, len(options) * 30)}+{x}+{y}")
 
         def on_select(value):
             var.set(value)
-            self.btn_package.config(text=f"{value} ▼")  # 👈 giữ lại mũi tên sau khi chọn
+            if btn:
+                btn.config(text=f"{value} ▼")
             popup.destroy()
+            # Khi chọn, gọi handler lọc
             self._filter_dropdown_selected(value)
 
+        container = tk.Frame(popup, bg="#FFFFFF")
+        container.pack(fill="both", expand=True)
+
         for opt in options:
-            lbl = tk.Label(popup, text=opt, bg="#FFFFFF", fg="#374A5A",
-                           font=("Crimson Pro", 11), anchor="w", padx=10)
-            lbl.pack(fill="x", pady=1)
+            lbl = tk.Label(
+                container,
+                text=opt,
+                font=("Crimson Pro", 11),
+                bg="#FFFFFF",
+                fg="#B992B9",
+                anchor="w",
+                padx=10,
+                pady=3,
+            )
+
+            lbl.pack(fill="x")
+
+            lbl.bind("<Enter>", lambda e, l=lbl: l.config(bg="#EDE6F9", fg="#2E1E5B"))
+            lbl.bind("<Leave>", lambda e, l=lbl: l.config(bg="#FFFFFF", fg="#B992B9"))
             lbl.bind("<Button-1>", lambda e, v=opt: on_select(v))
-            lbl.bind("<Enter>", lambda e, l=lbl: l.config(bg="#D8C6E2"))
-            lbl.bind("<Leave>", lambda e, l=lbl: l.config(bg="#FFFFFF"))
+
+        # Fade-in nhẹ (non-blocking)
+        try:
+            popup.attributes("-alpha", 0.0)
+            for i in range(1, 11):
+                popup.after(i * 10, lambda a=i: popup.attributes("-alpha", a / 10))
+        except Exception:
+            pass
 
         popup.focus_force()
         popup.bind("<FocusOut>", lambda e: popup.destroy())
 
     def _filter_dropdown_selected(self, sel_pkg):
-        """Lọc dữ liệu khi chọn gói từ dropdown custom."""
-        base_df = getattr(self, "df_rec_original", None)
-        if base_df is None:
-            return
+        """Gọi khi chọn item trong dropdown filter."""
+        self.active_mode = "filter"
 
-        self.entry_1.delete(0, tk.END)  # clear search box
+        import tkinter as tk
 
-        data = base_df.copy()
-        data["ID"] = data.get("Customer_ID", "")
-        if "priority_score" in data.columns:
-            data["Expected Loss"] = (data["priority_score"].astype(float) * 100).round(1).astype(str) + "%"
+        # Ghi lại lựa chọn
+        if not hasattr(self, "selected_package"):
+            self.selected_package = tk.StringVar(value=sel_pkg)
         else:
-            data["Expected Loss"] = "0.0%"
+            self.selected_package.set(sel_pkg)
 
-        # ✅ Giữ nguyên cluster thật (từ file)
-        if "Cluster" not in data.columns and "cluster" in data.columns:
-            data.rename(columns={"cluster": "Cluster"}, inplace=True)
-        elif "Cluster" not in data.columns:
-            data["Cluster"] = ""
+        # Cập nhật text trên nút dropdown
+        if hasattr(self, "btn_package"):
+            self.btn_package.config(text=f"{sel_pkg} ▼")
 
-        # ✅ Nếu muốn hiển thị dạng “Cluster 1”, “Cluster 2”, …
-        def format_cluster(val):
-            try:
-                num = int(float(val))
-                return f"Cluster {num + 1}"
-            except:
-                return ""
-
-        data["Cluster"] = data["Cluster"].apply(format_cluster)
-
-        data["Recommendation"] = data.apply(
-            lambda r: f"{r.get('action_id', '')} – {r.get('action_name', '')}", axis=1
-        )
-        data = data[["ID", "Cluster", "Expected Loss", "Recommendation", "action_id"]]
-
-        if sel_pkg != "All Packages":
-            data = data[data["action_id"].astype(str).str.strip() == sel_pkg]
-
-        # ✅ Render lại bảng (đúng chỗ)
-        self._render_table(data, show_filter=True)
+        # QUAN TRỌNG: Chỉ gọi render_filtered_table, KHÔNG gọi _render_table
+        if hasattr(self, "render_filtered_table"):
+            self.render_filtered_table(sel_pkg)
+        else:
+            print("[WARNING] render_filtered_table chưa được tạo – kiểm tra _render_table() có khai báo chưa?")
 
     def _update_kpi(self, df_rec):
-        counts = df_rec["action_id"].value_counts(normalize=True).mul(100).to_dict()
-        for aid, item in self.kpi_labels.items():
+        """
+        Cập nhật các KPI (tỉ lệ % cho từng action_id) lên canvas labels.
+        self.kpi_labels expected to be dict: {action_id: canvas_item_id}
+        """
+        counts = {}
+        if "action_id" in df_rec.columns:
+            counts = df_rec["action_id"].value_counts(normalize=True).mul(100).to_dict()
+
+        for aid, item in getattr(self, "kpi_labels", {}).items():
             pct = counts.get(aid, 0)
-            self.canvas.itemconfigure(item, text=f"{pct:.1f}%")
+            try:
+                self.canvas.itemconfigure(item, text=f"{pct:.1f}%")
+            except Exception:
+                # nếu self.canvas/item không tồn tại thì bỏ qua
+                pass
 
     # ===================================================
     def _on_profile_clicked(self):

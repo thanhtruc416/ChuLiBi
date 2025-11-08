@@ -19,7 +19,6 @@ def _is_valid_email(email: str) -> bool:
 
 # ====== OTP & MAIL ======
 def _gen_otp(n=6) -> str:
-    random.seed(datetime.now().timestamp())  # 👈 thêm dòng này
     return "".join(random.choices(string.digits, k=n))
 
 def _send_mail(to_email: str, subject: str, body: str):
@@ -45,63 +44,51 @@ def _send_mail(to_email: str, subject: str, body: str):
 
 # ====== PUBLIC API ======
 def send_otp_if_email_exists(email: str):
+    """
+    Input: email người dùng nhập.
+    - Validate format email.
+    - Nếu tồn tại trong user_data: sinh OTP, lưu (hash, hạn 10p), gửi mail.
+    - Nếu không: trả False cho UI hiển thị warning.
+
+    Return:
+      (True, "Đã gửi OTP")  hoặc  (False, "Lý do")
+    """
     email = (email or "").strip()
 
     if not _is_valid_email(email):
         return False, "Email không hợp lệ"
 
     try:
-        # 1️⃣ Lấy thông tin user từ DB
+        # Kiểm tra email
         with get_conn() as conn:
             with conn.cursor() as cur:
                 cur.execute("SELECT id, username FROM user_data WHERE email=%s", (email.lower(),))
-                row = cur.fetchone()
-                if not row:
-                    return False, "Email không tồn tại"
+                user = cur.fetchone()
 
-                # Nếu fetchone trả về tuple (ví dụ (3, 'thanhtruc1'))
-                # thì id là phần tử [0], username là phần tử [1]
-                if isinstance(row, (list, tuple)):
-                    user_id = int(row[0])
-                    username = row[1]
-                elif isinstance(row, dict):
-                    user_id = int(row.get("id"))
-                    username = row.get("username", "người dùng")
-                else:
-                    return False, "Lỗi dữ liệu trả về từ DB"
+        if not user:
+            return False, "Email không tồn tại"
 
-        # 2️⃣ Sinh OTP riêng
+        # Tạo & lưu OTP
         otp = _gen_otp(6)
         otp_hash = bcrypt.hashpw(otp.encode(), bcrypt.gensalt()).decode()
         expires = datetime.now(timezone.utc) + timedelta(minutes=OTP_TTL_MINUTES)
 
-        # 3️⃣ Lưu OTP riêng cho từng email
         with get_conn() as conn:
             with conn.cursor() as cur:
                 cur.execute(
-                    """
-                    INSERT INTO password_resets (user_id, email, otp_hash, expires_at, used, created_at)
-                    VALUES (%s, %s, %s, %s, 0, NOW())
-                    ON DUPLICATE KEY UPDATE
-                        otp_hash = VALUES(otp_hash),
-                        expires_at = VALUES(expires_at),
-                        used = 0,
-                        created_at = NOW()
-                    """,
-                    (user_id, email.lower(), otp_hash, expires.strftime("%Y-%m-%d %H:%M:%S")),
+                    "INSERT INTO password_resets (user_id, otp_hash, expires_at) VALUES (%s, %s, %s)",
+                    (user["id"], otp_hash, expires.strftime("%Y-%m-%d %H:%M:%S")),
                 )
-            conn.commit()
 
-        # 4️⃣ Gửi email OTP riêng
+        # Gửi email
         body = (
-            f"Xin chào {username},\n\n"
+            f"Xin chào {user['username']},\n\n"
             f"Mã OTP của bạn là: {otp}\n"
             f"Hiệu lực trong {OTP_TTL_MINUTES} phút.\n\n"
             f"Nếu không phải bạn yêu cầu, hãy bỏ qua email này."
         )
         _send_mail(email, "Mã OTP khôi phục mật khẩu", body)
 
-        return True, f"Đã gửi OTP cho {email}"
-
+        return True, "Đã gửi OTP"
     except Exception as e:
         return False, f"Lỗi: {e}"

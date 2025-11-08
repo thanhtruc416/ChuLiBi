@@ -7,11 +7,11 @@
 import tkinter as tk
 from tkinter import ttk
 
-HEADER_BG = "#644E94"   # purple (theme)
-ROW_EVEN  = "#F7F4F7"
-ROW_ODD   = "#FFFFFF"
+HEADER_BG = "#B79AC8"   # purple (theme)
+HEADER_HOVER = "#C9B1DA"  # lighter purple
+ROW_EVEN  = "#FFFFFF"
+ROW_ODD   = "#F7F4F7"
 TEXT      = "#2E2E2E"
-
 COLUMNS = [
     ("Customer ID", 120),
     ("Cluster", 90),
@@ -26,13 +26,13 @@ def _col_width_to_chars(px: int) -> int:
     return max(1, int(px / 8))
 
 def _label(parent, text, bg, fg=TEXT, bold=False, anchor="w", padx=12, pady=10, wrap=None):
-    font = ("Crimson Pro", 12, "bold" if bold else "normal")
+    font = ("Crimson Pro", 13, "bold" if bold else "normal")
     lbl = tk.Label(parent, text=str(text), bg=bg, fg=fg, font=font, anchor=anchor, padx=padx, pady=pady, justify="left")
     if wrap:
         lbl.configure(wraplength=wrap)  # px
     return lbl
 
-
+# === Main table ===
 def build_prediction_table(parent: tk.Widget, width: int, height: int, df_result=None) -> tk.Canvas:
     """
     Create a scrollable canvas containing the churn prediction table.
@@ -52,7 +52,7 @@ def build_prediction_table(parent: tk.Widget, width: int, height: int, df_result
 
     # Vertical scrollbar (gắn sát biên phải của canvas)
     vbar = tk.Scrollbar(parent, orient="vertical", command=canvas.yview)
-    vbar.place(in_=canvas, relx=1.0, rely=0.0, relheight=1.0, anchor="ne", width=14)
+    vbar.place(in_=canvas, relx=1.0, rely=0.0, relheight=1.0, anchor="ne", width=15)
     canvas.configure(yscrollcommand=vbar.set)
 
     # Inner frame chứa bảng
@@ -136,8 +136,8 @@ def build_prediction_table(parent: tk.Widget, width: int, height: int, df_result
             return
 
         # Có dữ liệu thật
-        for i, row in df.iterrows():
-            _add_row(_row_values(row, i), i + 1)
+        for new_idx, row in df.reset_index(drop=True).iterrows():
+            _add_row(_row_values(row, new_idx), new_idx)
 
     # Build initial
     try:
@@ -163,58 +163,142 @@ def build_prediction_table(parent: tk.Widget, width: int, height: int, df_result
     inner.bind("<Configure>", _sync_scroll)
     canvas.bind("<Configure>", _sync_scroll)
 
-    # Mouse wheel
+    # === Smooth Scroll ===
+    def smooth_scroll(delta, steps=8, delay=8):
+        """Cuộn mượt từng bước nhỏ."""
+        step_dir = -1 if delta > 0 else 1
+        count = 0
+
+        def _scroll():
+            nonlocal count
+            if count < steps:
+                canvas.yview_scroll(step_dir, "units")
+                count += 1
+                canvas.after(delay, _scroll)
+
+        _scroll()
+
+    # --- Mouse wheel (Windows/macOS/Linux) ---
     def _on_wheel(event):
-        delta = event.delta
-        if delta:
-            canvas.yview_scroll(-1 if delta > 0 else 1, "units")
-    canvas.bind("<MouseWheel>", _on_wheel)              # Windows/macOS
-    canvas.bind("<Button-4>", lambda e: _on_wheel(type("E", (), {"delta": 120})()))   # Linux up
-    canvas.bind("<Button-5>", lambda e: _on_wheel(type("E", (), {"delta": -120})()))  # Linux down
+        try:
+            if hasattr(event, 'delta') and event.delta != 0:  # Windows/macOS
+                smooth_scroll(event.delta)
+            elif event.num == 4:  # Linux scroll up
+                smooth_scroll(120)
+            elif event.num == 5:  # Linux scroll down
+                smooth_scroll(-120)
+        except Exception:
+            pass
+
+    # Bind all OS
+    canvas.bind_all("<MouseWheel>", _on_wheel)
+    canvas.bind_all("<Button-4>", _on_wheel)
+    canvas.bind_all("<Button-5>", _on_wheel)
 
     return canvas
 
+# === Filter Dropdown ===
+def build_cluster_filter_dropdown(parent, df_result=None, on_filter_change=None):
+    # Constants
+    BG = "#FFFFFF"
+    FG = "#B992B9"
+    BORDER = "#B992B9"
+    HOVER_BG = "#F2EAFB"
+    ACTIVE_BG = "#EDE6F9"
 
-def build_cluster_filter_dropdown(parent: tk.Widget, df_result=None, on_filter_change=None):
-    """Right-aligned 'Filter by Cluster' (sát mép phải)."""
-    filter_frame = tk.Frame(parent, bg="#FFFFFF", highlightthickness=0, bd=0)
+    frame = tk.Frame(parent, bg=BG)
 
-    # options
-    cluster_options = ["All Clusters"]
-    if df_result is not None and hasattr(df_result, "columns") and "cluster" in df_result.columns:
-        try:
-            unique_clusters = sorted(map(int, set(df_result["cluster"].dropna().tolist())))
-            cluster_options += [f"Cluster {c+1}" for c  in unique_clusters]
-        except Exception:
-            cluster_options += ["Cluster 0", "Cluster 1", "Cluster 2"]
-    else:
-        cluster_options += ["Cluster 0", "Cluster 1", "Cluster 2"]
+    # Left label
+    label = tk.Label(frame, text="Filter by Cluster:", bg=BG, fg=FG, font=("Crimson Pro", 14, "bold"))
+    label.pack(side="left", padx=(0, 8))
 
-    # style combobox
-    style = ttk.Style()
-    style.configure("Custom.TCombobox",
-                    fieldbackground="#FFFFFF",
-                    background="#644E94",
-                    foreground=TEXT)
+    # Build list of clusters
+    clusters = ["All Clusters"]
+    if df_result is not None and "cluster" in df_result.columns:
+        clusters += [f"Cluster {int(c)+1}" for c in sorted(df_result["cluster"].unique())]
 
-    var = tk.StringVar(value=cluster_options[0])
-    cmb = ttk.Combobox(filter_frame, values=cluster_options, textvariable=var,
-                       state="readonly", width=20, font=("Crimson Pro", 12),
-                       style="Custom.TCombobox")
+    # Selected value
+    var = tk.StringVar(value=clusters[0])
 
-    # pack theo thứ tự phải → trái, KHÔNG padding
-    cmb.pack(side="right", padx=0, pady=0)
-    label = _label(filter_frame, "Filter by Cluster:", "#FFFFFF", bold=True, anchor="e", padx=0, pady=0)
-    label.pack(side="left", padx=(6, 0), pady=0)  # 6px giữa label & combo; muốn sát hơn: đổi 6 -> 0
+    # Create button-like label with ▼ icon
+    btn = tk.Label(
+        frame, text=f"{var.get()} ▼", font=("Crimson Pro", 13),
+        bg=BG, fg=FG, bd=1, relief="solid",
+        padx=12, pady=6, highlightthickness=1,
+        highlightbackground=BORDER, cursor="hand2"
+    )
+    btn.pack(side="left")
 
-    if on_filter_change:
-        cmb.bind("<<ComboboxSelected>>", lambda e: on_filter_change(cmb.get()))
+    # Update display when var changes
+    def _update_text(*_):
+        btn.config(text=f"{var.get()} ▼")
+    var.trace("w", _update_text)
 
-    return filter_frame
+    # Hover effect
+    btn.bind("<Enter>", lambda e: btn.config(bg=HOVER_BG))
+    btn.bind("<Leave>", lambda e: btn.config(bg=BG))
+
+    # Popup dropdown
+    popup = None
+
+    def open_dropdown(event=None):
+        nonlocal popup
+        if popup and popup.winfo_exists():
+            popup.destroy()
+
+        popup = tk.Toplevel(frame)
+        popup.overrideredirect(True)
+        popup.configure(bg=BG)
+
+        # Position
+        x = btn.winfo_rootx()
+        y = btn.winfo_rooty() + btn.winfo_height()
+        popup.geometry(f"+{x}+{y}")
+
+        # Frame list
+        list_frame = tk.Frame(popup, bg=BG, bd=1, relief="solid",
+                              highlightthickness=1, highlightbackground=BORDER)
+        list_frame.pack(fill="both", expand=True)
+
+        # Add items
+        items = []
+        for opt in clusters:
+            item = tk.Label(list_frame, text=opt, bg=BG, fg=FG, font=("Crimson Pro SemiBold", 12), anchor="w", padx=12, pady=6)
+            item.pack(fill="x")
+            item.bind("<Enter>", lambda e, w=item: w.config(bg=ACTIVE_BG))
+            item.bind("<Leave>", lambda e, w=item: w.config(bg=BG))
+            item.bind("<Button-1>", lambda e, val=opt: _select(val))
+            items.append(item)
+
+        # --- Animation: slide down ---
+        popup.update_idletasks()
+        full_height = popup.winfo_height()
+        popup.geometry(f"{btn.winfo_width()}x0+{x}+{y}")
+
+        def slide(h=0):
+            if h < full_height:
+                popup.geometry(f"{btn.winfo_width()}x{h}+{x}+{y}")
+                popup.after(10, lambda: slide(h + 10))
+            else:
+                popup.geometry(f"{btn.winfo_width()}x{full_height}+{x}+{y}")
+
+        slide()
+
+        popup.bind("<FocusOut>", lambda e: popup.destroy())
+        popup.focus_force()
+
+    def _select(value):
+        var.set(value)
+        if popup:
+            popup.destroy()
+        if on_filter_change:
+            on_filter_change(value)
+
+    btn.bind("<Button-1>", open_dropdown)
+
+    return frame
 
 
-
-# ========= Standalone preview =========
 # ========= Standalone preview =========
 if __name__ == "__main__":
     import pandas as pd

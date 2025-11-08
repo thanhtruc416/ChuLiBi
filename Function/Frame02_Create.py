@@ -9,20 +9,20 @@ import bcrypt
 from Function.db import get_conn
 
 # ===== Cấu hình & validate =====
-MIN_PW_LEN = 6
+MIN_PW_LEN = 8
+MAX_PW_LEN = 128
 UTC = timezone.utc
 LOCAL_TZ = timezone(timedelta(hours=7))   # Asia/Ho_Chi_Minh
 
 _USERNAME_RE = re.compile(r"^[A-Za-z0-9_.-]{3,32}$")
 _EMAIL_RE    = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-# ---- Password policy ----
-MIN_PW_LEN = 8
-MAX_PW_LEN = 128
+
 _WEAK_LIST = {
     "123456","12345678","123456789","1234567890","111111","000000",
     "password","pass123","qwerty","abc123","iloveyou","admin","letmein"
 }
 _SPECIALS = r"!@#$%^&*()\-_=+\[\]{};:'\",.<>/?\\|`~"
+
 
 def _pw_check(pw: str):
     """
@@ -34,13 +34,13 @@ def _pw_check(pw: str):
       - Không thuộc danh sách mật khẩu yếu phổ biến
     """
     if not isinstance(pw, str):
-        return False, "Mật khẩu không hợp lệ"
+        return False, "Password is invalid."
 
     if len(pw) < MIN_PW_LEN or len(pw) > MAX_PW_LEN:
-        return False, f"Mật khẩu phải từ {MIN_PW_LEN} đến {MAX_PW_LEN} ký tự"
+        return False, "Password must have at least 8 characters. Include uppercase, lowercase, number and special character."
 
     if any(c.isspace() for c in pw):
-        return False, "Mật khẩu không được chứa khoảng trắng"
+        return False, "Password must not contain spaces."
 
     low = any(c.islower() for c in pw)
     up  = any(c.isupper() for c in pw)
@@ -48,10 +48,10 @@ def _pw_check(pw: str):
     sp  = any(c in _SPECIALS for c in pw)
 
     if not (low and up and dig and sp):
-        return False, "Mật khẩu phải có chữ thường, chữ hoa, số và ký tự đặc biệt"
+        return False, "Password must include uppercase, lowercase, number and special character."
 
     if pw.lower() in _WEAK_LIST:
-        return False, "Mật khẩu quá phổ biến, vui lòng chọn mật khẩu mạnh hơn"
+        return False, "Password is too common, please choose a stronger password."
 
     return True, ""
 
@@ -59,14 +59,14 @@ def _pw_check(pw: str):
 def _now_utc():
     return datetime.now(UTC)
 
+
 def _is_valid_username(u: str) -> bool:
     return bool(u) and _USERNAME_RE.match(u)
+
 
 def _is_valid_email(e: str) -> bool:
     return bool(e) and len(e) <= 254 and _EMAIL_RE.match(e)
 
-def _pw_ok(pw: str) -> bool:
-    return isinstance(pw, str) and len(pw) >= MIN_PW_LEN
 
 # ===== DB helpers =====
 def _fetch_latest_otp_row(email: str) -> Optional[dict]:
@@ -91,11 +91,13 @@ def _fetch_latest_otp_row(email: str) -> Optional[dict]:
     keys = ["id", "email", "otp_hash", "expires_at", "used", "created_at"]
     return dict(zip(keys, row))
 
+
 def _mark_otp_used(otp_id: int):
     with get_conn() as conn:
         with conn.cursor() as cur:
             cur.execute("UPDATE password_resets SET used=1 WHERE id=%s", (otp_id,))
         conn.commit()
+
 
 def _email_exists(email: str) -> bool:
     with get_conn() as conn:
@@ -103,11 +105,13 @@ def _email_exists(email: str) -> bool:
             cur.execute("SELECT 1 FROM user_data WHERE email=%s LIMIT 1", (email.lower(),))
             return cur.fetchone() is not None
 
+
 def _username_exists(username: str) -> bool:
     with get_conn() as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT 1 FROM user_data WHERE username=%s LIMIT 1", (username,))
             return cur.fetchone() is not None
+
 
 def _create_user(username: str, email: str, password: str) -> Dict[str, Any]:
     pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
@@ -132,6 +136,7 @@ def _create_user(username: str, email: str, password: str) -> Dict[str, Any]:
         "role": None,
     }
 
+
 # ===== Parse thời gian an toàn (vá lệch UTC/+07) =====
 def _parse_as(dt_val, tz_assume):
     if dt_val is None:
@@ -147,17 +152,14 @@ def _parse_as(dt_val, tz_assume):
         d = d.replace(tzinfo=tz_assume)
     return d.astimezone(UTC)
 
+
 def _safe_expiry_utc(raw_exp):
-    """
-    Cho 1 giá trị expires_at (naive), parse theo 2 giả định:
-    - expires_at là UTC
-    - expires_at là +07
-    Lấy mốc MUỘN HƠN để tránh hết hạn oan khi dữ liệu lịch sử lẫn lộn.
-    """
+    """Chọn hạn OTP an toàn nhất giữa UTC và +07."""
     exp_utc   = _parse_as(raw_exp, UTC)
     exp_local = _parse_as(raw_exp, LOCAL_TZ)
     candidates = [x for x in (exp_utc, exp_local) if x is not None]
     return max(candidates) if candidates else None
+
 
 # ===== Public API =====
 class AuthService:
@@ -167,51 +169,72 @@ class AuthService:
         email    = (email or "").strip()
         otp      = (otp or "").strip()
 
+        # Validate dữ liệu đầu vào
         if not _is_valid_username(username):
-            return {"success": False, "message": "Username không hợp lệ (3–32 ký tự: chữ/số/._-)"}
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "Username is not valid (3–32 characters: letters/numbers/._-)"}
+
         if not _is_valid_email(email):
-            return {"success": False, "message": "Email không hợp lệ (vui lòng quay lại bước trước)"}
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "Email is not valid (please go back to the previous step)"}
+
         ok_pw, msg_pw = _pw_check(password)
         if not ok_pw:
-            return {"success": False, "message": msg_pw}
+            return {"success": False, "popup": "popup_10", "title": "Registration Failed",
+                    "subtitle": msg_pw}
+
         if password != confirm_password:
-            return {"success": False, "message": "Xác nhận mật khẩu không khớp"}
+            return {"success": False, "popup": "popup_11", "title": "Registration Failed",
+                    "subtitle": "Confirm Password must be same as Password"}
 
         if not otp.isdigit() or not (4 <= len(otp) <= 8):
-            return {"success": False, "message": "OTP không hợp lệ"}
+            return {"success": False, "popup": "popup_10", "title": "Registration Failed",
+                    "subtitle": "OTP is not valid (4–8 digits)"}
 
+        # Kiểm tra tồn tại trong DB
         if _email_exists(email):
-            return {"success": False, "message": "Email đã tồn tại trong hệ thống"}
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "Email already exists"}
         if _username_exists(username):
-            return {"success": False, "message": "Username đã được sử dụng"}
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "Username already exists"}
 
+        # Lấy OTP mới nhất
         row = _fetch_latest_otp_row(email)
         if not row:
-            return {"success": False, "message": "Không tìm thấy OTP cho email này. Vui lòng gửi lại OTP."}
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "No OTP found for this email. Please send OTP again."}
 
         if int(row.get("used", 0) or 0) == 1:
-            return {"success": False, "message": "OTP đã được sử dụng. Vui lòng yêu cầu mã mới."}
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "OTP has been used. Please request a new OTP."}
 
-        # == FIX: chọn hạn OTP an toàn bất chấp lệch timezone ==
+        # Check hạn OTP
         exp_utc = _safe_expiry_utc(row.get("expires_at"))
         if exp_utc is None:
-            return {"success": False, "message": "Không xác định được hạn OTP. Vui lòng gửi lại mã."}
-        if _now_utc() > exp_utc:
-            return {"success": False, "message": "OTP đã hết hạn. Vui lòng gửi lại OTP."}
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "Cannot determine OTP expiry. Please send OTP again."}
 
-        # Kiểm OTP
+        if _now_utc() > exp_utc:
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "OTP has expired. Please send OTP again."}
+
+        # Kiểm tra OTP hash
         otp_hash = (row.get("otp_hash") or "").encode()
         try:
             if not otp_hash or not bcrypt.checkpw(otp.encode(), otp_hash):
-                return {"success": False, "message": "OTP không đúng"}
+                return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                        "subtitle": "OTP is not correct"}
         except Exception:
-            return {"success": False, "message": "OTP không đúng"}
+            return {"success": False, "popup": "popup_09", "title": "Registration Failed",
+                    "subtitle": "OTP is not correct"}
 
-        # Tạo user + mark used
+        # Tạo user + đánh dấu OTP đã dùng
         user_data = _create_user(username, email, password)
         try:
             _mark_otp_used(int(row["id"]))
         except Exception:
             pass
 
-        return {"success": True, "message": "Tạo tài khoản thành công", "user_data": user_data}
+        return {"success": True, "popup": "popup_05", "title": "Registration Successful",
+                "subtitle": "Account created! Please complete your profile.", "user_data": user_data}

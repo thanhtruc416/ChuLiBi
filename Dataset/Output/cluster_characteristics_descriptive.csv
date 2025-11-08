@@ -1,4 +1,4 @@
-﻿Restaurant Rating,No. of orders placed,Age,Delivery Rating,Family size,Delivery Time,Order Value,Mức độ coi trọng sự tiện lợi,Vấn đề dịch vụ,Nhạy cảm ưu đãi/đánh giá
-2.74,146.49,23.74,2.92,3.17,36.8,1.71,Cao,Cao,Trung bình
-3.22,129.27,24.75,2.67,2.95,42.93,1.9,Thấp,Thấp,Cao
-3.08,139.83,29.94,3.36,4.1,34.4,2.43,Cao,Trung bình,Thấp
+﻿Delivery Time,Restaurant Rating,Delivery Rating,Order Value,Age,No. of orders placed,Family size,Mức độ coi trọng sự tiện lợi,Vấn đề dịch vụ,Nhạy cảm ưu đãi/đánh giá
+36.8,2.74,2.92,1.71,23.74,146.49,3.17,Cao,Cao,Trung bình
+42.93,3.22,2.67,1.9,24.75,129.27,2.95,Thấp,Thấp,Cao
+34.4,3.08,3.36,2.43,29.94,139.83,4.1,Cao,Trung bình,Thấp

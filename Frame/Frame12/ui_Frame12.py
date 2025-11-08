@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage
 
 from Function.dropdown_profile import DropdownMenu
-
+from QMess.Qmess_calling import Qmess
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH /Path("assets_Frame12")
 
@@ -76,11 +76,11 @@ class Frame12(tk.Frame):
 
         self.canvas.create_text(
             420.0,
-            120.0,
+            125.0,
             anchor="nw",
             text="Change Information",
             fill="#000000",
-            font=("Young Serif", 35 * -1)
+            font=("Crimson Pro Bold", 45 * -1)
         )
 
         # ========== ENTRIES ==========
@@ -334,11 +334,11 @@ class Frame12(tk.Frame):
 
         self.canvas.create_text(
             420.0,
-            585.0,
+            590.0,
             anchor="nw",
             text="Our Team",
             fill="#000000",
-            font=("Young Serif", 35 * -1)
+            font=("Crimson Pro Bold", 45 * -1)
         )
 
         # Save button
@@ -645,6 +645,8 @@ class Frame12(tk.Frame):
         """Khi nhấn nút Save → cập nhật thông tin người dùng"""
         from tkinter import messagebox
         from Function.user_repository import update_user_info
+        import re
+
         print("[DEBUG] Save button clicked")
 
         full_name = self.entry_FullName.get().strip()
@@ -654,18 +656,46 @@ class Frame12(tk.Frame):
         username = self.label_Username_value.cget("text").strip()
         email = self.entry_Gmail.get().strip()
 
-
+        # --- Kiểm tra thông tin bắt buộc ---
         if not full_name or not business_name or not role:
-            messagebox.showwarning("Thiếu thông tin", "Vui lòng điền đầy đủ thông tin.")
+            Qmess.popup_24(parent=self, title="Warning",
+                           subtitle="Please fill all the following information below")
             return
 
+        # --- Rào điều kiện password ---
+        if password:
+            if len(password) < 8:
+                Qmess.popup_24(parent=self, title="Warning",
+                               subtitle="Password must be at least 8 characters long.")
+                return
+            if not re.search(r"[A-Z]", password):
+                Qmess.popup_24(parent=self, title="Warning",
+                               subtitle="Password must include at least one uppercase letter.")
+                return
+            if not re.search(r"[a-z]", password):
+                Qmess.popup_24(parent=self, title="Warning",
+                               subtitle="Password must include at least one lowercase letter.")
+                return
+            if not re.search(r"\d", password):
+                Qmess.popup_24(parent=self, title="Warning",
+                               subtitle="Password must include at least one number.")
+                return
+            if not re.search(r"[!@#$%^&*(),.?\":{}|<>_\-\+=/\\\[\]`~]", password):
+                Qmess.popup_24(parent=self, title="Warning",
+                               subtitle="Password must include at least one special character.")
+                return
+
+        # --- Cập nhật dữ liệu ---
         try:
-            update_user_info(username, full_name, business_name, role, email, password if password else None)
-            messagebox.showinfo("Thành công", "Thông tin người dùng đã được lưu thành công!")
+            update_user_info(username, full_name, business_name, role, email,
+                             password if password else None)
+            Qmess.popup_22(parent=self, title="Success",
+                           subtitle="User information has been saved successfully!")
             self.entry_Password.delete(0, tk.END)
         except Exception as e:
-            messagebox.showerror("Lỗi", f"Không thể lưu thông tin:\n{e}")
-
+            Qmess.popup_24(parent=self, title="Warning",
+                           subtitle=f"An error occurred while saving: {e}")
+            return
 
 
 # =====================================================

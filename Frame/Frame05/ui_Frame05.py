@@ -1,7 +1,10 @@
 # frame05.py
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox, StringVar, NORMAL, DISABLED
+
+from QMess.Qmess_calling import Qmess
 import tkinter as tk
+
 
 # ===== functions: lấy username theo email + verify OTP & reset mật khẩu =====
 from Function.Frame05_ResetPassword import get_username_by_email, reset_password_with_otp
@@ -218,33 +221,43 @@ class Frame05(Frame):
         confirm_pw = self.confirmpw_var.get()
         otp = self.otp_var.get().strip()
 
-        if not self.email:
-            messagebox.showwarning("Cảnh báo", "Thiếu email để đặt lại mật khẩu")
-            return
         if not otp:
-            messagebox.showwarning("Cảnh báo", "Vui lòng nhập OTP")
+            Qmess.popup_18(parent=self,
+                        title="Warning",
+                        subtitle="Please enter the OTP.")
             return
         if not new_pw or not confirm_pw:
-            messagebox.showwarning("Cảnh báo", "Vui lòng nhập mật khẩu mới")
+            Qmess.popup_19(parent=self,
+                        title="Warning",
+                        subtitle="Please enter your new password.")
             return
         if new_pw != confirm_pw:
-            messagebox.showwarning("Cảnh báo", "Mật khẩu nhập lại không khớp")
+            Qmess.popup_20(parent=self,
+                        title="Warning",
+                        subtitle="The passwords do not match.")
             return
         if len(new_pw) < 8:
-            messagebox.showwarning("Cảnh báo", "Mật khẩu tối thiểu 8 ký tự")
+            Qmess.popup_21(parent=self,
+                        title="Warning",
+                        subtitle="The password must be at least 8 characters long.")
             return
 
         self.button_resetpassword.config(state=DISABLED)
         try:
             ok, msg = reset_password_with_otp(self.email, otp, new_pw)
             if ok:
-                messagebox.showinfo("Thành công", msg)
+                Qmess.popup_22(parent=self,
+                            title="Success",subtitle=msg)
                 if self.controller:
                     self.controller.show_frame("Frame01")  # quay về màn đăng nhập
             else:
-                messagebox.showwarning("Không thể đặt lại", msg)
+                Qmess.popup_29(parent=self,
+                        title="Error",
+                        subtitle=f"Unable to reset password")
         except Exception as e:
-            messagebox.showerror("Lỗi", f"Không thể đặt lại mật khẩu: {e}")
+            Qmess.popup_29(parent=self,
+                        title="Error",
+                        subtitle=f"Unable to reset password: {e}")
         finally:
             self.button_resetpassword.config(state=NORMAL)
 
@@ -270,6 +283,15 @@ class Frame05(Frame):
         """
         self.button_eyes_password.config(image=self.eye_show_img if self.pw1_visible else self.eye_hide_img)
         self.button_eyes.config(image=self.eye_show_img if self.pw2_visible else self.eye_hide_img)
+
+        # Bind Enter để gọi lại handler (giống Frame01)
+        try:
+            self.entry_newpassword.bind("<Return>", lambda _e: self.on_reset_password())
+            self.entry_confirm_newpassword.bind("<Return>", lambda _e: self.on_reset_password())
+            self.entry_OTP.bind("<Return>", lambda _e: self.on_reset_password())
+            self.bind("<Return>", lambda _e: self.on_reset_password())
+        except Exception:
+            pass
 
 
 # ==========================

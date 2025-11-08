@@ -1,49 +1,51 @@
-# Qmess_calling.py
 """
-Unified popup caller for Tkinter app.
+Qmess_calling.py
 
-- Provides Qmess.show(<CODE>) and helper methods (e.g., Qmess.login_invalid())
-- Auto-loads PNG assets (icon, gradient button) from several possible layouts.
-- Falls back to text-only layout if assets are missing.
+Mục tiêu: Gọi được 29 QMess (01..29) bạn đã làm sẵn (thư mục `ui_popup_XX/assets`).
 
-Directory strategies (checked in order) for each popup N (1..15):
-  1) ./ui_popup_XX/assets/
-  2) ./assets/ui_popup_XX/
-  3) ./assets/popup_XX/
-  4) ./assets/            # one shared folder for all popups
+Cách hoạt động:
+- Xây dựng Toplevel (không dùng `Tk()` độc lập) để nhúng vào app chính.
+- Tự động tìm ảnh trong các đường dẫn quen thuộc của mỗi popup n (1..29):
+    1) ./ui_popup_XX/assets/
+    2) ./assets/ui_popup_XX/
+    3) ./assets/popup_XX/
+    4) ./assets/ (dùng chung) – ưu tiên đặt tên image_n*.png / button_n*.png
+- Nếu thiếu ảnh, sẽ fallback sang layout chữ đơn giản.
 
-If using a shared folder (4), prefer files named image_N*.png / button_N*.png.
-Otherwise any image_*.png / button_*.png will be used.
+API chính:
+- Qmess.show(code_or_index, parent=None, on_ok=None, title=None, subtitle=None)
+  - code_or_index: có thể là chuỗi mã hoặc số (1..29)
+  - title/subtitle: cho phép override nội dung chữ; nếu không truyền, sẽ dùng gợi ý sẵn hoặc để trống
+- Helper: Qmess.popup_01(...) .. Qmess.popup_29(...)
 """
 
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Callable, Optional, Dict, Iterable, Tuple
+from typing import Callable, Optional, Dict, Iterable, Tuple, Union
 from pathlib import Path
 import tkinter as tk
 from tkinter import Toplevel, Canvas, Button, PhotoImage
 
-ROOT_DIR = Path(__file__).resolve().parent  # where this file lives
+ROOT_DIR = Path(__file__).resolve().parent
+
+# Phân loại icon mong muốn theo chỉ số popup (dựa vào kịch bản)
+_SUCCESS_INDEXES = {3, 5, 7, 14, 16, 22, 28}
+_WARNING_INDEXES = {15, 18, 19, 20, 21, 23, 24, 25, 29}
+_ERROR_INDEXES = {
+    1, 2, 4, 6, 8, 9, 10, 11, 12, 13, 17, 26, 27
+}
 
 
 # ------------------------ Asset discovery ------------------------
 def _find_assets_for(n: int) -> Tuple[Optional[Path], int]:
-    """
-    Return (assets_dir, index) for popup n.
-
-    assets_dir may be None (text-only). `index` is forwarded so loaders can try
-    image_{index}.png / button_{index}.png when using a shared assets folder.
-    """
     candidates = [
         ROOT_DIR / f"ui_popup_{n:02d}" / "assets",
         ROOT_DIR / "assets" / f"ui_popup_{n:02d}",
         ROOT_DIR / "assets" / f"popup_{n:02d}",
-        ROOT_DIR / "assets",  # shared
+        ROOT_DIR / "assets",
     ]
-
     for p in candidates:
-        if p.exists():
-            # If there is at least icon or button, accept
+        if p.exists() and p.is_dir():
             if any(p.glob("image_*.png")) or any(p.glob("button_*.png")):
                 return p, n
     return None, n
@@ -60,13 +62,13 @@ def _first_match(folder: Path, patterns: Iterable[str]) -> Optional[Path]:
 # ------------------------ Core window ------------------------
 @dataclass
 class PopupSpec:
-    title: str
-    subtitle: str
+    title: str = ""
+    subtitle: str = ""
     width: int = 480
     height: int = 329
     ok_text: str = "Okay"
     assets_dir: Optional[Path] = None
-    asset_index: int = 0  # popup number for naming in shared assets
+    asset_index: int = 0
 
 
 class PopupWindow:
@@ -81,13 +83,11 @@ class PopupWindow:
         self.top.configure(bg="#FFFFFF")
         self.top.resizable(False, False)
 
-        # Keep references to images
         self._img_icon: Optional[PhotoImage] = None
         self._img_btn: Optional[PhotoImage] = None
 
         self._build_ui()
 
-    # -------------- geometry helpers --------------
     def _center(self):
         self.top.update_idletasks()
         sw, sh = self.top.winfo_screenwidth(), self.top.winfo_screenheight()
@@ -95,15 +95,27 @@ class PopupWindow:
         y = (sh - self.spec.height) // 2
         self.top.geometry(f"{self.spec.width}x{self.spec.height}+{x}+{y}")
 
-    # -------------- asset loading --------------
     def _load_icon(self) -> Optional[PhotoImage]:
         d = self.spec.assets_dir
         if not d:
             return None
         n = self.spec.asset_index
-        # Prefer exact-numbered names when shared folder is used
         preferred = [f"image_{n}.png", f"image_{n}_*.png"]
-        generic = ["image_1.png", "image_*.png", "icon_*.png", "icon.png"]
+
+        # Ưu tiên icon theo ngữ nghĩa nếu không có ảnh theo số
+        if n in _SUCCESS_INDEXES:
+            semantic_first = ["image_success.png", "icon_success.png"]
+        elif n in _WARNING_INDEXES:
+            semantic_first = ["image_warning.png", "icon_warning.png", "image_alert.png"]
+        else:  # lỗi
+            semantic_first = ["image_cancel.png", "icon_error.png", "image_alert.png"]
+
+        generic = [
+            *semantic_first,
+            "image_*.png", "icon_*.png", "icon.png",
+            # fallback tên cụ thể cũ
+            "image_cancel.png",
+        ]
         path = _first_match(d, preferred + generic)
         if path:
             try:
@@ -118,7 +130,7 @@ class PopupWindow:
             return None
         n = self.spec.asset_index
         preferred = [f"button_{n}.png", f"button_{n}_*.png"]
-        generic = ["button_Save.png", "button_*.png"]
+        generic = ["button_okay.png", "button_Save.png", "button_*.png"]
         path = _first_match(d, preferred + generic)
         if path:
             try:
@@ -127,44 +139,35 @@ class PopupWindow:
                 return None
         return None
 
-    # -------------- UI --------------
     def _build_ui(self):
         w, h = self.spec.width, self.spec.height
         c = Canvas(self.top, bg="#FFFFFF", height=h, width=w,
                    bd=0, highlightthickness=0, relief="ridge")
         c.place(x=0, y=0)
 
-        # Try assets
         self._img_icon = self._load_icon()
         if self._img_icon:
-            # center icon horizontally near top
             c.create_image(w / 2, 90, image=self._img_icon)
 
-        # Title + Subtitle (colors per design)
-        # Use pixel-like sizes close to Tkinter Designer look
-        w, h = self.spec.width, self.spec.height
-        # Title
         c.create_text(
-            w / 2, 150,  # đặt X ở giữa
-            anchor="n",  # neo theo đỉnh -> canh giữa ngang
-            text=self.spec.title,
+            w / 2, 150,
+            anchor="n",
+            text=self.spec.title or "",
             fill="#706093",
             font=("Young Serif", 18),
-            width=w - 40, #tuyf chọn hàng để xuống dòng
-            justify="center"  # (tuỳ chọn) căn giữa khi xuống dòng
+            width=w - 40,
+            justify="center"
         )
-        # Subtitle
         c.create_text(
             w / 2, 195,
             anchor="n",
-            text=self.spec.subtitle,
+            text=self.spec.subtitle or "",
             fill="#B992B9",
             font=("Crimson Pro", 14),
             width=w - 80,
             justify="center"
         )
 
-        # Button
         self._img_btn = self._load_button_bg()
         if self._img_btn:
             btn = Button(self.top, image=self._img_btn,
@@ -172,7 +175,6 @@ class PopupWindow:
                          font=("Crimson Pro", 14, "bold"), borderwidth=0,
                          highlightthickness=0, relief="flat",
                          command=self._ok_and_close)
-            # try to mimic exported sizes (around 289x61)
             bw, bh = 289, 61
             x = (w - bw) // 2
             y = h - 91
@@ -187,7 +189,18 @@ class PopupWindow:
         self._center()
         self.top.deiconify()
         self.top.transient(self.parent)
+        try:
+            self.top.lift()
+            self.top.attributes('-topmost', True)
+            # hạ cờ topmost về False sau khi đã nổi lên trên cùng
+            self.top.after(200, lambda: self.top.attributes('-topmost', False))
+        except Exception:
+            pass
         self.top.grab_set()
+        try:
+            self.top.focus_force()
+        except Exception:
+            pass
 
     def _ok_and_close(self):
         try:
@@ -199,63 +212,190 @@ class PopupWindow:
 
 # ------------------------ Public API ------------------------
 class Qmess:
-    """
-    Usage:
-        from Qmess_calling import Qmess
-        Qmess.show("LOGIN_INVALID", parent=self)
-        # or helpers:
-        Qmess.login_invalid(self)
+    """Bộ gọi QMess 1..29 dựa theo assets đã export từ Tkinter Designer.
+
+    Cách dùng nhanh:
+        Qmess.show(4, parent=self)                      # gọi popup 04
+        Qmess.show("LOGIN_INVALID", parent=self)        # nếu có mapping sẵn
+        Qmess.popup_17(parent=self, title="Warning")    # helper theo số, override title
     """
 
-    # Registry filled below
     _REGISTRY: Dict[str, PopupSpec] = {}
 
-    @staticmethod
-    def _make(title: str, subtitle: str, n: int) -> PopupSpec:
-        d, idx = _find_assets_for(n)
-        return PopupSpec(title=title, subtitle=subtitle,
-                         assets_dir=d, asset_index=idx)
+    # Một số mã tên quen dùng (có thể chỉnh theo nhu cầu). Map → index (1..29)
+    _NAMED_TO_INDEX: Dict[str, int] = {
+        # Frame 01 – Login / Logout
+        "LOGIN_ERROR": 1,
+        "LOGIN_FAILED": 2,
+        "LOGIN_SUCCESSFUL": 3,
 
-    # Build registry
-    _REGISTRY = {
-        "IMPORT_SUCCESS":          _make.__func__("Data imported successfully", "Start your journey now!", 1),
-        "SAVE_DONE":               _make.__func__("Done", "All changes have been saved!", 2),
-        "IMPORT_BAD_FORMAT":       _make.__func__("Invalid file format", "Please import again!", 3),
-        "LOGIN_INVALID":           _make.__func__("Invalid username or password", "Please enter correct username or password!", 4),
-        "LOGIN_MISSING":           _make.__func__("Missing data", "Please enter both username and password!", 5),
-        "OTP_SENT":                _make.__func__("Sent!", "OTP has been sent successfully", 6),
-        "LOGIN_SUCCESS":           _make.__func__("Signed in successfully!", "Welcome!", 7),
-        "IMPORT_MISSING_REQUIRED": _make.__func__("Imported data is missing required", "Please import again!", 8),
-        "RESET_PASSWORD_SUCCESS":  _make.__func__("Password reset successfully", "You can login again now!", 9),
-        "PROFILE_MISSING_REQUIRED":_make.__func__("Missing data", "Please fill in all required field!", 10),
-        "CANNOT_CONNECT_SERVER":   _make.__func__("Cannot connect to the server", "Please try again later!", 11),
-        "EMAIL_NOT_FOUND":         _make.__func__("Email not found or incorrect", "Please fill correct email!", 12),
-        "PASSWORD_MISMATCH":       _make.__func__("New password and confirmation do not match!", "", 13),
-        "REGISTER_SUCCESS":        _make.__func__("Registration successfully!", "Your profile has been completed", 14),
-        "WRONG_OTP":               _make.__func__("Wrong OTP!", "Please fill again", 15),
+        # Frame 02 – Registration
+        "REGISTRATION_FAILED_MISSING_ENTRY": 4,
+        "REGISTRATION_SUCCESSFUL": 5,
+        "INVALID_EMAIL": 6,
+        "OTP_SENT": 7,
+        "TERMS_AND_CONDITIONS": 8,
+        "REGISTRATION_FAILED_USERNAME_EXISTS": 9,
+        "REGISTRATION_FAILED_PASSWORD_REQUIREMENT": 10,
+        "REGISTRATION_FAILED_CONFIRM_MISMATCH": 11,
+        "REGISTRATION_FAILED_OTP_WRONG": 12,
+
+        # Frame 03 – Profile
+        "INCOMPLETE_PROFILE": 13,
+        "PROFILE_COMPLETED": 14,
+
+        # Frame 04 – Forgot Password / OTP
+        "WARNING_EMAIL_REQUIRED": 15,
+        "SUCCESS_OTP_SENT": 16,
+        "EMAIL_NOT_FOUND": 17,
+
+        # Frame 05 – Reset Password
+        "WARNING_ENTER_OTP": 18,
+        "WARNING_ENTER_NEW_PASSWORD": 19,
+        "WARNING_PASSWORDS_DO_NOT_MATCH": 20,
+        "WARNING_PASSWORD_TOO_SHORT": 21,
+        "SUCCESS_PASSWORD_RESET": 22,
+
+        # Frame 09/10/… – Data / CustomerID
+        "WARNING_CUSTOMERID_NOT_EXIST": 23,
+
+        # Frame 11 – Data Management
+        "WARNING_DATA_INCOMPLETE": 24,
+
+        # Frame 12 – Password Change
+        "CHANGE_FAILED_PASSWORD_REQUIREMENTS": 25,
+
+        # Frame 13 – Data Upload / Management
+        "FILE_ERROR_INVALID_FORMAT": 26,
+        "DATA_MISSING_REQUIRED_FIELDS": 27,
+        "UPLOAD_SUCCESS": 28,
+
+        # Frame 14 – Delivery (theo file 29)
+        "WARNING_DELIVERY_DATA_MISSING": 29,
+    }
+
+    # Gợi ý nội dung mặc định (map 1..29 theo tài liệu kịch bản)
+    _DEFAULT_TEXTS: Dict[int, Tuple[str, str]] = {
+        # Frame 01 – Login / Logout
+        1: ("Login Error", "Please enter both username and password"),
+        2: ("Login Failed", "Unknown error"),
+        3: ("Login Successful", "Welcome back, {name}!"),
+
+        # Frame 02 – Registration
+        4: ("Registration Failed", "Please fill the missing entry"),
+        5: ("Registration Successful", "Account created! Please complete your profile."),
+        6: ("Invalid email", "Please enter a valid email address"),
+        7: ("OTP Sent", "We sent a verification code to your email."),
+        8: ("Terms & Conditions", "Please accept the Terms & Privacy Policy to continue"),
+        9: ("Registration Failed", "Please choose another username"),
+        10: ("Registration Failed", "Password must have 8 characters."),
+        11: ("Registration Failed", "Confirm Password must be same as Password"),
+        12: ("Registration Failed", "OTP is wrong"),
+
+        # Frame 03 – Profile / Update Info
+        13: ("Incomplete Profile", "Please fill in all fields to complete your profile"),
+        14: ("Profile Completed", "Welcome, {full_name}! Your profile has been completed successfully! Please login again."),
+
+        # Frame 04 – Forgot Password / OTP
+        15: ("Warning", "Please enter your email first"),
+        16: ("Success", "The OTP is valid for 10 minutes. Please continue to enter it quickly."),
+        17: ("Email Not Found", "This email does not exist in our system. Please check and try again."),
+
+        # Frame 05 – Reset Password
+        18: ("Warning", "Please enter the OTP"),
+        19: ("Warning", "Please enter your new password"),
+        20: ("Warning", "The passwords do not match"),
+        21: ("Warning", "The password must be at least 8 characters long"),
+        22: ("Success", "Password reset successfully"),
+
+        # Frame 09 – Data / Customer ID
+        23: ("Warning", "CustomerID does not exist"),
+
+        # Frame 11 – Data Management
+        24: ("Warning", "Please fill all the following information below"),
+
+        # Frame 12 – Password Change
+        25: ("Change Failed", "Password must have 8 characters."),
+
+        # Frame 13 – Data Upload / Management
+        26: ("File Error", "Invalid file format"),
+        27: ("Data Missing", "Please fill all required fields"),
+        28: ("Upload Success", "Data has been uploaded successfully"),
+
+        # Frame 14 – Delivery
+        29: ("Error", "Something went wrong! Please try again"),
     }
 
     @staticmethod
-    def show(code: str, parent: Optional[tk.Misc] = None,
-             on_ok: Optional[Callable[[], None]] = None) -> Toplevel:
-        spec = Qmess._REGISTRY.get((code or "").upper())
-        if not spec:
-            spec = PopupSpec(title=code or "Message", subtitle="")
+    def _make_for_index(n: int,
+                        title: Optional[str] = None,
+                        subtitle: Optional[str] = None,
+                        ok_text: str = "Okay") -> PopupSpec:
+        d, idx = _find_assets_for(n)
+        if title is None or subtitle is None:
+            t, s = Qmess._DEFAULT_TEXTS.get(n, ("", ""))
+            title = t if title is None else title
+            subtitle = s if subtitle is None else subtitle
+        return PopupSpec(title=title or "", subtitle=subtitle or "",
+                         ok_text=ok_text, assets_dir=d, asset_index=idx)
+
+    @staticmethod
+    def show(code_or_index: Union[str, int],
+             parent: Optional[tk.Misc] = None,
+             on_ok: Optional[Callable[[], None]] = None,
+             title: Optional[str] = None,
+             subtitle: Optional[str] = None,
+             ok_text: str = "Okay") -> Toplevel:
+        # Ưu tiên: nếu là số 1..29 → dùng theo index
+        idx: Optional[int] = None
+        if isinstance(code_or_index, int):
+            idx = code_or_index
+        else:
+            code = (code_or_index or "").strip().upper()
+            if code.isdigit():
+                try:
+                    idx = int(code)
+                except Exception:
+                    idx = None
+            if idx is None:
+                idx = Qmess._NAMED_TO_INDEX.get(code)
+
+        if idx is not None and 1 <= idx <= 29:
+            spec = Qmess._make_for_index(idx, title=title, subtitle=subtitle, ok_text=ok_text)
+        else:
+            # Fallback – popup chữ trơn
+            spec = PopupSpec(title=title or (str(code_or_index) if code_or_index else "Message"),
+                             subtitle=subtitle or "",
+                             ok_text=ok_text)
         return PopupWindow(parent, spec, on_ok=on_ok).top
 
-    # Convenience helpers
-    import_success              = staticmethod(lambda parent=None, on_ok=None: Qmess.show("IMPORT_SUCCESS", parent, on_ok))
-    save_done                   = staticmethod(lambda parent=None, on_ok=None: Qmess.show("SAVE_DONE", parent, on_ok))
-    import_bad_format           = staticmethod(lambda parent=None, on_ok=None: Qmess.show("IMPORT_BAD_FORMAT", parent, on_ok))
-    login_invalid               = staticmethod(lambda parent=None, on_ok=None: Qmess.show("LOGIN_INVALID", parent, on_ok))
-    login_missing               = staticmethod(lambda parent=None, on_ok=None: Qmess.show("LOGIN_MISSING", parent, on_ok))
-    otp_sent                    = staticmethod(lambda parent=None, on_ok=None: Qmess.show("OTP_SENT", parent, on_ok))
-    login_success               = staticmethod(lambda parent=None, on_ok=None: Qmess.show("LOGIN_SUCCESS", parent, on_ok))
-    import_missing_required     = staticmethod(lambda parent=None, on_ok=None: Qmess.show("IMPORT_MISSING_REQUIRED", parent, on_ok))
-    reset_password_success      = staticmethod(lambda parent=None, on_ok=None: Qmess.show("RESET_PASSWORD_SUCCESS", parent, on_ok))
-    profile_missing_required    = staticmethod(lambda parent=None, on_ok=None: Qmess.show("PROFILE_MISSING_REQUIRED", parent, on_ok))
-    cannot_connect_server       = staticmethod(lambda parent=None, on_ok=None: Qmess.show("CANNOT_CONNECT_SERVER", parent, on_ok))
-    email_not_found             = staticmethod(lambda parent=None, on_ok=None: Qmess.show("EMAIL_NOT_FOUND", parent, on_ok))
-    password_mismatch           = staticmethod(lambda parent=None, on_ok=None: Qmess.show("PASSWORD_MISMATCH", parent, on_ok))
-    register_success            = staticmethod(lambda parent=None, on_ok=None: Qmess.show("REGISTER_SUCCESS", parent, on_ok))
-    wrong_otp                   = staticmethod(lambda parent=None, on_ok=None: Qmess.show("WRONG_OTP", parent, on_ok))
+    # 29 helpers theo số
+    popup_01 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(1, parent, on_ok, title, subtitle, ok_text))
+    popup_02 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(2, parent, on_ok, title, subtitle, ok_text))
+    popup_03 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(3, parent, on_ok, title, subtitle, ok_text))
+    popup_04 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(4, parent, on_ok, title, subtitle, ok_text))
+    popup_05 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(5, parent, on_ok, title, subtitle, ok_text))
+    popup_06 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(6, parent, on_ok, title, subtitle, ok_text))
+    popup_07 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(7, parent, on_ok, title, subtitle, ok_text))
+    popup_08 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(8, parent, on_ok, title, subtitle, ok_text))
+    popup_09 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(9, parent, on_ok, title, subtitle, ok_text))
+    popup_10 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(10, parent, on_ok, title, subtitle, ok_text))
+    popup_11 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(11, parent, on_ok, title, subtitle, ok_text))
+    popup_12 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(12, parent, on_ok, title, subtitle, ok_text))
+    popup_13 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(13, parent, on_ok, title, subtitle, ok_text))
+    popup_14 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(14, parent, on_ok, title, subtitle, ok_text))
+    popup_15 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(15, parent, on_ok, title, subtitle, ok_text))
+    popup_16 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(16, parent, on_ok, title, subtitle, ok_text))
+    popup_17 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(17, parent, on_ok, title, subtitle, ok_text))
+    popup_18 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(18, parent, on_ok, title, subtitle, ok_text))
+    popup_19 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(19, parent, on_ok, title, subtitle, ok_text))
+    popup_20 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(20, parent, on_ok, title, subtitle, ok_text))
+    popup_21 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(21, parent, on_ok, title, subtitle, ok_text))
+    popup_22 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(22, parent, on_ok, title, subtitle, ok_text))
+    popup_23 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(23, parent, on_ok, title, subtitle, ok_text))
+    popup_24 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(24, parent, on_ok, title, subtitle, ok_text))
+    popup_25 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(25, parent, on_ok, title, subtitle, ok_text))
+    popup_26 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(26, parent, on_ok, title, subtitle, ok_text))
+    popup_27 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(27, parent, on_ok, title, subtitle, ok_text))
+    popup_28 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(28, parent, on_ok, title, subtitle, ok_text))
+    popup_29 = staticmethod(lambda parent=None, on_ok=None, title=None, subtitle=None, ok_text="Okay": Qmess.show(29, parent, on_ok, title, subtitle, ok_text))

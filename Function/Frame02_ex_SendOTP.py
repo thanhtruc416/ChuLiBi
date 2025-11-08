@@ -161,23 +161,6 @@ def send_otp_if_email_not_exists(email: str):
                 return False, f"Bạn vừa yêu cầu OTP. Vui lòng thử lại sau {mins} phút."
             else:
                 return False, f"Bạn vừa yêu cầu OTP. Vui lòng thử lại sau {remain} giây."
-        # 1.5) Kiểm tra nếu OTP cũ vẫn còn hiệu lực (chưa hết hạn)
-        with get_conn() as conn:
-            with conn.cursor() as cur:
-                cur.execute("""
-                    SELECT expires_at
-                    FROM password_resets
-                    WHERE email = %s AND used = 0
-                    ORDER BY expires_at DESC
-                    LIMIT 1
-                """, (email.lower(),))
-                row = cur.fetchone()
-
-        if row:
-            exp = _parse_dt_maybe_naive(row[0])
-            if exp and exp > _now_utc():
-                remain_min = int((exp - _now_utc()).total_seconds() // 60)
-                return False, f"OTP đã được gửi. Vui lòng kiểm tra email (còn hiệu lực {remain_min} phút)."
 
         # 2) Tạo & lưu OTP (hash + expiry)
         otp = _gen_otp(6)

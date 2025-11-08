@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# ui_Frame09.py — same pattern as Frame06 (chỉ sửa font thành Crimson Pro Bold)
+# ui_Frame09.py (chỉ sửa font thành Crimson Pro Bold)
 
 from pathlib import Path
 import tkinter as tk
@@ -23,9 +23,11 @@ class Frame09(Frame):
         self.frame_dualmap = Frame(self, bg="#ECE7EB")
         self.frame_bar = Frame(self, bg="#ECE7EB")
         self.frame_table = Frame(self, bg="#ECE7EB")
-        # Gán callback cho UI
-        self.on_cluster_dropdown = self._on_cluster_dropdown
-        self.on_search_customer = self.on_search_customer
+
+        # NOTE: controller sẽ override these callbacks in Frame09_EL
+        # Keep placeholders here (no-op) to avoid accidental call errors.
+        self.on_search_customer = lambda event=None: print("[UI] on_search_customer placeholder")
+        self.on_cluster_dropdown = lambda cluster=None: print("[UI] on_cluster_dropdown placeholder", cluster)
 
         # --- Canvas ---
         self.canvas = Canvas(
@@ -49,15 +51,61 @@ class Frame09(Frame):
         self.image_image_1 = _safe_img("image_1.png");  _add_img(self.image_image_1, 168.0, 512.0)
         self.image_image_2 = _safe_img("image_2.png");  _add_img(self.image_image_2, 888.0, 42.0)
         self.image_image_3 = _safe_img("image_3.png");  _add_img(self.image_image_3, 580.0, 42.0)
+        # đổi chữ + ẩn Table
+        self.canvas.create_rectangle(410, 10, 820, 80, fill="#D9CDD8", outline="")
+
+        self.canvas.create_text(
+            370.0, 10.0,  # x, y (bạn có thể tinh chỉnh sau)
+            anchor="nw",
+            text="Expected Loss",
+            fill="#000000",  # màu chữ
+            font=("Young Serif", -40)
+        )
+
         self.image_image_4 = _safe_img("image_4.png");  _add_img(self.image_image_4, 876.0, 813.0)
         self.image_image_5 = _safe_img("image_5.png");  _add_img(self.image_image_5, 430.0, 671.0)
+        #đổi chữ + ẩn Table
+        self.canvas.create_rectangle(390, 655, 520, 685, fill="#FFFFFF", outline="")
+
+        self.canvas.create_text(
+            385.0, 650.0,  # x, y (bạn có thể tinh chỉnh sau)
+            anchor="nw",
+            text="Top 50 Customers",
+            fill="#706093",  # màu chữ
+            font=("Crimson Pro Bold", -30)
+        )
+
         self.image_image_6 = _safe_img("image_6.png");  _add_img(self.image_image_6, 163.0, 130.0)
         self.image_image_7 = _safe_img("image_7.png");  _add_img(self.image_image_7, 482.0, 190.0)
         self.image_image_8 = _safe_img("image_8.png");  _add_img(self.image_image_8, 779.0, 190.0)
         self.image_image_9 = _safe_img("image_9.png");  _add_img(self.image_image_9, 629.0, 458.0)
         self.image_image_10 = _safe_img("image_10.png"); _add_img(self.image_image_10, 1158.0, 360.0)
+
         self.image_image_11 = _safe_img("image_11.png"); _add_img(self.image_image_11, 549.0, 338.0)
-        self.image_image_12 = _safe_img("image_12.png"); _add_img(self.image_image_12, 1084.0, 140.0)
+        # Ẩn chữ cũ "Mean Risk per Cluster"
+        self.canvas.create_rectangle(370, 325, 730, 410, fill="#FFFFFF", outline="")
+        # Viết chữ mới "Top 50 Customers"
+        self.canvas.create_text(
+            532.0, 340.0,
+            anchor="center",
+            text="Mean Risk per Cluster",
+            fill="#706093",
+            font=("Crimson Pro Bold", -31)
+        )
+
+        self.image_image_12 = _safe_img("image_12.png")
+        _add_img(self.image_image_12, 1084.0, 140.0)
+        # Ẩn chữ cũ "Dual Risk Map" (vẽ khối trắng đè lên vùng bên phải)
+        self.canvas.create_rectangle(950, 125, 1320, 180, fill="#FFFFFF", outline="")
+
+        # Viết chữ mới (ví dụ "Dual Risk Map")
+        self.canvas.create_text(
+            965.0, 115.0,
+            anchor="nw",
+            text="Dual Risk Map",
+            fill="#706093",
+            font=("Crimson Pro Bold", -33)
+        )
 
         # ================== PROFILE / NOTI ==================
         self.button_image_profile = _safe_img("button_Profile.png")
@@ -105,12 +153,16 @@ class Frame09(Frame):
             font=("Crimson Pro Bold", -25), width=200, justify="center"
         )
         self.canvas.create_text(
-            734.0, 145.0, anchor="nw",
-            text="Total EL", fill="#374A5A",
-            font=("Crimson Pro Bold", -28)
+            703.0, 130.0, anchor="nw",
+            text="Total\nExpected Loss",
+            fill="#374A5A",
+            font=("Crimson Pro Bold", -25),
+            width=190,
+            justify="center"
         )
+
         self.text_totalel_value = self.canvas.create_text(
-            725.0, 185.0, anchor="nw",
+            710.0, 185.0, anchor="nw",
             text="100", fill="#794679",
             font=("Kodchasan Regular", -40)
         )
@@ -186,25 +238,14 @@ class Frame09(Frame):
         self.entry_cluster = tk.Label(
             self,
             text="",
-            anchor="center",  # căn giữa ngang
+            anchor="center",
             bg="#FFFFFF",
             fg="#000716",
-            font=("Crimson Pro Bold", 13),  # chữ to hơn
+            font=("Crimson Pro Bold", 13),
             bd=0,
             relief="flat"
         )
         self.entry_cluster.place(x=751.0, y=692.0, width=182.0, height=25.0)
-        # --- Dropdown icon ---
-        self.button_image_9 = _safe_img("button_dropdown.png")
-        self.button_dropdown = Button(
-            self,
-            image=self.button_image_9,
-            borderwidth=0, highlightthickness=0,
-            command=self._on_cluster_dropdown,
-            relief="flat",
-            cursor="hand2"
-        )
-        self.button_dropdown.place(x=906.0, y=700.0, width=14.0, height=12.0)
 
         # Không cho người dùng gõ hay xóa trong ô Cluster
         self.entry_cluster.bind("<Key>", lambda e: "break")
@@ -221,73 +262,87 @@ class Frame09(Frame):
             bg="#FFFFFF",
             fg="#000716",
             highlightthickness=0,
-            font=("Crimson Pro Bold", 13),  # đồng bộ với ô Cluster
-            justify="center"  # căn giữa khi nhập
+            font=("Crimson Pro Bold", 13),
+            justify="center"
         )
         self.entry_id.place(x=500.0, y=694.0, width=158.0, height=20.0)
 
-        # Khi người dùng nhấn Enter -> gọi callback
+        # Khi người dùng nhấn Enter -> gọi callback (controller sẽ override)
         self.entry_id.bind("<Return>", self.on_search_customer)
+
         # ===== RÀNG BUỘC VÀ STYLE TƯƠNG TÁC ENTRY vs DROPDOWN =====
         def on_id_change(event=None):
             """Nếu người dùng gõ ID → vô hiệu hóa dropdown cluster."""
             text = self.entry_id.get().strip()
             if text:
-                # Làm mờ dropdown bằng cách giảm độ sáng, không dùng disable
-                self.entry_cluster.configure(
-                    bg="#F8F5F8", fg="#888888"
-                )
+                # Làm mờ dropdown
+                self.entry_cluster.configure(bg="#F8F5F8", fg="#888888")
                 self.button_dropdown.configure(state="disabled", cursor="arrow")
             else:
-                self.entry_cluster.configure(
-                    bg="#FFFFFF", fg="#000716"
-                )
+                self.entry_cluster.configure(bg="#FFFFFF", fg="#000716")
                 self.button_dropdown.configure(state="normal", cursor="hand2")
 
         def on_cluster_select(value):
             """Khi chọn cluster → khóa ô CustomerID."""
-            self.entry_cluster.configure(
-                text=f"Cluster {value}",
-                bg="#FFFFFF", fg="#000716"
-            )
+            self.entry_cluster.configure(text=f"Cluster {value}", bg="#FFFFFF", fg="#000716")
             self.entry_id.delete(0, tk.END)
             self.entry_id.configure(state="disabled", disabledbackground="#F8F5F8", disabledforeground="#888888")
 
         def clear_cluster_if_empty(event=None):
-            """Nếu người dùng xóa Cluster → bật lại ID."""
-            if not self.entry_cluster.cget("text"):
+            """Khi người dùng click vào ô Cluster → xoá và bật lại ID."""
+            if self.entry_cluster.cget("text"):  # chỉ xoá nếu đang có cluster hiển thị
+                self.entry_cluster.configure(text="")
                 self.entry_id.configure(state="normal", bg="#FFFFFF", fg="#000716")
+                self.entry_id.focus_set()
 
-        self.entry_id.bind("<KeyRelease>", on_id_change)
+        # Gán sự kiện click để xóa cluster
         self.entry_cluster.bind("<Button-1>", clear_cluster_if_empty)
 
-        # Dropdown cluster (giữ font Crimson Pro Bold)
         def _on_cluster_dropdown():
-            clusters = ["0", "1", "2"]
-            menu = tk.Menu(self, tearoff=0, font=("Crimson Pro Bold", 11))
+            clusters = ["All Cluster", 1, 2, 3]
+
+            # --- Tạo menu tùy chỉnh ---
+            menu = tk.Menu(self, tearoff=0, font=("Crimson Pro Bold", 12), bg="#FFFFFF",
+                           fg="#B992B9", activebackground="#EDE6F9", activeforeground="#2E1E5B",
+                           borderwidth=0, relief="flat")
+
+            # --- Custom style hover & border ---
+            menu.configure(
+                borderwidth=1,
+                relief="solid",
+                activeborderwidth=0
+            )
+
+            # --- Add menu items ---
             for c in clusters:
-                menu.add_command(
-                    label=f"Cluster {c}",
-                    command=lambda cc=c: (
-                        on_cluster_select(cc),  # hiển thị vào ô
-                        self.on_cluster_dropdown(cc)  # gọi callback thật trong Frame09_ExpectedLoss
-                    )
-                )
-            x = self.button_dropdown.winfo_rootx()
-            y = self.button_dropdown.winfo_rooty() + self.button_dropdown.winfo_height()
+                label = "All Cluster" if c == "All Cluster" else f"Cluster {c}"
+                val = c
+
+                def _cmd(v=val):
+                    on_cluster_select(v)
+                    self.on_cluster_dropdown(v)
+
+                # Dùng separator mảnh giữa nhóm
+                menu.add_command(label=label, command=_cmd)
+
+            # --- Hiển thị menu dưới nút dropdown ---
+            x = self.button_dropdown.winfo_rootx() - 100  # lệch nhẹ sang trái nếu cần
+            y = self.button_dropdown.winfo_rooty() + self.button_dropdown.winfo_height() + 6
             menu.tk_popup(x, y)
             menu.grab_release()
 
-        self.button_dropdown.configure(command=_on_cluster_dropdown)
+            # --- Tô nhẹ vùng popup (tránh bị “đơ trắng”) ---
+            self.after(50, lambda: menu.config(bg="#FFFFFF"))
 
-        # --- Dropdown icon ---
+        # --- Create dropdown button ONCE and wire to local menu function ---
         self.button_image_9 = _safe_img("button_dropdown.png")
         self.button_dropdown = Button(
             self,
             image=self.button_image_9,
             borderwidth=0, highlightthickness=0,
-            command=self.on_cluster_dropdown,
-            relief="flat"
+            command=_on_cluster_dropdown,   # calls local menu creator
+            relief="flat",
+            cursor="hand2"
         )
         self.button_dropdown.place(x=906.0, y=700.0, width=14.0, height=12.0)
 
@@ -314,38 +369,24 @@ class Frame09(Frame):
         ]
 
     # ================== CALLBACK PLACEHOLDERS ==================
+    # kept as methods for clarity; controller will override these.
     def on_search_customer(self, event=None):
         print("[UI] on_search_customer triggered — override in Frame09_EL.")
 
-    def on_cluster_dropdown(self):
-        print("[UI] on_cluster_dropdown triggered — override in Frame09_EL.")
+    def on_cluster_dropdown(self, cluster=None):
+        print("[UI] on_cluster_dropdown triggered — override in Frame09_EL.", cluster)
 
-    def _on_cluster_dropdown(self):
-        """Hiển thị dropdown chọn Cluster (UI preview only)."""
-        try:
-            clusters = ["0", "1", "2"]
-            menu = tk.Menu(self, tearoff=0, font=("Crimson Pro Bold", 11))
-            for c in clusters:
-                menu.add_command(
-                    label=c,
-                    command=lambda cc=c: self.entry_cluster.delete(0, tk.END) or self.entry_cluster.insert(0, cc)
-                )
-            x = self.button_dropdown.winfo_rootx()
-            y = self.button_dropdown.winfo_rooty() + self.button_dropdown.winfo_height()
-            menu.tk_popup(x, y)
-        finally:
-            menu.grab_release()
 
 # --- Preview độc lập ---
 if __name__ == "__main__":
     import tkinter as tk
-    from Function.Frame09_EL import Frame09_ExpectedLoss
+    from Function.Frame09_EL import Frame09_EL
 
     root = tk.Tk()
     root.title("Frame09 Preview")
     root.geometry("1440x1024")
 
-    app = Frame09_ExpectedLoss(root)
+    app = Frame09_EL(root)
     app.pack(fill="both", expand=True)
 
     root.resizable(False, False)

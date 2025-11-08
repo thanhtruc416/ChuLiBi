@@ -1,9 +1,14 @@
 # ui_Frame01.py
-
+import sys
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
+_project_root = Path(__file__).resolve().parents[2]  # Frame/Frame01 -> Frame -> project root
+if str(_project_root) not in sys.path:
+    sys.path.insert(0, str(_project_root))
+
 from Function.Frame01_auth import login_with_password
+from QMess.Qmess_calling import Qmess
 # ========== Đường dẫn asset ==========
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame01")
@@ -101,7 +106,14 @@ class Frame01(tk.Frame):
             self.canvas.create_image(1065.0, 644.0, image=self.dn_password_image)
         except Exception:
             pass
-
+        self.dn_password = Entry(
+            self, bd=0, bg="#FFFFFF", fg="#000716",
+            highlightthickness=0, font=("Crimson Pro Regular", -26)
+        )
+        self.dn_password.place(x=855.0, y=614.0, width=420.0, height=58.0)
+        # Bind Enter để submit nhanh
+        self.dn_username.bind("<Return>", lambda e: self.login_action())
+        self.dn_password.bind("<Return>", lambda e: self.login_action())
         self.dn_password = Entry(
             self, bd=0, bg="#FFFFFF", fg="#000716",
             highlightthickness=0, font=("Crimson Pro Regular", -26),
@@ -247,7 +259,8 @@ class Frame01(tk.Frame):
         password = self.dn_password.get().strip()
 
         if not username or not password:
-            messagebox.showerror("Login Error", "Please enter both username and password")
+            Qmess.popup_01(parent=self, title="Missing data",
+                        subtitle="Please enter both username and password!")
             return
 
         try:
@@ -275,20 +288,16 @@ class Frame01(tk.Frame):
                 )
 
                 if not profile_complete:
-                    messagebox.showinfo(
-                        "Complete Your Profile",
-                        f"Welcome, {user_data['username']}! Please complete your profile to continue."
-                    )
+                    Qmess.popup_15(parent=self, title="Complete Your Profile",
+                        subtitle=f"Welcome, {user_data['username']}! Please complete your profile to continue.")
                     if self.controller:
                         try:
                             self.controller.show_frame("Frame03")
                         except KeyError:
                             print("Profile frame not registered yet")
                 else:
-                    messagebox.showinfo(
-                        "Login Successful",
-                        f"Welcome back, {user_data.get('full_name', user_data['username'])}!"
-                    )
+                    Qmess.popup_03(parent=self, title="Login Successful",
+                        subtitle=f"Welcome back, {data['full_name']}!")
                     if self.controller:
                         try:
                             self.controller.show_frame("Frame06")
@@ -296,14 +305,16 @@ class Frame01(tk.Frame):
                             print("Dashboard frame not registered yet - using Frame06")
             else:
                 # data lúc này là thông báo lỗi (string)
-                messagebox.showerror("Login Failed", data or "Unknown error")
+                Qmess.popup_02(parent=self, title="Invalid Login",
+                        subtitle="Please check your username or password.")
                 self.dn_password.delete(0, tk.END)
                 self.dn_password.focus()
 
         except ImportError as e:
-            messagebox.showerror("System Error", f"Authentication module not found: {str(e)}")
+            Qmess.popup_02(parent=self, title="System Error",
+                        subtitle=f"Authentication module not found: {str(e)}")
         except Exception as e:
-            messagebox.showerror("System Error", f"An unexpected error occurred: {str(e)}")
+            Qmess.popup_02(parent=self, title="System Error",subtitle=f"An unexpected error occurred: {str(e)}")
             print(f"Login error: {e}")
 
     # ===================== LIFECYCLE =====================
@@ -319,3 +330,4 @@ class Frame01(tk.Frame):
             self.dn_eye.config(image=self.eye_imgs["hide"])
         # Focus
         self.dn_username.focus()
+

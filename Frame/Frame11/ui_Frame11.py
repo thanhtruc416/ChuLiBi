@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 
 from Function.dropdown_profile import DropdownMenu
-
+from QMess.Qmess_calling import Qmess
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH /Path("assets_Frame11")
@@ -79,7 +79,7 @@ class Frame11(tk.Frame):
         # -----------------------------
         # PHẦN TEXT LABELS
         # -----------------------------
-        self.canvas.create_text(385.0, 14.0, anchor="nw",
+        self.canvas.create_text(380.0, 8.0, anchor="nw",
             text="Predict New Customer", fill="#000000",
             font=("Young Serif Regular", 40 * -1))
 
@@ -87,9 +87,9 @@ class Frame11(tk.Frame):
             text="ChuLiBi", fill="#FDE5F4",
             font=("Rubik Burned Regular", 35 * -1))
 
-        self.canvas.create_text(385.0, 826.0, anchor="nw",
+        self.canvas.create_text(385.0, 820.0, anchor="nw",
             text="Predict", fill="#374A5A",
-            font=("Young Serif", 24 * -1))
+            font=("Crimson Pro Bold", 36 * -1))
 
         self.canvas.create_text(387.0, 889.0, anchor="nw",
             text="Cluster", fill="#634D94",
@@ -119,12 +119,12 @@ class Frame11(tk.Frame):
         self.canvas.create_text(1078.0, 943.0, anchor="nw",
                                 text="In-app", fill="#000000", font=("Crimson Pro Bold", 17 * -1), tags="result_text")
 
-        self.canvas.create_text(385.0, 119.0, anchor="nw",
+        self.canvas.create_text(385.0, 108.0, anchor="nw",
             text="Input part", fill="#374A5A",
-            font=("Young Serif", 24 * -1))
-        self.canvas.create_text(385.0, 153.0, anchor="nw",
+            font=("Crimson Pro Bold", 38 * -1))
+        self.canvas.create_text(385.0, 155.0, anchor="nw",
             text="Please enter all required information to proceed the prediction",
-            fill="#B992B9", font=("Crimson Pro Regular", 15 * -1))
+            fill="#B992B9", font=("Crimson Pro Regular", 18 * -1))
 
         # (Các label 1.Age ... 23.Influence of rating)
         text_labels = [
@@ -416,39 +416,61 @@ class Frame11(tk.Frame):
                 )
                 btn.image = icon
                 btn.place(x=x, y=y, width=10, height=10)
+
     def show_dropdown(self, entry_widget, key):
-        """Hiện dropdown custom ngay dưới entry."""
+        """Hiện dropdown custom ngay dưới entry — màu & font theo ChuLiBi style."""
         values = self.dropdown_values.get(key, [])
         if not values:
-            print(f"⚠ Không có giá trị dropdown cho {key}")
+            print(f"Không có giá trị dropdown cho {key}")
             return
 
         popup = tk.Toplevel(self)
         popup.overrideredirect(True)
-        popup.config(bg="#ECE7EB")
+        popup.config(bg="#FFFFFF")
 
-        x = self.winfo_rootx() + entry_widget.winfo_x()
+        x = self.winfo_rootx() + entry_widget.winfo_x() + 25
         y = self.winfo_rooty() + entry_widget.winfo_y() + entry_widget.winfo_height()
-        popup.geometry(f"200x{len(values)*26}+{x}+{y}")
+
+        # --- Nếu là "Frequently ordered Meal category" thì dịch riêng ---
+        if key == "Meal_Category" or key == "Frequently ordered Meal category":
+            x = max(0, x - 45)
+
+        popup.geometry(f"170x{len(values) * 30}+{x}+{y}")
 
         def on_select(val):
-            entry_widget.configure(state="normal")  # 🔓 mở tạm để ghi
+            entry_widget.configure(state="normal")
             entry_widget.delete(0, tk.END)
             entry_widget.insert(0, val)
             entry_widget.configure(
-                state="disabled",  # 🔒 khóa lại
+                state="disabled",
                 disabledbackground="#FFFFFF",
                 disabledforeground="#000716"
             )
             popup.destroy()
 
+        # === Style đẹp theo yêu cầu ===
         for val in values:
-            lbl = tk.Label(popup, text=val, bg="#FFFFFF", fg="#374A5A",
-                           font=("Crimson Pro", 10), anchor="w", padx=10)
-            lbl.pack(fill="x", pady=1)
+            lbl = tk.Label(
+                popup,
+                text=val,
+                bg="#FFFFFF",
+                fg="#745fa3",
+                font=("Crimson Pro SemiBold", 12),
+                anchor="w",
+                padx=12,
+                pady=3
+            )
+            lbl.pack(fill="x")
+
             lbl.bind("<Button-1>", lambda e, v=val: on_select(v))
-            lbl.bind("<Enter>", lambda e, l=lbl: l.config(bg="#D8C6E2"))
-            lbl.bind("<Leave>", lambda e, l=lbl: l.config(bg="#FFFFFF"))
+            lbl.bind("<Enter>", lambda e, l=lbl: l.config(
+                bg="#EDE6F9",
+                fg="#2E1E5B"
+            ))
+            lbl.bind("<Leave>", lambda e, l=lbl: l.config(
+                bg="#FFFFFF",
+                fg="#B992B9"
+            ))
 
         popup.focus_force()
         popup.bind("<FocusOut>", lambda e: popup.destroy())
@@ -480,14 +502,15 @@ class Frame11(tk.Frame):
                 'Influence of rating': self.entry_Influence_of_Rating.get()
             }
 
-            # 🧩 1️⃣ Kiểm tra dữ liệu đầu vào
+            # Kiểm tra dữ liệu đầu vào
             is_valid, errors = validate_customer_input(customer)
             if not is_valid:
                 error_text = "\n".join(errors)
-                messagebox.showerror("❌ Invalid Input", f"Dữ liệu nhập không hợp lệ:\n\n{error_text}")
+                Qmess.popup_24(parent=self, title="Warning",
+                               subtitle=f"Invalid Input")
                 return  # Dừng lại, không chạy model
 
-            # 🧠 2️⃣ Nếu hợp lệ, chạy mô hình
+            # Nếu hợp lệ, chạy mô hình
             try:
                 result = predict_customer(customer)
 
@@ -527,10 +550,11 @@ class Frame11(tk.Frame):
                     anchor="center", width=180, tags="result_text"
                 )
 
-                messagebox.showinfo("✅ Thành công", "Dự đoán hoàn tất!")
+                Qmess.popup_22(parent=self, title="Success",
+                               subtitle=f"Prediction completed successfully!")
 
             except Exception as e:
-                messagebox.showerror("❌ Lỗi khi dự đoán", str(e))
+                Qmess.popup_02(parent=self, title="System Error", subtitle=f"Authentication module not found: {str(e)}")
 
         # -----------------------------
         # PHẦN LOGIC HIỂN THỊ FRAME
