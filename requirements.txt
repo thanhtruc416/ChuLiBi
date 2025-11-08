@@ -1,0 +1,41 @@
+# --- GUI & Visualization ---        
+matplotlib==3.9.2
+seaborn==0.13.2
+pillow==10.4.0            
+ttkbootstrap==1.10.1  
+
+# --- Data Handling & Math ---
+numpy==1.26.4
+pandas==2.2.3
+scipy==1.12.0 --prefer-binary
+statsmodels==0.14.2
+
+# --- Machine Learning & Statistics ---
+scikit-learn==1.5.2
+xgboost==2.1.1
+imblearn==0.0             
+imbalanced-learn==0.12.3  
+joblib==1.4.2
+shap==0.44.0
+
+# --- Database & Backend ---
+pymysql==1.1.1
+mysql-connector-python==9.0.0
+
+# --- Email, Security & Environment ---
+bcrypt==4.2.0      
+cryptography==44.0.0           
+email-validator==2.1.1
+python-dotenv==1.0.1                             
+requests==2.32.3               
+
+# --- Reporting & File Export ---
+openpyxl==3.1.5
+reportlab==4.2.5
+pypandoc==1.13
+
+# --- Optional fonts management for Matplotlib ---
+fonttools==4.53.0
+
+# --- Developer Tools ---
+pytest==8.3.2              
