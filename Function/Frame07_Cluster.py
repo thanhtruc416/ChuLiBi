@@ -308,9 +308,24 @@ def run_pipeline(
     Ks, inertias, sils = evaluate_k_range(X, 2, 11)
 
     # fit cuối & gán nhãn
-    labels = kmeans_labels(X, k_final, random_state=42, n_init=20)
+    from sklearn.cluster import KMeans
+    import pickle
+
+    # fit cuối & gán nhãn
+    model = KMeans(n_clusters=k_final, random_state=42, n_init=20)
+    labels = model.fit_predict(X)
     df_cluster["cluster"] = labels
     df_cluster["CustomerID"] = ids
+
+    # === Lưu model vào thư mục models ===
+    MODEL_DIR = project_root / "models"
+    MODEL_DIR.mkdir(exist_ok=True)
+    model_path = MODEL_DIR / f"kmeans_model_k{k_final}.pkl"
+
+    with open(model_path, "wb") as f:
+        pickle.dump(model, f)
+
+    print(f"✅ Saved trained KMeans model to: {model_path}")
 
     # lưu
     pca_cols = [c for c in ["pca_convenience", "pca_service_issue", "pca_deal_sensitive"] if c in df_cluster.columns]

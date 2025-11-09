@@ -219,10 +219,21 @@ def train_churn_model(df, df_cluster):
         best_model_name = df_result.loc[df_result["Mean_AUC"].idxmax(), "Model"]
     print(f"Best churn model: {best_model_name}")
 
+    from pathlib import Path
+    import joblib
+
     best_model = models.get(best_model_name, RandomForestClassifier(n_estimators=200, random_state=SEED))
     best_model.fit(X_train, y_train)
     df["proba_churn_model"] = best_model.predict_proba(X)[:, 1]
 
+    # === Lưu model vào thư mục models ===
+    project_root = Path(__file__).resolve().parents[1]
+    model_dir = project_root / "models"
+    model_dir.mkdir(exist_ok=True)
+    model_path = model_dir / "churn_model_EL.pkl"
+
+    joblib.dump(best_model, model_path)
+    print(f"✅ Saved churn model for EL to: {model_path}")
     # (Optional) show ROC on test if available
     try:
         fpr, tpr, _ = roc_curve(y_test, best_model.predict_proba(X_test)[:, 1])
@@ -293,11 +304,23 @@ def dual_expected_loss(df, df_cluster, PATH=PATH):
     Xf_train, Xf_test, yf_train, yf_test = train_test_split(X_full, y_full, test_size=0.2, random_state=SEED)
     Xn_train, Xn_test, yn_train, yn_test = train_test_split(X_noorder, y_full, test_size=0.2, random_state=SEED)
 
+    from pathlib import Path
+    import joblib
+
     rf_full = RandomForestRegressor(random_state=SEED, n_jobs=1)
     rf_noorder = RandomForestRegressor(random_state=SEED, n_jobs=1)
     rf_full.fit(Xf_train, yf_train)
     rf_noorder.fit(Xn_train, yn_train)
 
+    # === Lưu model Expected Loss vào models/ ===
+    project_root = Path(__file__).resolve().parents[1]
+    model_dir = project_root / "models"
+    model_dir.mkdir(exist_ok=True)
+
+    joblib.dump(rf_full, model_dir / "expected_loss_full.pkl")
+    joblib.dump(rf_noorder, model_dir / "expected_loss_behavioral.pkl")
+
+    print(f"✅ Saved EL models to {model_dir}")
     # === Xuất file dual map & cluster summary ===
     df_dual_map = pd.DataFrame({
         "ExpectedLoss_full_pred": rf_full.predict(Xf_test),

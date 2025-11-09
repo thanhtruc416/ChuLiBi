@@ -293,7 +293,7 @@ class Frame01(tk.Frame):
                         try:
                             self.controller.show_frame("Frame03")
                         except KeyError:
-                            print("Profile frame not registered yet")
+                            pass
                 else:
                     Qmess.popup_03(parent=self, title="Login Successful",
                         subtitle=f"Welcome back, {data['full_name']}!")
@@ -301,7 +301,7 @@ class Frame01(tk.Frame):
                         try:
                             self.controller.show_frame("Frame06")
                         except KeyError:
-                            print("Dashboard frame not registered yet - using Frame06")
+                            pass
             else:
                 # data lúc này là thông báo lỗi (string)
                 Qmess.popup_02(parent=self, title="Invalid Login",

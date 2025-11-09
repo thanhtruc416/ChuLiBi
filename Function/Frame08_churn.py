@@ -304,8 +304,12 @@ def train_final_and_save(X: pd.DataFrame, y: pd.Series, output_dir: str):
     print(f"Final Test -> AUC: {auc:.3f} | PR_AUC: {prauc:.3f} | F1: {f1:.3f} | Precision: {prec:.3f} | Recall: {rec:.3f}")
 
     bundle = {'model': xgb_final, 'threshold': best_thr}
-    os.makedirs(output_dir, exist_ok=True)
-    model_path = os.path.join(output_dir, 'best_churn_model.pkl')
+    # === Lưu model vào thư mục models thay vì Dataset/Output ===
+    from pathlib import Path
+    project_root = Path(__file__).resolve().parents[1]
+    model_dir = project_root / "models"
+    model_dir.mkdir(exist_ok=True)
+    model_path = model_dir / "best_churn_model.pkl"
     joblib.dump(bundle, model_path)
     print(f"Saved model bundle to: {model_path}")
 
