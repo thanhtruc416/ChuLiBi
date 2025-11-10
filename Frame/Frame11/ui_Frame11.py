@@ -280,7 +280,7 @@ class Frame11(tk.Frame):
             image=self.button_image_8,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame09"),
+            command=lambda: self.controller.show_frame("Frame09_EL"),
             relief="flat"
         )
         button_el.place(
