@@ -65,7 +65,7 @@ class PopupSpec:
     title: str = ""
     subtitle: str = ""
     width: int = 480
-    height: int = 329
+    height: int = 360
     ok_text: str = "Okay"
     assets_dir: Optional[Path] = None
     asset_index: int = 0
@@ -89,11 +89,36 @@ class PopupWindow:
         self._build_ui()
 
     def _center(self):
+        # Tính toán vị trí trung tâm theo cửa sổ cha nếu có, nếu không thì giữa màn hình.
+        # Sử dụng kích thước thực tế sau khi layout thay vì kích thước spec để tránh lệch do viền/scale.
         self.top.update_idletasks()
+
+        # Kích thước thực tế đã render (fallback về spec nếu Tk chưa trả về hợp lệ)
+        w = max(self.top.winfo_width(), self.top.winfo_reqwidth(), self.spec.width)
+        h = max(self.top.winfo_height(), self.top.winfo_reqheight(), self.spec.height)
+
+        # Mặc định: giữa màn hình đang hiển thị
         sw, sh = self.top.winfo_screenwidth(), self.top.winfo_screenheight()
-        x = (sw - self.spec.width) // 2
-        y = (sh - self.spec.height) // 2
-        self.top.geometry(f"{self.spec.width}x{self.spec.height}+{x}+{y}")
+        x = (sw - w) // 2
+        y = (sh - h) // 2
+
+        # Nếu có parent đã hiển thị, canh giữa theo parent
+        try:
+            if self.parent is not None and self.parent.winfo_ismapped():
+                px, py = self.parent.winfo_rootx(), self.parent.winfo_rooty()
+                pw, ph = self.parent.winfo_width(), self.parent.winfo_height()
+                if pw > 0 and ph > 0:
+                    x = px + (pw - w) // 2
+                    y = py + (ph - h) // 2
+        except Exception:
+            # Bỏ qua và dùng canh giữa màn hình
+            pass
+
+        # Clamp để không tràn khỏi màn hình (hữu ích khi đa màn hình hoặc scale DPI)
+        x = max(0, min(x, sw - w))
+        y = max(0, min(y, sh - h))
+
+        self.top.geometry(f"{w}x{h}+{x}+{y}")
 
     def _load_icon(self) -> Optional[PhotoImage]:
         d = self.spec.assets_dir
@@ -149,7 +174,7 @@ class PopupWindow:
         if self._img_icon:
             c.create_image(w / 2, 90, image=self._img_icon)
 
-        c.create_text(
+        title_id = c.create_text(
             w / 2, 150,
             anchor="n",
             text=self.spec.title or "",
@@ -158,7 +183,7 @@ class PopupWindow:
             width=w - 40,
             justify="center"
         )
-        c.create_text(
+        subtitle_id = c.create_text(
             w / 2, 195,
             anchor="n",
             text=self.spec.subtitle or "",
@@ -169,6 +194,17 @@ class PopupWindow:
         )
 
         self._img_btn = self._load_button_bg()
+        # Tính vị trí Y của nút dựa theo chiều cao thực tế của subtitle,
+        # bảo đảm luôn có ít nhất 24px khoảng cách.
+        try:
+            _, _, _, subtitle_bottom = c.bbox(subtitle_id)  # (x1, y1, x2, y2)
+        except Exception:
+            subtitle_bottom = 230
+        min_bottom_margin = 30
+        min_gap_from_subtitle = 24
+        default_btn_top = h - (61 + min_bottom_margin)  # 61 là chiều cao mặc định của button image
+        computed_btn_top = subtitle_bottom + min_gap_from_subtitle
+
         if self._img_btn:
             btn = Button(self.top, image=self._img_btn,
                          compound="center", fg="#FFFFFF",
@@ -177,14 +213,17 @@ class PopupWindow:
                          command=self._ok_and_close)
             bw, bh = 289, 61
             x = (w - bw) // 2
-            y = h - 91
+            y = max(default_btn_top, computed_btn_top)
             btn.place(x=x, y=y, width=bw, height=bh)
         else:
             btn = Button(self.top, text=self.spec.ok_text,
                          bg="#FFFFFF", fg="#5A3372",
                          font=("Crimson Pro", 12, "bold"),
                          relief="flat", command=self._ok_and_close)
-            btn.place(x=w // 2 - 70, y=h - 85, width=140, height=44)
+            # chiều cao ước lượng 44 cho button chữ
+            text_btn_h = 44
+            y = max(h - (text_btn_h + min_bottom_margin), computed_btn_top)
+            btn.place(x=w // 2 - 70, y=y, width=140, height=44)
 
         self._center()
         self.top.deiconify()
@@ -323,7 +362,7 @@ class Qmess:
         28: ("Upload Success", "Data has been uploaded successfully"),
 
         # Frame 14 – Delivery
-        29: ("Error", "Something went wrong! Please try again"),
+        29: ("Warning", "Please enter the missing data"),
     }
 
     @staticmethod
