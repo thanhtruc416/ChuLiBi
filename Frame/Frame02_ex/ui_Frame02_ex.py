@@ -173,7 +173,7 @@ class Frame02_ex(tk.Frame):
     def on_send_otp(self):
         email = (self.entry_email.get() or "").strip()
         if not email:
-            Qmess.popup_06(parent=self, title="Invalid Email",
+            Qmess.popup_06(parent=self, title="Mising Email",
                         subtitle="Please enter your email first")
             return
         if not self._valid_email(email):
