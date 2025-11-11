@@ -80,7 +80,7 @@ def validate_customer_input(customer: Dict) -> Tuple[bool, list]:
     try:
         fam = int(customer.get("Family size", 0))
         if fam < 1 or fam > 10:
-            errors.append(" Family size phải từ 1–20.")
+            errors.append(" Family size phải từ 1–10.")
     except ValueError:
         errors.append(" Family size phải là số nguyên.")
 
@@ -433,11 +433,11 @@ class CustomerPredictor:
 
             # Predict cho customer mới
             cluster = kmeans.predict(X_cust)[0]
-            return int(cluster)
+            return int(cluster) + 1
         else:
             # Fallback: trả về cluster 0 nếu không có dữ liệu
             print("⚠ Không có dữ liệu cluster, trả về cluster 0")
-            return 0
+            return 1
 
     def predict_churn(self, customer: Dict, cluster: int = None) -> Tuple[float, int]:
         """

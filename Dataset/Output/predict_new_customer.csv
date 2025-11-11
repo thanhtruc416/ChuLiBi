@@ -1,3 +1,6 @@
 Age,Gender,Marriage Status,Occupation,Educational Qualifications,Family size,Frequently used Medium,Frequently ordered Meal category,Preference,Restaurant Rating,Delivery Rating,No. of orders placed,Delivery Time,Order Value,Ease and Convenient,Self Cooking,Health Concern,Late Delivery,Poor Hygiene,Bad past experience,More Offers and Discount,Maximum wait time,Influence of rating
 12,Female,Single,Self Employeed,Post Graduate,6,Direct call,Lunch,4,3,2,5,45,6,Disagree,Agree,Neutral,Disagree,Agree,Strongly agree,Agree,30 minutes,Yes
 15,Female,Married,Employee,Ph.D,4,Walk-in,Lunch,4,3,2,23,45,3,Agree,Agree,Neutral,Neutral,Disagree,Strongly disagree,Agree,30 minutes,Yes
+20,Female,Single,Student,Graduate,5,Walk-in,Lunch,5,3,3,512,60,3,Agree,Neutral,Strongly agree,Neutral,Agree,Neutral,Strongly agree,60 minutes,No
+25,Female,Single,Employee,Graduate,2,Walk-in,Dinner,5,5,5,512,60,2,Strongly agree,Neutral,Neutral,Neutral,Disagree,Disagree,Strongly agree,60 minutes,Yes
+20,Female,Single,Employee,Graduate,2,Walk-in,Lunch,4,4,4,520,30,3,Agree,Neutral,Agree,Disagree,Agree,Neutral,Neutral,60 minutes,Yes

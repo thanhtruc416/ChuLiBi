@@ -165,7 +165,7 @@ class Frame02_ex(tk.Frame):
             relief="flat",
             cursor="hand2"
         )
-        self.button_login.place(x=1184.0, y=670.0, width=57.0, height=23.0)
+        self.button_login.place(x=1184.0, y=673.0, width=57.0, height=23.0)
 
     # ----------------------
     # Callbacks
@@ -207,10 +207,21 @@ class Frame02_ex(tk.Frame):
             Qmess.popup_15(parent=self, title="System Error",
                         subtitle=f"Send OTP failed: {e}")
             return
-
         if not ok:
-            Qmess.popup_15(parent=self, title="Failed to send OTP",
-                        subtitle=msg or "Please try again.")
+            msg_lower = (msg or "").lower()
+            if "exists" in msg_lower or "đã tồn tại" in msg_lower:
+                Qmess.popup_15(
+                    parent=self,
+                    title="Email Already Exists",
+                    subtitle="This email is already registered.\nPlease log in instead.."
+                )
+                return
+
+            Qmess.popup_15(
+                parent=self,
+                title="Failed to send OTP",
+                subtitle=msg or "Please try again."
+            )
             return
 
         # Thành công
