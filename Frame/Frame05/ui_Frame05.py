@@ -2,6 +2,7 @@
 from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox, StringVar, NORMAL, DISABLED
 from QMess.Qmess_calling import Qmess
+import tkinter as tk
 # ===== functions: lấy username theo email + verify OTP & reset mật khẩu =====
 from Function.Frame05_ResetPassword import get_username_by_email, reset_password_with_otp
 import tkinter as tk
