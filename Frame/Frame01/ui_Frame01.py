@@ -2,7 +2,7 @@
 import sys
 from pathlib import Path
 import tkinter as tk
-from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
+from tkinter import Canvas, Entry, Button, PhotoImage
 _project_root = Path(__file__).resolve().parents[2]  # Frame/Frame01 -> Frame -> project root
 if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
@@ -31,7 +31,7 @@ class Frame01(tk.Frame):
         self.canvas.place(x=0, y=0)
 
         # --- Load hình ảnh nền (nếu thiếu thì bỏ qua) ---
-        self.images = {}  # giữ reference tránh GC
+        self.images = {}
         img_files = [
             ("image_1.png", 360, 512),
             ("image_2.png", 1073, 631),
@@ -131,7 +131,6 @@ class Frame01(tk.Frame):
             command=self.toggle_password_visibility
         )
         # Không set width/height để button fit theo icon
-        # (hoặc dùng anchor="center" nếu muốn căn tâm)
         self.dn_eye.place(x=1243.0, y=635.0)
 
         # Hover (dùng lại ảnh thường vì bạn chỉ có 2 ảnh)
@@ -266,9 +265,7 @@ class Frame01(tk.Frame):
             ok, data = login_with_password(username, password)
 
             if ok:
-                # data là dict {"id","email","username"}
                 user_data = data
-
                 # lưu vào controller (nếu có)
                 if self.controller:
                     if not hasattr(self.controller, "current_user"):
@@ -277,15 +274,12 @@ class Frame01(tk.Frame):
 
                 # clear password field
                 self.dn_password.delete(0, tk.END)
-
-                # vì API login trả về chưa có full_name/business_name/role
                 # => xem như chưa hoàn tất hồ sơ -> chuyển về Frame03 để bổ sung
                 profile_complete = (
                         user_data.get("full_name")
                         and user_data.get("business_name")
                         and user_data.get("role")
                 )
-
                 if not profile_complete:
                     Qmess.popup_15(parent=self, title="Complete Your Profile",
                         subtitle=f"Welcome, {user_data['username']}! Please complete your profile to continue.")
@@ -308,14 +302,12 @@ class Frame01(tk.Frame):
                         subtitle="Please check your username or password.")
                 self.dn_password.delete(0, tk.END)
                 self.dn_password.focus()
-
         except ImportError as e:
             Qmess.popup_02(parent=self, title="System Error",
                         subtitle=f"Authentication module not found: {str(e)}")
         except Exception as e:
             Qmess.popup_02(parent=self, title="System Error",subtitle=f"An unexpected error occurred: {str(e)}")
-            print(f"Login error: {e}")
-
+            return e
     # ===================== LIFECYCLE =====================
     def on_show(self):
         """Được gọi mỗi khi Frame01 hiển thị"""

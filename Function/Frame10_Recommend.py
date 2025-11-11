@@ -406,25 +406,25 @@ def main():
     out_rows = len(df_rec)
     uniq_customers = df_rec["Customer_ID"].nunique()
 
-    print(f"✅ Base customers: {base_customers:,}")
-    print(f"✅ Output rows (1 dòng/khách): {out_rows:,} | unique customers: {uniq_customers:,}")
+    print(f"Base customers: {base_customers:,}")
+    print(f"Output rows (1 dòng/khách): {out_rows:,} | unique customers: {uniq_customers:,}")
 
     print("\nAction distribution:")
     print(df_rec["action_id"].value_counts())
 
-    print(f"\n🔎 keep_top = {args.keep_top:.2f}  =>  thr (ngưỡng động) = {thr:.6f}")
+    print(f"\nkeep_top = {args.keep_top:.2f}  =>  thr (ngưỡng động) = {thr:.6f}")
 
     print("\n--- Top 20 priority (sau chọn) ---")
     cols_show = ["Customer_ID", "action_id", "priority_score", "channel"]
     print(df_rec.sort_values("priority_score", ascending=False).head(20)[cols_show].to_string(index=False))
 
-    print("\n📊 Phân phối nhóm:")
+    print("\nPhân phối nhóm:")
     print(df_rec["group"].value_counts())
 
     if args.out:
         try:
             df_rec.to_csv(args.out, index=False)
-            print(f"\n💾 Đã lưu recommendations -> {args.out.resolve()}")
+            print(f"\nĐã lưu recommendations -> {args.out.resolve()}")
         except Exception as e:
             print(f"[WARN] Không thể ghi file output: {e}", file=sys.stderr)
 
@@ -461,11 +461,8 @@ def get_recommendation_data(
     )
 
     # tóm tắt console
-    print(f"✅ Tổng KH: {len(df):,} | Có khuyến nghị: {len(df_rec):,}")
+    print(f" Tổng KH: {len(df):,} | Có khuyến nghị: {len(df_rec):,}")
     print(df_rec["action_id"].value_counts())
     print(f"Ngưỡng động HEAVY (thr) = {thr:.6f}")
 
     return df, df_rec, thr
-
-if __name__ == "__main__":
-    main()

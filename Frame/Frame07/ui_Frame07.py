@@ -551,23 +551,10 @@ class Frame07(tk.Frame):
             item_id,
             text=str(text),
             fill="#000000",
-            font=self.font_feature,  # dùng font KHÔNG NGHIÊNG
+            font=self.font_feature,
             width=230,
             justify="left"
         )
 
     def on_show(self, **kwargs):
         pass
-
-# ---- Test nhanh độc lập (chạy file này trực tiếp) ----
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Frame07")
-    root.geometry("1440x1024")
-    root.configure(bg="#D9D9D9")
-
-    f = Frame07(root)
-    f.place(x=0, y=0, width=1440, height=1024)
-
-    root.resizable(False, False)
-    root.mainloop()

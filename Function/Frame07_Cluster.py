@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 from pathlib import Path
 from typing import Iterable, Optional, List, Tuple
@@ -271,7 +270,6 @@ def save_outputs(
         "cluster_profile_scaled": out_profile,
         "cluster_characteristics_descriptive": out_desc,
     }
-
 # ========== RUN PIPELINE ==========
 def run_pipeline(
     k_final: int = 3,
@@ -299,7 +297,6 @@ def run_pipeline(
             features = feat["feature"].dropna().astype(str).tolist()
         else:
             features = feat.iloc[:, 0].dropna().astype(str).tolist()
-
     X = select_X(df_cluster, features)
     cols_src = features if features is not None else CLUSTER_FEATURES
     use_cols = [c for c in cols_src if c in df_cluster.columns]
@@ -324,9 +321,6 @@ def run_pipeline(
 
     with open(model_path, "wb") as f:
         pickle.dump(model, f)
-
-    print(f"✅ Saved trained KMeans model to: {model_path}")
-
     # lưu
     pca_cols = [c for c in ["pca_convenience", "pca_service_issue", "pca_deal_sensitive"] if c in df_cluster.columns]
     paths = save_outputs(df_cluster, df_raw, use_cols, pca_cols)
@@ -348,20 +342,3 @@ def run_pipeline(
         "fig_pca": fig_pca,
         "paths": paths,
     }
-
-# ========== CLI ==========
-if __name__ == "__main__":
-    K = int(os.getenv("K_FINAL", "3"))
-    FEATURE_FILE = os.getenv("FEATURE_FILE")
-    info = run_pipeline(k_final=K, feature_file=Path(FEATURE_FILE) if FEATURE_FILE else None)
-
-    print("DATA_DIR:", info["DATA_DIR"])
-    print("Features dùng:", info["use_cols"])
-    print("Silhouette gợi ý (k=2..10):", [round(v,3) for v in info["silhouettes"]])
-    print("Đã lưu:")
-    for k, p in info["paths"].items():
-        print(" -", k, "->", p)
-
-    # Vẽ nhanh nếu chạy standalone
-    # AFTER
-

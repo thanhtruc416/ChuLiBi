@@ -386,7 +386,7 @@ class CustomerPredictor:
                                            errors='ignore') if self.df_scaled is not None else None
 
             if df_train is None or len(df_train) == 0:
-                print("⚠ Không có dữ liệu training, trả về cluster 0")
+                print("Không có dữ liệu training, trả về cluster 0")
                 return 0
 
             # Fit PCA trên TOÀN BỘ training data
@@ -413,7 +413,7 @@ class CustomerPredictor:
             # Chọn features cho clustering
             features = [c for c in CLUSTER_FEATURES if c in df_cust_with_pca.columns]
             if len(features) < 2:
-                print("⚠ Không đủ features để phân cụm, trả về cluster 0")
+                print("Không đủ features để phân cụm, trả về cluster 0")
                 return 0
 
             X_cust = select_X(df_cust_with_pca, features)
@@ -436,7 +436,7 @@ class CustomerPredictor:
             return int(cluster) + 1
         else:
             # Fallback: trả về cluster 0 nếu không có dữ liệu
-            print("⚠ Không có dữ liệu cluster, trả về cluster 0")
+            print("Không có dữ liệu cluster, trả về cluster 0")
             return 1
 
     def predict_churn(self, customer: Dict, cluster: int = None) -> Tuple[float, int]:
@@ -451,7 +451,7 @@ class CustomerPredictor:
             Tuple (proba_churn, pred_churn): Xác suất churn và dự đoán churn (0 hoặc 1)
         """
         if self.churn_model is None:
-            print("⚠ Không có churn model, sử dụng giá trị mặc định")
+            print("Không có churn model, sử dụng giá trị mặc định")
             return 0.5, 0
 
         # Preprocess customer
@@ -570,12 +570,12 @@ class CustomerPredictor:
             # Kiểm tra và loại bỏ features không có trong model
             missing_features = [f for f in expected_features if f not in X.columns]
             if missing_features:
-                print(f"⚠ Cảnh báo: Thiếu features trong dữ liệu: {missing_features}")
+                print(f"Cảnh báo: Thiếu features trong dữ liệu: {missing_features}")
 
             # Loại bỏ features không có trong model (như pca_service_issue nếu bị loại khi train)
             extra_features = [f for f in X.columns if f not in expected_features]
             if extra_features:
-                print(f"⚠ Loại bỏ features không có trong model: {extra_features}")
+                print(f"Loại bỏ features không có trong model: {extra_features}")
 
             # Chỉ giữ lại features mà model mong đợi và có trong X
             available_expected = [f for f in expected_features if f in X.columns]
@@ -587,7 +587,7 @@ class CustomerPredictor:
 
             # Nếu thiếu features, điền giá trị mặc định (median hoặc 0)
             if len(missing_features) > 0:
-                print(f"⚠ Điền giá trị mặc định cho {len(missing_features)} features thiếu")
+                print(f"Điền giá trị mặc định cho {len(missing_features)} features thiếu")
                 for f in missing_features:
                     X_for_pred[f] = 0.0  # Giá trị mặc định
 
@@ -595,11 +595,11 @@ class CustomerPredictor:
             X_for_pred = X_for_pred[[f for f in expected_features if f in X_for_pred.columns]]
 
         except Exception as e:
-            print(f"⚠ Lỗi khi lấy expected features: {e}")
-            print(f"⚠ Thử predict trực tiếp với tất cả features...")
+            print(f"Lỗi khi lấy expected features: {e}")
+            print(f"Thử predict trực tiếp với tất cả features...")
             # Fallback: thử loại bỏ pca_service_issue nếu có
             if 'pca_service_issue' in X.columns:
-                print(f"⚠ Thử loại bỏ pca_service_issue...")
+                print(f"Thử loại bỏ pca_service_issue...")
                 X_for_pred = X.drop(columns=['pca_service_issue'], errors='ignore').copy()
             else:
                 X_for_pred = X.copy()
@@ -610,7 +610,7 @@ class CustomerPredictor:
             pred_churn = (proba_churn >= self.churn_threshold).astype(int)
             return float(proba_churn), int(pred_churn)
         except Exception as e:
-            print(f"⚠ Lỗi khi predict churn: {e}")
+            print(f"Lỗi khi predict churn: {e}")
             return 0.5, 0
 
     def predict_expected_loss(self, customer: Dict, proba_churn: float,
@@ -688,7 +688,7 @@ class CustomerPredictor:
         if self.df_cluster_full is not None and 'ExpectedLoss_score' in self.df_cluster_full.columns:
             el_scores = self.df_cluster_full['ExpectedLoss_score'].dropna()
             if len(el_scores) > 0:
-                percentile = (el_scores <= row['EL_norm']).sum() / len(el_scorces)
+                percentile = (el_scores <= row['EL_norm']).sum() / len(el_scores)
                 row['EL_norm'] = percentile
         else:
             # Fallback: normalize từ 0-1
@@ -770,7 +770,7 @@ class CustomerPredictor:
             write_header = not save_path.exists()
             df_input.to_csv(save_path, index=False, mode='a', header=write_header, encoding='utf-8')
         except Exception as e:
-            print(f"⚠ Không thể lưu input vào predict_new_customer.csv: {e}")
+            print(f"Không thể lưu input vào predict_new_customer.csv: {e}")
 
         print("\n" + "=" * 60)
         print("BẮT ĐẦU DỰ ĐOÁN CHO KHÁCH HÀNG")
@@ -779,26 +779,26 @@ class CustomerPredictor:
         # 1. Predict Cluster
         print("\n[1/4] Đang phân cụm khách hàng...")
         cluster = self.predict_cluster(customer)
-        print(f"✓ Cluster: {cluster}")
+        print(f"Cluster: {cluster}")
 
         # 2. Predict Churn
         print("\n[2/4] Đang dự đoán tỷ lệ rời bỏ...")
         proba_churn, pred_churn = self.predict_churn(customer, cluster=cluster)
         churn_risk_pct = f"{proba_churn * 100:.1f}%"
-        print(f"✓ Xác suất churn: {churn_risk_pct}")
-        print(f"✓ Dự đoán churn: {'Có nguy cơ' if pred_churn == 1 else 'Không rời bỏ'}")
+        print(f"Xác suất churn: {churn_risk_pct}")
+        print(f"Dự đoán churn: {'Có nguy cơ' if pred_churn == 1 else 'Không rời bỏ'}")
 
         # 3. Expected Loss
         print("\n[3/4] Đang tính Expected Loss...")
         expected_loss = self.predict_expected_loss(customer, proba_churn, cluster=cluster)
-        print(f"✓ Expected Loss Score: {expected_loss['ExpectedLoss_score']:.4f}")
-        print(f"✓ Expected Loss Real: {expected_loss['ExpectedLoss_real']:.2f}")
+        print(f"Expected Loss Score: {expected_loss['ExpectedLoss_score']:.4f}")
+        print(f"Expected Loss Real: {expected_loss['ExpectedLoss_real']:.2f}")
 
         # 4. Recommendation
         print("\n[4/4] Đang gợi ý gói hành động...")
         recommendation = self.recommend_action(customer, proba_churn, expected_loss, cluster=cluster)
-        print(f"✓ Gói đề xuất: {recommendation['action_name']}")
-        print(f"✓ Kênh: {recommendation['channel']}")
+        print(f"Gói đề xuất: {recommendation['action_name']}")
+        print(f"Kênh: {recommendation['channel']}")
 
         print("\n" + "=" * 60)
         print("HOÀN TẤT DỰ ĐOÁN")

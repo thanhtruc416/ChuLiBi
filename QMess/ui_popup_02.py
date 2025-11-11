@@ -5,9 +5,8 @@
 
 from pathlib import Path
 
-# from tkinter import *
-# Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+
+from tkinter import Tk, Canvas, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent

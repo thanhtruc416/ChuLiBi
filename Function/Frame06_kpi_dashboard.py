@@ -2,19 +2,15 @@
 KPI Functions for Retail Dashboard
 This module contains 8 functions to retrieve key performance indicators from CSV data.
 """
-
 from typing import Optional, Dict, Any
 from pathlib import Path
 import pandas as pd
-
 # Path to CSV file
 ROOT = Path(__file__).resolve().parents[1]  # Go up to ChuLiBi directory
 CSV_PATH = ROOT / "Dataset"/"Output" / "df_raw_dashboard.csv"
 
 # Global variable to cache the dataframe
 _df_cache = None
-
-
 def load_data() -> Optional[pd.DataFrame]:
     """
     Load data from CSV file and cache it.
@@ -235,24 +231,3 @@ def get_all_kpis() -> Dict[str, Any]:
         'avg_delivery_rating': get_avg_delivery_rating()
     }
     return kpis
-
-
-if __name__ == "__main__":
-    # Test all KPI functions
-    print("=" * 60)
-    print("RETAIL DASHBOARD KPIs")
-    print("=" * 60)
-    
-    print(f"\n1. Total Customers: {get_total_customers()}")
-    print(f"2. Average Age: {get_avg_age()}")
-    print(f"3. Total Orders: {get_total_orders()}")
-    print(f"4. High Frequency Customer Rate: {get_high_frequency_customer_rate()}%")
-    print(f"5. Average Order Value: ${get_avg_order_value()}")
-    print(f"6. Average Delivery Time: {get_avg_delivery_time()} mins")
-    print(f"7. Average Restaurant Rating: {get_avg_restaurant_rating()}/5")
-    print(f"8. Average Delivery Rating: {get_avg_delivery_rating()}/5")
-    
-    print("\n" + "=" * 60)
-    print("All KPIs as Dictionary:")
-    print("=" * 60)
-    print(get_all_kpis())

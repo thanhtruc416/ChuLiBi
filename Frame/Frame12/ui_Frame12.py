@@ -7,10 +7,8 @@ from QMess.Qmess_calling import Qmess
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH /Path("assets_Frame12")
 
-
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
-
 
 class Frame12(tk.Frame):
     def __init__(self, parent=None, controller=None):
@@ -113,7 +111,7 @@ class Frame12(tk.Frame):
         )
         self.label_Username_value = tk.Label(
             self.main_container,
-            text="thanhtruc1",  # tạm text, sau gán bằng user_data
+            text="thanhtruc1",
             bg="#D9D9D9",
             fg="#6E6E6E",
             font=("Crimson Pro", 16, "bold"),
@@ -699,37 +697,3 @@ class Frame12(tk.Frame):
             Qmess.popup_24(parent=self, title="Warning",
                            subtitle=f"An error occurred while saving: {e}")
             return
-
-
-# =====================================================
-# ⚡ Chạy trực tiếp Frame12 mà không cần main.py
-# =====================================================
-if __name__ == "__main__":
-    import tkinter as tk
-
-    root = tk.Tk()
-    root.title("Test Frame12 — Change Information")
-    root.geometry("1440x1024")
-
-    # Tạo instance của frame
-    from Frame.Frame12.ui_Frame12 import Frame12
-    test_frame = Frame12(root)
-    test_frame.pack(fill="both", expand=True)
-
-    # Giả lập dữ liệu người dùng (nếu cần test hiển thị)
-    sample_user = {
-        "username": "thanhtruc1",
-        "email": "truccct23416@st.uel.edu.vn",
-        "full_name": "Nguyễn Thanh Trúc",
-        "business_name": "ChuLiBi",
-        "role": "Project Manager"
-    }
-    # Gọi hàm on_show để nạp dữ liệu mẫu
-    test_frame.on_show(user_data=sample_user)
-
-    root.mainloop()
-
-
-
-
-

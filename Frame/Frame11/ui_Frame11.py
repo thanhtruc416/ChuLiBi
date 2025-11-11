@@ -1,6 +1,6 @@
 from pathlib import Path
 import tkinter as tk
-from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
+from tkinter import Canvas, Entry, Button, PhotoImage
 
 from Function.dropdown_profile import DropdownMenu
 from QMess.Qmess_calling import Qmess
@@ -593,30 +593,3 @@ class Frame11(tk.Frame):
     def on_show(self):
             """Gọi khi frame này được hiển thị."""
             print("Frame11 đang được hiển thị...")
-
-        # -----------------------------
-        # CHẠY FRAME11 RIÊNG LẺ
-        # -----------------------------
-def run_this_frame_only():
-            import tkinter as tk
-            root = tk.Tk()
-            root.title("ChuLiBi – Predict New Customer")
-            root.geometry("1440x1024")
-            root.configure(bg="#ECE7EB")
-            root.resizable(False, False)
-
-            # Tạo và chạy frame
-            app = Frame11(root)
-            app.pack(fill="both", expand=True)
-
-            if hasattr(app, "on_show"):
-                app.on_show()
-
-            root.mainloop()
-
-if __name__ == "__main__":
-    run_this_frame_only()
-
-
-
-

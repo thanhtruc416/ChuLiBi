@@ -820,29 +820,3 @@ class Frame10(tk.Frame):
 
     def on_show(self):
         self._load_recommendations()
-
-
-# =========================
-# Test độc lập
-# =========================
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Demo – Frame10")
-    root.geometry("1440x1024")
-    root.configure(bg="#ECE7EB")
-
-    # Mock controller
-    class MockController:
-        def show_frame(self, name, **kwargs):
-            print(f"[MOCK] show_frame({name}, {kwargs})")
-        def get_current_user(self):
-            return {"username": "test_user"}
-        def clear_current_user(self):
-            print("[MOCK] clear_current_user()")
-
-    mock_controller = MockController()
-    app = Frame10(root, controller=mock_controller)
-    app.pack(fill="both", expand=True)
-    app.on_show()
-    root.mainloop()
-

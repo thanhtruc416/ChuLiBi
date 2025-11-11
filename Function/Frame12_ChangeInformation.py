@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import messagebox
-import re
 from Frame.Frame12.ui_Frame12 import Frame12  # import UI layout
 from Function.user_repository import update_user_info
 

@@ -2,7 +2,6 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 from QMess.Qmess_calling import Qmess
-import re
 # --- Đường dẫn chung ngoài class ---
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_frame02")
@@ -264,21 +263,3 @@ class Frame02(tk.Frame):
     def on_show(self):
         self.clear_form()
         self.entry_username.focus()
-
-def run_this_frame_only():
-    root = tk.Tk()
-    root.title("ChuLiBi – Create Account")
-    root.geometry("1440x1024")
-    root.configure(bg="#FFFFFF")
-    root.resizable(False, False)
-
-    app = Frame02(root, controller=None)
-    app.pack(fill="both", expand=True)
-
-    if hasattr(app, "on_show"):
-        app.on_show()
-
-    root.mainloop()
-
-if __name__ == "__main__":
-    run_this_frame_only()

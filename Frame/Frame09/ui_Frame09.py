@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# ui_Frame09.py (chỉ sửa font thành Crimson Pro Bold)
 
 from pathlib import Path
 import tkinter as tk
@@ -417,19 +415,3 @@ class Frame09(Frame):
 
     def on_cluster_dropdown(self, cluster=None):
         print("[UI] on_cluster_dropdown triggered — override in Frame09_EL.", cluster)
-
-
-# --- Preview độc lập ---
-if __name__ == "__main__":
-    import tkinter as tk
-    from Function.Frame09_EL import Frame09_EL
-
-    root = tk.Tk()
-    root.title("Frame09 Preview")
-    root.geometry("1440x1024")
-
-    app = Frame09_EL(root)
-    app.pack(fill="both", expand=True)
-
-    root.resizable(False, False)
-    root.mainloop()

@@ -1,8 +1,3 @@
-# ui_Frame06_merged.py
-# Merged: UI + KPI display + Dropdown + Charts + Standalone runner
-# - KPI loading via get_all_kpis()
-# - Data loading & preprocessing for charts (dfp) using Function.clean_dashboard
-# - Robust standalone preview entrypoint
 
 from pathlib import Path
 from tkinter import Frame, Canvas, Button, PhotoImage
@@ -58,7 +53,6 @@ try:
     ]
     dfp = _preprocess(df)
 except Exception as e:
-    print(f"[Frame06] Không thể đọc/tiền xử lý dữ liệu dashboard: {e}")
     dfp = None
 
 
@@ -356,31 +350,3 @@ class Frame06(Frame):
                      relief="flat", command=cmd)
         btn.place(x=x, y=y, width=w, height=h)
         return btn
-
-# -------------------------
-# Standalone preview runner
-# -------------------------
-if __name__ == "__main__":
-    # Ensure project imports work even when running this file directly
-    try:
-        from Function.dropdown_profile import DropdownMenu  # validate import
-    except ModuleNotFoundError:
-        ROOT_LOCAL = Path(__file__).parent.resolve()
-        if str(ROOT_LOCAL) not in sys.path:
-            sys.path.insert(0, str(ROOT_LOCAL))
-        from Function.dropdown_profile import DropdownMenu
-
-    import tkinter as tk
-
-    class _DummyController:
-        def show_frame(self, *args, **kwargs):
-            pass
-
-    root = tk.Tk()
-    root.title("Dashboard - Frame06 (Merged)")
-    root.geometry("1440x1024")
-    root.configure(bg="#D4C5D2")
-    app = Frame06(root, _DummyController())
-    app.pack(fill="both", expand=True)
-    # root.resizable(False, False)  # lock if desired
-    root.mainloop()

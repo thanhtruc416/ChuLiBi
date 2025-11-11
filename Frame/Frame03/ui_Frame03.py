@@ -5,7 +5,6 @@ import tkinter as tk
 from QMess.Qmess_calling import Qmess
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame03")
-
 from Function.Frame03_Profile import AuthService
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
@@ -128,7 +127,6 @@ class Frame03(Frame):
             Qmess.popup_13(parent=self, title="Incomplete Profile",
                         subtitle="Please fill in all fields to complete your profile")
             return
-
         # Get current user from controller
         if not self.controller or not hasattr(self.controller, 'current_user'):
             Qmess.popup_29(parent=self, title="Error",
@@ -136,20 +134,17 @@ class Frame03(Frame):
             if self.controller:
                 self.controller.show_frame("Frame01")
             return
-
         user_id = self.controller.current_user.get('id')
         if not user_id:
             Qmess.popup_29(parent=self, title="Error",
                         subtitle="No user session found. Please login again.")
             self.controller.show_frame("Frame01")
             return
-
         try:
             from Function.Frame03_Profile import AuthService
 
             # Update profile
             result = AuthService.update_user_profile(user_id, full_name, business_name, role)
-
             if result["success"]:
                 # Update current user data
                 self.controller.current_user['full_name'] = full_name

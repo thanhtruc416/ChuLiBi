@@ -5,7 +5,6 @@ from QMess.Qmess_calling import Qmess
 import tkinter as tk
 # ===== functions: lấy username theo email + verify OTP & reset mật khẩu =====
 from Function.Frame05_ResetPassword import get_username_by_email, reset_password_with_otp
-import tkinter as tk
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame05")
 
@@ -289,45 +288,3 @@ class Frame05(Frame):
             self.bind("<Return>", lambda _e: self.on_reset_password())
         except Exception:
             pass
-
-
-# ==========================
-# CHẠY ĐỘC LẬP FRAME05
-# ==========================
-if __name__ == "__main__":
-    import tkinter as tk
-
-    # Mock (giả lập) 2 hàm trong Frame05_ResetPassword để test độc lập
-    def get_username_by_email(email):
-        if email == "thanhtruc.yee@gmail.com":
-            return True, "thanhtruc"
-        elif email == "truc@gmail.com":
-            return True, "Cao Trúc"
-        else:
-            return False, "Email không tồn tại"
-
-    def reset_password_with_otp(email, otp, new_pw):
-        if otp == "123456":
-            return True, f"Đặt lại mật khẩu cho {email} thành công!"
-        else:
-            return False, "OTP không hợp lệ"
-
-    # Mock controller (để không lỗi show_frame)
-    class DummyController:
-        def show_frame(self, name):
-            print(f"Điều hướng tới: {name}")
-
-    # Tạo cửa sổ Tkinter
-    root = tk.Tk()
-    root.title("Test Frame05 - Reset Password")
-    root.geometry("1440x1024")
-    root.configure(bg="#FFFFFF")
-
-    # Khởi tạo frame
-    frame = Frame05(root, DummyController())
-    frame.pack(fill="both", expand=True)
-
-    # Giả lập gọi từ frame trước (email người dùng nhập)
-    frame.on_show(email="thanhtruc.yee@gmail.com")
-
-    root.mainloop()

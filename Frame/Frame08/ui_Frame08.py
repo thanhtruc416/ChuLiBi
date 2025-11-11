@@ -300,21 +300,3 @@ class Frame08(tk.Frame):
         target.bind_all("<MouseWheel>", _on_wheel)   # Win/mac
         target.bind_all("<Button-4>", _on_wheel)     # Linux up
         target.bind_all("<Button-5>", _on_wheel)     # Linux down
-
-
-# =========================
-# Run standalone
-# =========================
-def run_this_frame_only():
-    root = tk.Tk()
-    root.title("Frame08 — Churn")
-    root.geometry("1440x1024")
-    root.configure(bg="#E2E2E2")
-    root.resizable(False, False)
-
-    app = Frame08(root)
-    app.pack(fill="both", expand=True)
-    root.mainloop()
-
-if __name__ == "__main__":
-    run_this_frame_only()

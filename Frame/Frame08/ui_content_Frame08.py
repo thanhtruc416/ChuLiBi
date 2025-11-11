@@ -12,7 +12,6 @@ from matplotlib.colors import ListedColormap
 if matplotlib.get_backend().lower() != "tkagg":
     matplotlib.use("TkAgg")
 print("[DEBUG] Matplotlib backend (after set):", matplotlib.get_backend())
-
 # --- Đặt font mặc định toàn cục cho Matplotlib ---
 from matplotlib import rcParams
 
@@ -1115,18 +1114,3 @@ def build_content(parent: tk.Widget, width: int, height: int) -> Canvas:
     canvas.after(100, _sync_scrollregion)
 
     return canvas
-
-# =========================================================
-# Preview runner
-# =========================================================
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Frame08 - Churn (Standalone ui_content)")
-    root.geometry("1200x1440")
-    root.configure(bg="#D4C5D2")
-
-    outer = Frame(root, bg="#D4C5D2")
-    outer.pack(fill="both", expand=True)
-
-    canvas = build_content(outer, width=1100, height=850)
-    root.mainloop()

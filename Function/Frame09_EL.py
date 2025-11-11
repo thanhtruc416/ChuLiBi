@@ -233,7 +233,7 @@ def train_churn_model(df, df_cluster):
     model_path = model_dir / "churn_model_EL.pkl"
 
     joblib.dump(best_model, model_path)
-    print(f"✅ Saved churn model for EL to: {model_path}")
+    print(f"Saved churn model for EL to: {model_path}")
     # (Optional) show ROC on test if available
     try:
         fpr, tpr, _ = roc_curve(y_test, best_model.predict_proba(X_test)[:, 1])
@@ -320,7 +320,7 @@ def dual_expected_loss(df, df_cluster, PATH=PATH):
     joblib.dump(rf_full, model_dir / "expected_loss_full.pkl")
     joblib.dump(rf_noorder, model_dir / "expected_loss_behavioral.pkl")
 
-    print(f"✅ Saved EL models to {model_dir}")
+    print(f" Saved EL models to {model_dir}")
     # === Xuất file dual map & cluster summary ===
     df_dual_map = pd.DataFrame({
         "ExpectedLoss_full_pred": rf_full.predict(Xf_test),

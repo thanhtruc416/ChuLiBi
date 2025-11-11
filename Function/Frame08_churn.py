@@ -1083,16 +1083,3 @@ def draw_shap_only(input_path: str, output_dir: str):
     if fi_df is None:
         print("Không tạo được SHAP plots. Kiểm tra phiên bản shap/numpy:")
         print("pip install -U shap numpy")
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', type=str, default=r'D:\ChuLiBi\Dataset\Output\df_cluster_full.csv')
-    parser.add_argument('--output_dir', type=str, default=r'D:\ChuLiBi\Dataset\Output')
-    parser.add_argument('--test_mode', action='store_true', help='Load existing model instead of training')
-    parser.add_argument('--shap_only', action='store_true', help='Chỉ vẽ SHAP, bỏ qua các bước khác')
-    args = parser.parse_args()
-
-    if args.shap_only:
-        draw_shap_only(args.input_path, args.output_dir)
-    else:
-        main(args)

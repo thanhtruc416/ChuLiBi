@@ -3,11 +3,8 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 import re
-from typing import Optional
 from QMess.Qmess_calling import Qmess
 from Function.app_controller import AppController
-
-# === NEW: gọi file chức năng riêng cho màn ex ===
 # API: send_otp_if_email_not_exists(email) -> (ok: bool, msg: str)
 try:
     from Function.Frame02_ex_SendOTP import send_otp_if_email_not_exists
@@ -196,11 +193,10 @@ class Frame02_ex(tk.Frame):
                 try:
                     self.controller.show_frame("Frame02")
                 except Exception as e:
-                    print(f"show_frame('Frame02') failed: {e}")
+                    return e
 
             return
-
-        # Gọi hàm gửi OTP thật
+        # Gọi hàm gửi OTP
         try:
             ok, msg = send_otp_if_email_not_exists(email)
         except Exception as e:
@@ -223,7 +219,6 @@ class Frame02_ex(tk.Frame):
                 subtitle=msg or "Please try again."
             )
             return
-
         # Thành công
         Qmess.popup_07(parent=self, title="OTP Sent",
                         subtitle="The OTP has been sent successfully!\nPlease check your inbox.")
@@ -249,8 +244,7 @@ class Frame02_ex(tk.Frame):
                 pass
         else:
             print("[login] clicked")
-
-    # ----------------------
+    # ---------------------
     # Hook khi frame được show
     # ----------------------
     def on_show(self):

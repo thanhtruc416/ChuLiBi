@@ -43,8 +43,3 @@ connector = Connector(
 def get_conn():
     """Hàm tiện lợi để import ở nơi khác: from Function.db import get_conn"""
     return connector.connect()
-
-if __name__ == "__main__":
-    # chạy: python -m Function.db  (để test)
-    print("DB test:", connector.test())
-
