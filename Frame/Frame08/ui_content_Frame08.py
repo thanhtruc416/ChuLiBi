@@ -12,7 +12,6 @@ from matplotlib.colors import ListedColormap
 if matplotlib.get_backend().lower() != "tkagg":
     matplotlib.use("TkAgg")
 print("[DEBUG] Matplotlib backend (after set):", matplotlib.get_backend())
-# --- Đặt font mặc định toàn cục cho Matplotlib ---
 from matplotlib import rcParams
 
 

@@ -1,13 +1,11 @@
 
 from pathlib import Path
 from tkinter import Frame, Canvas, Button, PhotoImage
-import sys
 import pandas as pd
 import matplotlib.font_manager as fm
 from matplotlib import rcParams
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
 # --- chart functions & preprocessing ---
 from Function.Frame06_chart_dashboard import (
     _plot_pie_meal_share,
@@ -189,7 +187,6 @@ class Frame06(Frame):
                                      highlightthickness=0, command=self.dropdown.show, relief="flat")
         self.button_Profile.place(x=1332.0, y=16.0, width=57.0, height=51.0)
 
-        # --- Sidebar buttons ---
         # --- Sidebar buttons ---
         self.button_image_1 = PhotoImage(
             file=relative_to_assets("button_CustomerAnalysis.png"))

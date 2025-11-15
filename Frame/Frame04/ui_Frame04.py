@@ -74,7 +74,6 @@ class Frame04(Frame):
         self.entry_email.place(x=857.0, y=462.0, width=449.0, height=58.0)
 
         # --- Buttons ---
-        # ĐỔI command: gọi hàm forgot
         self.button_sendOTP = Button(
             self,
             image=self.button_image_sendOTP,
@@ -112,9 +111,7 @@ class Frame04(Frame):
                 Qmess.popup_16(parent=self,
                         title="Success",
                         subtitle="The OTP is valid for 10 minutes.\nPlease continue to enter it quickly.")
-                # sang Frame05 và TRUYỀN email để frame sau biết mà verify OTP
                 if self.controller:
-                    # Yêu cầu controller hỗ trợ show_frame(name, **kwargs) và gọi on_show(**kwargs)
                     self.controller.show_frame("Frame05", email=email)
             else:
                 Qmess.popup_17(parent=self,

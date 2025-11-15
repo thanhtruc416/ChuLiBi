@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 import tkinter as tk
 from tkinter import Canvas, Entry, Button, PhotoImage
-_project_root = Path(__file__).resolve().parents[2]  # Frame/Frame01 -> Frame -> project root
+_project_root = Path(__file__).resolve().parents[2]
 if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
 
@@ -125,7 +125,7 @@ class Frame01(tk.Frame):
 
         self.dn_eye = Button(
             self,
-            image=self.eye_imgs["hide"],  # bắt đầu: đang ẩn
+            image=self.eye_imgs["hide"],
             borderwidth=0, highlightthickness=0,
             relief="flat", cursor="hand2",
             command=self.toggle_password_visibility
@@ -266,7 +266,6 @@ class Frame01(tk.Frame):
 
             if ok:
                 user_data = data
-                # lưu vào controller (nếu có)
                 if self.controller:
                     if not hasattr(self.controller, "current_user"):
                         self.controller.current_user = {}
@@ -274,7 +273,6 @@ class Frame01(tk.Frame):
 
                 # clear password field
                 self.dn_password.delete(0, tk.END)
-                # => xem như chưa hoàn tất hồ sơ -> chuyển về Frame03 để bổ sung
                 profile_complete = (
                         user_data.get("full_name")
                         and user_data.get("business_name")

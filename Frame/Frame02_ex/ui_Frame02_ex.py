@@ -5,11 +5,10 @@ from tkinter import Canvas, Entry, Button, PhotoImage, messagebox
 import re
 from QMess.Qmess_calling import Qmess
 from Function.app_controller import AppController
-# API: send_otp_if_email_not_exists(email) -> (ok: bool, msg: str)
 try:
     from Function.Frame02_ex_SendOTP import send_otp_if_email_not_exists
 except Exception:
-    send_otp_if_email_not_exists = None  # cho phép demo nếu chưa có module
+    send_otp_if_email_not_exists = None
 
 
 class Frame02_ex(tk.Frame):
@@ -227,7 +226,7 @@ class Frame02_ex(tk.Frame):
             if not hasattr(self.controller, "current_user") or self.controller.current_user is None:
                 self.controller.current_user = {}
             self.controller.current_user["pending_email"] = email
-            self.controller.pending_email = email  # để Frame02 đọc theo cách cũ
+            self.controller.pending_email = email
 
             try:
                 self.controller.show_frame("Frame02")

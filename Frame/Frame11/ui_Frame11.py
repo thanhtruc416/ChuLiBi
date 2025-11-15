@@ -582,7 +582,6 @@ class Frame11(tk.Frame):
 
             except Exception as e:
                 Qmess.popup_02(parent=self, title="System Error", subtitle=f"Authentication module not found: {str(e)}")
-
         # -----------------------------
         # PHẦN LOGIC HIỂN THỊ FRAME
         # -----------------------------

@@ -517,7 +517,7 @@ class Frame07(tk.Frame):
                         anchor="nw",
                         text="• " + desc_text.replace("• ", ""),
                         font=desc_font,
-                        fill="#000000",  # cùng màu chữ
+                        fill="#000000",
                         width=desc_width,
                         justify="left"
                     )
@@ -555,6 +555,3 @@ class Frame07(tk.Frame):
             width=230,
             justify="left"
         )
-
-    def on_show(self, **kwargs):
-        pass

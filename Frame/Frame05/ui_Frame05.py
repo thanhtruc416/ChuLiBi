@@ -3,7 +3,6 @@ from pathlib import Path
 from tkinter import Frame, Canvas, Entry, Button, PhotoImage, messagebox, StringVar, NORMAL, DISABLED
 from QMess.Qmess_calling import Qmess
 import tkinter as tk
-# ===== functions: lấy username theo email + verify OTP & reset mật khẩu =====
 from Function.Frame05_ResetPassword import get_username_by_email, reset_password_with_otp
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame05")
@@ -18,7 +17,6 @@ class Frame05(Frame):
         self.configure(bg="#FFFFFF")
         self.lower()
 
-        # sẽ nhận từ frame trước qua on_show(email=...)
         self.email = None
 
         # ---- bind biến để đọc/ghi dễ hơn ----
@@ -118,7 +116,6 @@ class Frame05(Frame):
                            fill="#FFFFFF", font=("Crimson Pro SemiBold", 40 * -1))
         canvas.create_text(903.0, 271.0, anchor="nw", text="Username", fill="#000000",
                            font=("Crimson Pro SemiBold", 28 * -1))
-
         # --- Entry ---
         # Ảnh nền bo tròn cho ô Username
         self.image_username_bg = PhotoImage(file=relative_to_assets("image_username.png"))

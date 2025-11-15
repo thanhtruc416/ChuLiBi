@@ -82,7 +82,7 @@ class Main(tk.Tk):
             self.frames["Frame01"].grid()
             self.controller.show_frame("Frame01")
         else:
-            print("[ERROR] Frame01 chưa được register!")
+            pass
 
 
 if __name__ == "__main__":

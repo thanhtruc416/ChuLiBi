@@ -5,7 +5,7 @@ import tkinter as tk
 from QMess.Qmess_calling import Qmess
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets_Frame03")
-from Function.Frame03_Profile import AuthService
+
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
@@ -154,7 +154,6 @@ class Frame03(Frame):
                 Qmess.popup_14(parent=self, title="Profile Completed",
                         subtitle=f"Welcome, {full_name}! Your profile has been completed successfully! Please login again.")
 
-                # Clear user session and navigate back to login
                 if self.controller:
                     self.controller.current_user = {}
                     try:
