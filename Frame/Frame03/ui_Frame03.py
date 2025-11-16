@@ -221,7 +221,8 @@ class Frame03(Frame):
 
             self.role_var = user.get('role', "")
             self.entry_your_role.delete(0, tk.END)
-            self.entry_your_role.insert(0, self.role_var)
+            role = user.get('role') or ""
+            self.entry_your_role.insert(0, str(role))
 
     def clear_form(self):
         """Clear all form fields"""
@@ -261,7 +262,7 @@ class Frame03(Frame):
         def on_select(val):
             self.role_var = val
             entry_widget.delete(0, tk.END)
-            entry_widget.insert(0, val)
+            entry_widget.insert(0, str(val))
             popup.destroy()
 
         # Tạo label cho mỗi lựa chọn
