@@ -1,10 +1,15 @@
 🧠 ChuLiBi Machine Learning System
+
 🏁 Giới thiệu
 
 ChuLiBi là hệ thống máy học hỗ trợ doanh nghiệp dịch vụ giao đồ ăn trong việc:
+
 1️⃣ Phân cụm khách hàng
+
 2️⃣ Dự báo hành vi rời bỏ
+
 3️⃣ Đo lường tổn thất
+
 4️⃣ Đề xuất combo đồ ăn tối ưu
 
 Ứng dụng được phát triển bằng ngôn ngữ Python, giao diện đồ họa người dùng với Tkinter, tích hợp các thư viện cốt lõi như Pandas, Numpy, Scikit-learn để xử lý và huấn luyện mô hình Machine Learning.
@@ -46,7 +51,12 @@ Dưới đây là cấu trúc thư mục của dự án, trình bày theo địn
 			- `recommendations.csv`
 			- `best_churn_model.pkl`
 			- `scaler.pkl`
-
+	- `models/`
+        - `best_churn_model.pkl`
+        - `churn_model_EL.pkl`
+        - `expected_loss_behavioral.pkl`
+        - `expected_loss_full.pkl`
+        - `kmeans_model_k3.pkl`
 	- `Font/`
 		- `Crimson_Pro/`
 			- `static/`
@@ -118,32 +128,51 @@ Dưới đây là cấu trúc thư mục của dự án, trình bày theo địn
 	- `requirements.txt`
 
 ⚙️ Quick Start
+
 1️⃣ Prerequisites
+
 Python 3.12
+
 MySQL Server
 
 2️⃣ Installation
+
 # Clone project
+
 git clone https://github.com/<your-repo>/ChuLiBi.git
+
 cd ChuLiBi
 
 # Create environment
+
 python -m venv venv
+
 venv\Scripts\activate    # (Windows)
+
 source venv/bin/activate # (macOS/Linux)
 
 # Install dependencies
+
 pip install -r requirements.txt
 
 3️⃣ Environment Variables
+
 Tạo file .env trong thư mục gốc (hoặc copy từ .env.copy)
+
 DB_HOST=127.0.0.1
+
 DB_USER=root
+
 DB_PASSWORD=your_password
+
 DB_NAME=chulibi
+
 SMTP_USER=your_email@gmail.com
+
 SMTP_PASS=your_app_password
+
 APP_NAME=ChuLiBi Dashboard
 
 4️⃣ Run Application
+
 python main.py

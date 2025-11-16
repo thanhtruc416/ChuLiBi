@@ -636,7 +636,20 @@ class Frame12(tk.Frame):
         set_entry(self.entry_Gmail, user_data.get("email", ""))
         set_entry(self.entry_Business_Name, user_data.get("business_name", ""))
         set_entry(self.entry_Your_Role, user_data.get("role", ""))
+        # ===== KHÓA Ô ROLE NẾU USER KHÔNG PHẢI ADMIN =====
+        role_value = user_data.get("role", "").lower()
 
+        if role_value != "admin":
+            # Khóa ô lại
+            self.entry_Your_Role.configure(
+                state="readonly",
+                fg="#6f6f6f",
+                readonlybackground="#D9D9D9",
+                disabledbackground="#D9D9D9"
+            )
+        else:
+            # Admin được phép sửa
+            self.entry_Your_Role.configure(state="normal", fg="#000716")
 
         self.entry_Password.configure(state="normal")
         self.entry_Password.delete(0, tk.END)
@@ -656,6 +669,17 @@ class Frame12(tk.Frame):
         password = self.entry_Password.get().strip()
         username = self.label_Username_value.cget("text").strip()
         email = self.entry_Gmail.get().strip()
+        # ===== BLOCK USER FROM CHANGING ROLE =====
+        current_user_role = self.controller.get_current_user().get("role", "").lower()
+        original_role = self.controller.get_current_user().get("role", "")
+
+        if current_user_role != "admin" and role != original_role:
+            Qmess.popup_24(
+                parent=self,
+                title="Permission Denied",
+                subtitle="You are not allowed to change your role."
+            )
+            return
 
         # --- Kiểm tra thông tin bắt buộc ---
         if not full_name or not business_name or not role:

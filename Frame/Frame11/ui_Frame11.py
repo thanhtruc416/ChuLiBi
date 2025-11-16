@@ -314,7 +314,7 @@ class Frame11(tk.Frame):
             image=self.button_image_7,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: self.controller.show_frame("Frame11"),
+            command=self.open_Frame11,
             relief="flat"
         )
         button_PredictCustomer.place(
@@ -588,7 +588,20 @@ class Frame11(tk.Frame):
     def on_entry_click(self, event):
             widget = event.widget
             print(f"Bạn vừa click vào ô nhập: {widget}")
+    def open_Frame11(self):
+        self.controller.show_frame(Frame11)
 
-    def on_show(self):
-            """Gọi khi frame này được hiển thị."""
-            print("Frame11 đang được hiển thị...")
+    def on_show(self, **kwargs):
+        """Kiểm tra quyền mỗi lần Frame11 được hiển thị."""
+        role = self.controller.current_user.get("role", "").lower()
+        print("DEBUG ROLE ON_SHOW:", role)
+
+        if role != "admin":
+            Qmess.popup_24(
+                parent=self,
+                title="Access Denied",
+                subtitle="You do not have permission to access Predict Customer."
+            )
+            # quay về frame06 sau khi popup tắt
+            self.after(10, lambda: self.controller.show_frame("Frame06"))
+            return

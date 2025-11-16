@@ -94,9 +94,32 @@ class Frame03(Frame):
         # --- Entries ---
         self.entry_image_yourrole = PhotoImage(file=relative_to_assets("entry_full_name.png"))
         canvas.create_image(1081.5, 755.5, image=self.entry_image_yourrole)
-        self.entry_your_role = Entry(self, bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0,
-                                     font=("Crimson Pro Regular", 26 * -1))
+        # --- thay entry_your_role bằng dropdown ---
+        self.entry_image_yourrole = PhotoImage(file=relative_to_assets("entry_full_name.png"))
+        canvas.create_image(1081.5, 755.5, image=self.entry_image_yourrole)
+
+        self.entry_your_role = Entry(
+            self,
+            bd=0,
+            bg="#FFFFFF",
+            fg="#000716",
+            highlightthickness=0,
+            font=("Crimson Pro Regular", 26 * -1)
+        )
         self.entry_your_role.place(x=857.0, y=721.0, width=449.0, height=67.0)
+        self.role_var = ""  # lưu giá trị đã chọn
+        self.role_button_img = PhotoImage(file=relative_to_assets("button_26.png"))
+        self.role_button = Button(
+            self,
+            image=self.role_button_img,
+            bd=0,
+            highlightthickness=0,
+            relief="flat",
+            bg="#FFFFFF",
+            activebackground="#FFFFFF",
+            command=lambda: self.show_dropdown(self.entry_your_role, "Role")
+        )
+        self.role_button.place(x=1280, y=738)
 
         self.entry_image_fullname = PhotoImage(file=relative_to_assets("entry_full_name.png"))
         canvas.create_image(1081.5, 484.5, image=self.entry_image_fullname)
@@ -120,7 +143,11 @@ class Frame03(Frame):
         """Save user profile information"""
         full_name = self.entry_full_name.get().strip()
         business_name = self.entry_business_name.get().strip()
-        role = self.entry_your_role.get().strip()
+        role = getattr(self, "role_var", "").strip()
+        if not role:
+            Qmess.popup_13(parent=self, title="Incomplete Profile",
+                           subtitle="Please select your role")
+            return
 
         # Validate inputs
         if not full_name or not business_name or not role:
@@ -192,9 +219,9 @@ class Frame03(Frame):
                 self.entry_business_name.delete(0, tk.END)
                 self.entry_business_name.insert(0, user['business_name'])
 
-            if user.get('role'):
-                self.entry_your_role.delete(0, tk.END)
-                self.entry_your_role.insert(0, user['role'])
+            self.role_var = user.get('role', "")
+            self.entry_your_role.delete(0, tk.END)
+            self.entry_your_role.insert(0, self.role_var)
 
     def clear_form(self):
         """Clear all form fields"""
@@ -209,3 +236,78 @@ class Frame03(Frame):
         self.load_user_data()
         # Focus on first field
         self.entry_full_name.focus()
+
+    def show_dropdown(self, entry_widget, key):
+        """Hiển thị dropdown ChuLiBi ngay dưới entry"""
+        # Giá trị dropdown theo key
+        dropdown_values = {
+            "Role": ["User", "Admin"]
+        }
+        values = dropdown_values.get(key, [])
+        if not values:
+            return
+
+        # Tạo popup
+        popup = tk.Toplevel(self)
+        popup.overrideredirect(True)  # xóa viền window
+        popup.config(bg="#FFFFFF")
+
+        # Vị trí popup ngay dưới entry
+        x = self.winfo_rootx() + entry_widget.winfo_x()
+        y = self.winfo_rooty() + entry_widget.winfo_y() + entry_widget.winfo_height()
+        popup.geometry(f"170x{len(values) * 30}+{x}+{y}")
+
+        # Hàm chọn giá trị
+        def on_select(val):
+            self.role_var = val
+            entry_widget.delete(0, tk.END)
+            entry_widget.insert(0, val)
+            popup.destroy()
+
+        # Tạo label cho mỗi lựa chọn
+        for val in values:
+            lbl = tk.Label(
+                popup,
+                text=val,
+                bg="#FFFFFF",
+                fg="#745fa3",
+                font=("Crimson Pro SemiBold", 12),
+                anchor="w",
+                padx=12,
+                pady=3
+            )
+            lbl.pack(fill="x")
+
+            # Chọn giá trị khi click
+            lbl.bind("<Button-1>", lambda e, v=val: on_select(v))
+            # Hover effect
+            lbl.bind("<Enter>", lambda e, l=lbl: l.config(bg="#EDE6F9", fg="#2E1E5B"))
+            lbl.bind("<Leave>", lambda e, l=lbl: l.config(bg="#FFFFFF", fg="#745fa3"))
+
+        # Tự động ẩn khi mất focus
+        popup.focus_force()
+        popup.bind("<FocusOut>", lambda e: popup.destroy())
+if __name__ == "__main__":
+    import tkinter as tk
+
+    class App(tk.Tk):
+        def __init__(self):
+            super().__init__()
+            self.title("ChuLiBi - Complete Profile")
+            self.geometry("1440x1024")
+            self.current_user = {"id": 1, "full_name": "", "business_name": "", "role": ""}
+
+            # Tạo frame03
+            self.frame03 = Frame03(parent=self, controller=self)
+            self.frame03.place(x=0, y=0, relwidth=1, relheight=1)
+
+            # Hiển thị frame03
+            self.frame03.lift()
+            if hasattr(self.frame03, "on_show"):
+                self.frame03.on_show()
+
+    # Khởi chạy app
+    app = App()
+    app.mainloop()
+
+
