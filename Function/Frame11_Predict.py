@@ -820,44 +820,8 @@ class CustomerPredictor:
 def predict_customer(customer: Dict, data_dir: Path = None) -> Dict:
     """
     Hàm tiện ích để dự đoán cho 1 khách hàng
-
-    Args:
-        customer: Dictionary chứa thông tin khách hàng
-        data_dir: Đường dẫn đến Dataset/Output (optional)
-
-    Returns:
-        Dictionary chứa kết quả dự đoán đầy đủ
-        ví dụ:
-        >>> customer = {
-        ...     'Age': 20,
-        ...     'Gender': 'Female',
-        ...     'Marital Status': 'Single',
-        ...     'Occupation': 'Student',
-        ...     'Educational Qualifications': 'Post Graduate',
-        ...     'Family size': 4,
-        ...     'Frequently used Medium': 'Food delivery apps',
-        ...     'Frequently ordered Meal category': 'Breakfast',
-        ...     'Perference': 'Non Veg foods (Lunch / Dinner)',
-        ...     'Restaurant Rating': 1,
-        ...     'Delivery Rating': 1,
-        ...     'No. of orders placed': 150,
-        ...     'Delivery Time': 45,
-        ...     'Order Value': 1,
-        ...     'Ease and convenient': 'Neutral',
-        ...     'Self Cooking': 'Neutral',
-        ...     'Health Concern': 'Neutral',
-        ...     'Late Delivery': 'Neutral',
-        ...     'Poor Hygiene': 'Neutral',
-        ...     'Bad past experience': 'Neutral',
-        ...     'More Offers and Discount': 'Neutral',
-        ...     'Maximum wait time': '30 minutes',
-        ...     'Influence of rating': 'Yes'
-        ... }
-        >>> result = predict_customer(customer)
-        >>> print(result['cluster'])
-        >>> print(result['churn']['churn_risk_pct'])
-        >>> print(result['recommendation']['action_name'])
     """
+    # 1) Validate dữ liệu trước khi chạy model
     is_valid, errors = validate_customer_input(customer)
     if not is_valid:
         print("\n DỮ LIỆU KHÔNG HỢP LỆ, DỪNG DỰ ĐOÁN:")
@@ -865,9 +829,24 @@ def predict_customer(customer: Dict, data_dir: Path = None) -> Dict:
             print(e)
         raise ValueError("Dữ liệu khách hàng không hợp lệ. Hãy nhập lại đúng giá trị.")
 
-    # Nếu hợp lệ thì mới chạy model
+    # 2) Chạy model dự đoán
     predictor = CustomerPredictor(data_dir=data_dir)
-    return predictor.predict_all(customer)
+    result = predictor.predict_all(customer)
+
+    # 3) Lưu lịch sử dự đoán xuống MySQL
+    try:
+        from Function.save_history import save_predict_history
+
+        # Nếu người dùng không nhập CustomerID → đặt "NEW"
+        cust_id = customer.get("CustomerID", "NEW")
+
+        save_predict_history(result, customer_id=cust_id)
+
+    except Exception as e:
+        print("Không thể lưu lịch sử:", e)
+
+    # 4) Trả kết quả về UI
+    return result
 
 
 # ==================== MAIN ====================

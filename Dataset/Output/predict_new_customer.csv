@@ -6,3 +6,5 @@ Age,Gender,Marriage Status,Occupation,Educational Qualifications,Family size,Fre
 20,Female,Single,Employee,Graduate,2,Walk-in,Lunch,4,4,4,520,30,3,Agree,Neutral,Agree,Disagree,Agree,Neutral,Neutral,60 minutes,Yes
 20,Female,Single,Student,School,2,Food delivery apps,Dinner,5,4,4,512,50,3,Agree,Agree,Neutral,Neutral,Agree,Agree,Agree,60 minutes,Yes
 20,Female,Single,Student,Graduate,2,Walk-in,Snacks,5,5,5,820,30,3,Agree,Disagree,Agree,Neutral,Agree,Neutral,Strongly agree,45 minutes,Yes
+20,Female,Single,Student,Graduate,6,Walk-in,Snacks,3,4,4,125,30,2,Neutral,Disagree,Agree,Agree,Disagree,Neutral,Neutral,45 minutes,Yes
+18,Female,Single,Student,School,6,Walk-in,Snacks,4,5,4,125,30,2,Agree,Neutral,Agree,Strongly agree,Neutral,Neutral,Agree,45 minutes,Yes
